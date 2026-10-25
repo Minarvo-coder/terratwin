@@ -7,6 +7,10 @@ node_modules/
 dist/
 build/
 out/
+/.next/
+.vercel
+*.tsbuildinfo
+next-env.d.ts
 
 # Environment and secrets
 .env
