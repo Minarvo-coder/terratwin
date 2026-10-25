@@ -1,17 +1,27 @@
 import { createClient } from '@/utils/supabase/server'
+import { connection } from 'next/server'
 import Link from 'next/link'
 import { Suspense } from 'react'
 import { Database, CheckCircle2, AlertTriangle, ArrowLeft, ShieldCheck, Terminal, Loader2 } from 'lucide-react'
 
-async function TestDbContent() {
-  const startTime = performance.now()
-  let error: { message: string; details?: string; hint?: string; code?: string } | null = null
-  let locations: any[] | null = null
-  let latencyMs = 0
+interface LocationRow {
+  id: string
+  name: string
+  planetary_body: string
+  location_role: string
+  latitude: number | null
+  longitude: number | null
+  created_at: string
+}
 
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-  const isUrlConfigured = !!supabaseUrl && !supabaseUrl.includes('your-project')
+interface DiagnosticResult {
+  latencyMs: number
+  error: { message: string; details?: string; hint?: string; code?: string } | null
+  locations: LocationRow[] | null
+}
 
+async function getDiagnostics(): Promise<DiagnosticResult> {
+  const start = Date.now()
   try {
     const supabase = await createClient()
     const response = await supabase
@@ -19,16 +29,24 @@ async function TestDbContent() {
       .select('id, name, planetary_body, location_role, latitude, longitude, created_at')
       .order('created_at', { ascending: false })
 
-    latencyMs = Math.round(performance.now() - startTime)
+    const latencyMs = Math.max(1, Date.now() - start)
     if (response.error) {
-      error = response.error
-    } else {
-      locations = response.data
+      return { latencyMs, error: response.error, locations: null }
     }
-  } catch (err: any) {
-    latencyMs = Math.round(performance.now() - startTime)
-    error = { message: err?.message || 'Unexpected exception occurred while executing query.' }
+    return { latencyMs, error: null, locations: (response.data as LocationRow[]) ?? [] }
+  } catch (err: unknown) {
+    const latencyMs = Math.max(1, Date.now() - start)
+    const message = err instanceof Error ? err.message : 'Unexpected exception occurred while executing query.'
+    return { latencyMs, error: { message }, locations: null }
   }
+}
+
+async function TestDbContent() {
+  await connection()
+  const { latencyMs, error, locations } = await getDiagnostics()
+
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const isUrlConfigured = !!supabaseUrl && !supabaseUrl.includes('your-project')
 
   return (
     <div className="flex flex-col gap-6">

@@ -82,7 +82,7 @@ export function FeatureWeightsSection() {
                 </TableCell>
                 {MISSION_PURPOSES.map((purpose) => (
                   <TableCell key={purpose.id} className="text-right font-mono text-xs tabular-nums">
-                    {purpose.weights[feature.key].toFixed(1)}
+                    {(purpose.weights[feature.key] ?? 0).toFixed(1)}
                   </TableCell>
                 ))}
               </TableRow>

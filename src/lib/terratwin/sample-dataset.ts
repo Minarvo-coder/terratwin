@@ -11,8 +11,9 @@ export const SAMPLE_DATASET_META: DatasetMeta = {
   name: "TerraTwin illustrative sample dataset",
   version: "0.1.0-sample",
   isIllustrative: true,
+  isVerified: false,
   notice:
-    "All targets, measurements and scores are illustrative placeholders for interface development. They are not real scientific evidence.",
+    "All targets, measurements and scores in this demo mode are illustrative placeholders for interface development. They are not real scientific evidence.",
 }
 
 export const SAMPLE_TARGETS: PlanetaryTarget[] = [

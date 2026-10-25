@@ -2,18 +2,34 @@ import { FEATURE_MAP, LITHOLOGY_LABELS } from "./features"
 import type { DataConfidence, FeatureKey, Lithology } from "./types"
 
 export function formatFeatureValue(key: FeatureKey, value: number | string | null): string {
-  if (value === null) return "No data"
-  if (key === "lithology") return LITHOLOGY_LABELS[value as Lithology]
+  if (value === null || value === undefined) return "No data"
+  if (key === "lithology") return LITHOLOGY_LABELS[value as Lithology] ?? String(value)
 
-  const { unit } = FEATURE_MAP[key]
-  const numeric = value as number
-  const formatted =
-    key === "albedo" ? numeric.toFixed(2) : key === "medianGrainSizeMm" ? numeric.toString() : numeric.toFixed(0)
+  const feature = FEATURE_MAP[key]
+  const unit = feature?.unit ?? ""
+  const numeric = Number(value)
+
+  if (!Number.isFinite(numeric)) return String(value)
+
+  let formatted: string
+  if (key === "albedo") {
+    formatted = numeric.toFixed(2)
+  } else if (key === "medianGrainSizeMm") {
+    formatted = numeric.toString()
+  } else if (key === "elevationM" || key === "surfacePressurePa") {
+    formatted = Math.round(numeric).toLocaleString()
+  } else if (key === "meanSurfaceTempC" || key === "diurnalTempRangeC") {
+    formatted = numeric.toFixed(1)
+  } else {
+    formatted = Math.round(numeric).toString()
+  }
+
   return unit ? `${formatted} ${unit}` : formatted
 }
 
-export function formatScore(score: number): string {
-  return score.toFixed(1)
+export function formatScore(score: number | null): string {
+  if (score === null || !Number.isFinite(score)) return "Insufficient data"
+  return `${score.toFixed(1)}%`
 }
 
 export function formatCoverage(coverage: number): string {
@@ -30,4 +46,5 @@ export const CONFIDENCE_LABELS: Record<DataConfidence, string> = {
   high: "High data coverage",
   moderate: "Partial data",
   low: "Low data coverage",
+  insufficient: "Insufficient data to rank reliably",
 }

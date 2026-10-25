@@ -1,8 +1,7 @@
 "use client"
 
-import { AlertTriangle, MapPin, CheckCircle, Flame, ShieldAlert, Sparkles } from "lucide-react"
+import { AlertTriangle, MapPin, CheckCircle, ShieldAlert, ShieldCheck } from "lucide-react"
 import { PanelCard } from "@/components/shared/panel-card"
-import { ScoreBar } from "@/components/shared/score-bar"
 import { IllustrativeBadge } from "@/components/shared/illustrative-badge"
 import { CONFIDENCE_LABELS, formatCoverage, formatScore } from "@/lib/terratwin/format"
 import type { RankedCandidate } from "@/lib/terratwin/types"
@@ -17,11 +16,22 @@ interface CandidateListProps {
 }
 
 export function CandidateList({ results, totalCandidates, selectedId, onSelect, isUpdating }: CandidateListProps) {
+  const hasVerified = results.some((r) => r.candidate.isVerified)
+
   return (
     <PanelCard
       title="Ranked Earth Analogs"
       description={`${results.length} of ${totalCandidates} calibrated field sites`}
-      actions={<IllustrativeBadge label="Vector similarity" />}
+      actions={
+        hasVerified ? (
+          <span className="rounded border border-emerald-500/40 bg-emerald-950/60 px-2 py-0.5 font-mono text-[10px] text-emerald-300 flex items-center gap-1 font-semibold">
+            <ShieldCheck className="size-3 text-emerald-400" />
+            <span>PDS / NASA SOURCED</span>
+          </span>
+        ) : (
+          <IllustrativeBadge label="Vector similarity" />
+        )
+      }
       isUpdating={isUpdating}
       bodyClassName="p-0"
     >
@@ -46,7 +56,7 @@ function CandidateRow({
   onSelect: (id: string) => void
 }) {
   const hasMissing = result.missingFeatures.length > 0
-  const isTopThree = result.rank <= 3
+  const isReliable = result.isReliable && result.score !== null
 
   return (
     <button
@@ -79,32 +89,52 @@ function CandidateRow({
       {/* Content */}
       <div className="flex min-w-0 flex-1 flex-col gap-1.5">
         <div className="flex items-baseline justify-between gap-2">
-          <span className={cn("truncate text-sm font-semibold transition-colors", selected ? "text-cyan-300" : "text-white group-hover:text-cyan-200")}>
-            {result.candidate.name}
-          </span>
-          <span
-            className={cn(
-              "font-mono text-xs font-bold tabular-nums px-2 py-0.5 rounded",
-              result.score >= 80 ? "bg-emerald-950/70 text-emerald-400 border border-emerald-500/30" :
-              result.score >= 60 ? "bg-cyan-950/70 text-cyan-400 border border-cyan-500/30" :
-              "bg-slate-900 text-slate-400 border border-slate-800"
+          <div className="flex items-center gap-1.5 min-w-0">
+            <span className={cn("truncate text-sm font-semibold transition-colors", selected ? "text-cyan-300" : "text-white group-hover:text-cyan-200")}>
+              {result.candidate.name}
+            </span>
+            {result.candidate.isVerified && (
+              <span className="rounded bg-emerald-950/80 border border-emerald-500/30 px-1 py-0.2 text-[8px] font-mono text-emerald-300 shrink-0">
+                DB
+              </span>
             )}
-          >
-            {formatScore(result.score)}
-          </span>
+          </div>
+
+          <div>
+            {isReliable ? (
+              <span
+                className={cn(
+                  "font-mono text-xs font-bold tabular-nums px-2 py-0.5 rounded",
+                  result.score! >= 80 ? "bg-emerald-950/70 text-emerald-400 border border-emerald-500/30" :
+                  result.score! >= 60 ? "bg-cyan-950/70 text-cyan-400 border border-cyan-500/30" :
+                  "bg-slate-900 text-slate-400 border border-slate-800"
+                )}
+              >
+                {formatScore(result.score)}
+              </span>
+            ) : (
+              <span className="font-mono text-[9px] font-bold text-rose-300 bg-rose-950/60 border border-rose-500/40 px-1.5 py-0.5 rounded">
+                DEFICIT
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Telemetry Score Progress Bar */}
         <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-slate-900 border border-slate-800">
-          <div
-            className={cn(
-              "h-full transition-all duration-500",
-              result.score >= 80 ? "bg-gradient-to-r from-cyan-500 to-emerald-400 shadow-[0_0_8px_#34d399]" :
-              result.score >= 60 ? "bg-gradient-to-r from-blue-500 to-cyan-400 shadow-[0_0_8px_#38bdf8]" :
-              "bg-slate-600"
-            )}
-            style={{ width: `${Math.max(4, result.score)}%` }}
-          />
+          {isReliable ? (
+            <div
+              className={cn(
+                "h-full transition-all duration-500",
+                result.score! >= 80 ? "bg-gradient-to-r from-cyan-500 to-emerald-400 shadow-[0_0_8px_#34d399]" :
+                result.score! >= 60 ? "bg-gradient-to-r from-blue-500 to-cyan-400 shadow-[0_0_8px_#38bdf8]" :
+                "bg-slate-600"
+              )}
+              style={{ width: `${Math.max(4, result.score!)}%` }}
+            />
+          ) : (
+            <div className="h-full w-full bg-[repeating-linear-gradient(45deg,rgba(244,63,94,0.3),rgba(244,63,94,0.3)_4px,transparent_4px,transparent_8px)]" />
+          )}
         </div>
 
         {/* Location & Data Confidence Details */}
@@ -114,13 +144,15 @@ function CandidateRow({
             <span className="truncate">{result.candidate.country}</span>
           </span>
 
-          <span className={cn("flex shrink-0 items-center gap-1", hasMissing ? "text-amber-400/90" : "text-emerald-400/90")}>
-            {hasMissing ? (
+          <span className={cn("flex shrink-0 items-center gap-1", !isReliable ? "text-rose-400" : hasMissing ? "text-amber-400/90" : "text-emerald-400/90")}>
+            {!isReliable ? (
+              <ShieldAlert className="size-3" aria-hidden="true" />
+            ) : hasMissing ? (
               <AlertTriangle className="size-3" aria-hidden="true" />
             ) : (
               <CheckCircle className="size-3" aria-hidden="true" />
             )}
-            <span>{hasMissing ? CONFIDENCE_LABELS[result.confidence] : "Complete"}</span>
+            <span>{!isReliable ? "Data deficit" : hasMissing ? CONFIDENCE_LABELS[result.confidence] : "Complete"}</span>
             <span className="text-slate-600">·</span>
             <span>{formatCoverage(result.coverage)}</span>
           </span>

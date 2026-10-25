@@ -62,7 +62,7 @@ export function LandingHero() {
 
             {/* Subtitle */}
             <p className="max-w-xl text-base sm:text-lg leading-relaxed text-slate-300">
-              TerraTwin is an algorithmic mission-planning engine. It maps the environmental, mineralogical, and 
+              TerraTwin is an algorithmic mission-planning engine. It maps the environmental, mineralogical, and
               geomorphological conditions of extraterrestrial exploration targets against real-world terrestrial field sites.
             </p>
 

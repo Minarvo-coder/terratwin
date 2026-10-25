@@ -15,6 +15,7 @@ export const FEATURES: FeatureDefinition[] = [
     description: "Annual or diurnally averaged surface temperature.",
     kind: "linear",
     tolerance: 150,
+    isCrossBodyComparable: true,
   },
   {
     key: "diurnalTempRangeC",
@@ -24,15 +25,18 @@ export const FEATURES: FeatureDefinition[] = [
     description: "Typical day–night surface temperature swing.",
     kind: "linear",
     tolerance: 150,
+    isCrossBodyComparable: true,
   },
   {
     key: "annualPrecipitationMm",
     label: "Annual precipitation",
     shortLabel: "Precipitation",
     unit: "mm/yr",
-    description: "Liquid-equivalent precipitation. Moon and Mars targets are treated as zero.",
+    description: "Liquid-equivalent precipitation. Target bodies lack active rainfall.",
     kind: "linear",
     tolerance: 500,
+    isCrossBodyComparable: false,
+    incomparabilityNotice: "Target bodies have 0 mm/yr liquid rainfall; active precipitation cannot be physically matched to dry/vacuum surfaces.",
   },
   {
     key: "meanSlopeDeg",
@@ -42,6 +46,7 @@ export const FEATURES: FeatureDefinition[] = [
     description: "Average slope across a rover-scale traverse area.",
     kind: "linear",
     tolerance: 25,
+    isCrossBodyComparable: true,
   },
   {
     key: "rockAbundancePct",
@@ -51,6 +56,7 @@ export const FEATURES: FeatureDefinition[] = [
     description: "Fraction of surface covered by clasts larger than ~10 cm.",
     kind: "linear",
     tolerance: 40,
+    isCrossBodyComparable: true,
   },
   {
     key: "medianGrainSizeMm",
@@ -60,6 +66,7 @@ export const FEATURES: FeatureDefinition[] = [
     description: "Median particle size of loose surface material, compared on a log scale.",
     kind: "logarithmic",
     tolerance: 2,
+    isCrossBodyComparable: true,
   },
   {
     key: "albedo",
@@ -69,15 +76,17 @@ export const FEATURES: FeatureDefinition[] = [
     description: "Broadband visible reflectance (0–1).",
     kind: "linear",
     tolerance: 0.35,
+    isCrossBodyComparable: true,
   },
   {
     key: "vegetationCoverPct",
     label: "Vegetation cover",
     shortLabel: "Vegetation",
     unit: "%",
-    description: "Fractional plant cover. Targets are treated as zero.",
+    description: "Fractional plant cover. Extraterrestrial targets are zero.",
     kind: "linear",
     tolerance: 40,
+    isCrossBodyComparable: true,
   },
   {
     key: "lithology",
@@ -86,6 +95,38 @@ export const FEATURES: FeatureDefinition[] = [
     unit: "",
     description: "Dominant rock or regolith type, compared by category and rock family.",
     kind: "categorical",
+    isCrossBodyComparable: true,
+  },
+  {
+    key: "elevationM",
+    label: "Elevation relative to datum",
+    shortLabel: "Elevation",
+    unit: "m",
+    description: "Surface elevation relative to planetary reference datum (MOLA areoid, LOLA sphere, or Earth geoid).",
+    kind: "linear",
+    tolerance: 5000,
+    isCrossBodyComparable: true,
+  },
+  {
+    key: "surfacePressurePa",
+    label: "Surface atmospheric pressure",
+    shortLabel: "Pressure",
+    unit: "Pa",
+    description: "Surface atmospheric pressure.",
+    kind: "logarithmic",
+    tolerance: 2,
+    isCrossBodyComparable: false,
+    incomparabilityNotice: "Extreme physical disparity: Moon is vacuum (~0 Pa) and Mars is ~700 Pa, compared to Earth sea level (~101,325 Pa). Excluded from similarity scoring.",
+  },
+  {
+    key: "surfaceSolarIrradianceWm2",
+    label: "Surface solar irradiance",
+    shortLabel: "Solar flux",
+    unit: "W/m²",
+    description: "Incident downward solar irradiance at the surface.",
+    kind: "linear",
+    tolerance: 300,
+    isCrossBodyComparable: true,
   },
 ]
 
@@ -122,13 +163,16 @@ export const MISSION_PURPOSES: MissionPurposeDefinition[] = [
     weights: {
       meanSurfaceTempC: 1,
       diurnalTempRangeC: 1.5,
-      annualPrecipitationMm: 1,
+      annualPrecipitationMm: 0, // Flagged non-comparable across bodies
       meanSlopeDeg: 3,
       rockAbundancePct: 3,
       medianGrainSizeMm: 2.5,
       albedo: 1,
       vegetationCoverPct: 2,
       lithology: 0.5,
+      elevationM: 1,
+      surfacePressurePa: 0, // Excluded from planetary matching
+      surfaceSolarIrradianceWm2: 1,
     },
   },
   {
@@ -139,13 +183,16 @@ export const MISSION_PURPOSES: MissionPurposeDefinition[] = [
     weights: {
       meanSurfaceTempC: 1,
       diurnalTempRangeC: 0.5,
-      annualPrecipitationMm: 2,
+      annualPrecipitationMm: 0, // Flagged non-comparable across bodies
       meanSlopeDeg: 0.5,
       rockAbundancePct: 0.5,
       medianGrainSizeMm: 1,
       albedo: 1.5,
       vegetationCoverPct: 1.5,
       lithology: 3,
+      elevationM: 0.5,
+      surfacePressurePa: 0, // Excluded from planetary matching
+      surfaceSolarIrradianceWm2: 1,
     },
   },
 ]

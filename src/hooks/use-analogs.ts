@@ -24,11 +24,13 @@ interface UseAnalogsParams {
   purposeId: string
   minScore: number
   simulate?: string
+  mode?: "verified" | "sample" | "all"
 }
 
-export function useAnalogs({ targetId, purposeId, minScore, simulate }: UseAnalogsParams) {
+export function useAnalogs({ targetId, purposeId, minScore, simulate, mode }: UseAnalogsParams) {
   const params = new URLSearchParams({ target: targetId, purpose: purposeId, minScore: String(minScore) })
   if (simulate) params.set("simulate", simulate)
+  if (mode) params.set("mode", mode)
 
   return useSWR<AnalogQueryResult, AnalogFetchError>(`/api/analogs?${params.toString()}`, fetchAnalogs, {
     keepPreviousData: true,

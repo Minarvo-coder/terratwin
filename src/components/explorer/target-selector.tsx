@@ -12,8 +12,8 @@ interface TargetSelectorProps {
 }
 
 const BODY_OPTIONS = [
-  { value: "moon" as const, label: "Moon" },
-  { value: "mars" as const, label: "Mars" },
+  { value: "mars" as const, label: "Mars", description: "Jezero Crater & Gale Crater targets" },
+  { value: "moon" as const, label: "Moon", description: "South Pole & Mare Tranquillitatis" },
 ]
 
 export function TargetSelector({ targets, body, targetId, onBodyChange, onTargetChange }: TargetSelectorProps) {
@@ -21,7 +21,14 @@ export function TargetSelector({ targets, body, targetId, onBodyChange, onTarget
 
   return (
     <div className="flex flex-col gap-4">
-      <OptionCardGroup name="body" legend="Planetary body" options={BODY_OPTIONS} value={body} onChange={onBodyChange} columns={2} />
+      <OptionCardGroup
+        name="body"
+        legend="Planetary body"
+        options={BODY_OPTIONS}
+        value={body}
+        onChange={onBodyChange}
+        columns={2}
+      />
       <OptionCardGroup
         name="target"
         legend="Target region"
@@ -31,6 +38,7 @@ export function TargetSelector({ targets, body, targetId, onBodyChange, onTarget
           value: target.id,
           label: target.name,
           description: target.region,
+          meta: target.isVerified ? "VERIFIED PDS" : "DEMO",
         }))}
       />
     </div>

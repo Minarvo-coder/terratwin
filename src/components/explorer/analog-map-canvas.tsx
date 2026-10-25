@@ -3,7 +3,6 @@
 import "leaflet/dist/leaflet.css"
 import { useEffect } from "react"
 import { CircleMarker, MapContainer, TileLayer, Tooltip, useMap } from "react-leaflet"
-import { formatScore } from "@/lib/terratwin/format"
 import type { RankedCandidate } from "@/lib/terratwin/types"
 
 const MARKER_FILL = "#38bdf8"
@@ -34,7 +33,7 @@ function FitToResults({ results }: { results: RankedCandidate[] }) {
     if (results.length === 0) return
     const points = results.map((result): [number, number] => [result.candidate.latitude, result.candidate.longitude])
     map.fitBounds(points, { padding: [32, 32], maxZoom: 6, animate: false })
-  }, [map, boundsKey])
+  }, [map, boundsKey, results])
   return null
 }
 
@@ -61,7 +60,8 @@ export default function AnalogMapCanvas({ results, selectedId, onSelect }: Analo
       <KeepSelectionInView selected={selected} />
       {ordered.map((result) => {
         const isSelected = result.candidate.id === selectedId
-        const radius = isSelected ? 12 : 5 + (result.score / 100) * 6
+        const scoreVal = result.score ?? 0
+        const radius = isSelected ? 12 : 5 + (scoreVal / 100) * 6
 
         return (
           <CircleMarker
@@ -69,11 +69,11 @@ export default function AnalogMapCanvas({ results, selectedId, onSelect }: Analo
             center={[result.candidate.latitude, result.candidate.longitude]}
             radius={radius}
             pathOptions={{
-              color: isSelected ? MARKER_SELECTED_STROKE : MARKER_STROKE,
+              color: isSelected ? MARKER_SELECTED_STROKE : !result.isReliable ? "#f43f5e" : MARKER_STROKE,
               weight: isSelected ? 3 : 1.5,
-              fillColor: isSelected ? MARKER_SELECTED_FILL : MARKER_FILL,
-              fillOpacity: isSelected ? 0.95 : 0.45 + (result.score / 100) * 0.45,
-              dashArray: result.confidence === "low" ? "3 3" : undefined,
+              fillColor: isSelected ? MARKER_SELECTED_FILL : !result.isReliable ? "#e11d48" : MARKER_FILL,
+              fillOpacity: isSelected ? 0.95 : !result.isReliable ? 0.4 : 0.45 + (scoreVal / 100) * 0.45,
+              dashArray: !result.isReliable || result.confidence === "low" ? "3 3" : undefined,
             }}
             eventHandlers={{ click: () => onSelect(result.candidate.id) }}
           >
@@ -83,10 +83,13 @@ export default function AnalogMapCanvas({ results, selectedId, onSelect }: Analo
                   #{result.rank} {result.candidate.name}
                 </span>
                 <div className="text-[10px] text-slate-300 mt-0.5">
-                  Match Score: <strong className="text-white">{formatScore(result.score)}</strong>
+                  Match Score:{" "}
+                  <strong className={result.score === null ? "text-rose-400" : "text-white"}>
+                    {result.scoreDisplay}
+                  </strong>
                 </div>
                 <div className="text-[9px] text-slate-400">
-                  {result.candidate.country}
+                  {result.candidate.country} · {result.candidate.isVerified ? "NASA DB" : "Demo"}
                 </div>
               </div>
             </Tooltip>

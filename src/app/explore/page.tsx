@@ -1,9 +1,7 @@
 import type { Metadata } from "next"
 import { Suspense } from "react"
 import { ExplorerDashboard } from "@/components/explorer/explorer-dashboard"
-import { IllustrativeBadge } from "@/components/shared/illustrative-badge"
 import { listTargets } from "@/lib/terratwin/analog-service"
-import { SAMPLE_DATASET_META } from "@/lib/terratwin/sample-dataset"
 
 export const metadata: Metadata = {
   title: "Analog Explorer",
@@ -16,7 +14,7 @@ async function ExplorerContent({
   searchParams: Promise<{ simulate?: string }>
 }) {
   const { simulate } = await searchParams
-  const targets = listTargets()
+  const targets = await listTargets()
 
   return <ExplorerDashboard targets={targets} simulate={simulate} />
 }
@@ -36,10 +34,9 @@ export default function ExplorePage({
             similarity.
           </p>
         </div>
-        <div className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
-          <IllustrativeBadge label="Sample dataset" />
-          <span>
-            {SAMPLE_DATASET_META.name} v{SAMPLE_DATASET_META.version}
+        <div className="flex items-center gap-2 font-mono text-xs text-slate-400">
+          <span className="rounded bg-slate-800 border border-slate-700/80 px-2.5 py-1 text-cyan-300">
+            Algorithmic Mission Telemetry Engine
           </span>
         </div>
       </header>

@@ -9,10 +9,11 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const result = findAnalogs({
+    const result = await findAnalogs({
       targetId: params.get("target") ?? "",
       purposeId: params.get("purpose") ?? "",
       minScore: Number(params.get("minScore") ?? 0),
+      mode: (params.get("mode") as "verified" | "sample" | "all") ?? "all",
     })
     return NextResponse.json(result)
   } catch (error) {

@@ -1,10 +1,9 @@
 "use client"
 
 import dynamic from "next/dynamic"
-import { Skeleton } from "@/components/ui/skeleton"
 import { PanelCard } from "@/components/shared/panel-card"
 import type { AnalogMapCanvasProps } from "./analog-map-canvas"
-import { Crosshair, Globe, Satellite, Radio } from "lucide-react"
+import { Crosshair, Satellite, Radio } from "lucide-react"
 
 const AnalogMapCanvas = dynamic(() => import("./analog-map-canvas"), {
   ssr: false,
@@ -64,7 +63,7 @@ export function AnalogMap(props: AnalogMapCanvasProps & { isUpdating?: boolean }
             <span>LAT: {selectedSite.candidate.latitude.toFixed(2)}° · LON: {selectedSite.candidate.longitude.toFixed(2)}°</span>
           </span>
           <span className="text-emerald-400 font-bold uppercase tracking-wider">
-            SCORE: {selectedSite.score.toFixed(1)}% · RANK #{selectedSite.rank}
+            SCORE: {selectedSite.score !== null ? `${selectedSite.score.toFixed(1)}%` : "INSUFFICIENT DATA"} · RANK #{selectedSite.rank}
           </span>
         </div>
       )}
