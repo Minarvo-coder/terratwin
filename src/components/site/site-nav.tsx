@@ -3,11 +3,12 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
+import { LayoutGrid, Radar, BookOpen } from "lucide-react"
 
 const NAV_ITEMS = [
-  { href: "/", label: "Overview" },
-  { href: "/explore", label: "Explorer" },
-  { href: "/methodology", label: "Methodology" },
+  { href: "/", label: "Overview", icon: LayoutGrid },
+  { href: "/explore", label: "Explorer", icon: Radar },
+  { href: "/methodology", label: "Methodology", icon: BookOpen },
 ]
 
 export function SiteNav() {
@@ -15,8 +16,9 @@ export function SiteNav() {
 
   return (
     <nav aria-label="Primary">
-      <ul className="flex items-center gap-1 text-sm">
+      <ul className="flex items-center gap-1.5 text-xs font-mono">
         {NAV_ITEMS.map((item) => {
+          const Icon = item.icon
           const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href)
           return (
             <li key={item.href}>
@@ -24,11 +26,14 @@ export function SiteNav() {
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "rounded-md px-3 py-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground",
-                  active && "bg-muted text-foreground",
+                  "flex items-center gap-1.5 rounded-lg px-3 py-1.5 transition-all duration-150 border border-transparent",
+                  active
+                    ? "bg-cyan-950/60 text-cyan-300 border-cyan-500/40 shadow-[0_0_12px_rgba(56,189,248,0.2)]"
+                    : "text-slate-400 hover:text-white hover:bg-slate-900/60 hover:border-slate-800",
                 )}
               >
-                {item.label}
+                <Icon className={cn("size-3.5", active ? "text-cyan-400" : "text-slate-500")} />
+                <span>{item.label}</span>
               </Link>
             </li>
           )
