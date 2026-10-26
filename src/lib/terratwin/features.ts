@@ -157,42 +157,42 @@ export const LITHOLOGY_FAMILIES: Record<Lithology, "igneous" | "sedimentary" | "
 export const MISSION_PURPOSES: MissionPurposeDefinition[] = [
   {
     id: "rover-testing",
-    label: "Rover testing",
+    label: "Rover testing & trafficability",
     summary:
-      "Prioritises trafficability: slope, rock abundance, grain size and a vegetation-free surface for mobility and navigation trials.",
+      "Prioritises vehicle mobility, obstacle clearance, terrain slope, regolith shear strength, and bare ground trials.",
     weights: {
-      meanSurfaceTempC: 1,
-      diurnalTempRangeC: 1.5,
-      annualPrecipitationMm: 0, // Flagged non-comparable across bodies
-      meanSlopeDeg: 3,
-      rockAbundancePct: 3,
-      medianGrainSizeMm: 2.5,
-      albedo: 1,
-      vegetationCoverPct: 2,
-      lithology: 0.5,
-      elevationM: 1,
-      surfacePressurePa: 0, // Excluded from planetary matching
-      surfaceSolarIrradianceWm2: 1,
+      meanSlopeDeg: 0.25,
+      rockAbundancePct: 0.20,
+      medianGrainSizeMm: 0.15,
+      elevationM: 0.10,
+      vegetationCoverPct: 0.10,
+      diurnalTempRangeC: 0.05,
+      meanSurfaceTempC: 0.05,
+      surfaceSolarIrradianceWm2: 0.05,
+      lithology: 0.05,
+      albedo: 0.0,
+      annualPrecipitationMm: 0.0, // Flagged non-comparable across bodies
+      surfacePressurePa: 0.0, // Excluded from planetary matching
     },
   },
   {
     id: "geological-research",
     label: "Geological field research",
     summary:
-      "Prioritises compositional and process analogy: lithology, aridity and limited biological overprint for science-team training.",
+      "Prioritises compositional petrology, aridity, limited vegetative overprint, and regolith maturity.",
     weights: {
-      meanSurfaceTempC: 1,
-      diurnalTempRangeC: 0.5,
-      annualPrecipitationMm: 0, // Flagged non-comparable across bodies
-      meanSlopeDeg: 0.5,
-      rockAbundancePct: 0.5,
-      medianGrainSizeMm: 1,
-      albedo: 1.5,
-      vegetationCoverPct: 1.5,
-      lithology: 3,
-      elevationM: 0.5,
-      surfacePressurePa: 0, // Excluded from planetary matching
-      surfaceSolarIrradianceWm2: 1,
+      lithology: 0.30,
+      vegetationCoverPct: 0.15,
+      albedo: 0.15,
+      medianGrainSizeMm: 0.10,
+      rockAbundancePct: 0.10,
+      meanSlopeDeg: 0.10,
+      meanSurfaceTempC: 0.05,
+      surfaceSolarIrradianceWm2: 0.05,
+      diurnalTempRangeC: 0.0,
+      elevationM: 0.0,
+      annualPrecipitationMm: 0.0, // Flagged non-comparable across bodies
+      surfacePressurePa: 0.0, // Excluded from planetary matching
     },
   },
 ]
