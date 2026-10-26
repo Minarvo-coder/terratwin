@@ -8,7 +8,7 @@ export function MissingDataWarning({ result }: { result: RankedCandidate }) {
   const hasIncompatible = result.incompatibleFeatures.length > 0
   const isInsufficient = !result.isReliable
 
-  if (!hasMissing && !hasIncompatible && !isInsufficient) return null
+  if (!hasMissing && !isInsufficient) return null
 
   // Insufficient data (< 40% mission weight)
   if (isInsufficient) {

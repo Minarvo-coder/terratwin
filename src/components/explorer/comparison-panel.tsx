@@ -100,8 +100,8 @@ export function ComparisonPanel({ target, purpose, result, isUpdating }: Compari
         <MissingDataWarning result={result} />
 
         {/* Multi-Dimensional Charts & Detailed Attribute Table */}
-        <div className="grid gap-6 xl:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
-          <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-4">
+        <div className="grid gap-6 xl:grid-cols-[minmax(0,1.8fr)_minmax(0,3.2fr)]">
+          <div className="min-w-0 rounded-xl border border-slate-800 bg-slate-900/40 p-4">
             <div className="flex items-center justify-between mb-4 font-mono text-xs text-slate-400">
               <span className="flex items-center gap-1.5 text-cyan-400 font-semibold">
                 <Activity className="size-3.5" />

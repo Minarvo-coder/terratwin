@@ -85,6 +85,7 @@ export interface Database {
           source_id: string | null
           feature_name: string
           value: number | null
+          text_value: string | null
           unit: string | null
           measurement_period: string | null
           spatial_resolution: string | null
@@ -97,6 +98,7 @@ export interface Database {
           source_id?: string | null
           feature_name: string
           value?: number | null
+          text_value?: string | null
           unit?: string | null
           measurement_period?: string | null
           spatial_resolution?: string | null
@@ -109,6 +111,7 @@ export interface Database {
           source_id?: string | null
           feature_name?: string
           value?: number | null
+          text_value?: string | null
           unit?: string | null
           measurement_period?: string | null
           spatial_resolution?: string | null

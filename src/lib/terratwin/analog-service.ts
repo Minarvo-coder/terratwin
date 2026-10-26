@@ -10,6 +10,7 @@ import type {
   EnvironmentProfile,
   FeatureProvenance,
   FeatureProvenanceMap,
+  Lithology,
   PlanetaryBody,
   PlanetaryTarget,
 } from "./types"
@@ -128,21 +129,74 @@ export async function getVerifiedDatabaseData(): Promise<LoadedDatabaseData | nu
           case "elevation_areoid_datum_m":
           case "elevation_sphere_datum_m":
           case "elevation_geoid_datum_m":
+          case "elevation_m":
             env.elevationM = feat.value
             provMap.elevationM = prov
             break
 
           case "mean_annual_temp_k":
             if (feat.value !== null) {
-              // Convert Kelvin back to Celsius for consistent UI presentation while preserving provenance
               env.meanSurfaceTempC = Math.round((feat.value - 273.15) * 10) / 10
               provMap.meanSurfaceTempC = { ...prov, unit: "°C" }
             }
             break
 
+          case "mean_surface_temp_c":
+            env.meanSurfaceTempC = feat.value
+            provMap.meanSurfaceTempC = { ...prov, unit: "°C" }
+            break
+
           case "diurnal_seasonal_temp_swing_k":
+          case "diurnal_temp_range_c":
             env.diurnalTempRangeC = feat.value
             provMap.diurnalTempRangeC = { ...prov, unit: "°C" }
+            break
+
+          case "annual_precipitation_mm":
+            env.annualPrecipitationMm = feat.value
+            provMap.annualPrecipitationMm = {
+              ...prov,
+              isComparable: false,
+              incomparabilityReason:
+                "Target bodies have 0 mm/yr liquid rainfall; active precipitation cannot be physically matched to dry/vacuum surfaces.",
+            }
+            break
+
+          case "mean_slope_deg":
+            env.meanSlopeDeg = feat.value
+            provMap.meanSlopeDeg = { ...prov, unit: "°" }
+            break
+
+          case "rock_abundance_pct":
+            env.rockAbundancePct = feat.value
+            provMap.rockAbundancePct = { ...prov, unit: "%" }
+            break
+
+          case "median_grain_size_mm":
+            env.medianGrainSizeMm = feat.value
+            provMap.medianGrainSizeMm = { ...prov, unit: "mm" }
+            break
+
+          case "surface_albedo":
+          case "albedo":
+            env.albedo = feat.value
+            provMap.albedo = { ...prov, unit: "" }
+            break
+
+          case "vegetation_cover_pct":
+            env.vegetationCoverPct = feat.value
+            provMap.vegetationCoverPct = { ...prov, unit: "%" }
+            break
+
+          case "dominant_lithology":
+          case "lithology":
+            if (feat.text_value) {
+              env.lithology = feat.text_value as Lithology
+            } else if (feat.quality_notes?.includes("class:")) {
+              const match = feat.quality_notes.match(/class:\s*([\w-]+)/)
+              if (match) env.lithology = match[1] as Lithology
+            }
+            provMap.lithology = { ...prov, unit: "" }
             break
 
           case "surface_solar_irradiance_wm2":
@@ -155,7 +209,8 @@ export async function getVerifiedDatabaseData(): Promise<LoadedDatabaseData | nu
             provMap.surfacePressurePa = {
               ...prov,
               isComparable: false,
-              incomparabilityReason: "Extraterrestrial targets are vacuum or near-vacuum; atmospheric pressure cannot be matched directly against Earth sea-level pressure.",
+              incomparabilityReason:
+                "Extraterrestrial targets are vacuum or near-vacuum; atmospheric pressure cannot be matched directly against Earth sea-level pressure.",
             }
             break
         }

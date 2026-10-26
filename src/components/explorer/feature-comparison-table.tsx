@@ -24,9 +24,9 @@ export function FeatureComparisonTable({ featureScores, targetName, candidateNam
     <div className="flex flex-col gap-3 font-mono text-xs">
       {/* Header bar */}
       <div className="hidden sm:grid grid-cols-12 gap-2 border-b border-slate-800 pb-2 text-[10px] uppercase text-slate-400 font-semibold">
-        <div className="col-span-4">Attribute & Mission Weight</div>
+        <div className="col-span-5">Attribute & Mission Weight</div>
         <div className="col-span-3">Target ({targetName.split(" ")[0]})</div>
-        <div className="col-span-3">Candidate ({candidateName.split(" ")[0]})</div>
+        <div className="col-span-2">Candidate ({candidateName.split(" ")[0]})</div>
         <div className="col-span-2 text-right">Similarity</div>
       </div>
 
@@ -57,18 +57,20 @@ export function FeatureComparisonTable({ featureScores, targetName, candidateNam
                 className="grid grid-cols-1 sm:grid-cols-12 gap-2 p-3 cursor-pointer items-center"
               >
                 {/* 1. Feature Name & Weight */}
-                <div className="col-span-1 sm:col-span-4 flex items-center justify-between sm:justify-start gap-2">
-                  <div className="flex items-center gap-1.5 min-w-0">
+                <div className="col-span-1 sm:col-span-5 flex items-center justify-between sm:justify-start gap-2 min-w-0">
+                  <div className="flex items-center gap-1.5 min-w-0 flex-1">
                     <button
                       type="button"
                       aria-label="Toggle details"
-                      className="text-slate-400 hover:text-cyan-400 transition"
+                      className="text-slate-400 hover:text-cyan-400 transition shrink-0"
                     >
                       {isExpanded ? <ChevronUp className="size-3.5" /> : <ChevronDown className="size-3.5" />}
                     </button>
-                    <span className="font-semibold text-white truncate">{feature.label}</span>
+                    <span className="font-semibold text-white text-[11px] leading-tight break-words">
+                      {feature.label}
+                    </span>
                   </div>
-                  <span className="rounded bg-slate-800/90 border border-slate-700/60 px-1.5 py-0.2 text-[10px] text-slate-400 shrink-0">
+                  <span className="rounded bg-slate-800/90 border border-slate-700/60 px-1.5 py-0.2 text-[9px] text-slate-400 shrink-0 font-mono">
                     wt: {item.weight.toFixed(1)}
                   </span>
                 </div>
@@ -94,7 +96,7 @@ export function FeatureComparisonTable({ featureScores, targetName, candidateNam
                 </div>
 
                 {/* 3. Candidate Value */}
-                <div className="col-span-1 sm:col-span-3 flex sm:flex-col justify-between sm:justify-center text-[11px]">
+                <div className="col-span-1 sm:col-span-2 flex sm:flex-col justify-between sm:justify-center text-[11px] min-w-0">
                   <span className="sm:hidden text-slate-400 text-[10px]">Earth:</span>
                   <div className="flex items-center gap-1.5">
                     <span
