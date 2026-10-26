@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge"
+import { ExternalLink } from "lucide-react"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { SectionHeading } from "@/components/shared/section-heading"
 import { DATA_SOURCES } from "@/lib/terratwin/data-sources"
@@ -95,28 +96,77 @@ export function FeatureWeightsSection() {
 }
 
 export function DataSourcesSection() {
+  const integratedCount = DATA_SOURCES.filter((s) => s.status === "integrated").length
+  const candidateCount = DATA_SOURCES.filter((s) => s.status === "candidate").length
+
   return (
     <section id="sources" className="flex flex-col gap-6">
       <SectionHeading
         eyebrow="03 · Data sources"
-        title="Current and candidate data sources"
-        description="Only the illustrative sample dataset is used today. The remaining sources are candidates for a future evidence-based version and are not yet integrated."
+        title="Mission telemetry & candidate archives"
+        description={`${integratedCount} primary NASA and ESA datasets are actively ingested in Supabase powering the similarity engine. ${candidateCount} high-resolution raster and polygon archives are queued for automated GIS pipeline ingestion.`}
       />
       <ul className="grid gap-3 md:grid-cols-2">
-        {DATA_SOURCES.map((source) => (
-          <li key={source.name} className="flex flex-col gap-1.5 rounded-lg border border-border bg-card p-4">
-            <div className="flex items-start justify-between gap-3">
-              <h3 className="text-sm font-medium">{source.name}</h3>
-              <Badge variant={source.status === "in-use" ? "default" : "outline"} className="shrink-0">
-                {source.status === "in-use" ? "In use (sample)" : "Not integrated"}
-              </Badge>
-            </div>
-            <p className="text-xs text-muted-foreground">
-              {source.provider} · {source.scope}
-            </p>
-            <p className="text-sm text-muted-foreground">{source.informs}</p>
-          </li>
-        ))}
+        {DATA_SOURCES.map((source) => {
+          const isIntegrated = source.status === "integrated"
+          return (
+            <li
+              key={source.name}
+              className={`flex flex-col justify-between gap-3 rounded-lg border p-4 transition-colors ${
+                isIntegrated
+                  ? "border-emerald-500/30 bg-emerald-950/10 hover:border-emerald-500/50"
+                  : "border-border/80 bg-card/60 hover:border-border"
+              }`}
+            >
+              <div className="flex flex-col gap-1.5">
+                <div className="flex items-start justify-between gap-3">
+                  <h3 className="text-sm font-semibold text-foreground">
+                    {source.sourceUrl ? (
+                      <a
+                        href={source.sourceUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 hover:text-cyan-400 hover:underline transition-colors"
+                      >
+                        {source.name}
+                        <ExternalLink className="size-3 shrink-0 opacity-60" />
+                      </a>
+                    ) : (
+                      source.name
+                    )}
+                  </h3>
+                  {isIntegrated ? (
+                    <Badge variant="outline" className="shrink-0 border-emerald-500/40 bg-emerald-500/10 text-emerald-400 font-mono text-[10px] uppercase tracking-wider">
+                      Integrated · Live
+                    </Badge>
+                  ) : (
+                    <Badge variant="outline" className="shrink-0 border-border bg-muted/40 text-muted-foreground font-mono text-[10px] uppercase tracking-wider">
+                      Candidate · Pipeline
+                    </Badge>
+                  )}
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  <span className="font-medium text-foreground/80">{source.provider}</span> · {source.scope}
+                  {source.resolution && ` · ${source.resolution}`}
+                </p>
+                <p className="text-xs text-foreground/90 mt-1 leading-relaxed">
+                  <span className="text-muted-foreground font-medium">Informs: </span>
+                  {source.informs}
+                </p>
+                {source.integrationNotes && (
+                  <p className="text-[11px] font-mono text-muted-foreground/90 mt-1 leading-snug rounded bg-muted/30 p-2 border border-border/40">
+                    {source.integrationNotes}
+                  </p>
+                )}
+              </div>
+              {source.version && (
+                <div className="text-[10px] font-mono text-muted-foreground/70 truncate">
+                  Version: {source.version}
+                </div>
+              )}
+            </li>
+          )
+        })}
       </ul>
     </section>
   )

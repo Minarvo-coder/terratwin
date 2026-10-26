@@ -6,7 +6,6 @@ import {
   LimitationsSection,
   ScoringSection,
 } from "@/components/methodology/methodology-sections"
-import { SAMPLE_DATASET_META } from "@/lib/terratwin/sample-dataset"
 
 export const metadata: Metadata = {
   title: "Methodology & Data Sources",
@@ -23,9 +22,11 @@ export default function MethodologyPage() {
           title="How candidate rankings are produced"
           description="TerraTwin ranks Earth locations by how closely their environmental features resemble a selected Moon or Mars target, weighted for a mission purpose."
         />
-        <div role="note" className="rounded-lg border border-warning/40 bg-warning/10 p-4 text-sm leading-relaxed">
-          <p className="font-medium text-warning">Illustrative prototype</p>
-          <p className="mt-1 text-muted-foreground">{SAMPLE_DATASET_META.notice}</p>
+        <div role="note" className="rounded-lg border border-cyan-500/30 bg-cyan-950/20 p-4 text-sm leading-relaxed">
+          <p className="font-medium text-cyan-400">Integrated Planetary & Terrestrial Telemetry</p>
+          <p className="mt-1 text-muted-foreground">
+            TerraTwin queries 8 official NASA & ESA dataset sources stored in PostgreSQL via Supabase. Telemetry includes MOLA topography, LOLA laser altimetry, NASA POWER 25-year climatology, MSL Curiosity REMS, Mars 2020 MEDA, LRO Diviner radiometry, and SRTM/MODIS surface observations.
+          </p>
         </div>
       </div>
       <ScoringSection />
