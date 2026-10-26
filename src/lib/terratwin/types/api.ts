@@ -1,5 +1,7 @@
 import type {
-  PlanetaryBody,
+  DatasetMeta,
+  MissionPurposeDefinition,
+  PlanetaryTarget,
   RankedCandidate,
 } from "../types"
 import type { ConfigurableMissionProfile } from "../config/comparison-config"
@@ -54,21 +56,12 @@ export interface CompareApiRequest {
 
 export interface CompareApiResponse {
   success: true
-  target: {
-    id: string
-    name: string
-    body: PlanetaryBody
-    region: string
-    summary: string
-    isVerified: boolean
-  }
-  missionProfile: {
-    id: string
-    label: string
-    summary: string
-  }
+  dataset: DatasetMeta
+  target: PlanetaryTarget
+  missionProfile: MissionPurposeDefinition
   totalCandidatesEvaluated: number
   reliableCandidatesCount: number
+  minScore: number
   rankings: RankedCandidate[]
   computedAt: string
 }

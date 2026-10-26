@@ -18,10 +18,9 @@ const DEFAULT_MIN_SCORE = 0
 
 interface ExplorerDashboardProps {
   targets: PlanetaryTarget[]
-  simulate?: string
 }
 
-export function ExplorerDashboard({ targets, simulate }: ExplorerDashboardProps) {
+export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
   const [sourceFilter, setSourceFilter] = useState<"all" | "verified" | "sample">("all")
   const [body, setBody] = useState<PlanetaryBody>("mars")
   const [targetId, setTargetId] = useState(() => {
@@ -38,12 +37,10 @@ export function ExplorerDashboard({ targets, simulate }: ExplorerDashboardProps)
     return true
   })
 
-  const { data, error, isLoading, isValidating, mutate } = useAnalogs({
+  const { data, error, isLoading, isValidating, mutate, isTargetValid } = useAnalogs({
     targetId,
     purposeId,
     minScore,
-    simulate,
-    mode: sourceFilter,
   })
 
   const selectedTarget = targets.find((target) => target.id === targetId) ?? data?.target
@@ -165,7 +162,14 @@ export function ExplorerDashboard({ targets, simulate }: ExplorerDashboardProps)
         </aside>
 
         <div className="flex min-w-0 flex-col gap-4">
-          {error ? (
+          {!isTargetValid ? (
+            <div className="rounded-lg border border-cyan-500/30 bg-slate-900/60 p-8 text-center font-mono text-sm text-cyan-300">
+              <p className="font-semibold uppercase tracking-wider">No Planetary Target Selected</p>
+              <p className="text-xs text-slate-400 mt-1">
+                Please select a Moon or Mars target location from the navigation panel to rank Earth analog sites.
+              </p>
+            </div>
+          ) : error ? (
             <ExplorerError message={error.message} onRetry={() => mutate()} />
           ) : isLoading || !data ? (
             <ExplorerLoading />
