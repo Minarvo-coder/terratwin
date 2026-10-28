@@ -3,12 +3,12 @@
 import dynamic from "next/dynamic"
 import { PanelCard } from "@/components/shared/panel-card"
 import type { AnalogMapCanvasProps } from "./analog-map-canvas"
-import { Crosshair, Satellite, Radio } from "lucide-react"
+import { Crosshair, Satellite, Radio, Info } from "lucide-react"
 
 const AnalogMapCanvas = dynamic(() => import("./analog-map-canvas"), {
   ssr: false,
   loading: () => (
-    <div className="flex size-full items-center justify-center bg-slate-950 font-mono text-xs text-cyan-400">
+    <div className="flex size-full min-h-80 items-center justify-center bg-slate-950 font-mono text-xs text-cyan-400">
       <span className="flex items-center gap-2">
         <Radio className="size-4 animate-spin text-cyan-400" />
         INITIALIZING GEOSPATIAL TELEMETRY FEED...
@@ -55,18 +55,33 @@ export function AnalogMap(props: AnalogMapCanvasProps & { isUpdating?: boolean }
         </div>
       </div>
 
-      {/* Bottom HUD Coordinate Footer */}
+      {/* Selected Site Coordinate Footer */}
       {selectedSite && (
         <div className="z-10 flex items-center justify-between border-t border-slate-800 bg-slate-950/90 px-4 py-1.5 font-mono text-[10px] text-slate-400 backdrop-blur-md">
           <span className="flex items-center gap-1.5">
             <Crosshair className="size-3 text-cyan-400" />
-            <span>LAT: {selectedSite.candidate.latitude.toFixed(2)}° · LON: {selectedSite.candidate.longitude.toFixed(2)}°</span>
+            <span>
+              LAT: {selectedSite.candidate.latitude.toFixed(2)}° · LON: {selectedSite.candidate.longitude.toFixed(2)}°
+            </span>
           </span>
           <span className="text-emerald-400 font-bold uppercase tracking-wider">
             SCORE: {selectedSite.score !== null ? `${selectedSite.score.toFixed(1)}%` : "INSUFFICIENT DATA"} · RANK #{selectedSite.rank}
           </span>
         </div>
       )}
+
+      {/* Scientific Proximity Disclaimer & Data Attribution */}
+      <div className="z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1 border-t border-slate-800/80 bg-slate-950/95 px-3 py-1.5 font-mono text-[9px] text-slate-400 leading-tight">
+        <span className="flex items-center gap-1.5 text-slate-400">
+          <Info className="size-3 text-cyan-400 shrink-0" />
+          <span>
+            Spatial distance on Earth does not establish planetary similarity. Analog ranking is calculated strictly from multi-feature physical telemetry matching.
+          </span>
+        </span>
+        <span className="shrink-0 text-slate-500 text-[8px] uppercase tracking-wider self-end sm:self-auto">
+          Data: NASA PDS · USGS · Copernicus
+        </span>
+      </div>
     </PanelCard>
   )
 }

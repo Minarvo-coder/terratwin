@@ -141,9 +141,12 @@ export interface RankedCandidate {
   /** Share of total mission weight that had valid, comparable data on both sides (0–1). */
   coverage: number
   confidence: DataConfidence
+  /** Weighted environmental distance D in [0, 1] where 0 is identical and 1 is maximum divergence. */
+  weightedDistance?: number | null
   missingFeatures: FeatureKey[]
   incompatibleFeatures: FeatureKey[]
   featureScores: FeatureScore[]
+  scientificNotice?: string
 }
 
 export interface DatasetSourceLink {
