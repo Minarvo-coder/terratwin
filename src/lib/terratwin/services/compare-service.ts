@@ -5,14 +5,22 @@ import {
   type ConfigurableMissionProfile,
 } from "../config/comparison-config"
 import { loadVerifiedLocationsAndFeatures } from "../db/planetary-repository"
+import {
+  SAMPLE_CANDIDATES,
+  SAMPLE_DATASET_META,
+  SAMPLE_TARGETS,
+} from "../sample-dataset"
 import { rankCandidateLocations } from "../similarity-engine"
+import type { DatasetMeta, EarthCandidate, PlanetaryTarget } from "../types"
 import type { CompareApiRequest, CompareApiResponse } from "../types/api"
 
 export class ValidationError extends Error {
   public readonly status: number = 400
-  constructor(message: string, public readonly details?: unknown) {
+  public readonly details?: unknown
+  constructor(message: string, details?: unknown) {
     super(message)
     this.name = "ValidationError"
+    this.details = details
   }
 }
 
@@ -75,7 +83,7 @@ export function resolveMissionProfile(
 /**
  * Executes scientific analog comparison:
  * 1. Validates inputs.
- * 2. Retrieves verified target & candidates from Supabase (server-side).
+ * 2. Retrieves verified target & candidates from Supabase (server-side), or falls back to illustrative demo catalog.
  * 3. Calls scientific distance/similarity engine.
  * 4. Formats typed response payload.
  */
@@ -98,24 +106,98 @@ export async function executeAnalogComparison(
   const profile = resolveMissionProfile(request.missionProfile)
   const minScore = typeof request.minScore === "number" ? Math.max(0, Math.min(100, request.minScore)) : 0
 
-  // 2. Load verified data from Supabase — never fabricate when DB fails
-  const { targets, candidates, sources } = await loadVerifiedLocationsAndFeatures()
+  // 2. Resolve target and candidates (prioritize verified DB; support illustrative demo catalog)
+  const sampleTarget = SAMPLE_TARGETS.find((t) => t.id === request.targetId)
 
-  // 3. Find the requested target
-  const target = targets.find(
-    (t) => t.id === request.targetId || t.databaseId === request.targetId
-  )
+  let target: PlanetaryTarget | undefined
+  let candidates: EarthCandidate[] = []
+  let dataset: DatasetMeta = SAMPLE_DATASET_META
+
+  let verifiedData: {
+    targets: PlanetaryTarget[]
+    candidates: EarthCandidate[]
+    sources: {
+      title: string
+      provider: string | null
+      sourceUrl: string | null
+      datasetVersion: string | null
+      accessedAt: string | null
+      limitations: string | null
+    }[]
+  } | null = null
+  let dbError: unknown = null
+
+  try {
+    verifiedData = await loadVerifiedLocationsAndFeatures()
+  } catch (err) {
+    dbError = err
+  }
+
+  if (verifiedData) {
+    target = verifiedData.targets.find(
+      (t) => t.id === request.targetId || t.databaseId === request.targetId
+    )
+
+    if (target) {
+      candidates = verifiedData.candidates
+      dataset = {
+        id: "nasa-verified-baseline",
+        name: "NASA Planetary Data System & Earthdata Verified Baseline",
+        version: "1.0.0-verified",
+        isIllustrative: false,
+        isVerified: true,
+        notice:
+          "Environmental measurements retrieved live from NASA Planetary Data System (PDS) and NASA Earthdata archives with confirmed physical provenance.",
+        sourceLinks: verifiedData.sources.map((s) => ({
+          title: s.title,
+          provider: s.provider ?? "NASA / ESA",
+          url: s.sourceUrl ?? "#",
+          version: s.datasetVersion ?? "1.0",
+          accessedAt: s.accessedAt ?? undefined,
+          limitations: s.limitations ?? undefined,
+        })),
+      }
+    }
+  }
+
+  // If not found in verified database, check illustrative sample targets
+  if (!target && sampleTarget) {
+    target = sampleTarget
+    candidates = SAMPLE_CANDIDATES
+    dataset = {
+      ...SAMPLE_DATASET_META,
+      sourceLinks: [
+        {
+          title: "TerraTwin Illustrative Educational Catalog",
+          provider: "TerraTwin Open Telemetry Baseline",
+          url: "#",
+          version: "0.1.0-sample",
+          limitations:
+            "Illustrative educational placeholders for interface evaluation. Not verified scientific evidence.",
+        },
+      ],
+    }
+  }
+
+  // If database failed and the requested target is not in the sample catalog, rethrow DB error (never fabricate data)
+  if (!target && dbError) {
+    throw dbError
+  }
 
   if (!target) {
+    const availableVerifiedIds = verifiedData?.targets.map((t) => t.id) ?? []
+    const availableSampleIds = SAMPLE_TARGETS.map((t) => t.id)
+    const allAvailable = [...availableVerifiedIds, ...availableSampleIds]
+
     throw new NotFoundError(
-      `Planetary target '${request.targetId}' was not found in the verified database. Available target IDs: ${targets.map((t) => t.id).join(", ")}`
+      `Planetary target '${request.targetId}' was not found in the verified database or sample catalog. Available target IDs: ${allAvailable.join(", ")}`
     )
   }
 
-  // 4. Perform scientific distance-based ranking
+  // 3. Perform scientific distance-based ranking
   let rankedCandidates = rankCandidateLocations(target, candidates, profile)
 
-  // 5. Apply optional minScore filter (unreliable candidates with score: null are retained for transparency)
+  // 4. Apply optional minScore filter (unreliable candidates with score: null are retained for transparency)
   if (minScore > 0) {
     rankedCandidates = rankedCandidates.filter(
       (c) => c.score === null || c.score >= minScore
@@ -124,25 +206,7 @@ export async function executeAnalogComparison(
 
   const reliableCount = rankedCandidates.filter((c) => c.isReliable).length
 
-  const dataset = {
-    id: "nasa-verified-baseline",
-    name: "NASA Planetary Data System & Earthdata Verified Baseline",
-    version: "1.0.0-verified",
-    isIllustrative: false,
-    isVerified: true,
-    notice:
-      "Environmental measurements retrieved live from NASA Planetary Data System (PDS) and NASA Earthdata archives with confirmed physical provenance.",
-    sourceLinks: sources.map((s) => ({
-      title: s.title,
-      provider: s.provider ?? "NASA / ESA",
-      url: s.sourceUrl ?? "#",
-      version: s.datasetVersion ?? "1.0",
-      accessedAt: s.accessedAt ?? undefined,
-      limitations: s.limitations ?? undefined,
-    })),
-  }
-
-  // 6. Return typed response
+  // 5. Return typed response
   return {
     success: true,
     dataset,

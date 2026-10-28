@@ -62,11 +62,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(errorResponse, { status: 503 })
     }
 
+    console.error("API /api/compare error:", error)
     const unexpectedError: ApiErrorResponse = {
       success: false,
       error: {
         code: "INTERNAL_SERVER_ERROR",
         message: "An unexpected error occurred during analog comparison.",
+        details: error instanceof Error ? error.stack : String(error),
       },
     }
     return NextResponse.json(unexpectedError, { status: 500 })

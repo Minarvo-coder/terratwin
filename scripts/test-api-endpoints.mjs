@@ -137,6 +137,35 @@ test('POST /api/compare: Successfully ranks Earth candidates against Gale Crater
   assert.strictEqual(slopeScore.targetProvenance.status, 'verified')
 })
 
+test('POST /api/compare: Successfully ranks Earth candidates against illustrative demo targets', async () => {
+  const demoTargetIds = [
+    'moon-south-polar-highlands',
+    'moon-mare-tranquillitatis',
+    'mars-meridiani-planum',
+    'mars-jezero-delta',
+  ]
+
+  for (const targetId of demoTargetIds) {
+    const { status, ok, json } = await apiFetch('/api/compare', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        targetId,
+        missionProfile: 'rover-testing',
+      }),
+    })
+
+    assert.strictEqual(status, 200, `Expected 200 for demo target ${targetId}, got ${status}`)
+    assert.strictEqual(ok, true)
+    assert.strictEqual(json.success, true)
+    assert.strictEqual(json.target.id, targetId)
+    assert.strictEqual(json.dataset.isVerified, false)
+    assert.strictEqual(json.dataset.isIllustrative, true)
+    assert.ok(json.rankings.length >= 10, `Expected at least 10 candidates for ${targetId}`)
+    assert.strictEqual(json.rankings[0].rank, 1)
+  }
+})
+
 // -----------------------------------------------------------------------------
 // 4. POST /api/compare: Input Validation (400 Bad Request)
 // -----------------------------------------------------------------------------
