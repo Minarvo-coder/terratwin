@@ -80,6 +80,13 @@ export function resolveMissionProfile(
   throw new ValidationError("Invalid mission profile. Expected a profile identifier string or custom profile object.")
 }
 
+export const TARGET_ID_ALIASES: Record<string, string> = {
+  "moon-mare-tranquillitatis": "b0000002-0000-4000-8000-000000000002",
+  "moon-south-polar-highlands": "b0000001-0000-4000-8000-000000000001",
+  "mars-jezero-delta": "a0000001-0000-4000-8000-000000000001",
+  "mars-meridiani-planum": "a0000003-0000-4000-8000-000000000003",
+}
+
 /**
  * Executes scientific analog comparison:
  * 1. Validates inputs.
@@ -107,6 +114,7 @@ export async function executeAnalogComparison(
   const minScore = typeof request.minScore === "number" ? Math.max(0, Math.min(100, request.minScore)) : 0
 
   // 2. Resolve target and candidates (prioritize verified DB; support illustrative demo catalog)
+  const resolvedTargetId = TARGET_ID_ALIASES[request.targetId] ?? request.targetId
   const sampleTarget = SAMPLE_TARGETS.find((t) => t.id === request.targetId)
 
   let target: PlanetaryTarget | undefined
@@ -134,11 +142,21 @@ export async function executeAnalogComparison(
   }
 
   if (verifiedData) {
-    target = verifiedData.targets.find(
-      (t) => t.id === request.targetId || t.databaseId === request.targetId
+    const foundTarget = verifiedData.targets.find(
+      (t) =>
+        t.id === resolvedTargetId ||
+        t.databaseId === resolvedTargetId ||
+        t.id === request.targetId ||
+        t.databaseId === request.targetId
     )
 
-    if (target) {
+    if (foundTarget) {
+      target = {
+        ...foundTarget,
+        id: request.targetId, // preserve requested ID for response consistency
+        databaseId: foundTarget.databaseId ?? foundTarget.id,
+        isVerified: true,
+      }
       candidates = verifiedData.candidates
       dataset = {
         id: "nasa-verified-baseline",

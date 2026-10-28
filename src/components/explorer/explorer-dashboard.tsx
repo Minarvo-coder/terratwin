@@ -34,6 +34,8 @@ export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
   const filteredTargets = targets.filter((t) => {
     if (sourceFilter === "verified") return !!t.isVerified
     if (sourceFilter === "sample") return !t.isVerified
+    const hasVerified = targets.some((target) => target.isVerified)
+    if (hasVerified) return !!t.isVerified
     return true
   })
 
@@ -43,14 +45,21 @@ export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
     minScore,
   })
 
-  const selectedTarget = targets.find((target) => target.id === targetId) ?? data?.target
+  const selectedTarget = targets.find((target) => target.id === targetId || target.databaseId === targetId) ?? data?.target
   const results = data?.results ?? []
   const selectedResult = results.find((result) => result.candidate.id === selectedId) ?? results[0]
   const isUpdating = isValidating && !isLoading
 
   function handleBodyChange(nextBody: PlanetaryBody) {
     setBody(nextBody)
-    const matching = filteredTargets.filter((t) => t.body === nextBody)
+    const available = targets.filter((t) => {
+      if (sourceFilter === "verified") return !!t.isVerified
+      if (sourceFilter === "sample") return !t.isVerified
+      const hasVerified = targets.some((target) => target.isVerified)
+      if (hasVerified) return !!t.isVerified
+      return true
+    })
+    const matching = available.filter((t) => t.body === nextBody)
     const nextTarget = matching.find((t) => t.isVerified) ?? matching[0]
     if (nextTarget) {
       setTargetId(nextTarget.id)
@@ -63,6 +72,8 @@ export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
     const available = targets.filter((t) => {
       if (mode === "verified") return !!t.isVerified
       if (mode === "sample") return !t.isVerified
+      const hasVerified = targets.some((target) => target.isVerified)
+      if (hasVerified) return !!t.isVerified
       return true
     })
     const firstMatching = available.find((t) => t.body === body) ?? available[0]

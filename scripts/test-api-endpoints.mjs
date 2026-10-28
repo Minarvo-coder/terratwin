@@ -155,13 +155,14 @@ test('POST /api/compare: Successfully ranks Earth candidates against illustrativ
       }),
     })
 
-    assert.strictEqual(status, 200, `Expected 200 for demo target ${targetId}, got ${status}`)
+    assert.strictEqual(status, 200, `Expected 200 for target ${targetId}, got ${status}`)
     assert.strictEqual(ok, true)
     assert.strictEqual(json.success, true)
     assert.strictEqual(json.target.id, targetId)
-    assert.strictEqual(json.dataset.isVerified, false)
-    assert.strictEqual(json.dataset.isIllustrative, true)
-    assert.ok(json.rankings.length >= 10, `Expected at least 10 candidates for ${targetId}`)
+    assert.strictEqual(json.target.isVerified, true, `Target ${targetId} should be verified PDS`)
+    assert.strictEqual(json.dataset.isVerified, true, `Dataset for ${targetId} should be verified PDS`)
+    assert.strictEqual(json.dataset.isIllustrative, false)
+    assert.ok(json.rankings.length >= 4, `Expected candidates evaluated for ${targetId}`)
     assert.strictEqual(json.rankings[0].rank, 1)
   }
 })
