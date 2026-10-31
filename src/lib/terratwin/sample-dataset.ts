@@ -22,6 +22,8 @@ export const SAMPLE_TARGETS: PlanetaryTarget[] = [
     body: "moon",
     name: "Mare Tranquillitatis",
     region: "Equatorial mare plains",
+    latitude: 0.67,
+    longitude: 23.47,
     summary: "Low-relief basaltic plains with fine, mature regolith.",
     environment: {
       meanSurfaceTempC: -20,
@@ -40,6 +42,8 @@ export const SAMPLE_TARGETS: PlanetaryTarget[] = [
     body: "moon",
     name: "South polar highlands",
     region: "Highland terrain near Shackleton crater",
+    latitude: -89.9,
+    longitude: 0.0,
     summary: "Rugged anorthositic highlands with steep crater walls and low sun angles.",
     environment: {
       meanSurfaceTempC: -150,
@@ -58,6 +62,8 @@ export const SAMPLE_TARGETS: PlanetaryTarget[] = [
     body: "mars",
     name: "Jezero crater delta",
     region: "Western delta fan, Isidis margin",
+    latitude: 18.38,
+    longitude: 77.58,
     summary: "Ancient fluvio-deltaic deposits with clay-bearing sediments and scattered boulders.",
     environment: {
       meanSurfaceTempC: -60,
@@ -76,6 +82,8 @@ export const SAMPLE_TARGETS: PlanetaryTarget[] = [
     body: "mars",
     name: "Meridiani Planum",
     region: "Equatorial sulfate-bearing plains",
+    latitude: -1.94,
+    longitude: -5.53,
     summary: "Flat plains of sulfate-rich sandstones with hematite-bearing concretions.",
     environment: {
       meanSurfaceTempC: -50,

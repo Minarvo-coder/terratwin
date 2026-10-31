@@ -3,16 +3,16 @@ import {
   ROVER_TESTING_PROFILE,
   validateMissionWeights,
   type ConfigurableMissionProfile,
-} from "../config/comparison-config"
-import { loadVerifiedLocationsAndFeatures } from "../db/planetary-repository"
+} from "../config/comparison-config.ts"
+import { loadVerifiedLocationsAndFeatures } from "../db/planetary-repository.ts"
 import {
   SAMPLE_CANDIDATES,
   SAMPLE_DATASET_META,
   SAMPLE_TARGETS,
-} from "../sample-dataset"
-import { rankCandidateLocations } from "../similarity-engine"
-import type { DatasetMeta, EarthCandidate, PlanetaryTarget } from "../types"
-import type { CompareApiRequest, CompareApiResponse } from "../types/api"
+} from "../sample-dataset.ts"
+import { rankCandidateLocations } from "../similarity-engine.ts"
+import type { DatasetMeta, EarthCandidate, PlanetaryTarget } from "../types.ts"
+import type { CompareApiRequest, CompareApiResponse } from "../types/api.ts"
 
 export class ValidationError extends Error {
   public readonly status: number = 400

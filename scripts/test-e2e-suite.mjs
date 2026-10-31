@@ -111,3 +111,4 @@ test('E2E Flow 5: Slug Aliases Compatibility', async () => {
     assert.ok(json.result.portfolios.length > 0)
   }
 })
+

@@ -65,6 +65,10 @@ export interface PlanetaryTarget {
   name: string
   region: string
   summary: string
+  /** Planetary latitude in decimal degrees [-90 to +90] */
+  latitude?: number
+  /** Planetary longitude in decimal degrees [-180 to +180] */
+  longitude?: number
   environment: EnvironmentProfile
   provenanceMap?: FeatureProvenanceMap
   isVerified?: boolean

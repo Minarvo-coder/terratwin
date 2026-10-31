@@ -236,6 +236,8 @@ export async function getVerifiedDatabaseData(): Promise<LoadedDatabaseData | nu
           name: loc.name,
           region: `${loc.planetary_body} coordinates: ${loc.latitude?.toFixed(2)}°, ${loc.longitude?.toFixed(2)}°`,
           summary: loc.description ?? "Verified planetary mission target.",
+          latitude: loc.latitude !== null && loc.latitude !== undefined ? Number(loc.latitude) : undefined,
+          longitude: loc.longitude !== null && loc.longitude !== undefined ? Number(loc.longitude) : undefined,
           environment: env,
           provenanceMap: provMap,
           isVerified: true,

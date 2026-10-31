@@ -1,14 +1,14 @@
 import {
   COMPARISON_FEATURES,
   type ConfigurableMissionProfile,
-} from "./config/comparison-config"
+} from "./config/comparison-config.ts"
 import {
   computeAnalogSimilarity,
   determineConfidenceFromCoverage,
   evaluateFeatureComparison,
   MIN_RELIABLE_COVERAGE,
-} from "./similarity-engine"
-import type { EarthCandidate, PlanetaryTarget } from "./types"
+} from "./similarity-engine.ts"
+import type { EarthCandidate, PlanetaryTarget } from "./types.ts"
 import type {
   AnalogPortfolio,
   PortfolioCandidateBreakdown,

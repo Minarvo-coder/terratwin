@@ -12,7 +12,16 @@ import { ScoreThresholdControl } from "./score-threshold-control"
 import { TargetProfile } from "./target-profile"
 import { TargetSelector } from "./target-selector"
 import { MissionSuitePanel } from "./mission-suite-panel"
-import { ShieldCheck, AlertTriangle, Layers, Compass } from "lucide-react"
+import { PlanetaryGlobe } from "./planetary-globe"
+import {
+  ShieldCheck,
+  AlertTriangle,
+  Layers,
+  Compass,
+  Globe2,
+  Satellite,
+  Columns2,
+} from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const DEFAULT_MIN_SCORE = 0
@@ -23,6 +32,7 @@ interface ExplorerDashboardProps {
 
 export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
   const [explorerMode, setExplorerMode] = useState<"single" | "suite">("single")
+  const [reconLayout, setReconLayout] = useState<"dual" | "planet" | "earth">("dual")
   const [sourceFilter, setSourceFilter] = useState<"all" | "verified" | "sample">("all")
   const [body, setBody] = useState<PlanetaryBody>("mars")
   const [targetId, setTargetId] = useState(() => {
@@ -221,11 +231,28 @@ export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
               </p>
             </div>
           ) : explorerMode === "suite" && selectedTarget ? (
-            <MissionSuitePanel
-              target={selectedTarget}
-              purposeId={purposeId}
-              isVerified={data?.dataset.isVerified}
-            />
+            <div className="flex flex-col gap-6">
+              <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_420px]">
+                <PlanetaryGlobe
+                  body={body}
+                  selectedTarget={selectedTarget}
+                  allTargets={filteredTargets}
+                  onSelectTarget={(id) => {
+                    setTargetId(id)
+                    setSelectedId(null)
+                  }}
+                  isUpdating={isUpdating}
+                />
+                <div className="rounded-lg border border-slate-800 bg-slate-900/60 p-4">
+                  <TargetProfile target={selectedTarget} />
+                </div>
+              </div>
+              <MissionSuitePanel
+                target={selectedTarget}
+                purposeId={purposeId}
+                isVerified={data?.dataset.isVerified}
+              />
+            </div>
           ) : error ? (
             <ExplorerError message={error.message} onRetry={() => mutate()} />
           ) : isLoading || !data ? (
@@ -234,13 +261,98 @@ export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
             <ExplorerEmpty minScore={data.minScore} onReset={() => setMinScore(DEFAULT_MIN_SCORE)} />
           ) : (
             <>
-              <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_380px]">
-                <AnalogMap
-                  results={results}
-                  selectedId={selectedResult?.candidate.id ?? null}
-                  onSelect={setSelectedId}
-                  isUpdating={isUpdating}
-                />
+              {/* Reconnaissance View Mode Bar */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 rounded-xl border border-slate-800 bg-slate-900/60 p-2 font-mono text-xs backdrop-blur-md">
+                <div className="flex items-center gap-2 pl-2">
+                  <Columns2 className="size-4 text-cyan-400" />
+                  <span className="font-bold text-white uppercase tracking-wider text-[11px]">Flight Deck Reconnaissance:</span>
+                </div>
+                <div className="flex flex-wrap items-center gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setReconLayout("dual")}
+                    className={cn(
+                      "flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-semibold transition cursor-pointer border",
+                      reconLayout === "dual"
+                        ? "border-cyan-500/50 bg-cyan-950/60 text-cyan-300 shadow-[0_0_8px_rgba(56,189,248,0.2)]"
+                        : "border-slate-800 bg-slate-950/50 text-slate-400 hover:text-white",
+                    )}
+                    title="Dual Flight Deck: Side-by-side 3D Target World and 2D Earth Analog Map"
+                  >
+                    <Columns2 className="size-3.5 text-cyan-400" />
+                    <span>Dual Flight Deck</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setReconLayout("planet")}
+                    className={cn(
+                      "flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-semibold transition cursor-pointer border",
+                      reconLayout === "planet"
+                        ? "border-cyan-500/50 bg-cyan-950/60 text-cyan-300 shadow-[0_0_8px_rgba(56,189,248,0.2)]"
+                        : "border-slate-800 bg-slate-950/50 text-slate-400 hover:text-white",
+                    )}
+                    title={`Focus on 3D ${body === "mars" ? "Mars" : "Moon"} Visualization`}
+                  >
+                    <Globe2 className="size-3.5 text-cyan-400" />
+                    <span className="capitalize">{body} 3D</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setReconLayout("earth")}
+                    className={cn(
+                      "flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-semibold transition cursor-pointer border",
+                      reconLayout === "earth"
+                        ? "border-cyan-500/50 bg-cyan-950/60 text-cyan-300 shadow-[0_0_8px_rgba(56,189,248,0.2)]"
+                        : "border-slate-800 bg-slate-950/50 text-slate-400 hover:text-white",
+                    )}
+                    title="Focus on Earth Global Reconnaissance Map"
+                  >
+                    <Satellite className="size-3.5 text-cyan-400" />
+                    <span>Earth Map</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Main Flight Deck Grid */}
+              <div
+                className={cn(
+                  "grid gap-4",
+                  reconLayout === "dual"
+                    ? "grid-cols-1 2xl:grid-cols-[minmax(0,1fr)_360px]"
+                    : "grid-cols-1 xl:grid-cols-[minmax(0,1fr)_380px]",
+                )}
+              >
+                {/* Reconnaissance Canvas Deck */}
+                <div
+                  className={cn(
+                    "grid gap-4",
+                    reconLayout === "dual" ? "grid-cols-1 xl:grid-cols-2" : "grid-cols-1",
+                  )}
+                >
+                  {(reconLayout === "dual" || reconLayout === "planet") && (
+                    <PlanetaryGlobe
+                      body={body}
+                      selectedTarget={selectedTarget}
+                      allTargets={filteredTargets}
+                      onSelectTarget={(id) => {
+                        setTargetId(id)
+                        setSelectedId(null)
+                      }}
+                      isUpdating={isUpdating}
+                    />
+                  )}
+
+                  {(reconLayout === "dual" || reconLayout === "earth") && (
+                    <AnalogMap
+                      results={results}
+                      selectedId={selectedResult?.candidate.id ?? null}
+                      onSelect={setSelectedId}
+                      isUpdating={isUpdating}
+                    />
+                  )}
+                </div>
+
+                {/* Candidate Roster List */}
                 <CandidateList
                   results={results}
                   totalCandidates={data.totalCandidates}
@@ -249,6 +361,7 @@ export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
                   isUpdating={isUpdating}
                 />
               </div>
+
               {selectedResult && (
                 <ComparisonPanel
                   target={data.target}

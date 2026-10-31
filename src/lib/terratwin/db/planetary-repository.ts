@@ -1,6 +1,5 @@
-import { createClient as createServerClient } from "@/utils/supabase/server"
 import { createClient as createSupabaseClient } from "@supabase/supabase-js"
-import type { Database } from "@/types/database.types"
+import type { Database } from "../../../types/database.types.ts"
 import type {
   EarthCandidate,
   EnvironmentProfile,
@@ -9,15 +8,17 @@ import type {
   Lithology,
   PlanetaryBody,
   PlanetaryTarget,
-} from "../types"
-import { FEATURES } from "../features"
-import type { DatasetSourceRecord, LocationRecord } from "../types/api"
+} from "../types.ts"
+import { FEATURES } from "../features.ts"
+import type { DatasetSourceRecord, LocationRecord } from "../types/api.ts"
 
 export class DatabaseError extends Error {
   public readonly status: number = 503
-  constructor(message: string, public readonly originalError?: unknown) {
+  public readonly originalError?: unknown
+  constructor(message: string, originalError?: unknown) {
     super(message)
     this.name = "DatabaseError"
+    this.originalError = originalError
   }
 }
 
@@ -27,6 +28,7 @@ export class DatabaseError extends Error {
  */
 export async function getDbClient() {
   try {
+    const { createClient: createServerClient } = await import("../../../utils/supabase/server.ts")
     return await createServerClient()
   } catch {
     const url = process.env.NEXT_PUBLIC_SUPABASE_URL
@@ -329,6 +331,8 @@ export async function loadVerifiedLocationsAndFeatures(): Promise<{
           name: loc.name,
           region: `${loc.planetary_body} coordinates: ${loc.latitude?.toFixed(2)}°, ${loc.longitude?.toFixed(2)}°`,
           summary: loc.description ?? "Verified planetary mission target.",
+          latitude: loc.latitude !== null && loc.latitude !== undefined ? Number(loc.latitude) : undefined,
+          longitude: loc.longitude !== null && loc.longitude !== undefined ? Number(loc.longitude) : undefined,
           environment: env,
           provenanceMap: provMap,
           isVerified: true,

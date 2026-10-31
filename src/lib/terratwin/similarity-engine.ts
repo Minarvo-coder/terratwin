@@ -3,8 +3,8 @@ import {
   type ConfigurableFeatureDefinition,
   type ConfigurableMissionProfile,
   validateMissionWeights,
-} from "./config/comparison-config"
-import { LITHOLOGY_FAMILIES } from "./features"
+} from "./config/comparison-config.ts"
+import { LITHOLOGY_FAMILIES } from "./features.ts"
 import type {
   DataConfidence,
   EarthCandidate,
@@ -14,7 +14,7 @@ import type {
   Lithology,
   PlanetaryTarget,
   RankedCandidate,
-} from "./types"
+} from "./types.ts"
 
 export const MIN_RELIABLE_COVERAGE = 0.40
 export const HIGH_CONFIDENCE_COVERAGE = 0.90
