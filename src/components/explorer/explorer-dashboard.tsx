@@ -11,7 +11,8 @@ import { PurposeSelector } from "./purpose-selector"
 import { ScoreThresholdControl } from "./score-threshold-control"
 import { TargetProfile } from "./target-profile"
 import { TargetSelector } from "./target-selector"
-import { ShieldCheck, AlertTriangle } from "lucide-react"
+import { MissionSuitePanel } from "./mission-suite-panel"
+import { ShieldCheck, AlertTriangle, Layers, Compass } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const DEFAULT_MIN_SCORE = 0
@@ -21,6 +22,7 @@ interface ExplorerDashboardProps {
 }
 
 export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
+  const [explorerMode, setExplorerMode] = useState<"single" | "suite">("single")
   const [sourceFilter, setSourceFilter] = useState<"all" | "verified" | "sample">("all")
   const [body, setBody] = useState<PlanetaryBody>("mars")
   const [targetId, setTargetId] = useState(() => {
@@ -173,6 +175,44 @@ export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
         </aside>
 
         <div className="flex min-w-0 flex-col gap-4">
+          {/* Strategy Mode Switcher Bar */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-xl border border-slate-800 bg-slate-900/60 p-2 font-mono text-xs backdrop-blur-md">
+            <div className="flex items-center gap-2 pl-2">
+              <Compass className="size-4 text-cyan-400" />
+              <span className="font-bold text-white uppercase tracking-wider text-[11px]">Exploration Strategy:</span>
+            </div>
+            <div className="flex flex-wrap items-center gap-1.5">
+              <button
+                type="button"
+                onClick={() => setExplorerMode("single")}
+                className={cn(
+                  "rounded-lg px-3 py-1.5 font-bold transition cursor-pointer flex items-center gap-1.5 text-xs",
+                  explorerMode === "single"
+                    ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-[0_0_10px_rgba(56,189,248,0.15)]"
+                    : "text-slate-400 hover:text-white",
+                )}
+              >
+                <span>1-to-1 Analog Site Matching</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setExplorerMode("suite")}
+                className={cn(
+                  "rounded-lg px-3 py-1.5 font-bold transition cursor-pointer flex items-center gap-1.5 text-xs",
+                  explorerMode === "suite"
+                    ? "bg-purple-500/20 text-purple-300 border border-purple-500/40 shadow-[0_0_10px_rgba(168,85,247,0.2)]"
+                    : "text-slate-400 hover:text-white",
+                )}
+              >
+                <Layers className="size-3.5 text-purple-400" />
+                <span>Mission Suite // Multi-Site Optimizer</span>
+                <span className="rounded bg-purple-950/80 border border-purple-500/40 px-1 py-0.2 text-[9px] text-purple-300 font-bold">
+                  NEW
+                </span>
+              </button>
+            </div>
+          </div>
+
           {!isTargetValid ? (
             <div className="rounded-lg border border-cyan-500/30 bg-slate-900/60 p-8 text-center font-mono text-sm text-cyan-300">
               <p className="font-semibold uppercase tracking-wider">No Planetary Target Selected</p>
@@ -180,6 +220,12 @@ export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
                 Please select a Moon or Mars target location from the navigation panel to rank Earth analog sites.
               </p>
             </div>
+          ) : explorerMode === "suite" && selectedTarget ? (
+            <MissionSuitePanel
+              target={selectedTarget}
+              purposeId={purposeId}
+              isVerified={data?.dataset.isVerified}
+            />
           ) : error ? (
             <ExplorerError message={error.message} onRetry={() => mutate()} />
           ) : isLoading || !data ? (
