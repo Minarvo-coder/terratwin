@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "node scripts/test-phase3-master.mjs"
+    "test": "node scripts/test-phase3-master.mjs",
+    "test:phase4": "node scripts/test-phase4-master.mjs",
+    "test:all": "node scripts/test-phase4-master.mjs && node scripts/test-phase3-master.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
