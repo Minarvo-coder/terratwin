@@ -3,11 +3,12 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { LayoutGrid, Radar, BookOpen } from "lucide-react"
+import { LayoutGrid, Radar, BookOpen, Database } from "lucide-react"
 
 const NAV_ITEMS = [
   { href: "/", label: "Overview", icon: LayoutGrid },
   { href: "/explore", label: "Explorer", icon: Radar },
+  { href: "/sources", label: "Data Sources", icon: Database },
   { href: "/methodology", label: "Methodology", icon: BookOpen },
 ]
 

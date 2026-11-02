@@ -5,7 +5,7 @@ import type { MissionPurposeDefinition, PlanetaryTarget, RankedCandidate } from 
 import { FeatureComparisonTable } from "./feature-comparison-table"
 import { FeatureSimilarityChart } from "./feature-similarity-chart"
 import { MissingDataWarning } from "./missing-data-warning"
-import { Compass, ShieldCheck, Terminal, Activity } from "lucide-react"
+import { Compass, ShieldCheck, Terminal, Activity, FileSpreadsheet, FileCode } from "lucide-react"
 
 interface ComparisonPanelProps {
   target: PlanetaryTarget
@@ -23,14 +23,34 @@ export function ComparisonPanel({ target, purpose, result, isUpdating }: Compari
       title="Dimensional Telemetry Analysis"
       description={`${target.name} (${target.body.toUpperCase()}) vs. ${candidate.name} (EARTH) · Calibrated for ${purpose.label.toLowerCase()}`}
       actions={
-        isVerified ? (
-          <span className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-500/40 bg-emerald-950/60 px-2.5 py-1 font-mono text-[11px] font-semibold text-emerald-300">
-            <ShieldCheck className="size-3.5 text-emerald-400" />
-            <span>NASA / PDS VERIFIED</span>
-          </span>
-        ) : (
-          <IllustrativeBadge label="Illustrative demo data — not scientific evidence" />
-        )
+        <div className="flex items-center gap-2">
+          <a
+            href="/api/export?format=csv"
+            download="terratwin_telemetry.csv"
+            className="hidden sm:inline-flex items-center gap-1 rounded bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/60 px-2 py-1 font-mono text-[10px] text-slate-300 transition"
+            title="Export scientific matrix to CSV"
+          >
+            <FileSpreadsheet className="size-3 text-cyan-400" />
+            <span>CSV</span>
+          </a>
+          <a
+            href="/api/export?format=json"
+            download="terratwin_telemetry.json"
+            className="hidden sm:inline-flex items-center gap-1 rounded bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/60 px-2 py-1 font-mono text-[10px] text-slate-300 transition"
+            title="Export scientific catalog to JSON"
+          >
+            <FileCode className="size-3 text-purple-400" />
+            <span>JSON</span>
+          </a>
+          {isVerified ? (
+            <span className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-500/40 bg-emerald-950/60 px-2.5 py-1 font-mono text-[11px] font-semibold text-emerald-300">
+              <ShieldCheck className="size-3.5 text-emerald-400" />
+              <span>NASA / PDS VERIFIED</span>
+            </span>
+          ) : (
+            <IllustrativeBadge label="Illustrative demo data — not scientific evidence" />
+          )}
+        </div>
       }
       isUpdating={isUpdating}
     >

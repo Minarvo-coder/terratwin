@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Suspense } from "react"
 import { ExplorerDashboard } from "@/components/explorer/explorer-dashboard"
 import { listTargets } from "@/lib/terratwin/analog-service"
+import { FileSpreadsheet, FileCode } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Planetary Mission Control | TerraTwin",
@@ -32,6 +33,24 @@ export default function ExplorePage() {
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2 font-mono text-xs">
+          <a
+            href="/api/export?format=csv"
+            download="terratwin_telemetry_matrix.csv"
+            className="rounded-lg bg-slate-900 border border-slate-700 hover:border-cyan-500/50 px-2.5 py-1.5 text-slate-300 hover:text-white flex items-center gap-1.5 transition"
+            title="Download Full Scientific Telemetry Matrix (CSV)"
+          >
+            <FileSpreadsheet className="size-3.5 text-cyan-400" />
+            <span>EXPORT CSV</span>
+          </a>
+          <a
+            href="/api/export?format=json"
+            download="terratwin_catalog.json"
+            className="rounded-lg bg-slate-900 border border-slate-700 hover:border-purple-500/50 px-2.5 py-1.5 text-slate-300 hover:text-white flex items-center gap-1.5 transition"
+            title="Download Full Scientific Provenance Catalog (JSON)"
+          >
+            <FileCode className="size-3.5 text-purple-400" />
+            <span>EXPORT JSON</span>
+          </a>
           <span className="rounded-lg bg-cyan-950/60 border border-cyan-500/40 px-3 py-1.5 text-cyan-300 font-semibold flex items-center gap-1.5">
             <span className="size-1.5 rounded-full bg-cyan-400 animate-pulse" />
             <span>3D RECON ACTIVE</span>
