@@ -184,3 +184,44 @@ export interface AnalogQueryResult {
 export interface AnalogApiError {
   error: string
 }
+
+export interface ElevationProfilePoint {
+  step: number
+  distanceKm: number
+  normalizedProgressPct: number // 0 to 100%
+  latitude: number
+  longitude: number
+  elevationM: number // Absolute elevation relative to datum
+  relativeElevationM: number // Relative relief delta z relative to start point (z - z_0)
+  localSlopeDeg: number // Local gradient in degrees
+}
+
+export interface ElevationTransectProfile {
+  locationId: string
+  locationName: string
+  planetaryBody: "Mars" | "Moon" | "Earth"
+  transectName: string
+  geologicalRationale: string
+  sourceDataset: string
+  sourceUrl: string
+  datum: string
+  spatialResolution: string
+  totalDistanceKm: number
+  minElevationM: number
+  maxElevationM: number
+  reliefM: number
+  meanSlopeDeg: number
+  samples: ElevationProfilePoint[]
+}
+
+export interface ElevationComparisonResponse {
+  success: boolean
+  target: ElevationTransectProfile
+  candidate: ElevationTransectProfile
+  scientificNotice: {
+    comparisonType: "relative-relief" | "datum-isolated"
+    datumDisparityExplanation: string
+    spatialResolutionDisparity: string
+  }
+}
+

@@ -1,0 +1,2082 @@
+{
+  "c0000005-0000-4000-8000-000000000005": {
+    "candidateId": "c0000005-0000-4000-8000-000000000005",
+    "candidateSlug": "salda",
+    "name": "Lake Salda Ophiolite Rim to Lacustrine Terrace Transect",
+    "country": "Turkey",
+    "setting": "Alkaline microbialite paleolake",
+    "geologicalRationale": "Crosses from the surrounding Cretaceous harzburgite ophiolite rim down across ancient wave-cut terraces and modern hydromagnesite stromatolite shoreline into the lake basin (direct analog for Jezero delta margin).",
+    "sourceDataset": "Copernicus Global 90m Digital Elevation Model (COP-DEM-GLO-90) & SRTMGL1",
+    "sourceUrl": "https://spacedata.copernicus.eu/",
+    "datum": "Earth EGM96 Geoid (Mean Sea Level)",
+    "resolution": "90 meters (COP-DEM-GLO-90)",
+    "totalDistanceKm": 12.51,
+    "minElevationM": 1136,
+    "maxElevationM": 1446,
+    "reliefM": 310,
+    "meanSlopeDeg": 3.4,
+    "samples": [
+      {
+        "step": 0,
+        "distanceKm": 0,
+        "latitude": 37.585,
+        "longitude": 29.625,
+        "elevationM": 1334,
+        "relativeElevationM": 0
+      },
+      {
+        "step": 1,
+        "distanceKm": 0.43,
+        "latitude": 37.5829,
+        "longitude": 29.6291,
+        "elevationM": 1329,
+        "relativeElevationM": -5
+      },
+      {
+        "step": 2,
+        "distanceKm": 0.86,
+        "latitude": 37.5809,
+        "longitude": 29.6333,
+        "elevationM": 1282,
+        "relativeElevationM": -52
+      },
+      {
+        "step": 3,
+        "distanceKm": 1.29,
+        "latitude": 37.5788,
+        "longitude": 29.6374,
+        "elevationM": 1242,
+        "relativeElevationM": -92
+      },
+      {
+        "step": 4,
+        "distanceKm": 1.73,
+        "latitude": 37.5767,
+        "longitude": 29.6416,
+        "elevationM": 1156,
+        "relativeElevationM": -178
+      },
+      {
+        "step": 5,
+        "distanceKm": 2.16,
+        "latitude": 37.5747,
+        "longitude": 29.6457,
+        "elevationM": 1136,
+        "relativeElevationM": -198
+      },
+      {
+        "step": 6,
+        "distanceKm": 2.59,
+        "latitude": 37.5726,
+        "longitude": 29.6498,
+        "elevationM": 1136,
+        "relativeElevationM": -198
+      },
+      {
+        "step": 7,
+        "distanceKm": 3.02,
+        "latitude": 37.5705,
+        "longitude": 29.654,
+        "elevationM": 1136,
+        "relativeElevationM": -198
+      },
+      {
+        "step": 8,
+        "distanceKm": 3.45,
+        "latitude": 37.5685,
+        "longitude": 29.6581,
+        "elevationM": 1136,
+        "relativeElevationM": -198
+      },
+      {
+        "step": 9,
+        "distanceKm": 3.88,
+        "latitude": 37.5664,
+        "longitude": 29.6623,
+        "elevationM": 1136,
+        "relativeElevationM": -198
+      },
+      {
+        "step": 10,
+        "distanceKm": 4.31,
+        "latitude": 37.5643,
+        "longitude": 29.6664,
+        "elevationM": 1136,
+        "relativeElevationM": -198
+      },
+      {
+        "step": 11,
+        "distanceKm": 4.74,
+        "latitude": 37.5623,
+        "longitude": 29.6705,
+        "elevationM": 1136,
+        "relativeElevationM": -198
+      },
+      {
+        "step": 12,
+        "distanceKm": 5.18,
+        "latitude": 37.5602,
+        "longitude": 29.6747,
+        "elevationM": 1136,
+        "relativeElevationM": -198
+      },
+      {
+        "step": 13,
+        "distanceKm": 5.61,
+        "latitude": 37.5581,
+        "longitude": 29.6788,
+        "elevationM": 1136,
+        "relativeElevationM": -198
+      },
+      {
+        "step": 14,
+        "distanceKm": 6.04,
+        "latitude": 37.556,
+        "longitude": 29.683,
+        "elevationM": 1136,
+        "relativeElevationM": -198
+      },
+      {
+        "step": 15,
+        "distanceKm": 6.47,
+        "latitude": 37.554,
+        "longitude": 29.6871,
+        "elevationM": 1136,
+        "relativeElevationM": -198
+      },
+      {
+        "step": 16,
+        "distanceKm": 6.9,
+        "latitude": 37.5519,
+        "longitude": 29.6912,
+        "elevationM": 1136,
+        "relativeElevationM": -198
+      },
+      {
+        "step": 17,
+        "distanceKm": 7.33,
+        "latitude": 37.5498,
+        "longitude": 29.6954,
+        "elevationM": 1136,
+        "relativeElevationM": -198
+      },
+      {
+        "step": 18,
+        "distanceKm": 7.76,
+        "latitude": 37.5478,
+        "longitude": 29.6995,
+        "elevationM": 1136,
+        "relativeElevationM": -198
+      },
+      {
+        "step": 19,
+        "distanceKm": 8.19,
+        "latitude": 37.5457,
+        "longitude": 29.7036,
+        "elevationM": 1136,
+        "relativeElevationM": -198
+      },
+      {
+        "step": 20,
+        "distanceKm": 8.63,
+        "latitude": 37.5436,
+        "longitude": 29.7078,
+        "elevationM": 1136,
+        "relativeElevationM": -198
+      },
+      {
+        "step": 21,
+        "distanceKm": 9.06,
+        "latitude": 37.5416,
+        "longitude": 29.7119,
+        "elevationM": 1136,
+        "relativeElevationM": -198
+      },
+      {
+        "step": 22,
+        "distanceKm": 9.49,
+        "latitude": 37.5395,
+        "longitude": 29.7161,
+        "elevationM": 1136,
+        "relativeElevationM": -198
+      },
+      {
+        "step": 23,
+        "distanceKm": 9.92,
+        "latitude": 37.5374,
+        "longitude": 29.7202,
+        "elevationM": 1292,
+        "relativeElevationM": -42
+      },
+      {
+        "step": 24,
+        "distanceKm": 10.35,
+        "latitude": 37.5354,
+        "longitude": 29.7243,
+        "elevationM": 1446,
+        "relativeElevationM": 112
+      },
+      {
+        "step": 25,
+        "distanceKm": 10.78,
+        "latitude": 37.5333,
+        "longitude": 29.7285,
+        "elevationM": 1422,
+        "relativeElevationM": 88
+      },
+      {
+        "step": 26,
+        "distanceKm": 11.21,
+        "latitude": 37.5312,
+        "longitude": 29.7326,
+        "elevationM": 1372,
+        "relativeElevationM": 38
+      },
+      {
+        "step": 27,
+        "distanceKm": 11.64,
+        "latitude": 37.5291,
+        "longitude": 29.7367,
+        "elevationM": 1313,
+        "relativeElevationM": -21
+      },
+      {
+        "step": 28,
+        "distanceKm": 12.08,
+        "latitude": 37.5271,
+        "longitude": 29.7409,
+        "elevationM": 1240,
+        "relativeElevationM": -94
+      },
+      {
+        "step": 29,
+        "distanceKm": 12.51,
+        "latitude": 37.525,
+        "longitude": 29.745,
+        "elevationM": 1205,
+        "relativeElevationM": -129
+      }
+    ],
+    "generatedAt": "2026-11-02T21:17:07.284Z"
+  },
+  "c0000006-0000-4000-8000-000000000006": {
+    "candidateId": "c0000006-0000-4000-8000-000000000006",
+    "candidateSlug": "craters_of_the_moon",
+    "name": "Great Rift Cinder Cones to Basalt Flow Transect",
+    "country": "USA",
+    "setting": "Basaltic volcanic fissure field",
+    "geologicalRationale": "Crosses Big Craters cinder cone scarp and descends onto jagged aa block lava flows and Indian Tunnel lava tube roof (analog for lunar mare and basaltic lava tubes).",
+    "sourceDataset": "Copernicus Global 90m Digital Elevation Model (COP-DEM-GLO-90) & SRTMGL1",
+    "sourceUrl": "https://spacedata.copernicus.eu/",
+    "datum": "Earth EGM96 Geoid (Mean Sea Level)",
+    "resolution": "90 meters (COP-DEM-GLO-90)",
+    "totalDistanceKm": 8.74,
+    "minElevationM": 1749,
+    "maxElevationM": 2036,
+    "reliefM": 287,
+    "meanSlopeDeg": 4,
+    "samples": [
+      {
+        "step": 0,
+        "distanceKm": 0,
+        "latitude": 43.485,
+        "longitude": -113.585,
+        "elevationM": 2023,
+        "relativeElevationM": 0
+      },
+      {
+        "step": 1,
+        "distanceKm": 0.3,
+        "latitude": 43.4829,
+        "longitude": -113.5826,
+        "elevationM": 2036,
+        "relativeElevationM": 13
+      },
+      {
+        "step": 2,
+        "distanceKm": 0.6,
+        "latitude": 43.4809,
+        "longitude": -113.5802,
+        "elevationM": 2013,
+        "relativeElevationM": -10
+      },
+      {
+        "step": 3,
+        "distanceKm": 0.9,
+        "latitude": 43.4788,
+        "longitude": -113.5778,
+        "elevationM": 1932,
+        "relativeElevationM": -91
+      },
+      {
+        "step": 4,
+        "distanceKm": 1.21,
+        "latitude": 43.4767,
+        "longitude": -113.5753,
+        "elevationM": 1884,
+        "relativeElevationM": -139
+      },
+      {
+        "step": 5,
+        "distanceKm": 1.51,
+        "latitude": 43.4747,
+        "longitude": -113.5729,
+        "elevationM": 1826,
+        "relativeElevationM": -197
+      },
+      {
+        "step": 6,
+        "distanceKm": 1.81,
+        "latitude": 43.4726,
+        "longitude": -113.5705,
+        "elevationM": 1818,
+        "relativeElevationM": -205
+      },
+      {
+        "step": 7,
+        "distanceKm": 2.11,
+        "latitude": 43.4705,
+        "longitude": -113.5681,
+        "elevationM": 1887,
+        "relativeElevationM": -136
+      },
+      {
+        "step": 8,
+        "distanceKm": 2.41,
+        "latitude": 43.4685,
+        "longitude": -113.5657,
+        "elevationM": 1928,
+        "relativeElevationM": -95
+      },
+      {
+        "step": 9,
+        "distanceKm": 2.71,
+        "latitude": 43.4664,
+        "longitude": -113.5633,
+        "elevationM": 1917,
+        "relativeElevationM": -106
+      },
+      {
+        "step": 10,
+        "distanceKm": 3.01,
+        "latitude": 43.4643,
+        "longitude": -113.5608,
+        "elevationM": 1835,
+        "relativeElevationM": -188
+      },
+      {
+        "step": 11,
+        "distanceKm": 3.32,
+        "latitude": 43.4622,
+        "longitude": -113.5584,
+        "elevationM": 1798,
+        "relativeElevationM": -225
+      },
+      {
+        "step": 12,
+        "distanceKm": 3.62,
+        "latitude": 43.4602,
+        "longitude": -113.556,
+        "elevationM": 1787,
+        "relativeElevationM": -236
+      },
+      {
+        "step": 13,
+        "distanceKm": 3.92,
+        "latitude": 43.4581,
+        "longitude": -113.5536,
+        "elevationM": 1778,
+        "relativeElevationM": -245
+      },
+      {
+        "step": 14,
+        "distanceKm": 4.22,
+        "latitude": 43.456,
+        "longitude": -113.5512,
+        "elevationM": 1778,
+        "relativeElevationM": -245
+      },
+      {
+        "step": 15,
+        "distanceKm": 4.52,
+        "latitude": 43.454,
+        "longitude": -113.5488,
+        "elevationM": 1769,
+        "relativeElevationM": -254
+      },
+      {
+        "step": 16,
+        "distanceKm": 4.82,
+        "latitude": 43.4519,
+        "longitude": -113.5464,
+        "elevationM": 1793,
+        "relativeElevationM": -230
+      },
+      {
+        "step": 17,
+        "distanceKm": 5.13,
+        "latitude": 43.4498,
+        "longitude": -113.5439,
+        "elevationM": 1769,
+        "relativeElevationM": -254
+      },
+      {
+        "step": 18,
+        "distanceKm": 5.43,
+        "latitude": 43.4478,
+        "longitude": -113.5415,
+        "elevationM": 1753,
+        "relativeElevationM": -270
+      },
+      {
+        "step": 19,
+        "distanceKm": 5.73,
+        "latitude": 43.4457,
+        "longitude": -113.5391,
+        "elevationM": 1763,
+        "relativeElevationM": -260
+      },
+      {
+        "step": 20,
+        "distanceKm": 6.03,
+        "latitude": 43.4436,
+        "longitude": -113.5367,
+        "elevationM": 1757,
+        "relativeElevationM": -266
+      },
+      {
+        "step": 21,
+        "distanceKm": 6.33,
+        "latitude": 43.4416,
+        "longitude": -113.5343,
+        "elevationM": 1758,
+        "relativeElevationM": -265
+      },
+      {
+        "step": 22,
+        "distanceKm": 6.63,
+        "latitude": 43.4395,
+        "longitude": -113.5319,
+        "elevationM": 1759,
+        "relativeElevationM": -264
+      },
+      {
+        "step": 23,
+        "distanceKm": 6.93,
+        "latitude": 43.4374,
+        "longitude": -113.5295,
+        "elevationM": 1762,
+        "relativeElevationM": -261
+      },
+      {
+        "step": 24,
+        "distanceKm": 7.24,
+        "latitude": 43.4353,
+        "longitude": -113.5271,
+        "elevationM": 1764,
+        "relativeElevationM": -259
+      },
+      {
+        "step": 25,
+        "distanceKm": 7.54,
+        "latitude": 43.4333,
+        "longitude": -113.5246,
+        "elevationM": 1770,
+        "relativeElevationM": -253
+      },
+      {
+        "step": 26,
+        "distanceKm": 7.84,
+        "latitude": 43.4312,
+        "longitude": -113.5222,
+        "elevationM": 1767,
+        "relativeElevationM": -256
+      },
+      {
+        "step": 27,
+        "distanceKm": 8.14,
+        "latitude": 43.4291,
+        "longitude": -113.5198,
+        "elevationM": 1757,
+        "relativeElevationM": -266
+      },
+      {
+        "step": 28,
+        "distanceKm": 8.44,
+        "latitude": 43.4271,
+        "longitude": -113.5174,
+        "elevationM": 1755,
+        "relativeElevationM": -268
+      },
+      {
+        "step": 29,
+        "distanceKm": 8.74,
+        "latitude": 43.425,
+        "longitude": -113.515,
+        "elevationM": 1749,
+        "relativeElevationM": -274
+      }
+    ],
+    "generatedAt": "2026-11-02T21:17:07.461Z"
+  },
+  "c0000007-0000-4000-8000-000000000007": {
+    "candidateId": "c0000007-0000-4000-8000-000000000007",
+    "candidateSlug": "askja",
+    "name": "Askja Caldera Rim to Holuhraun Basalt Plain Transect",
+    "country": "Iceland",
+    "setting": "Subarctic basaltic caldera & rift",
+    "geologicalRationale": "Traverses Askja caldera rim, Öskjuvatn crater scarp, across basaltic tephra pumice plains, descending to the 2014-2015 Holuhraun fissure flood basalt field (Apollo astronaut training site).",
+    "sourceDataset": "Copernicus Global 90m Digital Elevation Model (COP-DEM-GLO-90) & ArcticDEM",
+    "sourceUrl": "https://spacedata.copernicus.eu/",
+    "datum": "Earth EGM96 Geoid (Mean Sea Level)",
+    "resolution": "90 meters (COP-DEM-GLO-90)",
+    "totalDistanceKm": 15.15,
+    "minElevationM": 676,
+    "maxElevationM": 1402,
+    "reliefM": 726,
+    "meanSlopeDeg": 4.2,
+    "samples": [
+      {
+        "step": 0,
+        "distanceKm": 0,
+        "latitude": 65.045,
+        "longitude": -16.825,
+        "elevationM": 1168,
+        "relativeElevationM": 0
+      },
+      {
+        "step": 1,
+        "distanceKm": 0.52,
+        "latitude": 65.0412,
+        "longitude": -16.8184,
+        "elevationM": 1153,
+        "relativeElevationM": -15
+      },
+      {
+        "step": 2,
+        "distanceKm": 1.04,
+        "latitude": 65.0374,
+        "longitude": -16.8118,
+        "elevationM": 1144,
+        "relativeElevationM": -24
+      },
+      {
+        "step": 3,
+        "distanceKm": 1.57,
+        "latitude": 65.0336,
+        "longitude": -16.8053,
+        "elevationM": 1140,
+        "relativeElevationM": -28
+      },
+      {
+        "step": 4,
+        "distanceKm": 2.09,
+        "latitude": 65.0298,
+        "longitude": -16.7987,
+        "elevationM": 1124,
+        "relativeElevationM": -44
+      },
+      {
+        "step": 5,
+        "distanceKm": 2.61,
+        "latitude": 65.0261,
+        "longitude": -16.7921,
+        "elevationM": 1121,
+        "relativeElevationM": -47
+      },
+      {
+        "step": 6,
+        "distanceKm": 3.13,
+        "latitude": 65.0223,
+        "longitude": -16.7856,
+        "elevationM": 1080,
+        "relativeElevationM": -88
+      },
+      {
+        "step": 7,
+        "distanceKm": 3.66,
+        "latitude": 65.0185,
+        "longitude": -16.779,
+        "elevationM": 1099,
+        "relativeElevationM": -69
+      },
+      {
+        "step": 8,
+        "distanceKm": 4.18,
+        "latitude": 65.0147,
+        "longitude": -16.7724,
+        "elevationM": 1336,
+        "relativeElevationM": 168
+      },
+      {
+        "step": 9,
+        "distanceKm": 4.7,
+        "latitude": 65.0109,
+        "longitude": -16.7659,
+        "elevationM": 1402,
+        "relativeElevationM": 234
+      },
+      {
+        "step": 10,
+        "distanceKm": 5.22,
+        "latitude": 65.0071,
+        "longitude": -16.7593,
+        "elevationM": 1190,
+        "relativeElevationM": 22
+      },
+      {
+        "step": 11,
+        "distanceKm": 5.74,
+        "latitude": 65.0033,
+        "longitude": -16.7527,
+        "elevationM": 1114,
+        "relativeElevationM": -54
+      },
+      {
+        "step": 12,
+        "distanceKm": 6.27,
+        "latitude": 64.9995,
+        "longitude": -16.7462,
+        "elevationM": 1066,
+        "relativeElevationM": -102
+      },
+      {
+        "step": 13,
+        "distanceKm": 6.79,
+        "latitude": 64.9957,
+        "longitude": -16.7396,
+        "elevationM": 1018,
+        "relativeElevationM": -150
+      },
+      {
+        "step": 14,
+        "distanceKm": 7.31,
+        "latitude": 64.9919,
+        "longitude": -16.7331,
+        "elevationM": 986,
+        "relativeElevationM": -182
+      },
+      {
+        "step": 15,
+        "distanceKm": 7.83,
+        "latitude": 64.9881,
+        "longitude": -16.7265,
+        "elevationM": 944,
+        "relativeElevationM": -224
+      },
+      {
+        "step": 16,
+        "distanceKm": 8.36,
+        "latitude": 64.9843,
+        "longitude": -16.72,
+        "elevationM": 924,
+        "relativeElevationM": -244
+      },
+      {
+        "step": 17,
+        "distanceKm": 8.88,
+        "latitude": 64.9805,
+        "longitude": -16.7134,
+        "elevationM": 860,
+        "relativeElevationM": -308
+      },
+      {
+        "step": 18,
+        "distanceKm": 9.4,
+        "latitude": 64.9768,
+        "longitude": -16.7069,
+        "elevationM": 784,
+        "relativeElevationM": -384
+      },
+      {
+        "step": 19,
+        "distanceKm": 9.92,
+        "latitude": 64.973,
+        "longitude": -16.7003,
+        "elevationM": 744,
+        "relativeElevationM": -424
+      },
+      {
+        "step": 20,
+        "distanceKm": 10.45,
+        "latitude": 64.9692,
+        "longitude": -16.6938,
+        "elevationM": 734,
+        "relativeElevationM": -434
+      },
+      {
+        "step": 21,
+        "distanceKm": 10.97,
+        "latitude": 64.9654,
+        "longitude": -16.6873,
+        "elevationM": 717,
+        "relativeElevationM": -451
+      },
+      {
+        "step": 22,
+        "distanceKm": 11.49,
+        "latitude": 64.9616,
+        "longitude": -16.6807,
+        "elevationM": 708,
+        "relativeElevationM": -460
+      },
+      {
+        "step": 23,
+        "distanceKm": 12.01,
+        "latitude": 64.9578,
+        "longitude": -16.6742,
+        "elevationM": 702,
+        "relativeElevationM": -466
+      },
+      {
+        "step": 24,
+        "distanceKm": 12.53,
+        "latitude": 64.954,
+        "longitude": -16.6676,
+        "elevationM": 700,
+        "relativeElevationM": -468
+      },
+      {
+        "step": 25,
+        "distanceKm": 13.06,
+        "latitude": 64.9502,
+        "longitude": -16.6611,
+        "elevationM": 692,
+        "relativeElevationM": -476
+      },
+      {
+        "step": 26,
+        "distanceKm": 13.58,
+        "latitude": 64.9464,
+        "longitude": -16.6546,
+        "elevationM": 683,
+        "relativeElevationM": -485
+      },
+      {
+        "step": 27,
+        "distanceKm": 14.1,
+        "latitude": 64.9426,
+        "longitude": -16.6481,
+        "elevationM": 679,
+        "relativeElevationM": -489
+      },
+      {
+        "step": 28,
+        "distanceKm": 14.62,
+        "latitude": 64.9388,
+        "longitude": -16.6415,
+        "elevationM": 677,
+        "relativeElevationM": -491
+      },
+      {
+        "step": 29,
+        "distanceKm": 15.15,
+        "latitude": 64.935,
+        "longitude": -16.635,
+        "elevationM": 676,
+        "relativeElevationM": -492
+      }
+    ],
+    "generatedAt": "2026-11-02T21:17:07.641Z"
+  },
+  "c0000008-0000-4000-8000-000000000008": {
+    "candidateId": "c0000008-0000-4000-8000-000000000008",
+    "candidateSlug": "rio_tinto",
+    "name": "Peña de Hierro Gossan Ridge to River Canyon Transect",
+    "country": "Spain",
+    "setting": "Acidic sulfate gossan river basin",
+    "geologicalRationale": "Descends from oxidized ferric gossan ridge through historic open-pit terraces into the hyper-acidic river channel enriched in jarosite and hematite spherules (analog for Meridiani Planum).",
+    "sourceDataset": "Copernicus Global 90m Digital Elevation Model (COP-DEM-GLO-90) & SRTMGL1",
+    "sourceUrl": "https://spacedata.copernicus.eu/",
+    "datum": "Earth EGM96 Geoid (Mean Sea Level)",
+    "resolution": "90 meters (COP-DEM-GLO-90)",
+    "totalDistanceKm": 9.08,
+    "minElevationM": 242,
+    "maxElevationM": 430,
+    "reliefM": 188,
+    "meanSlopeDeg": 3.2,
+    "samples": [
+      {
+        "step": 0,
+        "distanceKm": 0,
+        "latitude": 37.735,
+        "longitude": -6.585,
+        "elevationM": 376,
+        "relativeElevationM": 0
+      },
+      {
+        "step": 1,
+        "distanceKm": 0.31,
+        "latitude": 37.7329,
+        "longitude": -6.5826,
+        "elevationM": 376,
+        "relativeElevationM": 0
+      },
+      {
+        "step": 2,
+        "distanceKm": 0.63,
+        "latitude": 37.7309,
+        "longitude": -6.5802,
+        "elevationM": 389,
+        "relativeElevationM": 13
+      },
+      {
+        "step": 3,
+        "distanceKm": 0.94,
+        "latitude": 37.7288,
+        "longitude": -6.5778,
+        "elevationM": 399,
+        "relativeElevationM": 23
+      },
+      {
+        "step": 4,
+        "distanceKm": 1.25,
+        "latitude": 37.7267,
+        "longitude": -6.5753,
+        "elevationM": 430,
+        "relativeElevationM": 54
+      },
+      {
+        "step": 5,
+        "distanceKm": 1.57,
+        "latitude": 37.7247,
+        "longitude": -6.5729,
+        "elevationM": 426,
+        "relativeElevationM": 50
+      },
+      {
+        "step": 6,
+        "distanceKm": 1.88,
+        "latitude": 37.7226,
+        "longitude": -6.5705,
+        "elevationM": 423,
+        "relativeElevationM": 47
+      },
+      {
+        "step": 7,
+        "distanceKm": 2.19,
+        "latitude": 37.7205,
+        "longitude": -6.5681,
+        "elevationM": 379,
+        "relativeElevationM": 3
+      },
+      {
+        "step": 8,
+        "distanceKm": 2.5,
+        "latitude": 37.7185,
+        "longitude": -6.5657,
+        "elevationM": 397,
+        "relativeElevationM": 21
+      },
+      {
+        "step": 9,
+        "distanceKm": 2.82,
+        "latitude": 37.7164,
+        "longitude": -6.5633,
+        "elevationM": 419,
+        "relativeElevationM": 43
+      },
+      {
+        "step": 10,
+        "distanceKm": 3.13,
+        "latitude": 37.7143,
+        "longitude": -6.5608,
+        "elevationM": 402,
+        "relativeElevationM": 26
+      },
+      {
+        "step": 11,
+        "distanceKm": 3.44,
+        "latitude": 37.7122,
+        "longitude": -6.5584,
+        "elevationM": 379,
+        "relativeElevationM": 3
+      },
+      {
+        "step": 12,
+        "distanceKm": 3.76,
+        "latitude": 37.7102,
+        "longitude": -6.556,
+        "elevationM": 357,
+        "relativeElevationM": -19
+      },
+      {
+        "step": 13,
+        "distanceKm": 4.07,
+        "latitude": 37.7081,
+        "longitude": -6.5536,
+        "elevationM": 379,
+        "relativeElevationM": 3
+      },
+      {
+        "step": 14,
+        "distanceKm": 4.38,
+        "latitude": 37.706,
+        "longitude": -6.5512,
+        "elevationM": 371,
+        "relativeElevationM": -5
+      },
+      {
+        "step": 15,
+        "distanceKm": 4.7,
+        "latitude": 37.704,
+        "longitude": -6.5488,
+        "elevationM": 370,
+        "relativeElevationM": -6
+      },
+      {
+        "step": 16,
+        "distanceKm": 5.01,
+        "latitude": 37.7019,
+        "longitude": -6.5464,
+        "elevationM": 345,
+        "relativeElevationM": -31
+      },
+      {
+        "step": 17,
+        "distanceKm": 5.32,
+        "latitude": 37.6998,
+        "longitude": -6.544,
+        "elevationM": 362,
+        "relativeElevationM": -14
+      },
+      {
+        "step": 18,
+        "distanceKm": 5.64,
+        "latitude": 37.6978,
+        "longitude": -6.5415,
+        "elevationM": 364,
+        "relativeElevationM": -12
+      },
+      {
+        "step": 19,
+        "distanceKm": 5.95,
+        "latitude": 37.6957,
+        "longitude": -6.5391,
+        "elevationM": 345,
+        "relativeElevationM": -31
+      },
+      {
+        "step": 20,
+        "distanceKm": 6.26,
+        "latitude": 37.6936,
+        "longitude": -6.5367,
+        "elevationM": 371,
+        "relativeElevationM": -5
+      },
+      {
+        "step": 21,
+        "distanceKm": 6.57,
+        "latitude": 37.6916,
+        "longitude": -6.5343,
+        "elevationM": 368,
+        "relativeElevationM": -8
+      },
+      {
+        "step": 22,
+        "distanceKm": 6.89,
+        "latitude": 37.6895,
+        "longitude": -6.5319,
+        "elevationM": 370,
+        "relativeElevationM": -6
+      },
+      {
+        "step": 23,
+        "distanceKm": 7.2,
+        "latitude": 37.6874,
+        "longitude": -6.5295,
+        "elevationM": 392,
+        "relativeElevationM": 16
+      },
+      {
+        "step": 24,
+        "distanceKm": 7.51,
+        "latitude": 37.6853,
+        "longitude": -6.5271,
+        "elevationM": 356,
+        "relativeElevationM": -20
+      },
+      {
+        "step": 25,
+        "distanceKm": 7.83,
+        "latitude": 37.6833,
+        "longitude": -6.5246,
+        "elevationM": 316,
+        "relativeElevationM": -60
+      },
+      {
+        "step": 26,
+        "distanceKm": 8.14,
+        "latitude": 37.6812,
+        "longitude": -6.5222,
+        "elevationM": 299,
+        "relativeElevationM": -77
+      },
+      {
+        "step": 27,
+        "distanceKm": 8.45,
+        "latitude": 37.6791,
+        "longitude": -6.5198,
+        "elevationM": 282,
+        "relativeElevationM": -94
+      },
+      {
+        "step": 28,
+        "distanceKm": 8.77,
+        "latitude": 37.6771,
+        "longitude": -6.5174,
+        "elevationM": 247,
+        "relativeElevationM": -129
+      },
+      {
+        "step": 29,
+        "distanceKm": 9.08,
+        "latitude": 37.675,
+        "longitude": -6.515,
+        "elevationM": 242,
+        "relativeElevationM": -134
+      }
+    ],
+    "generatedAt": "2026-11-02T21:17:07.814Z"
+  },
+  "c0000001-0000-4000-8000-000000000001": {
+    "candidateId": "c0000001-0000-4000-8000-000000000001",
+    "candidateSlug": "atacama",
+    "name": "Cordillera de la Sal Scarp to Yungay Basin Transect",
+    "country": "Chile",
+    "setting": "Hyper-arid desert basin",
+    "geologicalRationale": "Descends from gypsum-bearing Cordillera de la Sal scarp into hyper-arid Yungay alluvial basin floor characterized by extreme perchlorate soil chemistry.",
+    "sourceDataset": "Copernicus Global 90m Digital Elevation Model (COP-DEM-GLO-90) & SRTMGL1",
+    "sourceUrl": "https://spacedata.copernicus.eu/",
+    "datum": "Earth EGM96 Geoid (Mean Sea Level)",
+    "resolution": "90 meters (COP-DEM-GLO-90)",
+    "totalDistanceKm": 16.51,
+    "minElevationM": 2485,
+    "maxElevationM": 2742,
+    "reliefM": 257,
+    "meanSlopeDeg": 2.2,
+    "samples": [
+      {
+        "step": 0,
+        "distanceKm": 0,
+        "latitude": -23.815,
+        "longitude": -68.295,
+        "elevationM": 2742,
+        "relativeElevationM": 0
+      },
+      {
+        "step": 1,
+        "distanceKm": 0.57,
+        "latitude": -23.8184,
+        "longitude": -68.2909,
+        "elevationM": 2646,
+        "relativeElevationM": -96
+      },
+      {
+        "step": 2,
+        "distanceKm": 1.14,
+        "latitude": -23.8219,
+        "longitude": -68.2867,
+        "elevationM": 2711,
+        "relativeElevationM": -31
+      },
+      {
+        "step": 3,
+        "distanceKm": 1.71,
+        "latitude": -23.8253,
+        "longitude": -68.2826,
+        "elevationM": 2655,
+        "relativeElevationM": -87
+      },
+      {
+        "step": 4,
+        "distanceKm": 2.28,
+        "latitude": -23.8288,
+        "longitude": -68.2785,
+        "elevationM": 2633,
+        "relativeElevationM": -109
+      },
+      {
+        "step": 5,
+        "distanceKm": 2.85,
+        "latitude": -23.8322,
+        "longitude": -68.2743,
+        "elevationM": 2636,
+        "relativeElevationM": -106
+      },
+      {
+        "step": 6,
+        "distanceKm": 3.42,
+        "latitude": -23.8357,
+        "longitude": -68.2702,
+        "elevationM": 2628,
+        "relativeElevationM": -114
+      },
+      {
+        "step": 7,
+        "distanceKm": 3.98,
+        "latitude": -23.8391,
+        "longitude": -68.2661,
+        "elevationM": 2620,
+        "relativeElevationM": -122
+      },
+      {
+        "step": 8,
+        "distanceKm": 4.55,
+        "latitude": -23.8426,
+        "longitude": -68.2619,
+        "elevationM": 2611,
+        "relativeElevationM": -131
+      },
+      {
+        "step": 9,
+        "distanceKm": 5.12,
+        "latitude": -23.846,
+        "longitude": -68.2578,
+        "elevationM": 2607,
+        "relativeElevationM": -135
+      },
+      {
+        "step": 10,
+        "distanceKm": 5.69,
+        "latitude": -23.8495,
+        "longitude": -68.2536,
+        "elevationM": 2515,
+        "relativeElevationM": -227
+      },
+      {
+        "step": 11,
+        "distanceKm": 6.26,
+        "latitude": -23.8529,
+        "longitude": -68.2495,
+        "elevationM": 2499,
+        "relativeElevationM": -243
+      },
+      {
+        "step": 12,
+        "distanceKm": 6.83,
+        "latitude": -23.8564,
+        "longitude": -68.2454,
+        "elevationM": 2504,
+        "relativeElevationM": -238
+      },
+      {
+        "step": 13,
+        "distanceKm": 7.4,
+        "latitude": -23.8598,
+        "longitude": -68.2412,
+        "elevationM": 2503,
+        "relativeElevationM": -239
+      },
+      {
+        "step": 14,
+        "distanceKm": 7.97,
+        "latitude": -23.8633,
+        "longitude": -68.2371,
+        "elevationM": 2495,
+        "relativeElevationM": -247
+      },
+      {
+        "step": 15,
+        "distanceKm": 8.54,
+        "latitude": -23.8667,
+        "longitude": -68.233,
+        "elevationM": 2492,
+        "relativeElevationM": -250
+      },
+      {
+        "step": 16,
+        "distanceKm": 9.11,
+        "latitude": -23.8702,
+        "longitude": -68.2288,
+        "elevationM": 2492,
+        "relativeElevationM": -250
+      },
+      {
+        "step": 17,
+        "distanceKm": 9.68,
+        "latitude": -23.8736,
+        "longitude": -68.2247,
+        "elevationM": 2505,
+        "relativeElevationM": -237
+      },
+      {
+        "step": 18,
+        "distanceKm": 10.25,
+        "latitude": -23.8771,
+        "longitude": -68.2205,
+        "elevationM": 2506,
+        "relativeElevationM": -236
+      },
+      {
+        "step": 19,
+        "distanceKm": 10.82,
+        "latitude": -23.8805,
+        "longitude": -68.2164,
+        "elevationM": 2491,
+        "relativeElevationM": -251
+      },
+      {
+        "step": 20,
+        "distanceKm": 11.39,
+        "latitude": -23.884,
+        "longitude": -68.2123,
+        "elevationM": 2485,
+        "relativeElevationM": -257
+      },
+      {
+        "step": 21,
+        "distanceKm": 11.95,
+        "latitude": -23.8874,
+        "longitude": -68.2081,
+        "elevationM": 2496,
+        "relativeElevationM": -246
+      },
+      {
+        "step": 22,
+        "distanceKm": 12.52,
+        "latitude": -23.8909,
+        "longitude": -68.204,
+        "elevationM": 2512,
+        "relativeElevationM": -230
+      },
+      {
+        "step": 23,
+        "distanceKm": 13.09,
+        "latitude": -23.8943,
+        "longitude": -68.1998,
+        "elevationM": 2531,
+        "relativeElevationM": -211
+      },
+      {
+        "step": 24,
+        "distanceKm": 13.66,
+        "latitude": -23.8978,
+        "longitude": -68.1957,
+        "elevationM": 2559,
+        "relativeElevationM": -183
+      },
+      {
+        "step": 25,
+        "distanceKm": 14.23,
+        "latitude": -23.9012,
+        "longitude": -68.1916,
+        "elevationM": 2588,
+        "relativeElevationM": -154
+      },
+      {
+        "step": 26,
+        "distanceKm": 14.8,
+        "latitude": -23.9047,
+        "longitude": -68.1874,
+        "elevationM": 2616,
+        "relativeElevationM": -126
+      },
+      {
+        "step": 27,
+        "distanceKm": 15.37,
+        "latitude": -23.9081,
+        "longitude": -68.1833,
+        "elevationM": 2645,
+        "relativeElevationM": -97
+      },
+      {
+        "step": 28,
+        "distanceKm": 15.94,
+        "latitude": -23.9116,
+        "longitude": -68.1791,
+        "elevationM": 2673,
+        "relativeElevationM": -69
+      },
+      {
+        "step": 29,
+        "distanceKm": 16.51,
+        "latitude": -23.915,
+        "longitude": -68.175,
+        "elevationM": 2690,
+        "relativeElevationM": -52
+      }
+    ],
+    "generatedAt": "2026-11-02T21:17:08.001Z"
+  },
+  "c0000004-0000-4000-8000-000000000004": {
+    "candidateId": "c0000004-0000-4000-8000-000000000004",
+    "candidateSlug": "mcmurdo",
+    "name": "Asgard Range to Taylor Valley Permafrost Floor Transect",
+    "country": "Antarctica",
+    "setting": "Polar desert permafrost valley",
+    "geologicalRationale": "Descends from glaciated Asgard Range bedrock down through patterned permafrost ground to the Lake Bonney valley floor (cold-arid Mars cryosphere analog).",
+    "sourceDataset": "Copernicus Global 90m Digital Elevation Model (COP-DEM-GLO-90) & REMA",
+    "sourceUrl": "https://spacedata.copernicus.eu/",
+    "datum": "Earth EGM96 Geoid (Mean Sea Level)",
+    "resolution": "90 meters (COP-DEM-GLO-90)",
+    "totalDistanceKm": 11.03,
+    "minElevationM": 62,
+    "maxElevationM": 1335,
+    "reliefM": 1273,
+    "meanSlopeDeg": 9.6,
+    "samples": [
+      {
+        "step": 0,
+        "distanceKm": 0,
+        "latitude": -77.675,
+        "longitude": 162.155,
+        "elevationM": 1335,
+        "relativeElevationM": 0
+      },
+      {
+        "step": 1,
+        "distanceKm": 0.38,
+        "latitude": -77.6774,
+        "longitude": 162.1663,
+        "elevationM": 1320,
+        "relativeElevationM": -15
+      },
+      {
+        "step": 2,
+        "distanceKm": 0.76,
+        "latitude": -77.6798,
+        "longitude": 162.1776,
+        "elevationM": 1305,
+        "relativeElevationM": -30
+      },
+      {
+        "step": 3,
+        "distanceKm": 1.14,
+        "latitude": -77.6823,
+        "longitude": 162.189,
+        "elevationM": 1284,
+        "relativeElevationM": -51
+      },
+      {
+        "step": 4,
+        "distanceKm": 1.52,
+        "latitude": -77.6847,
+        "longitude": 162.2003,
+        "elevationM": 1275,
+        "relativeElevationM": -60
+      },
+      {
+        "step": 5,
+        "distanceKm": 1.9,
+        "latitude": -77.6871,
+        "longitude": 162.2116,
+        "elevationM": 1250,
+        "relativeElevationM": -85
+      },
+      {
+        "step": 6,
+        "distanceKm": 2.28,
+        "latitude": -77.6895,
+        "longitude": 162.223,
+        "elevationM": 1225,
+        "relativeElevationM": -110
+      },
+      {
+        "step": 7,
+        "distanceKm": 2.66,
+        "latitude": -77.6919,
+        "longitude": 162.2343,
+        "elevationM": 1179,
+        "relativeElevationM": -156
+      },
+      {
+        "step": 8,
+        "distanceKm": 3.04,
+        "latitude": -77.6943,
+        "longitude": 162.2457,
+        "elevationM": 1166,
+        "relativeElevationM": -169
+      },
+      {
+        "step": 9,
+        "distanceKm": 3.42,
+        "latitude": -77.6968,
+        "longitude": 162.257,
+        "elevationM": 1123,
+        "relativeElevationM": -212
+      },
+      {
+        "step": 10,
+        "distanceKm": 3.8,
+        "latitude": -77.6992,
+        "longitude": 162.2684,
+        "elevationM": 1036,
+        "relativeElevationM": -299
+      },
+      {
+        "step": 11,
+        "distanceKm": 4.18,
+        "latitude": -77.7016,
+        "longitude": 162.2797,
+        "elevationM": 949,
+        "relativeElevationM": -386
+      },
+      {
+        "step": 12,
+        "distanceKm": 4.56,
+        "latitude": -77.704,
+        "longitude": 162.2911,
+        "elevationM": 882,
+        "relativeElevationM": -453
+      },
+      {
+        "step": 13,
+        "distanceKm": 4.94,
+        "latitude": -77.7064,
+        "longitude": 162.3025,
+        "elevationM": 828,
+        "relativeElevationM": -507
+      },
+      {
+        "step": 14,
+        "distanceKm": 5.32,
+        "latitude": -77.7088,
+        "longitude": 162.3138,
+        "elevationM": 498,
+        "relativeElevationM": -837
+      },
+      {
+        "step": 15,
+        "distanceKm": 5.7,
+        "latitude": -77.7113,
+        "longitude": 162.3252,
+        "elevationM": 250,
+        "relativeElevationM": -1085
+      },
+      {
+        "step": 16,
+        "distanceKm": 6.08,
+        "latitude": -77.7137,
+        "longitude": 162.3366,
+        "elevationM": 107,
+        "relativeElevationM": -1228
+      },
+      {
+        "step": 17,
+        "distanceKm": 6.46,
+        "latitude": -77.7161,
+        "longitude": 162.348,
+        "elevationM": 77,
+        "relativeElevationM": -1258
+      },
+      {
+        "step": 18,
+        "distanceKm": 6.84,
+        "latitude": -77.7185,
+        "longitude": 162.3594,
+        "elevationM": 62,
+        "relativeElevationM": -1273
+      },
+      {
+        "step": 19,
+        "distanceKm": 7.22,
+        "latitude": -77.7209,
+        "longitude": 162.3708,
+        "elevationM": 62,
+        "relativeElevationM": -1273
+      },
+      {
+        "step": 20,
+        "distanceKm": 7.6,
+        "latitude": -77.7233,
+        "longitude": 162.3822,
+        "elevationM": 62,
+        "relativeElevationM": -1273
+      },
+      {
+        "step": 21,
+        "distanceKm": 7.98,
+        "latitude": -77.7257,
+        "longitude": 162.3936,
+        "elevationM": 108,
+        "relativeElevationM": -1227
+      },
+      {
+        "step": 22,
+        "distanceKm": 8.37,
+        "latitude": -77.7281,
+        "longitude": 162.405,
+        "elevationM": 207,
+        "relativeElevationM": -1128
+      },
+      {
+        "step": 23,
+        "distanceKm": 8.75,
+        "latitude": -77.7305,
+        "longitude": 162.4164,
+        "elevationM": 295,
+        "relativeElevationM": -1040
+      },
+      {
+        "step": 24,
+        "distanceKm": 9.13,
+        "latitude": -77.733,
+        "longitude": 162.4278,
+        "elevationM": 351,
+        "relativeElevationM": -984
+      },
+      {
+        "step": 25,
+        "distanceKm": 9.51,
+        "latitude": -77.7354,
+        "longitude": 162.4393,
+        "elevationM": 420,
+        "relativeElevationM": -915
+      },
+      {
+        "step": 26,
+        "distanceKm": 9.89,
+        "latitude": -77.7378,
+        "longitude": 162.4507,
+        "elevationM": 494,
+        "relativeElevationM": -841
+      },
+      {
+        "step": 27,
+        "distanceKm": 10.27,
+        "latitude": -77.7402,
+        "longitude": 162.4621,
+        "elevationM": 537,
+        "relativeElevationM": -798
+      },
+      {
+        "step": 28,
+        "distanceKm": 10.65,
+        "latitude": -77.7426,
+        "longitude": 162.4736,
+        "elevationM": 612,
+        "relativeElevationM": -723
+      },
+      {
+        "step": 29,
+        "distanceKm": 11.03,
+        "latitude": -77.745,
+        "longitude": 162.485,
+        "elevationM": 754,
+        "relativeElevationM": -581
+      }
+    ],
+    "generatedAt": "2026-11-02T21:17:08.178Z"
+  },
+  "c0000003-0000-4000-8000-000000000003": {
+    "candidateId": "c0000003-0000-4000-8000-000000000003",
+    "candidateSlug": "haughton",
+    "name": "Haughton Northwest Rim to Impact Basin Floor Transect",
+    "country": "Canada",
+    "setting": "Subarctic impact crater structure",
+    "geologicalRationale": "Crosses shattered dolomite/limestone crater rim down into central impact melt breccia sheet and hydrothermal paleolake deposits.",
+    "sourceDataset": "Copernicus Global 90m Digital Elevation Model (COP-DEM-GLO-90) & CDEM",
+    "sourceUrl": "https://spacedata.copernicus.eu/",
+    "datum": "Earth EGM96 Geoid (Mean Sea Level)",
+    "resolution": "90 meters (COP-DEM-GLO-90)",
+    "totalDistanceKm": 12.38,
+    "minElevationM": 113,
+    "maxElevationM": 227,
+    "reliefM": 114,
+    "meanSlopeDeg": 1.8,
+    "samples": [
+      {
+        "step": 0,
+        "distanceKm": 0,
+        "latitude": 75.435,
+        "longitude": -89.845,
+        "elevationM": 227,
+        "relativeElevationM": 0
+      },
+      {
+        "step": 1,
+        "distanceKm": 0.43,
+        "latitude": 75.4319,
+        "longitude": -89.836,
+        "elevationM": 224,
+        "relativeElevationM": -3
+      },
+      {
+        "step": 2,
+        "distanceKm": 0.85,
+        "latitude": 75.4288,
+        "longitude": -89.827,
+        "elevationM": 226,
+        "relativeElevationM": -1
+      },
+      {
+        "step": 3,
+        "distanceKm": 1.28,
+        "latitude": 75.4257,
+        "longitude": -89.818,
+        "elevationM": 199,
+        "relativeElevationM": -28
+      },
+      {
+        "step": 4,
+        "distanceKm": 1.71,
+        "latitude": 75.4226,
+        "longitude": -89.809,
+        "elevationM": 183,
+        "relativeElevationM": -44
+      },
+      {
+        "step": 5,
+        "distanceKm": 2.13,
+        "latitude": 75.4195,
+        "longitude": -89.7999,
+        "elevationM": 169,
+        "relativeElevationM": -58
+      },
+      {
+        "step": 6,
+        "distanceKm": 2.56,
+        "latitude": 75.4164,
+        "longitude": -89.7909,
+        "elevationM": 149,
+        "relativeElevationM": -78
+      },
+      {
+        "step": 7,
+        "distanceKm": 2.99,
+        "latitude": 75.4133,
+        "longitude": -89.782,
+        "elevationM": 168,
+        "relativeElevationM": -59
+      },
+      {
+        "step": 8,
+        "distanceKm": 3.42,
+        "latitude": 75.4102,
+        "longitude": -89.773,
+        "elevationM": 149,
+        "relativeElevationM": -78
+      },
+      {
+        "step": 9,
+        "distanceKm": 3.84,
+        "latitude": 75.4071,
+        "longitude": -89.764,
+        "elevationM": 139,
+        "relativeElevationM": -88
+      },
+      {
+        "step": 10,
+        "distanceKm": 4.27,
+        "latitude": 75.404,
+        "longitude": -89.755,
+        "elevationM": 123,
+        "relativeElevationM": -104
+      },
+      {
+        "step": 11,
+        "distanceKm": 4.7,
+        "latitude": 75.4009,
+        "longitude": -89.746,
+        "elevationM": 123,
+        "relativeElevationM": -104
+      },
+      {
+        "step": 12,
+        "distanceKm": 5.12,
+        "latitude": 75.3978,
+        "longitude": -89.737,
+        "elevationM": 125,
+        "relativeElevationM": -102
+      },
+      {
+        "step": 13,
+        "distanceKm": 5.55,
+        "latitude": 75.3947,
+        "longitude": -89.7281,
+        "elevationM": 135,
+        "relativeElevationM": -92
+      },
+      {
+        "step": 14,
+        "distanceKm": 5.98,
+        "latitude": 75.3916,
+        "longitude": -89.7191,
+        "elevationM": 138,
+        "relativeElevationM": -89
+      },
+      {
+        "step": 15,
+        "distanceKm": 6.4,
+        "latitude": 75.3885,
+        "longitude": -89.7101,
+        "elevationM": 151,
+        "relativeElevationM": -76
+      },
+      {
+        "step": 16,
+        "distanceKm": 6.83,
+        "latitude": 75.3854,
+        "longitude": -89.7012,
+        "elevationM": 151,
+        "relativeElevationM": -76
+      },
+      {
+        "step": 17,
+        "distanceKm": 7.26,
+        "latitude": 75.3823,
+        "longitude": -89.6922,
+        "elevationM": 152,
+        "relativeElevationM": -75
+      },
+      {
+        "step": 18,
+        "distanceKm": 7.69,
+        "latitude": 75.3792,
+        "longitude": -89.6833,
+        "elevationM": 145,
+        "relativeElevationM": -82
+      },
+      {
+        "step": 19,
+        "distanceKm": 8.11,
+        "latitude": 75.3761,
+        "longitude": -89.6743,
+        "elevationM": 134,
+        "relativeElevationM": -93
+      },
+      {
+        "step": 20,
+        "distanceKm": 8.54,
+        "latitude": 75.373,
+        "longitude": -89.6654,
+        "elevationM": 161,
+        "relativeElevationM": -66
+      },
+      {
+        "step": 21,
+        "distanceKm": 8.97,
+        "latitude": 75.3699,
+        "longitude": -89.6564,
+        "elevationM": 161,
+        "relativeElevationM": -66
+      },
+      {
+        "step": 22,
+        "distanceKm": 9.39,
+        "latitude": 75.3668,
+        "longitude": -89.6475,
+        "elevationM": 172,
+        "relativeElevationM": -55
+      },
+      {
+        "step": 23,
+        "distanceKm": 9.82,
+        "latitude": 75.3636,
+        "longitude": -89.6385,
+        "elevationM": 158,
+        "relativeElevationM": -69
+      },
+      {
+        "step": 24,
+        "distanceKm": 10.25,
+        "latitude": 75.3605,
+        "longitude": -89.6296,
+        "elevationM": 181,
+        "relativeElevationM": -46
+      },
+      {
+        "step": 25,
+        "distanceKm": 10.67,
+        "latitude": 75.3574,
+        "longitude": -89.6207,
+        "elevationM": 191,
+        "relativeElevationM": -36
+      },
+      {
+        "step": 26,
+        "distanceKm": 11.1,
+        "latitude": 75.3543,
+        "longitude": -89.6118,
+        "elevationM": 185,
+        "relativeElevationM": -42
+      },
+      {
+        "step": 27,
+        "distanceKm": 11.53,
+        "latitude": 75.3512,
+        "longitude": -89.6028,
+        "elevationM": 164,
+        "relativeElevationM": -63
+      },
+      {
+        "step": 28,
+        "distanceKm": 11.96,
+        "latitude": 75.3481,
+        "longitude": -89.5939,
+        "elevationM": 180,
+        "relativeElevationM": -47
+      },
+      {
+        "step": 29,
+        "distanceKm": 12.38,
+        "latitude": 75.345,
+        "longitude": -89.585,
+        "elevationM": 113,
+        "relativeElevationM": -114
+      }
+    ],
+    "generatedAt": "2026-11-02T21:17:08.370Z"
+  },
+  "c0000002-0000-4000-8000-000000000002": {
+    "candidateId": "c0000002-0000-4000-8000-000000000002",
+    "candidateSlug": "mauna_kea",
+    "name": "Puʻu Poliʻahu Cinder Cone to Alpine Moraine Transect",
+    "country": "USA",
+    "setting": "High-altitude basaltic alpine volcano",
+    "geologicalRationale": "Traverses steep oxidized basaltic cinder cone scarp and alpine glacial moraines composed of tholeiitic and hawaiitic basaltic regolith (lunar regolith simulant analog).",
+    "sourceDataset": "Copernicus Global 90m Digital Elevation Model (COP-DEM-GLO-90) & USGS 3DEP",
+    "sourceUrl": "https://spacedata.copernicus.eu/",
+    "datum": "Earth EGM96 Geoid (Mean Sea Level)",
+    "resolution": "90 meters (COP-DEM-GLO-90)",
+    "totalDistanceKm": 6.2,
+    "minElevationM": 3532,
+    "maxElevationM": 4172,
+    "reliefM": 640,
+    "meanSlopeDeg": 8.2,
+    "samples": [
+      {
+        "step": 0,
+        "distanceKm": 0,
+        "latitude": 19.835,
+        "longitude": -155.485,
+        "elevationM": 3933,
+        "relativeElevationM": 0
+      },
+      {
+        "step": 1,
+        "distanceKm": 0.21,
+        "latitude": 19.834,
+        "longitude": -155.4833,
+        "elevationM": 3977,
+        "relativeElevationM": 44
+      },
+      {
+        "step": 2,
+        "distanceKm": 0.43,
+        "latitude": 19.8329,
+        "longitude": -155.4816,
+        "elevationM": 4001,
+        "relativeElevationM": 68
+      },
+      {
+        "step": 3,
+        "distanceKm": 0.64,
+        "latitude": 19.8319,
+        "longitude": -155.4798,
+        "elevationM": 4012,
+        "relativeElevationM": 79
+      },
+      {
+        "step": 4,
+        "distanceKm": 0.86,
+        "latitude": 19.8309,
+        "longitude": -155.4781,
+        "elevationM": 4000,
+        "relativeElevationM": 67
+      },
+      {
+        "step": 5,
+        "distanceKm": 1.07,
+        "latitude": 19.8298,
+        "longitude": -155.4764,
+        "elevationM": 4022,
+        "relativeElevationM": 89
+      },
+      {
+        "step": 6,
+        "distanceKm": 1.28,
+        "latitude": 19.8288,
+        "longitude": -155.4747,
+        "elevationM": 4049,
+        "relativeElevationM": 116
+      },
+      {
+        "step": 7,
+        "distanceKm": 1.5,
+        "latitude": 19.8278,
+        "longitude": -155.4729,
+        "elevationM": 4077,
+        "relativeElevationM": 144
+      },
+      {
+        "step": 8,
+        "distanceKm": 1.71,
+        "latitude": 19.8267,
+        "longitude": -155.4712,
+        "elevationM": 4094,
+        "relativeElevationM": 161
+      },
+      {
+        "step": 9,
+        "distanceKm": 1.93,
+        "latitude": 19.8257,
+        "longitude": -155.4695,
+        "elevationM": 4141,
+        "relativeElevationM": 208
+      },
+      {
+        "step": 10,
+        "distanceKm": 2.14,
+        "latitude": 19.8247,
+        "longitude": -155.4678,
+        "elevationM": 4172,
+        "relativeElevationM": 239
+      },
+      {
+        "step": 11,
+        "distanceKm": 2.35,
+        "latitude": 19.8236,
+        "longitude": -155.466,
+        "elevationM": 4107,
+        "relativeElevationM": 174
+      },
+      {
+        "step": 12,
+        "distanceKm": 2.57,
+        "latitude": 19.8226,
+        "longitude": -155.4643,
+        "elevationM": 4048,
+        "relativeElevationM": 115
+      },
+      {
+        "step": 13,
+        "distanceKm": 2.78,
+        "latitude": 19.8216,
+        "longitude": -155.4626,
+        "elevationM": 3999,
+        "relativeElevationM": 66
+      },
+      {
+        "step": 14,
+        "distanceKm": 2.99,
+        "latitude": 19.8205,
+        "longitude": -155.4609,
+        "elevationM": 3929,
+        "relativeElevationM": -4
+      },
+      {
+        "step": 15,
+        "distanceKm": 3.21,
+        "latitude": 19.8195,
+        "longitude": -155.4591,
+        "elevationM": 3891,
+        "relativeElevationM": -42
+      },
+      {
+        "step": 16,
+        "distanceKm": 3.42,
+        "latitude": 19.8184,
+        "longitude": -155.4574,
+        "elevationM": 3875,
+        "relativeElevationM": -58
+      },
+      {
+        "step": 17,
+        "distanceKm": 3.64,
+        "latitude": 19.8174,
+        "longitude": -155.4557,
+        "elevationM": 3848,
+        "relativeElevationM": -85
+      },
+      {
+        "step": 18,
+        "distanceKm": 3.85,
+        "latitude": 19.8164,
+        "longitude": -155.454,
+        "elevationM": 3827,
+        "relativeElevationM": -106
+      },
+      {
+        "step": 19,
+        "distanceKm": 4.06,
+        "latitude": 19.8153,
+        "longitude": -155.4522,
+        "elevationM": 3801,
+        "relativeElevationM": -132
+      },
+      {
+        "step": 20,
+        "distanceKm": 4.28,
+        "latitude": 19.8143,
+        "longitude": -155.4505,
+        "elevationM": 3771,
+        "relativeElevationM": -162
+      },
+      {
+        "step": 21,
+        "distanceKm": 4.49,
+        "latitude": 19.8133,
+        "longitude": -155.4488,
+        "elevationM": 3743,
+        "relativeElevationM": -190
+      },
+      {
+        "step": 22,
+        "distanceKm": 4.71,
+        "latitude": 19.8122,
+        "longitude": -155.4471,
+        "elevationM": 3712,
+        "relativeElevationM": -221
+      },
+      {
+        "step": 23,
+        "distanceKm": 4.92,
+        "latitude": 19.8112,
+        "longitude": -155.4453,
+        "elevationM": 3686,
+        "relativeElevationM": -247
+      },
+      {
+        "step": 24,
+        "distanceKm": 5.13,
+        "latitude": 19.8102,
+        "longitude": -155.4436,
+        "elevationM": 3660,
+        "relativeElevationM": -273
+      },
+      {
+        "step": 25,
+        "distanceKm": 5.35,
+        "latitude": 19.8091,
+        "longitude": -155.4419,
+        "elevationM": 3625,
+        "relativeElevationM": -308
+      },
+      {
+        "step": 26,
+        "distanceKm": 5.56,
+        "latitude": 19.8081,
+        "longitude": -155.4402,
+        "elevationM": 3604,
+        "relativeElevationM": -329
+      },
+      {
+        "step": 27,
+        "distanceKm": 5.78,
+        "latitude": 19.8071,
+        "longitude": -155.4384,
+        "elevationM": 3579,
+        "relativeElevationM": -354
+      },
+      {
+        "step": 28,
+        "distanceKm": 5.99,
+        "latitude": 19.806,
+        "longitude": -155.4367,
+        "elevationM": 3565,
+        "relativeElevationM": -368
+      },
+      {
+        "step": 29,
+        "distanceKm": 6.2,
+        "latitude": 19.805,
+        "longitude": -155.435,
+        "elevationM": 3532,
+        "relativeElevationM": -401
+      }
+    ],
+    "generatedAt": "2026-11-02T21:17:08.539Z"
+  }
+}

@@ -4,6 +4,7 @@ import { useState } from "react"
 import { useAnalogs } from "@/hooks/use-analogs"
 import type { MissionPurpose, PlanetaryBody, PlanetaryTarget } from "@/lib/terratwin/types"
 import { AnalogMap } from "./analog-map"
+import type { MapParameterLayerId, SatelliteImageryLayerId } from "@/lib/terratwin/config/satellite-layers"
 import { CandidateList } from "./candidate-list"
 import { ComparisonPanel } from "./comparison-panel"
 import { ExplorerEmpty, ExplorerError, ExplorerLoading } from "./explorer-states"
@@ -12,6 +13,7 @@ import { ScoreThresholdControl } from "./score-threshold-control"
 import { TargetProfile } from "./target-profile"
 import { TargetSelector } from "./target-selector"
 import { MissionSuitePanel } from "./mission-suite-panel"
+import { ElevationProfilePanel } from "./elevation-profile-panel"
 import { PlanetaryGlobe } from "./planetary-globe"
 import {
   ShieldCheck,
@@ -42,6 +44,10 @@ export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
   const [purposeId, setPurposeId] = useState<MissionPurpose>("rover-testing")
   const [minScore, setMinScore] = useState(DEFAULT_MIN_SCORE)
   const [selectedId, setSelectedId] = useState<string | null>(null)
+  const [imageryLayerId, setImageryLayerId] = useState<SatelliteImageryLayerId>("dark-base")
+  const [imageryDate, setImageryDate] = useState<string>("2024-07-15")
+  const [imageryOpacity, setImageryOpacity] = useState<number>(1.0)
+  const [parameterLayerId, setParameterLayerId] = useState<MapParameterLayerId>("similarity")
 
   const filteredTargets = targets.filter((t) => {
     if (sourceFilter === "verified") return !!t.isVerified
@@ -348,6 +354,14 @@ export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
                       selectedId={selectedResult?.candidate.id ?? null}
                       onSelect={setSelectedId}
                       isUpdating={isUpdating}
+                      imageryLayerId={imageryLayerId}
+                      imageryDate={imageryDate}
+                      imageryOpacity={imageryOpacity}
+                      parameterLayerId={parameterLayerId}
+                      onImageryLayerChange={setImageryLayerId}
+                      onImageryDateChange={setImageryDate}
+                      onImageryOpacityChange={setImageryOpacity}
+                      onParameterLayerChange={setParameterLayerId}
                     />
                   )}
                 </div>
@@ -363,12 +377,22 @@ export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
               </div>
 
               {selectedResult && (
-                <ComparisonPanel
-                  target={data.target}
-                  purpose={data.purpose}
-                  result={selectedResult}
-                  isUpdating={isUpdating}
-                />
+                <>
+                  <ComparisonPanel
+                    target={data.target}
+                    purpose={data.purpose}
+                    result={selectedResult}
+                    isUpdating={isUpdating}
+                  />
+
+                  <ElevationProfilePanel
+                    target={data.target}
+                    candidate={selectedResult.candidate}
+                    allCandidates={results.map((r) => r.candidate)}
+                    onSelectCandidate={setSelectedId}
+                    isUpdating={isUpdating}
+                  />
+                </>
               )}
             </>
           )}

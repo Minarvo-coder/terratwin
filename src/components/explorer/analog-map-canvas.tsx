@@ -4,23 +4,31 @@ import "leaflet/dist/leaflet.css"
 import { useEffect } from "react"
 import { CircleMarker, MapContainer, Popup, TileLayer, Tooltip, useMap } from "react-leaflet"
 import type { RankedCandidate } from "@/lib/terratwin/types"
-import { formatCoordinates } from "@/lib/terratwin/format"
-import { Compass, ExternalLink, ShieldCheck, AlertTriangle } from "lucide-react"
+import { formatCoordinates, formatFeatureValue } from "@/lib/terratwin/format"
+import {
+  ENVIRONMENTAL_MAP_LAYER_MAP,
+  SATELLITE_LAYER_MAP,
+  resolveSatelliteTileUrl,
+  type MapParameterLayerId,
+  type SatelliteImageryLayerId,
+} from "@/lib/terratwin/config/satellite-layers"
+import { Compass, ExternalLink, ShieldCheck, AlertTriangle, Layers } from "lucide-react"
+import { isValidCoordinate } from "@/lib/terratwin/geo"
 
-const MARKER_FILL = "#38bdf8"
-const MARKER_SELECTED_FILL = "#00f0ff"
 const MARKER_SELECTED_STROKE = "#ffffff"
-const MARKER_STROKE = "#0284c7"
+const MARKER_DEFAULT_STROKE = "#0284c7"
+
+export { isValidCoordinate }
 
 export interface AnalogMapCanvasProps {
   results: RankedCandidate[]
   selectedId: string | null
   onSelect: (id: string) => void
+  imageryLayerId?: SatelliteImageryLayerId
+  imageryDate?: string
+  imageryOpacity?: number
+  parameterLayerId?: MapParameterLayerId
 }
-
-import { isValidCoordinate } from "@/lib/terratwin/geo"
-
-export { isValidCoordinate }
 
 function KeepSelectionInView({ selected }: { selected: RankedCandidate | undefined }) {
   const map = useMap()
@@ -54,7 +62,15 @@ function FitToResults({ results }: { results: RankedCandidate[] }) {
   return null
 }
 
-export default function AnalogMapCanvas({ results, selectedId, onSelect }: AnalogMapCanvasProps) {
+export default function AnalogMapCanvas({
+  results,
+  selectedId,
+  onSelect,
+  imageryLayerId = "dark-base",
+  imageryDate = "2024-07-15",
+  imageryOpacity = 0.9,
+  parameterLayerId = "similarity",
+}: AnalogMapCanvasProps) {
   // Filter out any candidates with invalid or missing coordinates
   const validResults = results.filter((result) =>
     isValidCoordinate(result.candidate?.latitude, result.candidate?.longitude)
@@ -66,6 +82,12 @@ export default function AnalogMapCanvas({ results, selectedId, onSelect }: Analo
   const ordered = [...validResults].sort(
     (a, b) => Number(a.candidate.id === selectedId) - Number(b.candidate.id === selectedId)
   )
+
+  const activeImagery = SATELLITE_LAYER_MAP[imageryLayerId] ?? SATELLITE_LAYER_MAP["dark-base"]
+  const activeParamLayer =
+    ENVIRONMENTAL_MAP_LAYER_MAP[parameterLayerId] ?? ENVIRONMENTAL_MAP_LAYER_MAP["similarity"]
+  const resolvedTileUrl = resolveSatelliteTileUrl(activeImagery.id, imageryDate)
+  const darkBaseLayer = SATELLITE_LAYER_MAP["dark-base"]
 
   return (
     <div className="relative size-full">
@@ -85,35 +107,73 @@ export default function AnalogMapCanvas({ results, selectedId, onSelect }: Analo
         center={[20, 0]}
         zoom={2}
         minZoom={1}
+        maxZoom={16}
         worldCopyJump
         scrollWheelZoom={false}
-        className="size-full"
-        aria-label="Interactive map of Earth analog candidate locations"
+        className="size-full bg-slate-950"
+        aria-label="Interactive NASA satellite and environmental telemetry map of Earth analog candidate locations"
       >
-        <TileLayer
-          attribution="Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ"
-          url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}"
-          maxZoom={16}
-        />
+        {/* Base Cartographic Layer (always rendered underneath when an overlay or dark-base is active) */}
+        {(activeImagery.id === "dark-base" || activeImagery.isOverlayOnDarkBase || imageryOpacity < 1) && (
+          <TileLayer
+            key="base-dark-gray"
+            attribution={darkBaseLayer.attribution}
+            url={darkBaseLayer.tileUrlTemplate}
+            maxNativeZoom={darkBaseLayer.maxNativeZoom}
+            maxZoom={darkBaseLayer.maxZoom}
+          />
+        )}
+
+        {/* Active NASA GIBS / Remote-Sensing Imagery Tile Layer */}
+        {activeImagery.id !== "dark-base" && (
+          <TileLayer
+            key={`${activeImagery.id}-${activeImagery.supportsDate ? imageryDate : "static"}`}
+            attribution={activeImagery.attribution}
+            url={resolvedTileUrl}
+            maxNativeZoom={activeImagery.maxNativeZoom}
+            maxZoom={activeImagery.maxZoom}
+            opacity={imageryOpacity}
+          />
+        )}
+
         <FitToResults results={validResults} />
         <KeepSelectionInView selected={selected} />
 
         {ordered.map((result) => {
           const isSelected = result.candidate.id === selectedId
           const scoreVal = result.score ?? 0
-          const radius = isSelected ? 12 : 6 + (scoreVal / 100) * 6
+
+          // Extract value for active environmental parameter layer
+          const rawFeatureVal =
+            activeParamLayer.featureKey !== null
+              ? (result.candidate.environment[activeParamLayer.featureKey] ?? null)
+              : result.score
+
+          const formattedLayerVal =
+            activeParamLayer.featureKey !== null
+              ? formatFeatureValue(activeParamLayer.featureKey, rawFeatureVal)
+              : result.scoreDisplay
+
+          const fillColor = activeParamLayer.getColor(rawFeatureVal)
+          const radius = isSelected ? 13 : 7 + (scoreVal / 100) * 5
+          const isMissingParam = rawFeatureVal === null || rawFeatureVal === undefined
 
           return (
             <CircleMarker
-              key={result.candidate.id}
+              key={`${result.candidate.id}-${activeParamLayer.id}`}
               center={[result.candidate.latitude, result.candidate.longitude]}
               radius={radius}
               pathOptions={{
-                color: isSelected ? MARKER_SELECTED_STROKE : !result.isReliable ? "#f43f5e" : MARKER_STROKE,
-                weight: isSelected ? 3 : 1.5,
-                fillColor: isSelected ? MARKER_SELECTED_FILL : !result.isReliable ? "#e11d48" : MARKER_FILL,
-                fillOpacity: isSelected ? 0.95 : !result.isReliable ? 0.4 : 0.45 + (scoreVal / 100) * 0.45,
-                dashArray: !result.isReliable || result.confidence === "low" ? "3 3" : undefined,
+                color: isSelected
+                  ? MARKER_SELECTED_STROKE
+                  : isMissingParam || !result.isReliable
+                  ? "#f43f5e"
+                  : MARKER_DEFAULT_STROKE,
+                weight: isSelected ? 3 : 1.75,
+                fillColor,
+                fillOpacity: isSelected ? 0.95 : isMissingParam ? 0.35 : 0.78,
+                dashArray:
+                  isMissingParam || !result.isReliable || result.confidence === "low" ? "3 3" : undefined,
               }}
               eventHandlers={{
                 click: () => onSelect(result.candidate.id),
@@ -125,21 +185,27 @@ export default function AnalogMapCanvas({ results, selectedId, onSelect }: Analo
                   <span className="font-bold text-cyan-300">
                     #{result.rank} {result.candidate.name}
                   </span>
-                  <div className="text-[10px] text-slate-300 mt-0.5">
-                    Similarity:{" "}
-                    <strong className={result.score === null ? "text-rose-400" : "text-white"}>
-                      {result.scoreDisplay}
-                    </strong>
+                  <div className="text-[10px] text-slate-200 mt-0.5 flex items-center gap-1.5">
+                    <span className="text-slate-400">{activeParamLayer.shortLabel}:</span>
+                    <strong className="text-white">{formattedLayerVal}</strong>
                   </div>
-                  <div className="text-[9px] text-slate-400">
-                    {result.candidate.country} · Click marker for telemetry dossier
+                  {activeParamLayer.id !== "similarity" && (
+                    <div className="text-[10px] text-slate-300">
+                      Match Score:{" "}
+                      <strong className={result.score === null ? "text-rose-400" : "text-cyan-300"}>
+                        {result.scoreDisplay}
+                      </strong>
+                    </div>
+                  )}
+                  <div className="text-[9px] text-slate-400 mt-0.5">
+                    {result.candidate.country} · Click marker for full telemetry
                   </div>
                 </div>
               </Tooltip>
 
               {/* Interactive Click Popup with full telemetry brief and focus action */}
               <Popup>
-                <div className="flex min-w-[220px] max-w-[280px] flex-col gap-2 p-1 font-mono text-xs text-slate-200">
+                <div className="flex min-w-[235px] max-w-[290px] flex-col gap-2 p-1 font-mono text-xs text-slate-200">
                   <div className="flex items-start justify-between gap-2 border-b border-slate-700/80 pb-1.5">
                     <div>
                       <div className="text-[10px] text-cyan-400 font-bold uppercase tracking-wider">
@@ -161,6 +227,15 @@ export default function AnalogMapCanvas({ results, selectedId, onSelect }: Analo
                     )}
                   </div>
 
+                  {/* Active Parameter Highlight Box */}
+                  <div className="rounded border border-cyan-500/30 bg-slate-900/90 px-2.5 py-1.5 flex items-center justify-between">
+                    <span className="text-[10px] text-slate-400 flex items-center gap-1">
+                      <Layers className="size-2.5 text-cyan-400" />
+                      {activeParamLayer.shortLabel}
+                    </span>
+                    <span className="text-xs font-bold text-cyan-300">{formattedLayerVal}</span>
+                  </div>
+
                   <div className="flex flex-col gap-1 text-[11px] text-slate-300">
                     <div className="flex items-center justify-between text-[10px]">
                       <span className="text-slate-400 flex items-center gap-1">
@@ -180,11 +255,18 @@ export default function AnalogMapCanvas({ results, selectedId, onSelect }: Analo
                     </div>
 
                     <div className="flex items-center justify-between text-[10px]">
-                      <span className="text-slate-400">WEIGHTED DISTANCE (D)</span>
+                      <span className="text-slate-400">ELEVATION / SLOPE</span>
                       <span className="text-slate-200">
-                        {result.weightedDistance !== null && result.weightedDistance !== undefined
-                          ? result.weightedDistance.toFixed(3)
-                          : "—"}
+                        {formatFeatureValue("elevationM", result.candidate.environment.elevationM ?? null)} ·{" "}
+                        {formatFeatureValue("meanSlopeDeg", result.candidate.environment.meanSlopeDeg ?? null)}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center justify-between text-[10px]">
+                      <span className="text-slate-400">MEAN TEMP / ALBEDO</span>
+                      <span className="text-slate-200">
+                        {formatFeatureValue("meanSurfaceTempC", result.candidate.environment.meanSurfaceTempC ?? null)} ·{" "}
+                        {formatFeatureValue("albedo", result.candidate.environment.albedo ?? null)}
                       </span>
                     </div>
 
