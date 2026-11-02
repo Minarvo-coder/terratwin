@@ -2,10 +2,14 @@
 
 import { useState } from "react"
 import { FEATURE_MAP } from "@/lib/terratwin/features"
-import { formatFeatureValue } from "@/lib/terratwin/format"
+import {
+  formatFeatureValue,
+  getFeatureComparabilityInfo,
+  getProvenanceBadgeInfo,
+} from "@/lib/terratwin/format"
 import type { FeatureScore } from "@/lib/terratwin/types"
 import { cn } from "@/lib/utils"
-import { ExternalLink, ChevronDown, ChevronUp } from "lucide-react"
+import { ExternalLink, ChevronDown, ChevronUp, ShieldCheck, AlertTriangle } from "lucide-react"
 
 interface FeatureComparisonTableProps {
   featureScores: FeatureScore[]
@@ -24,7 +28,7 @@ export function FeatureComparisonTable({ featureScores, targetName, candidateNam
     <div className="flex flex-col gap-3 font-mono text-xs">
       {/* Header bar */}
       <div className="hidden sm:grid grid-cols-12 gap-2 border-b border-slate-800 pb-2 text-[10px] uppercase text-slate-400 font-semibold">
-        <div className="col-span-5">Attribute & Mission Weight</div>
+        <div className="col-span-5">Attribute & Comparability Classification</div>
         <div className="col-span-3">Target ({targetName.split(" ")[0]})</div>
         <div className="col-span-2">Candidate ({candidateName.split(" ")[0]})</div>
         <div className="col-span-2 text-right">Similarity</div>
@@ -34,6 +38,7 @@ export function FeatureComparisonTable({ featureScores, targetName, candidateNam
       <div className="flex flex-col gap-2">
         {featureScores.map((item) => {
           const feature = FEATURE_MAP[item.key]
+          const compInfo = getFeatureComparabilityInfo(item.key)
           const isComparable = item.status === "comparable" && item.similarity !== null
           const isMissing = item.status === "missing_data"
           const isIncompatible = item.status === "incompatible_quantities" || item.status === "incompatible_units"
@@ -41,6 +46,8 @@ export function FeatureComparisonTable({ featureScores, targetName, candidateNam
 
           const targetProv = item.targetProvenance
           const candProv = item.candidateProvenance
+          const targetBadge = getProvenanceBadgeInfo(targetProv?.sourceTitle, targetProv?.status)
+          const candBadge = getProvenanceBadgeInfo(candProv?.sourceTitle, candProv?.status)
           const hasVerifiedSource = targetProv?.status === "verified" || candProv?.status === "verified"
 
           return (
@@ -56,8 +63,8 @@ export function FeatureComparisonTable({ featureScores, targetName, candidateNam
                 onClick={() => toggleExpand(item.key)}
                 className="grid grid-cols-1 sm:grid-cols-12 gap-2 p-3 cursor-pointer items-center"
               >
-                {/* 1. Feature Name & Weight */}
-                <div className="col-span-1 sm:col-span-5 flex items-center justify-between sm:justify-start gap-2 min-w-0">
+                {/* 1. Feature Name, Weight & Harmonization Tag */}
+                <div className="col-span-1 sm:col-span-5 flex flex-wrap items-center justify-between sm:justify-start gap-1.5 min-w-0">
                   <div className="flex items-center gap-1.5 min-w-0 flex-1">
                     <button
                       type="button"
@@ -70,35 +77,60 @@ export function FeatureComparisonTable({ featureScores, targetName, candidateNam
                       {feature.label}
                     </span>
                   </div>
-                  <span className="rounded bg-slate-800/90 border border-slate-700/60 px-1.5 py-0.2 text-[9px] text-slate-400 shrink-0 font-mono">
-                    wt: {item.weight.toFixed(1)}
-                  </span>
+
+                  <div className="flex items-center gap-1 shrink-0">
+                    <span
+                      title={compInfo.rationale}
+                      className={cn(
+                        "rounded px-1.5 py-0.2 text-[8px] font-bold uppercase tracking-wider shrink-0",
+                        compInfo.badgeVariant === "emerald" && "bg-emerald-950/60 border border-emerald-500/40 text-emerald-300",
+                        compInfo.badgeVariant === "amber" && "bg-amber-950/60 border border-amber-500/40 text-amber-300",
+                        compInfo.badgeVariant === "purple" && "bg-purple-950/60 border border-purple-500/40 text-purple-300",
+                        compInfo.badgeVariant === "rose" && "bg-rose-950/70 border border-rose-500/50 text-rose-300"
+                      )}
+                    >
+                      {compInfo.classification === "DIRECTLY_COMPARABLE" ? "Direct" :
+                       compInfo.classification === "COMPARABLE_AFTER_TRANSFORMATION" ? "Transformed" :
+                       compInfo.classification === "PROXY_BASED" ? "Proxy" :
+                       "Incomparable"}
+                    </span>
+
+                    <span className="rounded bg-slate-800/90 border border-slate-700/60 px-1.5 py-0.2 text-[9px] text-slate-400 shrink-0 font-mono">
+                      wt: {item.weight.toFixed(1)}
+                    </span>
+                  </div>
                 </div>
 
-                {/* 2. Target Value */}
+                {/* 2. Target Value & Provenance Badge */}
                 <div className="col-span-1 sm:col-span-3 flex sm:flex-col justify-between sm:justify-center text-[11px]">
                   <span className="sm:hidden text-slate-400 text-[10px]">Target:</span>
-                  <div className="flex items-center gap-1.5">
+                  <div className="flex flex-wrap items-center gap-1.5">
                     <span className="font-semibold text-white">
                       {formatFeatureValue(item.key, item.targetValue)}
                     </span>
-                    {targetProv?.status === "verified" && (
-                      <span className="rounded bg-emerald-950/60 border border-emerald-500/40 px-1 text-[8px] text-emerald-300">
-                        PDS
-                      </span>
-                    )}
-                    {targetProv?.status === "illustrative" && item.targetValue !== null && (
-                      <span className="rounded bg-amber-950/40 border border-amber-500/30 px-1 text-[8px] text-amber-300">
-                        DEMO
+                    {item.targetValue !== null && (
+                      <span
+                        title={targetProv?.sourceTitle || "Dataset source"}
+                        className={cn(
+                          "inline-flex items-center gap-0.5 rounded px-1.5 py-0.2 text-[8px] font-bold uppercase",
+                          targetBadge.variant === "pds" ? "bg-emerald-950/70 border border-emerald-500/40 text-emerald-300" :
+                          targetBadge.variant === "power" ? "bg-cyan-950/70 border border-cyan-500/40 text-cyan-300" :
+                          targetBadge.variant === "literature" ? "bg-indigo-950/70 border border-indigo-500/40 text-indigo-300" :
+                          "bg-amber-950/40 border border-amber-500/30 text-amber-300"
+                        )}
+                      >
+                        {targetBadge.variant === "pds" && <ShieldCheck className="size-2 text-emerald-400" />}
+                        <span>{targetBadge.label}</span>
+                        {targetBadge.sublabel && <span className="opacity-70 text-[7px]">[{targetBadge.sublabel}]</span>}
                       </span>
                     )}
                   </div>
                 </div>
 
-                {/* 3. Candidate Value */}
+                {/* 3. Candidate Value & Provenance Badge */}
                 <div className="col-span-1 sm:col-span-2 flex sm:flex-col justify-between sm:justify-center text-[11px] min-w-0">
                   <span className="sm:hidden text-slate-400 text-[10px]">Earth:</span>
-                  <div className="flex items-center gap-1.5">
+                  <div className="flex flex-wrap items-center gap-1.5">
                     <span
                       className={cn(
                         "font-semibold",
@@ -107,14 +139,19 @@ export function FeatureComparisonTable({ featureScores, targetName, candidateNam
                     >
                       {formatFeatureValue(item.key, item.candidateValue)}
                     </span>
-                    {candProv?.status === "verified" && (
-                      <span className="rounded bg-emerald-950/60 border border-emerald-500/40 px-1 text-[8px] text-emerald-300">
-                        NASA
-                      </span>
-                    )}
-                    {candProv?.status === "illustrative" && item.candidateValue !== null && (
-                      <span className="rounded bg-amber-950/40 border border-amber-500/30 px-1 text-[8px] text-amber-300">
-                        DEMO
+                    {item.candidateValue !== null && (
+                      <span
+                        title={candProv?.sourceTitle || "Candidate dataset source"}
+                        className={cn(
+                          "inline-flex items-center gap-0.5 rounded px-1.5 py-0.2 text-[8px] font-bold uppercase",
+                          candBadge.variant === "pds" ? "bg-emerald-950/70 border border-emerald-500/40 text-emerald-300" :
+                          candBadge.variant === "power" ? "bg-cyan-950/70 border border-cyan-500/40 text-cyan-300" :
+                          candBadge.variant === "literature" ? "bg-indigo-950/70 border border-indigo-500/40 text-indigo-300" :
+                          "bg-amber-950/40 border border-amber-500/30 text-amber-300"
+                        )}
+                      >
+                        <span>{candBadge.label}</span>
+                        {candBadge.sublabel && <span className="opacity-70 text-[7px]">[{candBadge.sublabel}]</span>}
                       </span>
                     )}
                   </div>
@@ -157,6 +194,21 @@ export function FeatureComparisonTable({ featureScores, targetName, candidateNam
                     <strong className="text-white">Scientific Description:</strong> {feature.description}
                   </div>
 
+                  {/* Harmonization & Comparability Callout */}
+                  <div className={cn(
+                    "rounded-lg border p-2.5 flex items-start gap-2 text-[10px]",
+                    compInfo.badgeVariant === "rose" ? "bg-rose-950/30 border-rose-500/30 text-rose-200" :
+                    compInfo.badgeVariant === "amber" ? "bg-amber-950/30 border-amber-500/30 text-amber-200" :
+                    compInfo.badgeVariant === "purple" ? "bg-purple-950/30 border-purple-500/30 text-purple-200" :
+                    "bg-emerald-950/20 border-emerald-500/30 text-emerald-200"
+                  )}>
+                    <AlertTriangle className="size-3.5 shrink-0 mt-0.5 opacity-80" />
+                    <div>
+                      <span className="font-bold uppercase tracking-wider">{compInfo.label}: </span>
+                      <span>{compInfo.rationale}</span>
+                    </div>
+                  </div>
+
                   {feature.tolerance && (
                     <div className="text-slate-400 text-[10px]">
                       <span className="text-cyan-400">Tolerance model:</span> {feature.kind} normalization with tolerance threshold of{" "}
@@ -177,9 +229,9 @@ export function FeatureComparisonTable({ featureScores, targetName, candidateNam
                   {hasVerifiedSource && (
                     <div className="grid gap-2 sm:grid-cols-2 pt-1 border-t border-slate-800/60">
                       {targetProv?.status === "verified" && (
-                        <div className="rounded border border-emerald-500/30 bg-emerald-950/20 p-2 text-[10px]">
+                        <div className="rounded border border-emerald-500/30 bg-emerald-950/20 p-2.5 text-[10px]">
                           <div className="font-semibold text-emerald-300 mb-1 flex items-center justify-between">
-                            <span>TARGET SOURCE: {targetProv.sourceTitle}</span>
+                            <span>TARGET: {targetProv.sourceTitle}</span>
                             {targetProv.sourceUrl && (
                               <a
                                 href={targetProv.sourceUrl}
@@ -192,16 +244,17 @@ export function FeatureComparisonTable({ featureScores, targetName, candidateNam
                               </a>
                             )}
                           </div>
-                          {targetProv.datasetVersion && <div>Version: {targetProv.datasetVersion}</div>}
-                          {targetProv.spatialResolution && <div>Resolution: {targetProv.spatialResolution}</div>}
-                          {targetProv.qualityNotes && <div className="text-slate-400 mt-1">{targetProv.qualityNotes}</div>}
+                          {targetProv.datasetVersion && <div className="text-slate-300">Version: {targetProv.datasetVersion}</div>}
+                          {targetProv.spatialResolution && <div className="text-slate-300">Resolution: {targetProv.spatialResolution}</div>}
+                          {targetProv.measurementPeriod && <div className="text-slate-400">Baseline: {targetProv.measurementPeriod}</div>}
+                          {targetProv.qualityNotes && <div className="text-slate-400 mt-1 leading-normal italic">{targetProv.qualityNotes}</div>}
                         </div>
                       )}
 
                       {candProv?.status === "verified" && (
-                        <div className="rounded border border-emerald-500/30 bg-emerald-950/20 p-2 text-[10px]">
-                          <div className="font-semibold text-emerald-300 mb-1 flex items-center justify-between">
-                            <span>CANDIDATE SOURCE: {candProv.sourceTitle}</span>
+                        <div className="rounded border border-cyan-500/30 bg-cyan-950/20 p-2.5 text-[10px]">
+                          <div className="font-semibold text-cyan-300 mb-1 flex items-center justify-between">
+                            <span>CANDIDATE: {candProv.sourceTitle}</span>
                             {candProv.sourceUrl && (
                               <a
                                 href={candProv.sourceUrl}
@@ -209,14 +262,15 @@ export function FeatureComparisonTable({ featureScores, targetName, candidateNam
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center gap-0.5 text-cyan-400 hover:underline"
                               >
-                                <span>NASA API</span>
+                                <span>API / Archive</span>
                                 <ExternalLink className="size-2.5" />
                               </a>
                             )}
                           </div>
-                          {candProv.datasetVersion && <div>Version: {candProv.datasetVersion}</div>}
-                          {candProv.spatialResolution && <div>Resolution: {candProv.spatialResolution}</div>}
-                          {candProv.qualityNotes && <div className="text-slate-400 mt-1">{candProv.qualityNotes}</div>}
+                          {candProv.datasetVersion && <div className="text-slate-300">Version: {candProv.datasetVersion}</div>}
+                          {candProv.spatialResolution && <div className="text-slate-300">Resolution: {candProv.spatialResolution}</div>}
+                          {candProv.measurementPeriod && <div className="text-slate-400">Baseline: {candProv.measurementPeriod}</div>}
+                          {candProv.qualityNotes && <div className="text-slate-400 mt-1 leading-normal italic">{candProv.qualityNotes}</div>}
                         </div>
                       )}
                     </div>

@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { PanelCard } from "@/components/shared/panel-card"
 import { usePortfolio } from "@/hooks/use-portfolio"
-import { formatCoverage, formatFeatureValue, formatScore } from "@/lib/terratwin/format"
+import { formatCoverage, formatFeatureValue, formatScore, getFeatureComparabilityInfo } from "@/lib/terratwin/format"
 import type { PlanetaryTarget } from "@/lib/terratwin/types"
 import { cn } from "@/lib/utils"
 import {
@@ -308,6 +308,7 @@ export function MissionSuitePanel({ target, purposeId, isVerified }: MissionSuit
                     {selectedPortfolio.attributions
                       .filter((attr) => attr.weight > 0)
                       .map((attr) => {
+                        const compInfo = getFeatureComparabilityInfo(attr.featureKey)
                         const isComparable = attr.status === "comparable" && attr.bestSimilarity !== null
                         const isMissing = attr.status === "missing_data"
                         const isIncompatible = attr.status === "incompatible_quantities"
@@ -318,12 +319,29 @@ export function MissionSuitePanel({ target, purposeId, isVerified }: MissionSuit
                             className="rounded-lg border border-slate-800/80 bg-slate-950/40 p-3 transition hover:border-slate-700"
                           >
                             <div className="grid grid-cols-1 sm:grid-cols-12 gap-2 items-center">
-                              {/* 1. Feature Name & Weight */}
-                              <div className="col-span-1 sm:col-span-4 flex items-center justify-between sm:justify-start gap-2">
+                              {/* 1. Feature Name, Weight & Comparability Classification */}
+                              <div className="col-span-1 sm:col-span-4 flex flex-wrap items-center justify-between sm:justify-start gap-1.5">
                                 <span className="font-semibold text-white text-xs">{attr.featureLabel}</span>
-                                <span className="rounded bg-slate-800/90 border border-slate-700/60 px-1.5 py-0.2 text-[9px] text-slate-400 font-mono shrink-0">
-                                  wt: {attr.weight.toFixed(2)}
-                                </span>
+                                <div className="flex items-center gap-1 shrink-0">
+                                  <span
+                                    title={compInfo.rationale}
+                                    className={cn(
+                                      "rounded px-1.5 py-0.2 text-[8px] font-bold uppercase tracking-wider shrink-0",
+                                      compInfo.badgeVariant === "emerald" && "bg-emerald-950/60 border border-emerald-500/40 text-emerald-300",
+                                      compInfo.badgeVariant === "amber" && "bg-amber-950/60 border border-amber-500/40 text-amber-300",
+                                      compInfo.badgeVariant === "purple" && "bg-purple-950/60 border border-purple-500/40 text-purple-300",
+                                      compInfo.badgeVariant === "rose" && "bg-rose-950/70 border border-rose-500/50 text-rose-300"
+                                    )}
+                                  >
+                                    {compInfo.classification === "DIRECTLY_COMPARABLE" ? "Direct" :
+                                     compInfo.classification === "COMPARABLE_AFTER_TRANSFORMATION" ? "Transformed" :
+                                     compInfo.classification === "PROXY_BASED" ? "Proxy" :
+                                     "Incomparable"}
+                                  </span>
+                                  <span className="rounded bg-slate-800/90 border border-slate-700/60 px-1.5 py-0.2 text-[9px] text-slate-400 font-mono shrink-0">
+                                    wt: {attr.weight.toFixed(2)}
+                                  </span>
+                                </div>
                               </div>
 
                               {/* 2. Target Value */}

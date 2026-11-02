@@ -1,6 +1,10 @@
 import { IllustrativeBadge } from "@/components/shared/illustrative-badge"
 import { FEATURES } from "@/lib/terratwin/features"
-import { formatFeatureValue } from "@/lib/terratwin/format"
+import {
+  formatFeatureValue,
+  getFeatureComparabilityInfo,
+  getProvenanceBadgeInfo,
+} from "@/lib/terratwin/format"
 import type { PlanetaryTarget } from "@/lib/terratwin/types"
 import { Cpu, ShieldCheck } from "lucide-react"
 
@@ -40,19 +44,36 @@ export function TargetProfile({ target }: { target: PlanetaryTarget }) {
           const prov = target.provenanceMap?.[feature.key]
           const isVerified = prov?.status === "verified"
           const isMissing = val === null || val === undefined
+          const badge = getProvenanceBadgeInfo(prov?.sourceTitle, prov?.status)
+          const compInfo = getFeatureComparabilityInfo(feature.key)
 
           return (
             <div
               key={feature.key}
               className="flex flex-col rounded border border-slate-800/90 bg-slate-900/60 p-2 transition hover:border-slate-700"
             >
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-1">
                 <dt className="text-[10px] text-slate-400 truncate uppercase tracking-wider">
                   {feature.shortLabel}
                 </dt>
-                {isVerified && (
-                  <span className="size-1.5 rounded-full bg-emerald-400 shadow-[0_0_4px_#34d399]" title="Verified NASA/PDS Record" />
-                )}
+                <div className="flex items-center gap-1 shrink-0">
+                  {isVerified && badge.variant === "pds" && (
+                    <span
+                      title={prov?.sourceTitle || "Verified NASA PDS"}
+                      className="rounded bg-emerald-950/80 border border-emerald-500/40 px-1 py-0.2 text-[7px] font-bold text-emerald-300 uppercase"
+                    >
+                      {badge.label}
+                    </span>
+                  )}
+                  {compInfo.classification === "NOT_COMPARABLE" && (
+                    <span
+                      title="Contextual parameter; excluded from similarity denominator."
+                      className="rounded bg-rose-950/60 border border-rose-500/30 px-1 py-0.2 text-[7px] font-bold text-rose-300 uppercase"
+                    >
+                      EXCL
+                    </span>
+                  )}
+                </div>
               </div>
               <dd className="font-mono text-[11px] font-semibold mt-0.5 truncate">
                 {isMissing ? (

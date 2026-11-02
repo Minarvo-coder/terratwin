@@ -50,7 +50,7 @@ export function ComparisonPanel({ target, purpose, result, isUpdating }: Compari
               <span className="text-emerald-400 uppercase tracking-wider">{candidate.setting}</span>
               {candidate.isVerified && (
                 <span className="rounded border border-emerald-500/30 bg-emerald-950/40 px-1.5 py-0.2 text-[10px] text-emerald-300 font-semibold">
-                  LIVE DB
+                  VERIFIED ANALOG
                 </span>
               )}
             </div>

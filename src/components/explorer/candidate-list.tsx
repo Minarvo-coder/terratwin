@@ -95,7 +95,7 @@ function CandidateRow({
             </span>
             {result.candidate.isVerified && (
               <span className="rounded bg-emerald-950/80 border border-emerald-500/30 px-1 py-0.2 text-[8px] font-mono text-emerald-300 shrink-0">
-                DB
+                VERIFIED
               </span>
             )}
           </div>
