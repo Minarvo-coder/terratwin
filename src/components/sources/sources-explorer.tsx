@@ -18,6 +18,7 @@ import { formatCoordinates, formatFeatureValue, getFeatureComparabilityInfo, get
 import { FEATURES } from "@/lib/terratwin/features"
 import { DATA_SOURCES } from "@/lib/terratwin/data-sources"
 import { FEATURE_COMPATIBILITY_MATRIX } from "@/lib/terratwin/config/compatibility-matrix"
+import { ScientificEvidenceExplorer } from "@/components/explorer/scientific-evidence-explorer"
 import type { EarthCandidate, FeatureKey, PlanetaryTarget } from "@/lib/terratwin/types"
 import type { DatasetSourceRecord } from "@/lib/terratwin/types/api"
 
@@ -28,7 +29,7 @@ interface SourcesExplorerProps {
 }
 
 export function SourcesExplorer({ targets, candidates, sources }: SourcesExplorerProps) {
-  const [activeTab, setActiveTab] = useState<"matrix" | "catalog" | "harmonization">("matrix")
+  const [activeTab, setActiveTab] = useState<"matrix" | "evidence" | "catalog" | "harmonization">("matrix")
   const [bodyFilter, setBodyFilter] = useState<"all" | "Mars" | "Moon" | "Earth">("all")
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedCell, setSelectedCell] = useState<{
@@ -150,6 +151,20 @@ export function SourcesExplorer({ targets, candidates, sources }: SourcesExplore
           >
             <Layers className="size-3.5" />
             <span>Coverage Matrix</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab("evidence")}
+            className={cn(
+              "rounded px-3 py-1.5 transition cursor-pointer font-semibold flex items-center gap-1.5",
+              activeTab === "evidence"
+                ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-[0_0_10px_rgba(56,189,248,0.2)]"
+                : "text-slate-400 hover:text-white"
+            )}
+          >
+            <ShieldCheck className="size-3.5 text-emerald-400" />
+            <span>Evidence Lineage Explorer</span>
           </button>
 
           <button
@@ -332,7 +347,15 @@ export function SourcesExplorer({ targets, candidates, sources }: SourcesExplore
         </div>
       )}
 
-      {/* 4. TAB 2: NASA & Official Dataset Archives */}
+      {/* 4. TAB 2: Scientific Evidence Lineage Explorer */}
+      {activeTab === "evidence" && (
+        <ScientificEvidenceExplorer
+          allTargets={targets}
+          allCandidates={candidates}
+        />
+      )}
+
+      {/* 5. TAB 3: NASA & Official Dataset Archives */}
       {activeTab === "catalog" && (
         <div className="flex flex-col gap-4">
           <div className="flex items-center justify-between font-mono text-xs text-slate-400">

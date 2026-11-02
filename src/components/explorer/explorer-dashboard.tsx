@@ -15,6 +15,7 @@ import { TargetSelector } from "./target-selector"
 import { MissionSuitePanel } from "./mission-suite-panel"
 import { ElevationProfilePanel } from "./elevation-profile-panel"
 import { TerrainComparisonWorkspace } from "./terrain-comparison-workspace"
+import { ScientificEvidenceExplorer } from "./scientific-evidence-explorer"
 import { PlanetaryGlobe } from "./planetary-globe"
 import {
   ShieldCheck,
@@ -53,7 +54,7 @@ export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
   const [imageryDate, setImageryDate] = useState<string>("2024-07-15")
   const [imageryOpacity, setImageryOpacity] = useState<number>(1.0)
   const [parameterLayerId, setParameterLayerId] = useState<MapParameterLayerId>("similarity")
-  const [analysisTab, setAnalysisTab] = useState<"workspace" | "elevation" | "telemetry" | "all">("workspace")
+  const [analysisTab, setAnalysisTab] = useState<"workspace" | "elevation" | "evidence" | "telemetry" | "all">("workspace")
 
   const filteredTargets = targets.filter((t) => {
     if (sourceFilter === "verified") return !!t.isVerified
@@ -426,6 +427,21 @@ export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
 
                       <button
                         type="button"
+                        onClick={() => setAnalysisTab("evidence")}
+                        className={cn(
+                          "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border",
+                          analysisTab === "evidence"
+                            ? "border-cyan-500/60 bg-cyan-950/70 text-cyan-300 shadow-[0_0_10px_rgba(56,189,248,0.25)]"
+                            : "border-slate-800 bg-slate-950/60 text-slate-400 hover:text-white hover:border-slate-700",
+                        )}
+                        title="5-Stage Scientific Evidence & Telemetry Lineage Explorer"
+                      >
+                        <ShieldCheck className="size-3.5 text-emerald-400" />
+                        <span>Evidence Explorer</span>
+                      </button>
+
+                      <button
+                        type="button"
                         onClick={() => setAnalysisTab("telemetry")}
                         className={cn(
                           "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border",
@@ -474,6 +490,16 @@ export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
                       candidate={selectedResult.candidate}
                       allCandidates={results.map((r) => r.candidate)}
                       onSelectCandidate={setSelectedId}
+                      isUpdating={isUpdating}
+                    />
+                  )}
+
+                  {(analysisTab === "evidence" || analysisTab === "all") && (
+                    <ScientificEvidenceExplorer
+                      currentTarget={data.target}
+                      currentCandidate={selectedResult.candidate}
+                      allTargets={filteredTargets}
+                      allCandidates={results.map((r) => r.candidate)}
                       isUpdating={isUpdating}
                     />
                   )}
