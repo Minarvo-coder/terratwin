@@ -140,3 +140,4 @@ test('Milestone F - Test 6: Scientific Traceability & Attribution Verification',
   assert.ok(rioTinto, 'Río Tinto candidate missing')
   assert.strictEqual(rioTinto.environmentalTelemetry.lithology, 'sulfate-evaporite')
 })
+

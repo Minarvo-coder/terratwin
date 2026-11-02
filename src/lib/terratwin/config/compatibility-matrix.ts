@@ -107,3 +107,4 @@ export const FEATURE_COMPATIBILITY_MATRIX: FeatureCompatibilityDefinition[] = [
     harmonizationNotes: "Ensures analog field selection prioritizes unvegetated arid landscapes.",
   },
 ]
+
