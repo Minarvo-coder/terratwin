@@ -625,7 +625,7 @@ function CustomElevationTooltip({
     <div className="flex flex-col gap-2 rounded-xl border border-slate-700 bg-slate-950/95 p-3 font-mono text-xs text-slate-200 shadow-2xl backdrop-blur-md max-w-xs">
       <div className="flex items-center justify-between border-b border-slate-800 pb-1.5 text-[10px] text-slate-400 font-bold">
         <span>TRANSECT PROGRESS: {row.progressLabel}</span>
-        <span>STEP #{row.step + 1}</span>
+        <span>STEP #{(row.step ?? 0) + 1}</span>
       </div>
 
       {/* Target Point Telemetry */}
@@ -640,7 +640,11 @@ function CustomElevationTooltip({
           </div>
           <div className="flex items-center justify-between text-slate-300">
             <span>Relative Relief (Δz):</span>
-            <strong className="text-cyan-200">{row.targetRelativeM > 0 ? `+${row.targetRelativeM}` : row.targetRelativeM} m</strong>
+            <strong className="text-cyan-200">
+              {row.targetRelativeM !== undefined && row.targetRelativeM > 0
+                ? `+${row.targetRelativeM}`
+                : row.targetRelativeM} m
+            </strong>
           </div>
           <div className="flex items-center justify-between text-slate-400">
             <span>Distance / Slope:</span>
@@ -661,7 +665,11 @@ function CustomElevationTooltip({
           </div>
           <div className="flex items-center justify-between text-slate-300">
             <span>Relative Relief (Δz):</span>
-            <strong className="text-purple-200">{row.candidateRelativeM > 0 ? `+${row.candidateRelativeM}` : row.candidateRelativeM} m</strong>
+            <strong className="text-purple-200">
+              {row.candidateRelativeM !== undefined && row.candidateRelativeM > 0
+                ? `+${row.candidateRelativeM}`
+                : row.candidateRelativeM} m
+            </strong>
           </div>
           <div className="flex items-center justify-between text-slate-400">
             <span>Distance / Slope:</span>

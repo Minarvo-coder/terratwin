@@ -14,6 +14,7 @@ import { TargetProfile } from "./target-profile"
 import { TargetSelector } from "./target-selector"
 import { MissionSuitePanel } from "./mission-suite-panel"
 import { ElevationProfilePanel } from "./elevation-profile-panel"
+import { TerrainComparisonWorkspace } from "./terrain-comparison-workspace"
 import { PlanetaryGlobe } from "./planetary-globe"
 import {
   ShieldCheck,
@@ -23,6 +24,10 @@ import {
   Globe2,
   Satellite,
   Columns2,
+  Mountain,
+  Activity,
+  Terminal,
+  ListFilter,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -48,6 +53,7 @@ export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
   const [imageryDate, setImageryDate] = useState<string>("2024-07-15")
   const [imageryOpacity, setImageryOpacity] = useState<number>(1.0)
   const [parameterLayerId, setParameterLayerId] = useState<MapParameterLayerId>("similarity")
+  const [analysisTab, setAnalysisTab] = useState<"workspace" | "elevation" | "telemetry" | "all">("workspace")
 
   const filteredTargets = targets.filter((t) => {
     if (sourceFilter === "verified") return !!t.isVerified
@@ -377,22 +383,110 @@ export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
               </div>
 
               {selectedResult && (
-                <>
-                  <ComparisonPanel
-                    target={data.target}
-                    purpose={data.purpose}
-                    result={selectedResult}
-                    isUpdating={isUpdating}
-                  />
+                <div className="flex flex-col gap-4">
+                  {/* Analysis Mode Switcher / View Control */}
+                  <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-800 bg-slate-900/60 p-2.5 font-mono text-xs backdrop-blur-sm">
+                    <div className="flex items-center gap-2 text-slate-300">
+                      <Layers className="size-4 text-cyan-400" />
+                      <span className="font-bold uppercase tracking-wider text-[11px]">
+                        SCIENTIFIC ANALYSIS VIEW
+                      </span>
+                    </div>
 
-                  <ElevationProfilePanel
-                    target={data.target}
-                    candidate={selectedResult.candidate}
-                    allCandidates={results.map((r) => r.candidate)}
-                    onSelectCandidate={setSelectedId}
-                    isUpdating={isUpdating}
-                  />
-                </>
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      <button
+                        type="button"
+                        onClick={() => setAnalysisTab("workspace")}
+                        className={cn(
+                          "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border",
+                          analysisTab === "workspace"
+                            ? "border-cyan-500/60 bg-cyan-950/70 text-cyan-300 shadow-[0_0_10px_rgba(56,189,248,0.25)]"
+                            : "border-slate-800 bg-slate-950/60 text-slate-400 hover:text-white hover:border-slate-700",
+                        )}
+                        title="Dedicated Terrain & Environmental Parameter Workspace"
+                      >
+                        <Mountain className="size-3.5 text-cyan-400" />
+                        <span>Terrain Workspace</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => setAnalysisTab("elevation")}
+                        className={cn(
+                          "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border",
+                          analysisTab === "elevation"
+                            ? "border-cyan-500/60 bg-cyan-950/70 text-cyan-300 shadow-[0_0_10px_rgba(56,189,248,0.25)]"
+                            : "border-slate-800 bg-slate-950/60 text-slate-400 hover:text-white hover:border-slate-700",
+                        )}
+                        title="Topographic Relief & Geodesic Elevation Profiles"
+                      >
+                        <Activity className="size-3.5 text-cyan-400" />
+                        <span>Elevation Transects</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => setAnalysisTab("telemetry")}
+                        className={cn(
+                          "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border",
+                          analysisTab === "telemetry"
+                            ? "border-cyan-500/60 bg-cyan-950/70 text-cyan-300 shadow-[0_0_10px_rgba(56,189,248,0.25)]"
+                            : "border-slate-800 bg-slate-950/60 text-slate-400 hover:text-white hover:border-slate-700",
+                        )}
+                        title="Dimensional Telemetry Overview & Attribute Matrix"
+                      >
+                        <Terminal className="size-3.5 text-purple-400" />
+                        <span>Telemetry Overview</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => setAnalysisTab("all")}
+                        className={cn(
+                          "flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border",
+                          analysisTab === "all"
+                            ? "border-purple-500/60 bg-purple-950/70 text-purple-300 shadow-[0_0_10px_rgba(168,85,247,0.25)]"
+                            : "border-slate-800 bg-slate-950/60 text-slate-400 hover:text-white hover:border-slate-700",
+                        )}
+                        title="Display All Scientific Visualization Panels Sequentially"
+                      >
+                        <ListFilter className="size-3.5 text-purple-400" />
+                        <span>All Panels</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Render based on view mode */}
+                  {(analysisTab === "workspace" || analysisTab === "all") && (
+                    <TerrainComparisonWorkspace
+                      target={data.target}
+                      purpose={data.purpose}
+                      result={selectedResult}
+                      allCandidates={results}
+                      onSelectCandidate={setSelectedId}
+                      isUpdating={isUpdating}
+                    />
+                  )}
+
+                  {(analysisTab === "elevation" || analysisTab === "all") && (
+                    <ElevationProfilePanel
+                      target={data.target}
+                      candidate={selectedResult.candidate}
+                      allCandidates={results.map((r) => r.candidate)}
+                      onSelectCandidate={setSelectedId}
+                      isUpdating={isUpdating}
+                    />
+                  )}
+
+                  {(analysisTab === "telemetry" || analysisTab === "all") && (
+                    <ComparisonPanel
+                      target={data.target}
+                      purpose={data.purpose}
+                      result={selectedResult}
+                      isUpdating={isUpdating}
+                    />
+                  )}
+                </div>
               )}
             </>
           )}

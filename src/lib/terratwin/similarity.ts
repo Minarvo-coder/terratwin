@@ -10,7 +10,7 @@ import {
   HIGH_CONFIDENCE_COVERAGE,
   MODERATE_CONFIDENCE_COVERAGE,
   clamp01,
-} from "./similarity-engine"
+} from "./similarity-engine.ts"
 import type {
   DataConfidence,
   EarthCandidate,
@@ -21,7 +21,7 @@ import type {
   MissionPurposeDefinition,
   PlanetaryTarget,
   RankedCandidate,
-} from "./types"
+} from "./types.ts"
 
 export {
   MIN_RELIABLE_COVERAGE,

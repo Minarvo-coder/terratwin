@@ -1,4 +1,4 @@
-import type { DatasetMeta, EarthCandidate, PlanetaryTarget } from "./types"
+import type { DatasetMeta, EarthCandidate, PlanetaryTarget } from "./types.ts"
 
 /**
  * ILLUSTRATIVE SAMPLE DATASET.
