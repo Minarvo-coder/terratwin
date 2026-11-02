@@ -171,3 +171,4 @@ test('Milestone C - Test 6: Mission Suite portfolio optimizer combinatorial expa
   assert.ok(j3.result.portfolios[0].score >= 90.0, 'Top 3-site portfolio achieves high synergy score (> 90%)')
   assert.ok(j3.result.portfolios[0].synergyGain > 0, 'Portfolio synergy gain is strictly positive')
 })
+
