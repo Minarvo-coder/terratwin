@@ -111,6 +111,30 @@ export const DATA_SOURCES: DataSource[] = [
     resolution: "1 km thermal / 500 m surface reflectance",
     integrationNotes: "Ingested in database 25-year composited climatology for Earth analog sites.",
   },
+  {
+    id: "99999999-9999-4999-8999-999999999999",
+    name: "MER Opportunity Athena Science Payload (PDS Geosciences)",
+    provider: "NASA / JPL-Caltech / Cornell / PDS Geosciences Node",
+    scope: "Mars",
+    informs: "In situ regolith texture (MI), jarosite/hematite composition (APXS/Mossbauer), surface thermometry (Mini-TES), solar flux",
+    status: "integrated",
+    version: "MER2-M-ATHENA-4-GSE-V1.0",
+    sourceUrl: "https://pds-geosciences.wustl.edu/missions/mer/",
+    resolution: "In situ rover traverse point (Eagle, Endurance, Victoria, Endeavour craters)",
+    integrationNotes: "Ingested for Meridiani Planum: 14-year in situ baseline (2004-2018 sols 1-5111) correcting historical MSL REMS proxy attribution.",
+  },
+  {
+    id: "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+    name: "Apollo CCGE & LRO LAMP Lunar Exosphere Baseline",
+    provider: "NASA GSFC / LRO LAMP / Apollo Science Archive",
+    scope: "Moon",
+    informs: "Lunar surface ambient pressure and exospheric neutral gas column density",
+    status: "integrated",
+    version: "Apollo-CCGE / LRO-LAMP-EDR-V1.0",
+    sourceUrl: "https://pds-geosciences.wustl.edu/missions/apollo/apollo_ccge.htm",
+    resolution: "In situ surface station / FUV spectroscopic limb sounding",
+    integrationNotes: "Ingested for Shackleton Crater Rim and Mare Tranquillitatis: establishing authentic ultra-high vacuum baseline (~3e-10 Pa).",
+  },
 
   // --- CANDIDATE SOURCES (Queued for Future Pipeline Expansion) ---
   {

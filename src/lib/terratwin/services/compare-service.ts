@@ -85,6 +85,7 @@ export const TARGET_ID_ALIASES: Record<string, string> = {
   "moon-south-polar-highlands": "b0000001-0000-4000-8000-000000000001",
   "mars-jezero-delta": "a0000001-0000-4000-8000-000000000001",
   "mars-meridiani-planum": "a0000003-0000-4000-8000-000000000003",
+  "mars-gale-crater": "a0000002-0000-4000-8000-000000000002",
 }
 
 /**
