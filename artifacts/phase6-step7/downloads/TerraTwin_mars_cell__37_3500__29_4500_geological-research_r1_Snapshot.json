@@ -1,0 +1,3468 @@
+{
+  "terratwinExportFormat": "terratwin-research-snapshot",
+  "schemaVersion": "1.0.0",
+  "exportedAt": "2026-11-14T21:49:31.114Z",
+  "disclaimer": "Reproducible research record snapshot exported from TerraTwin browser workspace. User-authored notes are not verified telemetry.",
+  "record": {
+    "recordId": "ttw-rec-cell_-37-3500_-2-b9332efc",
+    "contextKey": "cell_+37.3500_+29.4500::a0000001-0000-4000-8000-000000000001::geological-research",
+    "candidateId": "cell_+37.3500_+29.4500",
+    "candidateName": "Candidate Cell +37.3500_+29.4500",
+    "targetId": "a0000001-0000-4000-8000-000000000001",
+    "missionProfileId": "geological-research",
+    "createdAt": "2026-11-14T21:49:28.124Z",
+    "updatedAt": "2026-11-14T21:49:28.927Z",
+    "storageMode": "browser-local-and-explicit-export",
+    "storageNotice": "Browser-local workspace storage: research assessments, tasks, and notes are stored in this browser's localStorage and active session only. They do not sync across devices or write to shared databases. Export PDF, CSV, or Snapshot JSON files to archive permanently.",
+    "snapshot": {
+      "snapshotId": "ttw-snap-cell_-37-3500_-29--r1-dca425a3",
+      "schemaVersion": "1.0.0",
+      "contentDigest": "fnv64-2adcb3914a049afd",
+      "digestScopeNote": "Integrity digest computed via deterministic canonical JSON serialization over snapshot schemaVersion, candidateId, targetId, missionProfileId, coordinates, score, coverage, environmental telemetry, featureScores, validationChecklist, and researchPriority. Establishes data integrity only; does NOT establish independent scientific verification.",
+      "revisionNumber": 1,
+      "revisionLabel": "Assessment A — Initial Screening Snapshot",
+      "createdAt": "2026-11-14T21:49:28.124Z",
+      "candidateId": "cell_+37.3500_+29.4500",
+      "candidateName": "Candidate Cell +37.3500_+29.4500",
+      "candidateSourceKind": "live-grid-cell",
+      "noveltyTier": "live-grid-discovery",
+      "coordinates": {
+        "latitude": 37.35,
+        "longitude": 29.45,
+        "boundingBox": [
+          37.1,
+          29.2,
+          37.6,
+          29.7
+        ]
+      },
+      "candidate": {
+        "id": "cell_+37.3500_+29.4500",
+        "name": "Candidate Cell +37.3500_+29.4500",
+        "country": "Regional Scan",
+        "latitude": 37.35,
+        "longitude": 29.45,
+        "setting": "Regional geology: Pliocene undifferentiated",
+        "summary": "Exploratory candidate cell at (37.3500°, 29.4500°) evaluated via Copernicus DEM, NASA POWER climatology, and Macrostrat.",
+        "environment": {
+          "meanSurfaceTempC": 12.1,
+          "diurnalTempRangeC": 18.8,
+          "annualPrecipitationMm": 690,
+          "meanSlopeDeg": 0.53,
+          "rockAbundancePct": null,
+          "medianGrainSizeMm": null,
+          "albedo": null,
+          "vegetationCoverPct": null,
+          "lithology": null,
+          "elevationM": 857,
+          "surfacePressurePa": null,
+          "surfaceSolarIrradianceWm2": 206
+        },
+        "provenanceMap": {
+          "elevationM": {
+            "status": "unverified",
+            "dataOrigin": "live-api-estimate",
+            "evidenceClassification": "measured",
+            "verificationState": "unverified",
+            "provider": "Open-Meteo Elevation",
+            "sourceTitle": "Copernicus DEM GLO-90 (Open-Meteo)",
+            "sourceUrl": "https://open-meteo.com/en/docs/elevation-api",
+            "datasetVersion": "Copernicus GLO-90",
+            "unit": "m",
+            "spatialResolution": "90 m grid cell",
+            "qualityNotes": "Elevation above EGM2008/geoid datum from Copernicus GLO-90; unverified field point.",
+            "isComparable": true
+          },
+          "meanSlopeDeg": {
+            "status": "unverified",
+            "dataOrigin": "computed-derivative",
+            "evidenceClassification": "derived",
+            "verificationState": "unverified",
+            "provider": "Open-Meteo Elevation (Derived)",
+            "sourceTitle": "5-Point Central-Difference Gradient (Copernicus DEM GLO-90)",
+            "sourceUrl": "https://open-meteo.com/en/docs/elevation-api",
+            "datasetVersion": "Copernicus GLO-90",
+            "unit": "°",
+            "spatialResolution": "Derived from 5-point cardinal central difference over ~445 m baseline (90 m DEM pixels)",
+            "qualityNotes": "Derived macro-slope across ~445 m central-difference baseline; smooths meter-scale boulders and micro-roughness.",
+            "isComparable": true
+          },
+          "meanSurfaceTempC": {
+            "status": "unverified",
+            "dataOrigin": "live-api-estimate",
+            "evidenceClassification": "proxy",
+            "verificationState": "unverified",
+            "provider": "NASA POWER",
+            "sourceTitle": "NASA POWER Climatology (T2M 2-meter air temp proxy)",
+            "sourceUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+            "datasetVersion": "v2.10.1",
+            "measurementPeriod": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+            "unit": "°C",
+            "spatialResolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+            "qualityNotes": "25-year annual mean 2-meter air temperature (T2M) used as an atmospheric proxy for bare-ground surface skin temperature.",
+            "isComparable": true
+          },
+          "diurnalTempRangeC": {
+            "status": "unverified",
+            "dataOrigin": "live-api-estimate",
+            "evidenceClassification": "derived",
+            "verificationState": "unverified",
+            "provider": "NASA POWER",
+            "sourceTitle": "NASA POWER Climatology (TS_RANGE)",
+            "sourceUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+            "datasetVersion": "v2.10.1",
+            "measurementPeriod": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+            "unit": "°C",
+            "spatialResolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+            "qualityNotes": "25-year climatological annual average diurnal earth-skin temperature amplitude.",
+            "isComparable": true
+          },
+          "surfaceSolarIrradianceWm2": {
+            "status": "unverified",
+            "dataOrigin": "computed-derivative",
+            "evidenceClassification": "derived",
+            "verificationState": "unverified",
+            "provider": "NASA POWER",
+            "sourceTitle": "NASA POWER Climatology (ALLSKY_SFC_SW_DWN, 24h mean)",
+            "sourceUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+            "datasetVersion": "v2.10.1",
+            "measurementPeriod": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+            "unit": "W/m²",
+            "originalSourceValue": 4.93,
+            "originalSourceUnit": "kW-hr/m^2/day",
+            "spatialResolution": "1.0° × 1.0° (CERES SYN1DEG via NASA POWER)",
+            "qualityNotes": "24-hour climatological average shortwave downward flux (converted from kW-hr/m^2/day); not instantaneous noon peak and not equivalent to lunar polar illumination geometry.",
+            "isComparable": true
+          },
+          "annualPrecipitationMm": {
+            "status": "unverified",
+            "dataOrigin": "computed-derivative",
+            "evidenceClassification": "derived",
+            "verificationState": "unverified",
+            "provider": "NASA POWER",
+            "sourceTitle": "NASA POWER Climatology (PRECTOTCORR)",
+            "sourceUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+            "datasetVersion": "v2.10.1",
+            "measurementPeriod": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+            "unit": "mm/year",
+            "originalSourceValue": 1.89,
+            "originalSourceUnit": "mm/day",
+            "spatialResolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+            "isComparable": false,
+            "incomparabilityReason": "Active terrestrial rainfall/snowfall is physically non-comparable against dry/vacuum Moon and Mars targets."
+          },
+          "lithology": {
+            "status": "no-data",
+            "dataOrigin": "missing",
+            "evidenceClassification": "missing_data",
+            "verificationState": "no-data",
+            "provider": "Macrostrat",
+            "sourceTitle": "Macrostrat (Pliocene undifferentiated)",
+            "sourceUrl": "https://www.bgr.bund.de/EN/Themen/Sammlungen-Grundlagen/GG_geol_Info/Karten/International/Europa/IGME5000/igme5000_node_en.html",
+            "datasetVersion": "Macrostrat API v2",
+            "unit": "",
+            "spatialResolution": "Regional geologic map polygon scale (typically 1:250k–1:5M)",
+            "qualityNotes": "Unit: Pliocene undifferentiated | Age: Pliocene - Quaternary | Classifier: unmapped-class | Raw: Pliocene undifferentiated | Source: The 1:5M International Geological Map of Europe and Adjacent Areas: Development and Implementation of a GIS-enabled Concept",
+            "isComparable": true
+          },
+          "rockAbundancePct": {
+            "status": "no-data",
+            "dataOrigin": "missing",
+            "evidenceClassification": "missing_data",
+            "verificationState": "no-data",
+            "unit": "%",
+            "qualityNotes": "Meter-scale rock/boulder abundance is unmeasured at regional screening resolution.",
+            "isComparable": true
+          },
+          "medianGrainSizeMm": {
+            "status": "no-data",
+            "dataOrigin": "missing",
+            "evidenceClassification": "missing_data",
+            "verificationState": "no-data",
+            "unit": "mm",
+            "qualityNotes": "Granulometric regolith sieve size requires laboratory or in-situ sieving.",
+            "isComparable": true
+          },
+          "albedo": {
+            "status": "no-data",
+            "dataOrigin": "missing",
+            "evidenceClassification": "missing_data",
+            "verificationState": "no-data",
+            "unit": "",
+            "qualityNotes": "Broadband Bond/hemispherical surface albedo not queried in regional screening tier.",
+            "isComparable": true
+          },
+          "vegetationCoverPct": {
+            "status": "no-data",
+            "dataOrigin": "missing",
+            "evidenceClassification": "missing_data",
+            "verificationState": "no-data",
+            "unit": "%",
+            "qualityNotes": "Fractional vegetation cover excluded from coarse climate/DEM pass.",
+            "isComparable": true
+          },
+          "surfacePressurePa": {
+            "status": "no-data",
+            "dataOrigin": "missing",
+            "evidenceClassification": "missing_data",
+            "verificationState": "no-data",
+            "unit": "Pa",
+            "qualityNotes": "Station atmospheric surface pressure omitted in coarse climatology request.",
+            "isComparable": true
+          }
+        },
+        "isVerified": false,
+        "noveltyTier": "live-grid-discovery",
+        "boundingBox": [
+          37.1,
+          29.2,
+          37.6,
+          29.7
+        ],
+        "windSpeedMs": 2.7
+      },
+      "target": {
+        "id": "a0000001-0000-4000-8000-000000000001",
+        "body": "mars",
+        "name": "Jezero Crater Delta",
+        "region": "Mars coordinates: 18.38°, 77.58°",
+        "summary": "Ancient deltaic lake basin landing site of NASA Mars 2020 Perseverance rover, featuring clay and carbonate mineralogy.",
+        "latitude": 18.38,
+        "longitude": 77.58,
+        "environment": {
+          "meanSurfaceTempC": -55,
+          "diurnalTempRangeC": 80,
+          "annualPrecipitationMm": 0,
+          "meanSlopeDeg": 5,
+          "rockAbundancePct": 14,
+          "medianGrainSizeMm": 0.35,
+          "albedo": 0.19,
+          "vegetationCoverPct": 0,
+          "lithology": "clay-sedimentary",
+          "elevationM": -2651,
+          "surfacePressurePa": 750,
+          "surfaceSolarIrradianceWm2": 152
+        },
+        "provenanceMap": {
+          "elevationM": {
+            "status": "verified",
+            "sourceTitle": "Mars Global Surveyor MOLA Mission Experiment Gridded Data Record (MEGDR)",
+            "sourceUrl": "https://pds-geosciences.wustl.edu/mgs/mgs-m-mola-5-megdr-l3-v1/mgsl_300x/meg004/megt90n000cb.img",
+            "datasetVersion": "MGS-M-MOLA-5-MEGDR-L3-V1.0 (Product Version 2.0)",
+            "provider": "NASA Goddard Space Flight Center / PDS Geosciences Node",
+            "unit": "m",
+            "spatialResolution": "4 pixels/deg (~14.8 km/pixel)",
+            "measurementPeriod": "1997-09-15 to 2001-06-30 (MOLA Mapping & Extended Phase)",
+            "qualityNotes": "Sampled directly from binary raster megt90n000cb.img at row 286, col 310. Big-endian signed 16-bit int. Datum: Mars IAU2000 Areoid (610.5 Pa equipotential gravity datum, MGS MOLA MEGDR).",
+            "isComparable": true
+          },
+          "meanSurfaceTempC": {
+            "status": "verified",
+            "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+            "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+            "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+            "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+            "unit": "°C",
+            "spatialResolution": "Local ground contact (< 2 m)",
+            "measurementPeriod": "2021-02 to 2024-10 (Perseverance MEDA)",
+            "qualityNotes": "Diurnal mean surface ground temperature recorded by MEDA Thermal Infrared Sensor (TIRS).",
+            "isComparable": true
+          },
+          "diurnalTempRangeC": {
+            "status": "verified",
+            "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+            "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+            "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+            "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+            "unit": "°C",
+            "spatialResolution": "Local ground contact",
+            "measurementPeriod": "2021-02 to 2024-10 (Perseverance MEDA)",
+            "qualityNotes": "Diurnal ground thermal swing between nocturnal nadir ~ -83 °C and midday maximum ~ -3 °C.",
+            "isComparable": true
+          },
+          "meanSlopeDeg": {
+            "status": "verified",
+            "sourceTitle": "Mars Global Surveyor MOLA Mission Experiment Gridded Data Record (MEGDR)",
+            "sourceUrl": "https://pds-geosciences.wustl.edu/mgs/mgs-m-mola-5-megdr-l3-v1/mgsl_300x/meg004/megt90n000cb.img",
+            "datasetVersion": "MGS-M-MOLA-5-MEGDR-L3-V1.0 (Product Version 2.0)",
+            "provider": "NASA Goddard Space Flight Center / PDS Geosciences Node",
+            "unit": "°",
+            "spatialResolution": "1 m/pixel stereo DTM",
+            "measurementPeriod": "MOLA / HiRISE DTM",
+            "qualityNotes": "Regional mean terrain slope across Western Delta fan deposits.",
+            "isComparable": true
+          },
+          "rockAbundancePct": {
+            "status": "verified",
+            "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+            "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+            "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+            "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+            "unit": "%",
+            "spatialResolution": "Rover local field",
+            "measurementPeriod": "Navcam / MEDA traverse photometry",
+            "qualityNotes": "Fractured deltaic boulder lag and blocky crater floor basaltic pavers.",
+            "isComparable": true
+          },
+          "medianGrainSizeMm": {
+            "status": "verified",
+            "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+            "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+            "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+            "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+            "unit": "mm",
+            "spatialResolution": "Microscopic",
+            "measurementPeriod": "SuperCam / WATSON imaging",
+            "qualityNotes": "Medium sand fraction across Delta scarp eolian ripples and poorly sorted sandstone matrix.",
+            "isComparable": true
+          },
+          "albedo": {
+            "status": "verified",
+            "sourceTitle": "Mars Global Surveyor MOLA Mission Experiment Gridded Data Record (MEGDR)",
+            "sourceUrl": "https://pds-geosciences.wustl.edu/mgs/mgs-m-mola-5-megdr-l3-v1/mgsl_300x/meg004/megt90n000cb.img",
+            "datasetVersion": "MGS-M-MOLA-5-MEGDR-L3-V1.0 (Product Version 2.0)",
+            "provider": "NASA Goddard Space Flight Center / PDS Geosciences Node",
+            "unit": "",
+            "spatialResolution": "3 km/pixel",
+            "measurementPeriod": "CRISM / TES baseline",
+            "qualityNotes": "Broadband surface albedo over clay-rich crater delta deposit.",
+            "isComparable": true
+          },
+          "vegetationCoverPct": {
+            "status": "verified",
+            "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+            "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+            "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+            "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+            "unit": "%",
+            "spatialResolution": "Planetary scale",
+            "measurementPeriod": "Perpetual",
+            "qualityNotes": "Zero biological vegetative cover in accordance with hyper-arid radiation environment.",
+            "isComparable": true
+          },
+          "lithology": {
+            "status": "verified",
+            "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+            "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+            "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+            "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+            "unit": "",
+            "spatialResolution": "Millimeter-scale core samples",
+            "measurementPeriod": "SuperCam LIBS / PIXL XRF analysis (2021-2025)",
+            "qualityNotes": "Lithology class: clay-sedimentary. Smectite and iron-magnesium carbonate-bearing deltaic siltstones.",
+            "isComparable": true
+          },
+          "surfaceSolarIrradianceWm2": {
+            "status": "verified",
+            "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+            "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+            "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+            "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+            "unit": "W/m2",
+            "spatialResolution": "Local sensor point",
+            "measurementPeriod": "M2020 MEDA Radiative Budget Sensor (2021-2024)",
+            "qualityNotes": "All-sky solar downward irradiance at 18.4° N latitude under background atmospheric dust optical depth.",
+            "isComparable": true
+          },
+          "annualPrecipitationMm": {
+            "status": "verified",
+            "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+            "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+            "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+            "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+            "unit": "mm/year",
+            "spatialResolution": "Planetary scale",
+            "measurementPeriod": "Climatological baseline",
+            "qualityNotes": "Zero liquid rainfall. Excluded from cross-body similarity calculation due to atmospheric phase constraints.",
+            "isComparable": false,
+            "incomparabilityReason": "Target bodies have 0 mm/yr liquid rainfall; active precipitation cannot be physically matched to dry/vacuum surfaces."
+          },
+          "surfacePressurePa": {
+            "status": "verified",
+            "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+            "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+            "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+            "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+            "unit": "Pa",
+            "spatialResolution": "In situ rover traverse point",
+            "measurementPeriod": "2021-02 to 2024-10 (Perseverance MEDA)",
+            "qualityNotes": "In situ pressure sensor (MEDA PRS) recording atmospheric pressure continuous diurnal cycle with high-frequency turbulence and dust devil signatures.",
+            "isComparable": false,
+            "incomparabilityReason": "Martian surface pressure (~750 Pa) is ~0.74% of Earth sea-level pressure (101,325 Pa). Excluded from cross-body similarity calculation."
+          }
+        },
+        "isVerified": true,
+        "databaseId": "a0000001-0000-4000-8000-000000000001"
+      },
+      "missionProfileId": "geological-research",
+      "missionProfileLabel": "Geological field research",
+      "score": null,
+      "scoreDisplay": "Insufficient data to rank reliably",
+      "coverage": 0.15,
+      "isReliable": false,
+      "isVerified": false,
+      "verificationStateSummary": "Unverified regional screening lead (isVerified: false)",
+      "featureScores": [
+        {
+          "key": "meanSlopeDeg",
+          "weight": 0.1,
+          "targetValue": 5,
+          "candidateValue": 0.53,
+          "targetProvenance": {
+            "status": "verified",
+            "sourceTitle": "Mars Global Surveyor MOLA Mission Experiment Gridded Data Record (MEGDR)",
+            "sourceUrl": "https://pds-geosciences.wustl.edu/mgs/mgs-m-mola-5-megdr-l3-v1/mgsl_300x/meg004/megt90n000cb.img",
+            "datasetVersion": "MGS-M-MOLA-5-MEGDR-L3-V1.0 (Product Version 2.0)",
+            "provider": "NASA Goddard Space Flight Center / PDS Geosciences Node",
+            "unit": "°",
+            "spatialResolution": "1 m/pixel stereo DTM",
+            "measurementPeriod": "MOLA / HiRISE DTM",
+            "qualityNotes": "Regional mean terrain slope across Western Delta fan deposits.",
+            "isComparable": true
+          },
+          "candidateProvenance": {
+            "status": "unverified",
+            "dataOrigin": "computed-derivative",
+            "evidenceClassification": "derived",
+            "verificationState": "unverified",
+            "provider": "Open-Meteo Elevation (Derived)",
+            "sourceTitle": "5-Point Central-Difference Gradient (Copernicus DEM GLO-90)",
+            "sourceUrl": "https://open-meteo.com/en/docs/elevation-api",
+            "datasetVersion": "Copernicus GLO-90",
+            "unit": "°",
+            "spatialResolution": "Derived from 5-point cardinal central difference over ~445 m baseline (90 m DEM pixels)",
+            "qualityNotes": "Derived macro-slope across ~445 m central-difference baseline; smooths meter-scale boulders and micro-roughness.",
+            "isComparable": true
+          },
+          "difference": 0.179,
+          "similarity": 0.821,
+          "status": "comparable"
+        },
+        {
+          "key": "rockAbundancePct",
+          "weight": 0.1,
+          "targetValue": 14,
+          "candidateValue": null,
+          "targetProvenance": {
+            "status": "verified",
+            "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+            "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+            "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+            "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+            "unit": "%",
+            "spatialResolution": "Rover local field",
+            "measurementPeriod": "Navcam / MEDA traverse photometry",
+            "qualityNotes": "Fractured deltaic boulder lag and blocky crater floor basaltic pavers.",
+            "isComparable": true
+          },
+          "candidateProvenance": {
+            "status": "no-data",
+            "dataOrigin": "missing",
+            "evidenceClassification": "missing_data",
+            "verificationState": "no-data",
+            "unit": "%",
+            "qualityNotes": "Meter-scale rock/boulder abundance is unmeasured at regional screening resolution.",
+            "isComparable": true
+          },
+          "difference": null,
+          "similarity": null,
+          "status": "missing_data",
+          "statusReason": "Earth candidate lacks valid measurement."
+        },
+        {
+          "key": "medianGrainSizeMm",
+          "weight": 0.1,
+          "targetValue": 0.35,
+          "candidateValue": null,
+          "targetProvenance": {
+            "status": "verified",
+            "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+            "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+            "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+            "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+            "unit": "mm",
+            "spatialResolution": "Microscopic",
+            "measurementPeriod": "SuperCam / WATSON imaging",
+            "qualityNotes": "Medium sand fraction across Delta scarp eolian ripples and poorly sorted sandstone matrix.",
+            "isComparable": true
+          },
+          "candidateProvenance": {
+            "status": "no-data",
+            "dataOrigin": "missing",
+            "evidenceClassification": "missing_data",
+            "verificationState": "no-data",
+            "unit": "mm",
+            "qualityNotes": "Granulometric regolith sieve size requires laboratory or in-situ sieving.",
+            "isComparable": true
+          },
+          "difference": null,
+          "similarity": null,
+          "status": "missing_data",
+          "statusReason": "Earth candidate lacks valid measurement."
+        },
+        {
+          "key": "elevationM",
+          "weight": 0,
+          "targetValue": -2651,
+          "candidateValue": 857,
+          "targetProvenance": {
+            "status": "verified",
+            "sourceTitle": "Mars Global Surveyor MOLA Mission Experiment Gridded Data Record (MEGDR)",
+            "sourceUrl": "https://pds-geosciences.wustl.edu/mgs/mgs-m-mola-5-megdr-l3-v1/mgsl_300x/meg004/megt90n000cb.img",
+            "datasetVersion": "MGS-M-MOLA-5-MEGDR-L3-V1.0 (Product Version 2.0)",
+            "provider": "NASA Goddard Space Flight Center / PDS Geosciences Node",
+            "unit": "m",
+            "spatialResolution": "4 pixels/deg (~14.8 km/pixel)",
+            "measurementPeriod": "1997-09-15 to 2001-06-30 (MOLA Mapping & Extended Phase)",
+            "qualityNotes": "Sampled directly from binary raster megt90n000cb.img at row 286, col 310. Big-endian signed 16-bit int. Datum: Mars IAU2000 Areoid (610.5 Pa equipotential gravity datum, MGS MOLA MEGDR).",
+            "isComparable": true
+          },
+          "candidateProvenance": {
+            "status": "unverified",
+            "dataOrigin": "live-api-estimate",
+            "evidenceClassification": "measured",
+            "verificationState": "unverified",
+            "provider": "Open-Meteo Elevation",
+            "sourceTitle": "Copernicus DEM GLO-90 (Open-Meteo)",
+            "sourceUrl": "https://open-meteo.com/en/docs/elevation-api",
+            "datasetVersion": "Copernicus GLO-90",
+            "unit": "m",
+            "spatialResolution": "90 m grid cell",
+            "qualityNotes": "Elevation above EGM2008/geoid datum from Copernicus GLO-90; unverified field point.",
+            "isComparable": true
+          },
+          "difference": 0.702,
+          "similarity": 0.298,
+          "status": "comparable"
+        },
+        {
+          "key": "vegetationCoverPct",
+          "weight": 0.15,
+          "targetValue": 0,
+          "candidateValue": null,
+          "targetProvenance": {
+            "status": "verified",
+            "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+            "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+            "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+            "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+            "unit": "%",
+            "spatialResolution": "Planetary scale",
+            "measurementPeriod": "Perpetual",
+            "qualityNotes": "Zero biological vegetative cover in accordance with hyper-arid radiation environment.",
+            "isComparable": true
+          },
+          "candidateProvenance": {
+            "status": "no-data",
+            "dataOrigin": "missing",
+            "evidenceClassification": "missing_data",
+            "verificationState": "no-data",
+            "unit": "%",
+            "qualityNotes": "Fractional vegetation cover excluded from coarse climate/DEM pass.",
+            "isComparable": true
+          },
+          "difference": null,
+          "similarity": null,
+          "status": "missing_data",
+          "statusReason": "Earth candidate lacks valid measurement."
+        },
+        {
+          "key": "diurnalTempRangeC",
+          "weight": 0,
+          "targetValue": 80,
+          "candidateValue": 18.8,
+          "targetProvenance": {
+            "status": "verified",
+            "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+            "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+            "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+            "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+            "unit": "°C",
+            "spatialResolution": "Local ground contact",
+            "measurementPeriod": "2021-02 to 2024-10 (Perseverance MEDA)",
+            "qualityNotes": "Diurnal ground thermal swing between nocturnal nadir ~ -83 °C and midday maximum ~ -3 °C.",
+            "isComparable": true
+          },
+          "candidateProvenance": {
+            "status": "unverified",
+            "dataOrigin": "live-api-estimate",
+            "evidenceClassification": "derived",
+            "verificationState": "unverified",
+            "provider": "NASA POWER",
+            "sourceTitle": "NASA POWER Climatology (TS_RANGE)",
+            "sourceUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+            "datasetVersion": "v2.10.1",
+            "measurementPeriod": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+            "unit": "°C",
+            "spatialResolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+            "qualityNotes": "25-year climatological annual average diurnal earth-skin temperature amplitude.",
+            "isComparable": true
+          },
+          "difference": 0.408,
+          "similarity": 0.592,
+          "status": "comparable"
+        },
+        {
+          "key": "meanSurfaceTempC",
+          "weight": 0.05,
+          "targetValue": -55,
+          "candidateValue": 12.1,
+          "targetProvenance": {
+            "status": "verified",
+            "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+            "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+            "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+            "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+            "unit": "°C",
+            "spatialResolution": "Local ground contact (< 2 m)",
+            "measurementPeriod": "2021-02 to 2024-10 (Perseverance MEDA)",
+            "qualityNotes": "Diurnal mean surface ground temperature recorded by MEDA Thermal Infrared Sensor (TIRS).",
+            "isComparable": true
+          },
+          "candidateProvenance": {
+            "status": "unverified",
+            "dataOrigin": "live-api-estimate",
+            "evidenceClassification": "proxy",
+            "verificationState": "unverified",
+            "provider": "NASA POWER",
+            "sourceTitle": "NASA POWER Climatology (T2M 2-meter air temp proxy)",
+            "sourceUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+            "datasetVersion": "v2.10.1",
+            "measurementPeriod": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+            "unit": "°C",
+            "spatialResolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+            "qualityNotes": "25-year annual mean 2-meter air temperature (T2M) used as an atmospheric proxy for bare-ground surface skin temperature.",
+            "isComparable": true
+          },
+          "difference": 0.447,
+          "similarity": 0.553,
+          "status": "comparable"
+        },
+        {
+          "key": "surfaceSolarIrradianceWm2",
+          "weight": 0.05,
+          "targetValue": 152,
+          "candidateValue": 206,
+          "targetProvenance": {
+            "status": "verified",
+            "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+            "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+            "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+            "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+            "unit": "W/m2",
+            "spatialResolution": "Local sensor point",
+            "measurementPeriod": "M2020 MEDA Radiative Budget Sensor (2021-2024)",
+            "qualityNotes": "All-sky solar downward irradiance at 18.4° N latitude under background atmospheric dust optical depth.",
+            "isComparable": true
+          },
+          "candidateProvenance": {
+            "status": "unverified",
+            "dataOrigin": "computed-derivative",
+            "evidenceClassification": "derived",
+            "verificationState": "unverified",
+            "provider": "NASA POWER",
+            "sourceTitle": "NASA POWER Climatology (ALLSKY_SFC_SW_DWN, 24h mean)",
+            "sourceUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+            "datasetVersion": "v2.10.1",
+            "measurementPeriod": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+            "unit": "W/m²",
+            "originalSourceValue": 4.93,
+            "originalSourceUnit": "kW-hr/m^2/day",
+            "spatialResolution": "1.0° × 1.0° (CERES SYN1DEG via NASA POWER)",
+            "qualityNotes": "24-hour climatological average shortwave downward flux (converted from kW-hr/m^2/day); not instantaneous noon peak and not equivalent to lunar polar illumination geometry.",
+            "isComparable": true
+          },
+          "difference": null,
+          "similarity": null,
+          "status": "incompatible_units",
+          "statusReason": "Incompatible units: Target is recorded in \"W/m2\" while candidate is in \"W/m²\"."
+        },
+        {
+          "key": "lithology",
+          "weight": 0.3,
+          "targetValue": "clay-sedimentary",
+          "candidateValue": null,
+          "targetProvenance": {
+            "status": "verified",
+            "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+            "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+            "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+            "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+            "unit": "",
+            "spatialResolution": "Millimeter-scale core samples",
+            "measurementPeriod": "SuperCam LIBS / PIXL XRF analysis (2021-2025)",
+            "qualityNotes": "Lithology class: clay-sedimentary. Smectite and iron-magnesium carbonate-bearing deltaic siltstones.",
+            "isComparable": true
+          },
+          "candidateProvenance": {
+            "status": "no-data",
+            "dataOrigin": "missing",
+            "evidenceClassification": "missing_data",
+            "verificationState": "no-data",
+            "provider": "Macrostrat",
+            "sourceTitle": "Macrostrat (Pliocene undifferentiated)",
+            "sourceUrl": "https://www.bgr.bund.de/EN/Themen/Sammlungen-Grundlagen/GG_geol_Info/Karten/International/Europa/IGME5000/igme5000_node_en.html",
+            "datasetVersion": "Macrostrat API v2",
+            "unit": "",
+            "spatialResolution": "Regional geologic map polygon scale (typically 1:250k–1:5M)",
+            "qualityNotes": "Unit: Pliocene undifferentiated | Age: Pliocene - Quaternary | Classifier: unmapped-class | Raw: Pliocene undifferentiated | Source: The 1:5M International Geological Map of Europe and Adjacent Areas: Development and Implementation of a GIS-enabled Concept",
+            "isComparable": true
+          },
+          "difference": null,
+          "similarity": null,
+          "status": "missing_data",
+          "statusReason": "Earth candidate lacks valid measurement."
+        },
+        {
+          "key": "albedo",
+          "weight": 0.15,
+          "targetValue": 0.19,
+          "candidateValue": null,
+          "targetProvenance": {
+            "status": "verified",
+            "sourceTitle": "Mars Global Surveyor MOLA Mission Experiment Gridded Data Record (MEGDR)",
+            "sourceUrl": "https://pds-geosciences.wustl.edu/mgs/mgs-m-mola-5-megdr-l3-v1/mgsl_300x/meg004/megt90n000cb.img",
+            "datasetVersion": "MGS-M-MOLA-5-MEGDR-L3-V1.0 (Product Version 2.0)",
+            "provider": "NASA Goddard Space Flight Center / PDS Geosciences Node",
+            "unit": "",
+            "spatialResolution": "3 km/pixel",
+            "measurementPeriod": "CRISM / TES baseline",
+            "qualityNotes": "Broadband surface albedo over clay-rich crater delta deposit.",
+            "isComparable": true
+          },
+          "candidateProvenance": {
+            "status": "no-data",
+            "dataOrigin": "missing",
+            "evidenceClassification": "missing_data",
+            "verificationState": "no-data",
+            "unit": "",
+            "qualityNotes": "Broadband Bond/hemispherical surface albedo not queried in regional screening tier.",
+            "isComparable": true
+          },
+          "difference": null,
+          "similarity": null,
+          "status": "missing_data",
+          "statusReason": "Earth candidate lacks valid measurement."
+        },
+        {
+          "key": "annualPrecipitationMm",
+          "weight": 0,
+          "targetValue": 0,
+          "candidateValue": 690,
+          "targetProvenance": {
+            "status": "verified",
+            "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+            "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+            "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+            "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+            "unit": "mm/year",
+            "spatialResolution": "Planetary scale",
+            "measurementPeriod": "Climatological baseline",
+            "qualityNotes": "Zero liquid rainfall. Excluded from cross-body similarity calculation due to atmospheric phase constraints.",
+            "isComparable": false,
+            "incomparabilityReason": "Target bodies have 0 mm/yr liquid rainfall; active precipitation cannot be physically matched to dry/vacuum surfaces."
+          },
+          "candidateProvenance": {
+            "status": "unverified",
+            "dataOrigin": "computed-derivative",
+            "evidenceClassification": "derived",
+            "verificationState": "unverified",
+            "provider": "NASA POWER",
+            "sourceTitle": "NASA POWER Climatology (PRECTOTCORR)",
+            "sourceUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+            "datasetVersion": "v2.10.1",
+            "measurementPeriod": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+            "unit": "mm/year",
+            "originalSourceValue": 1.89,
+            "originalSourceUnit": "mm/day",
+            "spatialResolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+            "isComparable": false,
+            "incomparabilityReason": "Active terrestrial rainfall/snowfall is physically non-comparable against dry/vacuum Moon and Mars targets."
+          },
+          "difference": null,
+          "similarity": null,
+          "status": "incompatible_quantities",
+          "statusReason": "Target planetary bodies lack active liquid water cycles (0 mm/yr). Active precipitation cannot be meaningfully compared against desiccated or vacuum planetary surfaces."
+        },
+        {
+          "key": "surfacePressurePa",
+          "weight": 0,
+          "targetValue": 750,
+          "candidateValue": null,
+          "targetProvenance": {
+            "status": "verified",
+            "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+            "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+            "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+            "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+            "unit": "Pa",
+            "spatialResolution": "In situ rover traverse point",
+            "measurementPeriod": "2021-02 to 2024-10 (Perseverance MEDA)",
+            "qualityNotes": "In situ pressure sensor (MEDA PRS) recording atmospheric pressure continuous diurnal cycle with high-frequency turbulence and dust devil signatures.",
+            "isComparable": false,
+            "incomparabilityReason": "Martian surface pressure (~750 Pa) is ~0.74% of Earth sea-level pressure (101,325 Pa). Excluded from cross-body similarity calculation."
+          },
+          "candidateProvenance": {
+            "status": "no-data",
+            "dataOrigin": "missing",
+            "evidenceClassification": "missing_data",
+            "verificationState": "no-data",
+            "unit": "Pa",
+            "qualityNotes": "Station atmospheric surface pressure omitted in coarse climatology request.",
+            "isComparable": true
+          },
+          "difference": null,
+          "similarity": null,
+          "status": "missing_data",
+          "statusReason": "Earth candidate lacks valid measurement."
+        }
+      ],
+      "intelligence": {
+        "candidateId": "cell_+37.3500_+29.4500",
+        "candidateName": "Candidate Cell +37.3500_+29.4500",
+        "candidateSourceKind": "live-grid-cell",
+        "noveltyTier": "live-grid-discovery",
+        "targetId": "a0000001-0000-4000-8000-000000000001",
+        "targetName": "Jezero Crater Delta",
+        "targetBody": "mars",
+        "missionProfileId": "geological-research",
+        "missionProfileLabel": "Geological field research",
+        "score": null,
+        "scoreDisplay": "Insufficient data to rank reliably",
+        "coverage": 0.15,
+        "isReliable": false,
+        "baselineWeightedDistance": null,
+        "validationStatus": "evidence-review-needed",
+        "validationStatusLabel": "Evidence review needed",
+        "validationNotice": "Live-grid cells remain unverified (`isVerified: false`) regardless of similarity score and are screening leads only.",
+        "checklist": [
+          {
+            "id": "coords-valid",
+            "label": "Geographic coordinates valid",
+            "status": "supported",
+            "explanation": "WGS84 position (37.3500°, 29.4500°) lies within [-90..90, -180..180]."
+          },
+          {
+            "id": "env-data-retrieved",
+            "label": "Environmental data retrieved",
+            "status": "supported",
+            "explanation": "One or more quantitative or categorical environmental measurements are present."
+          },
+          {
+            "id": "units-validated",
+            "label": "Feature units validated",
+            "status": "not-supported",
+            "explanation": "Unit discrepancy flagged by similarity engine; mismatched units are blocked from comparison."
+          },
+          {
+            "id": "inputs-traceable",
+            "label": "Similarity inputs traceable",
+            "status": "supported",
+            "explanation": "7 dataset or citation reference(s) linked to this evaluation."
+          },
+          {
+            "id": "geology-documented",
+            "label": "Relevant geology documented",
+            "status": "unknown",
+            "explanation": "Lithology unavailable or kept null due to ambiguous mixed map units; unknown rather than disproven."
+          },
+          {
+            "id": "elevation-available",
+            "label": "Elevation evidence available",
+            "status": "supported",
+            "explanation": "Datum elevation recorded (857 m)."
+          },
+          {
+            "id": "gradient-available",
+            "label": "Terrain gradient estimate available",
+            "status": "supported",
+            "explanation": "Slope estimate recorded (1 °)."
+          },
+          {
+            "id": "climate-context-available",
+            "label": "Climate context available",
+            "status": "supported",
+            "explanation": "Temperature or solar radiative climatology available."
+          },
+          {
+            "id": "mission-critical-evidence",
+            "label": "Primary mission-weighted drivers present",
+            "status": "unknown",
+            "explanation": "One or more primary mission features (>=15% weight) remain unmeasured; status is unknown, not failed."
+          },
+          {
+            "id": "independent-observations",
+            "label": "Independent field observations confirmed",
+            "status": "unknown",
+            "explanation": "Unconfirmed: live-grid screening cells use remote API telemetry without in-situ field campaign proof."
+          },
+          {
+            "id": "literature-support",
+            "label": "Peer-reviewed literature support available",
+            "status": "unknown",
+            "explanation": "No peer-reviewed field citation attached; regional screening uses open geospatial datasets."
+          },
+          {
+            "id": "critical-missing-identified",
+            "label": "Critical missing measurements identified",
+            "status": "supported",
+            "explanation": "All missing mission-weighted variables are explicitly preserved as null and enumerated."
+          },
+          {
+            "id": "key-uncertainty-disclosed",
+            "label": "Key uncertainty disclosed",
+            "status": "supported",
+            "explanation": "Spatial resolution disparities, planetary body differences (gravity/atmosphere/radiation), and screening limits are disclosed."
+          }
+        ],
+        "featureExplanations": [
+          {
+            "key": "lithology",
+            "label": "Dominant lithology",
+            "shortLabel": "Lithology",
+            "unit": "",
+            "missionWeight": 0.3,
+            "earthValue": null,
+            "targetValue": "clay-sedimentary",
+            "comparisonStatus": "missing_data",
+            "similarity": null,
+            "contributionCategory": "missing-evidence",
+            "evidenceClassification": "missing_data",
+            "dataOrigin": "missing",
+            "verificationState": "no-data",
+            "sourceTitle": "Macrostrat (Pliocene undifferentiated)",
+            "sourceUrl": "https://www.bgr.bund.de/EN/Themen/Sammlungen-Grundlagen/GG_geol_Info/Karten/International/Europa/IGME5000/igme5000_node_en.html",
+            "spatialResolution": "Regional geologic map polygon scale (typically 1:250k–1:5M)",
+            "qualityNotes": "Unit: Pliocene undifferentiated | Age: Pliocene - Quaternary | Classifier: unmapped-class | Raw: Pliocene undifferentiated | Source: The 1:5M International Geological Map of Europe and Adjacent Areas: Development and Implementation of a GIS-enabled Concept",
+            "interpretation": "Dominant lithology (mission weight 30%) lacks usable telemetry on Earth or planetary target and is omitted from the coverage denominator rather than scored as zero.",
+            "limitations": [
+              "Measurement absent; missing data must not be inferred as match or failure."
+            ]
+          },
+          {
+            "key": "vegetationCoverPct",
+            "label": "Vegetation cover",
+            "shortLabel": "Vegetation",
+            "unit": "%",
+            "missionWeight": 0.15,
+            "earthValue": null,
+            "targetValue": 0,
+            "comparisonStatus": "missing_data",
+            "similarity": null,
+            "contributionCategory": "missing-evidence",
+            "evidenceClassification": "missing_data",
+            "dataOrigin": "missing",
+            "verificationState": "no-data",
+            "qualityNotes": "Fractional vegetation cover excluded from coarse climate/DEM pass.",
+            "interpretation": "Vegetation cover (mission weight 15%) lacks usable telemetry on Earth or planetary target and is omitted from the coverage denominator rather than scored as zero.",
+            "limitations": [
+              "Measurement absent; missing data must not be inferred as match or failure."
+            ]
+          },
+          {
+            "key": "albedo",
+            "label": "Surface albedo",
+            "shortLabel": "Albedo",
+            "unit": "",
+            "missionWeight": 0.15,
+            "earthValue": null,
+            "targetValue": 0.19,
+            "comparisonStatus": "missing_data",
+            "similarity": null,
+            "contributionCategory": "missing-evidence",
+            "evidenceClassification": "missing_data",
+            "dataOrigin": "missing",
+            "verificationState": "no-data",
+            "qualityNotes": "Broadband Bond/hemispherical surface albedo not queried in regional screening tier.",
+            "interpretation": "Surface albedo (mission weight 15%) lacks usable telemetry on Earth or planetary target and is omitted from the coverage denominator rather than scored as zero.",
+            "limitations": [
+              "Measurement absent; missing data must not be inferred as match or failure."
+            ]
+          },
+          {
+            "key": "meanSlopeDeg",
+            "label": "Mean terrain slope",
+            "shortLabel": "Slope",
+            "unit": "°",
+            "missionWeight": 0.1,
+            "earthValue": 0.53,
+            "targetValue": 5,
+            "comparisonStatus": "comparable",
+            "similarity": 0.821,
+            "contributionCategory": "strong-supporting-match",
+            "evidenceClassification": "derived",
+            "dataOrigin": "computed-derivative",
+            "verificationState": "unverified",
+            "sourceTitle": "5-Point Central-Difference Gradient (Copernicus DEM GLO-90)",
+            "sourceUrl": "https://open-meteo.com/en/docs/elevation-api",
+            "spatialResolution": "Derived from 5-point cardinal central difference over ~445 m baseline (90 m DEM pixels)",
+            "qualityNotes": "Derived macro-slope across ~445 m central-difference baseline; smooths meter-scale boulders and micro-roughness.",
+            "interpretation": "Mean terrain slope (1 ° vs. target 5 °, 82% normalized match) closely aligns within TerraTwin's tolerance band.",
+            "limitations": [
+              "Computed derivative subject to spatial-stencil or model averaging smoothing.",
+              "Copernicus 90 m DEM 5-point gradient (~445 m baseline) smooths boulders and meter-scale scarps."
+            ]
+          },
+          {
+            "key": "rockAbundancePct",
+            "label": "Rock abundance / Terrain roughness",
+            "shortLabel": "Rock cover",
+            "unit": "%",
+            "missionWeight": 0.1,
+            "earthValue": null,
+            "targetValue": 14,
+            "comparisonStatus": "missing_data",
+            "similarity": null,
+            "contributionCategory": "missing-evidence",
+            "evidenceClassification": "missing_data",
+            "dataOrigin": "missing",
+            "verificationState": "no-data",
+            "qualityNotes": "Meter-scale rock/boulder abundance is unmeasured at regional screening resolution.",
+            "interpretation": "Rock abundance (mission weight 10%) lacks usable telemetry on Earth or planetary target and is omitted from the coverage denominator rather than scored as zero.",
+            "limitations": [
+              "Measurement absent; missing data must not be inferred as match or failure."
+            ]
+          },
+          {
+            "key": "medianGrainSizeMm",
+            "label": "Median regolith grain size",
+            "shortLabel": "Grain size",
+            "unit": "mm",
+            "missionWeight": 0.1,
+            "earthValue": null,
+            "targetValue": 0.35,
+            "comparisonStatus": "missing_data",
+            "similarity": null,
+            "contributionCategory": "missing-evidence",
+            "evidenceClassification": "missing_data",
+            "dataOrigin": "missing",
+            "verificationState": "no-data",
+            "qualityNotes": "Granulometric regolith sieve size requires laboratory or in-situ sieving.",
+            "interpretation": "Median grain size (mission weight 10%) lacks usable telemetry on Earth or planetary target and is omitted from the coverage denominator rather than scored as zero.",
+            "limitations": [
+              "Measurement absent; missing data must not be inferred as match or failure."
+            ]
+          },
+          {
+            "key": "meanSurfaceTempC",
+            "label": "Mean surface temperature",
+            "shortLabel": "Mean temp.",
+            "unit": "°C",
+            "missionWeight": 0.05,
+            "earthValue": 12.1,
+            "targetValue": -55,
+            "comparisonStatus": "comparable",
+            "similarity": 0.553,
+            "contributionCategory": "partial-match",
+            "evidenceClassification": "proxy",
+            "dataOrigin": "live-api-estimate",
+            "verificationState": "unverified",
+            "sourceTitle": "NASA POWER Climatology (T2M 2-meter air temp proxy)",
+            "sourceUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+            "spatialResolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+            "temporalCoverage": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+            "qualityNotes": "25-year annual mean 2-meter air temperature (T2M) used as an atmospheric proxy for bare-ground surface skin temperature.",
+            "interpretation": "Mean surface temperature (12.1 °C vs. target -55.0 °C, 55% normalized match) shows moderate proximity with notable physical offset.",
+            "limitations": [
+              "Atmospheric, coarse-grid, or broad map-unit proxy rather than direct in-situ sample.",
+              "NASA POWER 2-meter air temperature proxy on ~50 km grid rather than micro-scale ground skin sensor."
+            ]
+          },
+          {
+            "key": "surfaceSolarIrradianceWm2",
+            "label": "Surface solar irradiance",
+            "shortLabel": "Solar flux",
+            "unit": "W/m²",
+            "missionWeight": 0.05,
+            "earthValue": 206,
+            "targetValue": 152,
+            "comparisonStatus": "incompatible_units",
+            "similarity": null,
+            "contributionCategory": "not-comparable",
+            "evidenceClassification": "derived",
+            "dataOrigin": "computed-derivative",
+            "verificationState": "unverified",
+            "sourceTitle": "NASA POWER Climatology (ALLSKY_SFC_SW_DWN, 24h mean)",
+            "sourceUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+            "spatialResolution": "1.0° × 1.0° (CERES SYN1DEG via NASA POWER)",
+            "temporalCoverage": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+            "qualityNotes": "24-hour climatological average shortwave downward flux (converted from kW-hr/m^2/day); not instantaneous noon peak and not equivalent to lunar polar illumination geometry.",
+            "interpretation": "Incompatible units: Target is recorded in \"W/m2\" while candidate is in \"W/m²\".",
+            "limitations": [
+              "Incompatible units: Target is recorded in \"W/m2\" while candidate is in \"W/m²\"."
+            ]
+          },
+          {
+            "key": "elevationM",
+            "label": "Elevation relative to datum",
+            "shortLabel": "Elevation",
+            "unit": "m",
+            "missionWeight": 0,
+            "earthValue": 857,
+            "targetValue": -2651,
+            "comparisonStatus": "comparable",
+            "similarity": 0.298,
+            "contributionCategory": "significant-mismatch",
+            "evidenceClassification": "measured",
+            "dataOrigin": "live-api-estimate",
+            "verificationState": "unverified",
+            "sourceTitle": "Copernicus DEM GLO-90 (Open-Meteo)",
+            "sourceUrl": "https://open-meteo.com/en/docs/elevation-api",
+            "spatialResolution": "90 m grid cell",
+            "qualityNotes": "Elevation above EGM2008/geoid datum from Copernicus GLO-90; unverified field point.",
+            "interpretation": "Elevation relative to datum (857 m vs. target -2,651 m, 30% normalized match) diverges substantially beyond tolerance.",
+            "limitations": []
+          },
+          {
+            "key": "diurnalTempRangeC",
+            "label": "Diurnal temperature range",
+            "shortLabel": "Diurnal swing",
+            "unit": "°C",
+            "missionWeight": 0,
+            "earthValue": 18.8,
+            "targetValue": 80,
+            "comparisonStatus": "comparable",
+            "similarity": 0.592,
+            "contributionCategory": "partial-match",
+            "evidenceClassification": "derived",
+            "dataOrigin": "live-api-estimate",
+            "verificationState": "unverified",
+            "sourceTitle": "NASA POWER Climatology (TS_RANGE)",
+            "sourceUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+            "spatialResolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+            "temporalCoverage": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+            "qualityNotes": "25-year climatological annual average diurnal earth-skin temperature amplitude.",
+            "interpretation": "Diurnal temperature range (18.8 °C vs. target 80.0 °C, 59% normalized match) shows moderate proximity with notable physical offset.",
+            "limitations": [
+              "Computed derivative subject to spatial-stencil or model averaging smoothing."
+            ]
+          },
+          {
+            "key": "annualPrecipitationMm",
+            "label": "Annual precipitation",
+            "shortLabel": "Precipitation",
+            "unit": "mm/yr",
+            "missionWeight": 0,
+            "earthValue": 690,
+            "targetValue": 0,
+            "comparisonStatus": "incompatible_quantities",
+            "similarity": null,
+            "contributionCategory": "not-comparable",
+            "evidenceClassification": "derived",
+            "dataOrigin": "computed-derivative",
+            "verificationState": "unverified",
+            "sourceTitle": "NASA POWER Climatology (PRECTOTCORR)",
+            "sourceUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+            "spatialResolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+            "temporalCoverage": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+            "interpretation": "Target planetary bodies lack active liquid water cycles (0 mm/yr). Active precipitation cannot be meaningfully compared against desiccated or vacuum planetary surfaces.",
+            "limitations": [
+              "Target planetary bodies lack active liquid water cycles (0 mm/yr). Active precipitation cannot be meaningfully compared against desiccated or vacuum planetary surfaces."
+            ]
+          },
+          {
+            "key": "surfacePressurePa",
+            "label": "Surface atmospheric pressure",
+            "shortLabel": "Pressure",
+            "unit": "Pa",
+            "missionWeight": 0,
+            "earthValue": null,
+            "targetValue": 750,
+            "comparisonStatus": "missing_data",
+            "similarity": null,
+            "contributionCategory": "missing-evidence",
+            "evidenceClassification": "missing_data",
+            "dataOrigin": "missing",
+            "verificationState": "no-data",
+            "qualityNotes": "Station atmospheric surface pressure omitted in coarse climatology request.",
+            "interpretation": "Surface atmospheric pressure is unmeasured and carries 0% weight under this mission profile.",
+            "limitations": [
+              "Measurement absent; missing data must not be inferred as match or failure."
+            ]
+          }
+        ],
+        "evidenceQuality": {
+          "comparableCount": 4,
+          "missingCount": 6,
+          "incompatibleCount": 2,
+          "measuredCount": 1,
+          "derivedCount": 4,
+          "proxyCount": 1,
+          "illustrativeCount": 0,
+          "independentlyVerifiedCount": 0,
+          "weightedCoverage": 0.15,
+          "qualitativeTags": [
+            "source-supported",
+            "proxy-limited",
+            "spatially-coarse",
+            "missing-critical-measurements"
+          ],
+          "assessmentSummary": "Evidence is predominantly proxy/derivative (1 proxy, 4 derived vs. 1 measured) across coarse regional layers, with 6 unmeasured variables.",
+          "resolutionNotes": [
+            "Elevation/slope (~90 m / ~445 m DEM), NASA POWER climatology (~50–100 km MERRA-2/CERES grid), and Macrostrat polygons (regional geologic maps) span vastly different spatial scales.",
+            "Temporal climatology spans 2001–2025 annual means and does not capture episodic micro-climate pulses or site traverses."
+          ],
+          "distinctionNote": "Similarity measures agreement on comparable variables; coverage measures mission-weighted availability; evidence quality assesses provenance, spatial scale, proxy limits, and field verification independently (no fabricated confidence percentage)."
+        },
+        "mismatches": [
+          {
+            "kind": "unknown",
+            "featureKey": "lithology",
+            "title": "Dominant lithology unmeasured (wt 30%)",
+            "missionWeight": 0.3,
+            "similarity": null,
+            "detail": "Null observation on candidate/target under Geological field research; excluded from similarity score denominator.",
+            "missionImpact": "Cannot be evaluated from current datasets. Requires targeted remote sensing, geological mapping, or field measurement."
+          },
+          {
+            "kind": "unknown",
+            "featureKey": "vegetationCoverPct",
+            "title": "Vegetation cover unmeasured (wt 15%)",
+            "missionWeight": 0.15,
+            "similarity": null,
+            "detail": "Null observation on candidate/target under Geological field research; excluded from similarity score denominator.",
+            "missionImpact": "Cannot be evaluated from current datasets. Requires targeted remote sensing, geological mapping, or field measurement."
+          },
+          {
+            "kind": "unknown",
+            "featureKey": "albedo",
+            "title": "Surface albedo unmeasured (wt 15%)",
+            "missionWeight": 0.15,
+            "similarity": null,
+            "detail": "Null observation on candidate/target under Geological field research; excluded from similarity score denominator.",
+            "missionImpact": "Cannot be evaluated from current datasets. Requires targeted remote sensing, geological mapping, or field measurement."
+          },
+          {
+            "kind": "unknown",
+            "featureKey": "rockAbundancePct",
+            "title": "Rock abundance / Terrain roughness unmeasured (wt 10%)",
+            "missionWeight": 0.1,
+            "similarity": null,
+            "detail": "Null observation on candidate/target under Geological field research; excluded from similarity score denominator.",
+            "missionImpact": "Cannot be evaluated from current datasets. Requires targeted remote sensing, geological mapping, or field measurement."
+          },
+          {
+            "kind": "unknown",
+            "featureKey": "medianGrainSizeMm",
+            "title": "Median regolith grain size unmeasured (wt 10%)",
+            "missionWeight": 0.1,
+            "similarity": null,
+            "detail": "Null observation on candidate/target under Geological field research; excluded from similarity score denominator.",
+            "missionImpact": "Cannot be evaluated from current datasets. Requires targeted remote sensing, geological mapping, or field measurement."
+          },
+          {
+            "kind": "known-contextual-limitation",
+            "title": "Gravity & Atmospheric Disparity (Martian (0.38g, ~600–800 Pa CO₂))",
+            "detail": "Terrestrial gravity (9.81 m/s²), 101.3 kPa O₂/N₂ atmosphere, and hydrological weathering cannot reproduce Martian (0.38g, ~600–800 Pa CO₂) regimes.",
+            "missionImpact": "Excluded atmospheric pressure and precipitation from numeric ranking; impacts rover slip, dust levitation, thermal convection, and lander acoustics."
+          },
+          {
+            "kind": "known-contextual-limitation",
+            "title": "Radiation, Illumination & Regolith Cohesion Physics",
+            "detail": "Earth geomagnetic shielding and higher atmospheric column attenuate UV/ionizing radiation far more strongly than Mars.",
+            "missionImpact": "Simulates only selected physical surface indices; does not test radiation hardening, electrostatic dust adhesion, or hyper-sharp regolith abrasion."
+          }
+        ],
+        "missionInterpretation": "Under Geological field research against Jezero Crater Delta (coverage 15%), resolvable lithology is missing and surface albedo is unmeasured. Generalized regional geologic polygons indicate formation context only and never establish petrological or mineralogical identity without sample spectrometry.",
+        "researchPriority": {
+          "level": "not-presently-assessable",
+          "label": "Not presently assessable",
+          "reasons": [
+            "Weighted evidence coverage is below the 40% reliability gate; aggregate score is withheld.",
+            "Follow-up triage cannot justify site prioritization until primary mission measurements are available."
+          ],
+          "nextAction": "Review higher-resolution geological mapping or obtain field/laboratory confirmation of lithology and dominant mineral phases.",
+          "documentedRules": [
+            "Deterministic rule: candidates < 40% coverage or without valid scores are 'Not presently assessable'.",
+            "Rule guarantees low-coverage leads never outrank better-evidenced candidates; neither noveltyTier nor benchmark labels add bonus points.",
+            "High-weight (>=15%) missing drivers or heavy reliance on coarse proxies downgrades priority from 'Promising follow-up lead' to 'Additional data required' or 'Limited current evidence'."
+          ]
+        },
+        "sensitivityAnalysis": {
+          "status": "insufficient-evidence",
+          "label": "Exploratory weight-sensitivity analysis",
+          "baselineScore": null,
+          "baselineRank": 1,
+          "evaluatedCandidateSetSize": 2,
+          "perturbationFraction": 0.25,
+          "scenarios": [],
+          "minScore": null,
+          "maxScore": null,
+          "scoreSpan": null,
+          "orderChangedWithinEvaluatedSet": false,
+          "caveats": [
+            "Exploratory weight-sensitivity analysis: tests ±25% re-normalized perturbations of the top active comparable mission weights using computeAnalogSimilarity().",
+            "This is NOT a statistical confidence interval, measurement error distribution, or scientific validation certificate.",
+            "Scenarios neither fabricate missing measurements nor alter the 40% evidence coverage gate."
+          ],
+          "unavailableReason": "Sensitivity analysis is disabled when evidence coverage is below the 40% reliability gate."
+        },
+        "followUpRecommendations": [
+          {
+            "id": "follow-geology",
+            "missionRelevance": "critical",
+            "driverFeature": "lithology",
+            "title": "Unmapped Lithology Resolution",
+            "action": "Review higher-resolution geological mapping or obtain field/laboratory confirmation of lithology and dominant mineral phases.",
+            "rationale": "Macrostrat polygon data was null or mixed-unit; petrological class remains unknown.",
+            "priorityOrder": 1,
+            "observationStatus": "recommended-not-completed"
+          },
+          {
+            "id": "follow-vegetationCoverPct",
+            "missionRelevance": "critical",
+            "driverFeature": "vegetationCoverPct",
+            "title": "Fractional Bare-Ground Vegetation Survey",
+            "action": "Verify absence of vascular/cryptogamic vegetation cover via high-resolution optical imagery or seasonal ground check.",
+            "rationale": "Vegetation cover (wt 15%) was unmeasured in regional screening.",
+            "priorityOrder": 2,
+            "observationStatus": "recommended-not-completed"
+          },
+          {
+            "id": "follow-albedo",
+            "missionRelevance": "critical",
+            "driverFeature": "albedo",
+            "title": "Multi-Spectral Surface Albedo Retrieval",
+            "action": "Acquire cloud-free optical/multispectral satellite reflectance (e.g., Landsat/Sentinel-2) to quantify broadband albedo.",
+            "rationale": "Surface albedo (wt 15%) was unmeasured in regional screening.",
+            "priorityOrder": 3,
+            "observationStatus": "recommended-not-completed"
+          },
+          {
+            "id": "follow-rock-abundance",
+            "missionRelevance": "high",
+            "driverFeature": "rockAbundancePct",
+            "title": "Surface Clast & Boulder Hazard Mapping",
+            "action": "Obtain higher-resolution imagery or field measurements to assess surface rock abundance (>10 cm clasts) and landing/traverse hazards.",
+            "rationale": "Rock abundance carries 10% mission weight and is unmeasured at regional tier.",
+            "priorityOrder": 4,
+            "observationStatus": "recommended-not-completed"
+          },
+          {
+            "id": "follow-grain-size",
+            "missionRelevance": "high",
+            "driverFeature": "medianGrainSizeMm",
+            "title": "Regolith Granulometry & Soil Mechanics",
+            "action": "Collect sedimentological or regolith grain-size measurements and bearing-strength profiles in the field or laboratory.",
+            "rationale": "Median grain size (wt 10%) requires physical sieving and governs wheel sinkage/ISRU sintering.",
+            "priorityOrder": 5,
+            "observationStatus": "recommended-not-completed"
+          },
+          {
+            "id": "follow-terrain-dem",
+            "missionRelevance": "moderate",
+            "driverFeature": "meanSlopeDeg",
+            "title": "Meter-Scale Topographic Survey",
+            "action": "Acquire higher-resolution topographic data (drone photogrammetry, LiDAR, or <2 m stereo DEM) to validate micro-slopes smoothed by 90 m DEM stencils.",
+            "rationale": "Regional 5-point ~445 m gradient misses decimeter–meter scarps and rover roll obstacles.",
+            "priorityOrder": 6,
+            "observationStatus": "recommended-not-completed"
+          },
+          {
+            "id": "follow-microclimate",
+            "missionRelevance": "moderate",
+            "driverFeature": "meanSurfaceTempC",
+            "title": "Local Microclimate vs. Reanalysis Calibration",
+            "action": "Compare local meteorological station or surface skin logger observations against NASA POWER 0.5° × 0.625° climatological estimates.",
+            "rationale": "50 km MERRA-2 2 m air temperatures omit terrain aspect shading, ground thermal inertia, and cold-air drainage.",
+            "priorityOrder": 7,
+            "observationStatus": "recommended-not-completed"
+          }
+        ],
+        "sourceReferences": [
+          {
+            "title": "Macrostrat (Pliocene undifferentiated)",
+            "providerOrOrg": "TerraTwin Provenance Record",
+            "url": "https://www.bgr.bund.de/EN/Themen/Sammlungen-Grundlagen/GG_geol_Info/Karten/International/Europa/IGME5000/igme5000_node_en.html",
+            "resolution": "Regional geologic map polygon scale (typically 1:250k–1:5M)"
+          },
+          {
+            "title": "5-Point Central-Difference Gradient (Copernicus DEM GLO-90)",
+            "providerOrOrg": "External Open Geospatial API",
+            "url": "https://open-meteo.com/en/docs/elevation-api",
+            "resolution": "Derived from 5-point cardinal central difference over ~445 m baseline (90 m DEM pixels)"
+          },
+          {
+            "title": "NASA POWER Climatology (T2M 2-meter air temp proxy)",
+            "providerOrOrg": "External Open Geospatial API",
+            "url": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+            "resolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+            "temporalCoverage": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)"
+          },
+          {
+            "title": "NASA POWER Climatology (ALLSKY_SFC_SW_DWN, 24h mean)",
+            "providerOrOrg": "External Open Geospatial API",
+            "url": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+            "resolution": "1.0° × 1.0° (CERES SYN1DEG via NASA POWER)",
+            "temporalCoverage": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)"
+          },
+          {
+            "title": "Copernicus DEM GLO-90 (Open-Meteo)",
+            "providerOrOrg": "External Open Geospatial API",
+            "url": "https://open-meteo.com/en/docs/elevation-api",
+            "resolution": "90 m grid cell"
+          },
+          {
+            "title": "NASA POWER Climatology (TS_RANGE)",
+            "providerOrOrg": "External Open Geospatial API",
+            "url": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+            "resolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+            "temporalCoverage": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)"
+          },
+          {
+            "title": "NASA POWER Climatology (PRECTOTCORR)",
+            "providerOrOrg": "External Open Geospatial API",
+            "url": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+            "resolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+            "temporalCoverage": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)"
+          }
+        ],
+        "scientificCaveats": [
+          "Data coverage is below 40% threshold for reliable similarity scoring.",
+          "Rock abundance and surface roughness unmeasured at regional resolution.",
+          "Macrostrat lithology 'Pliocene undifferentiated' falls outside TerraTwin's 7-class taxonomy.",
+          "Similarity score and research priority are separate exploratory screening aids, not NASA endorsements or mission-readiness certificates.",
+          "Regional DEM (~445 m central-difference), NASA POWER (~50 km MERRA-2), and Macrostrat geologic polygons cannot resolve local outcrop or rover traverse safety."
+        ],
+        "presentationThresholdDisclosure": "Feature match labels use documented TerraTwin presentation thresholds (Strong >= 75%, Partial 45–74%, Mismatch < 45%). These are interpretive presentation helpers, not validated planetary boundaries or changes to backend similarity scores.",
+        "disclaimer": "TerraTwin provides exploratory analog screening based on available scientific datasets. Results require independent validation before field or mission use."
+      },
+      "validationChecklist": [
+        {
+          "id": "coords-valid",
+          "label": "Geographic coordinates valid",
+          "status": "supported",
+          "explanation": "WGS84 position (37.3500°, 29.4500°) lies within [-90..90, -180..180]."
+        },
+        {
+          "id": "env-data-retrieved",
+          "label": "Environmental data retrieved",
+          "status": "supported",
+          "explanation": "One or more quantitative or categorical environmental measurements are present."
+        },
+        {
+          "id": "units-validated",
+          "label": "Feature units validated",
+          "status": "not-supported",
+          "explanation": "Unit discrepancy flagged by similarity engine; mismatched units are blocked from comparison."
+        },
+        {
+          "id": "inputs-traceable",
+          "label": "Similarity inputs traceable",
+          "status": "supported",
+          "explanation": "7 dataset or citation reference(s) linked to this evaluation."
+        },
+        {
+          "id": "geology-documented",
+          "label": "Relevant geology documented",
+          "status": "unknown",
+          "explanation": "Lithology unavailable or kept null due to ambiguous mixed map units; unknown rather than disproven."
+        },
+        {
+          "id": "elevation-available",
+          "label": "Elevation evidence available",
+          "status": "supported",
+          "explanation": "Datum elevation recorded (857 m)."
+        },
+        {
+          "id": "gradient-available",
+          "label": "Terrain gradient estimate available",
+          "status": "supported",
+          "explanation": "Slope estimate recorded (1 °)."
+        },
+        {
+          "id": "climate-context-available",
+          "label": "Climate context available",
+          "status": "supported",
+          "explanation": "Temperature or solar radiative climatology available."
+        },
+        {
+          "id": "mission-critical-evidence",
+          "label": "Primary mission-weighted drivers present",
+          "status": "unknown",
+          "explanation": "One or more primary mission features (>=15% weight) remain unmeasured; status is unknown, not failed."
+        },
+        {
+          "id": "independent-observations",
+          "label": "Independent field observations confirmed",
+          "status": "unknown",
+          "explanation": "Unconfirmed: live-grid screening cells use remote API telemetry without in-situ field campaign proof."
+        },
+        {
+          "id": "literature-support",
+          "label": "Peer-reviewed literature support available",
+          "status": "unknown",
+          "explanation": "No peer-reviewed field citation attached; regional screening uses open geospatial datasets."
+        },
+        {
+          "id": "critical-missing-identified",
+          "label": "Critical missing measurements identified",
+          "status": "supported",
+          "explanation": "All missing mission-weighted variables are explicitly preserved as null and enumerated."
+        },
+        {
+          "id": "key-uncertainty-disclosed",
+          "label": "Key uncertainty disclosed",
+          "status": "supported",
+          "explanation": "Spatial resolution disparities, planetary body differences (gravity/atmosphere/radiation), and screening limits are disclosed."
+        }
+      ],
+      "providerTelemetry": [
+        {
+          "provider": "Open-Meteo Elevation",
+          "dataset": "Copernicus DEM GLO-90 (European Space Agency / Open-Meteo)",
+          "datasetVersion": "Copernicus GLO-90 via Open-Meteo v1",
+          "status": "success",
+          "recordsFetched": 1,
+          "cacheHits": 1,
+          "latencyMs": 1404,
+          "spatialResolution": "90 m grid cell (5-point central-difference gradient (4 cardinal neighbors) over ~445 m baseline)",
+          "sourceUrl": "https://open-meteo.com/en/docs/elevation-api",
+          "attributionNotice": "Copernicus DEM GLO-90 by European Space Agency, served via Open-Meteo Elevation API."
+        },
+        {
+          "provider": "NASA POWER Climatology",
+          "dataset": "POWER Climatology API v2.10.1 (MERRA-2 / CERES SYN1DEG)",
+          "datasetVersion": "v2.10.1",
+          "status": "success",
+          "recordsFetched": 1,
+          "cacheHits": 1,
+          "latencyMs": 2200,
+          "spatialResolution": "0.5° × 0.625° (MERRA-2 met) / 1.0° × 1.0° (CERES solar)",
+          "temporalCoverage": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+          "sourceUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+          "attributionNotice": "NASA POWER Project funded by NASA Earth Science (MERRA-2 & CERES SYN1DEG)."
+        },
+        {
+          "provider": "Macrostrat Geology",
+          "dataset": "Macrostrat API v2 (Geologic Map Integration)",
+          "datasetVersion": "v2 (map_query_v2, zoom=8)",
+          "status": "success",
+          "recordsFetched": 1,
+          "cacheHits": 1,
+          "latencyMs": 2652,
+          "spatialResolution": "Regional map unit scale (1:250k–1:5M)",
+          "sourceUrl": "https://macrostrat.org/api/v2/mobile/map_query_v2",
+          "attributionNotice": "Macrostrat / BGR / USGS Geologic Map Integration (CC BY 4.0)."
+        }
+      ],
+      "searchMetadata": {
+        "boundingBox": [
+          37.1,
+          29.2,
+          38,
+          30.2
+        ],
+        "targetId": "mars-jezero-delta",
+        "missionProfile": "Geological field research",
+        "gridSpacingDeg": 0.5,
+        "cellsGenerated": 2,
+        "cellsEvaluated": 2,
+        "maxCellsAllowed": 4,
+        "responseCacheHit": true,
+        "scientificMethodology": {
+          "slopeMethod": "5-point central-difference gradient (4 cardinal neighbors)",
+          "slopeStencilDeltaDeg": 0.002,
+          "polarExclusionLatDeg": 89.5,
+          "nasaPowerPeriod": "2001-2025 Climatology (v2.10.1)",
+          "temperatureProxyNote": "NASA POWER T2M is 2m air temperature proxy on a 0.5°×0.625° MERRA-2 grid.",
+          "lithologyClassifierPolicy": "Ambiguous mixed units and ultramafic rocks remain null rather than forcing first-keyword guesses."
+        }
+      },
+      "sourceReferences": [
+        {
+          "title": "Macrostrat (Pliocene undifferentiated)",
+          "providerOrOrg": "TerraTwin Provenance Record",
+          "url": "https://www.bgr.bund.de/EN/Themen/Sammlungen-Grundlagen/GG_geol_Info/Karten/International/Europa/IGME5000/igme5000_node_en.html",
+          "resolution": "Regional geologic map polygon scale (typically 1:250k–1:5M)",
+          "originKind": "live-provider"
+        },
+        {
+          "title": "5-Point Central-Difference Gradient (Copernicus DEM GLO-90)",
+          "providerOrOrg": "External Open Geospatial API",
+          "url": "https://open-meteo.com/en/docs/elevation-api",
+          "resolution": "Derived from 5-point cardinal central difference over ~445 m baseline (90 m DEM pixels)",
+          "originKind": "repository-dataset"
+        },
+        {
+          "title": "NASA POWER Climatology (T2M 2-meter air temp proxy)",
+          "providerOrOrg": "External Open Geospatial API",
+          "url": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+          "resolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+          "temporalCoverage": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+          "originKind": "live-provider"
+        },
+        {
+          "title": "NASA POWER Climatology (ALLSKY_SFC_SW_DWN, 24h mean)",
+          "providerOrOrg": "External Open Geospatial API",
+          "url": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+          "resolution": "1.0° × 1.0° (CERES SYN1DEG via NASA POWER)",
+          "temporalCoverage": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+          "originKind": "live-provider"
+        },
+        {
+          "title": "Copernicus DEM GLO-90 (Open-Meteo)",
+          "providerOrOrg": "External Open Geospatial API",
+          "url": "https://open-meteo.com/en/docs/elevation-api",
+          "resolution": "90 m grid cell",
+          "originKind": "live-provider"
+        },
+        {
+          "title": "NASA POWER Climatology (TS_RANGE)",
+          "providerOrOrg": "External Open Geospatial API",
+          "url": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+          "resolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+          "temporalCoverage": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+          "originKind": "live-provider"
+        },
+        {
+          "title": "NASA POWER Climatology (PRECTOTCORR)",
+          "providerOrOrg": "External Open Geospatial API",
+          "url": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+          "resolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+          "temporalCoverage": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+          "originKind": "live-provider"
+        }
+      ],
+      "scientificLimitations": [
+        "Data coverage is below 40% threshold for reliable similarity scoring.",
+        "Rock abundance and surface roughness unmeasured at regional resolution.",
+        "Macrostrat lithology 'Pliocene undifferentiated' falls outside TerraTwin's 7-class taxonomy.",
+        "Similarity score and research priority are separate exploratory screening aids, not NASA endorsements or mission-readiness certificates.",
+        "Regional DEM (~445 m central-difference), NASA POWER (~50 km MERRA-2), and Macrostrat geologic polygons cannot resolve local outcrop or rover traverse safety."
+      ],
+      "dataAvailabilityWarnings": [
+        "Data coverage is below 40% threshold for reliable similarity scoring.",
+        "Rock abundance and surface roughness unmeasured at regional resolution.",
+        "Macrostrat lithology 'Pliocene undifferentiated' falls outside TerraTwin's 7-class taxonomy.",
+        "Dominant lithology unmeasured (wt 30%): Null observation on candidate/target under Geological field research; excluded from similarity score denominator.",
+        "Vegetation cover unmeasured (wt 15%): Null observation on candidate/target under Geological field research; excluded from similarity score denominator.",
+        "Surface albedo unmeasured (wt 15%): Null observation on candidate/target under Geological field research; excluded from similarity score denominator.",
+        "Rock abundance / Terrain roughness unmeasured (wt 10%): Null observation on candidate/target under Geological field research; excluded from similarity score denominator.",
+        "Median regolith grain size unmeasured (wt 10%): Null observation on candidate/target under Geological field research; excluded from similarity score denominator."
+      ],
+      "reportMetadata": {
+        "reportTitle": "TerraTwin Scientific Analog Candidate Assessment",
+        "reportSubtitle": "Mission-Specific Earth Analog Screening & Research Validation Record",
+        "reportVersion": "6.6.0",
+        "candidateId": "cell_+37.3500_+29.4500",
+        "candidateName": "Candidate Cell +37.3500_+29.4500",
+        "snapshotId": "ttw-snap-cell_-37-3500_-29--r1-dca425a3",
+        "snapshotSchemaVersion": "1.0.0",
+        "contentDigest": "fnv64-2adcb3914a049afd",
+        "digestNote": "Integrity digest computed via deterministic canonical JSON serialization over snapshot schemaVersion, candidateId, targetId, missionProfileId, coordinates, score, coverage, environmental telemetry, featureScores, validationChecklist, and researchPriority. Establishes data integrity only; does NOT establish independent scientific verification.",
+        "generatedAt": "2026-11-14T21:49:28.124Z",
+        "datasetTemporalContext": [
+          "NASA POWER period: 2001-2025 Climatology (v2.10.1)",
+          "Mean temp.: 25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+          "Solar flux: 25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+          "Diurnal swing: 25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+          "Precipitation: 25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+          "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)"
+        ],
+        "sourceVersions": [
+          "Copernicus GLO-90",
+          "v2.10.1",
+          "Macrostrat API v2"
+        ],
+        "methodologyVersion": "TerraTwin Discovery Engine v6.3.1 · Scientific Intelligence v6.5",
+        "missionProfileId": "geological-research",
+        "missionProfileLabel": "Geological field research",
+        "targetId": "a0000001-0000-4000-8000-000000000001",
+        "targetName": "Jezero Crater Delta",
+        "targetBody": "mars",
+        "storageMode": "browser-local-and-explicit-export",
+        "storageNotice": "Browser-local workspace storage: research assessments, tasks, and notes are stored in this browser's localStorage and active session only. They do not sync across devices or write to shared databases. Export PDF, CSV, or Snapshot JSON files to archive permanently."
+      }
+    },
+    "revisionHistory": [
+      {
+        "revisionNumber": 1,
+        "label": "Assessment A — Initial Screening Snapshot",
+        "createdAt": "2026-11-14T21:49:28.124Z",
+        "snapshotId": "ttw-snap-cell_-37-3500_-29--r1-dca425a3",
+        "snapshot": {
+          "snapshotId": "ttw-snap-cell_-37-3500_-29--r1-dca425a3",
+          "schemaVersion": "1.0.0",
+          "contentDigest": "fnv64-2adcb3914a049afd",
+          "digestScopeNote": "Integrity digest computed via deterministic canonical JSON serialization over snapshot schemaVersion, candidateId, targetId, missionProfileId, coordinates, score, coverage, environmental telemetry, featureScores, validationChecklist, and researchPriority. Establishes data integrity only; does NOT establish independent scientific verification.",
+          "revisionNumber": 1,
+          "revisionLabel": "Assessment A — Initial Screening Snapshot",
+          "createdAt": "2026-11-14T21:49:28.124Z",
+          "candidateId": "cell_+37.3500_+29.4500",
+          "candidateName": "Candidate Cell +37.3500_+29.4500",
+          "candidateSourceKind": "live-grid-cell",
+          "noveltyTier": "live-grid-discovery",
+          "coordinates": {
+            "latitude": 37.35,
+            "longitude": 29.45,
+            "boundingBox": [
+              37.1,
+              29.2,
+              37.6,
+              29.7
+            ]
+          },
+          "candidate": {
+            "id": "cell_+37.3500_+29.4500",
+            "name": "Candidate Cell +37.3500_+29.4500",
+            "country": "Regional Scan",
+            "latitude": 37.35,
+            "longitude": 29.45,
+            "setting": "Regional geology: Pliocene undifferentiated",
+            "summary": "Exploratory candidate cell at (37.3500°, 29.4500°) evaluated via Copernicus DEM, NASA POWER climatology, and Macrostrat.",
+            "environment": {
+              "meanSurfaceTempC": 12.1,
+              "diurnalTempRangeC": 18.8,
+              "annualPrecipitationMm": 690,
+              "meanSlopeDeg": 0.53,
+              "rockAbundancePct": null,
+              "medianGrainSizeMm": null,
+              "albedo": null,
+              "vegetationCoverPct": null,
+              "lithology": null,
+              "elevationM": 857,
+              "surfacePressurePa": null,
+              "surfaceSolarIrradianceWm2": 206
+            },
+            "provenanceMap": {
+              "elevationM": {
+                "status": "unverified",
+                "dataOrigin": "live-api-estimate",
+                "evidenceClassification": "measured",
+                "verificationState": "unverified",
+                "provider": "Open-Meteo Elevation",
+                "sourceTitle": "Copernicus DEM GLO-90 (Open-Meteo)",
+                "sourceUrl": "https://open-meteo.com/en/docs/elevation-api",
+                "datasetVersion": "Copernicus GLO-90",
+                "unit": "m",
+                "spatialResolution": "90 m grid cell",
+                "qualityNotes": "Elevation above EGM2008/geoid datum from Copernicus GLO-90; unverified field point.",
+                "isComparable": true
+              },
+              "meanSlopeDeg": {
+                "status": "unverified",
+                "dataOrigin": "computed-derivative",
+                "evidenceClassification": "derived",
+                "verificationState": "unverified",
+                "provider": "Open-Meteo Elevation (Derived)",
+                "sourceTitle": "5-Point Central-Difference Gradient (Copernicus DEM GLO-90)",
+                "sourceUrl": "https://open-meteo.com/en/docs/elevation-api",
+                "datasetVersion": "Copernicus GLO-90",
+                "unit": "°",
+                "spatialResolution": "Derived from 5-point cardinal central difference over ~445 m baseline (90 m DEM pixels)",
+                "qualityNotes": "Derived macro-slope across ~445 m central-difference baseline; smooths meter-scale boulders and micro-roughness.",
+                "isComparable": true
+              },
+              "meanSurfaceTempC": {
+                "status": "unverified",
+                "dataOrigin": "live-api-estimate",
+                "evidenceClassification": "proxy",
+                "verificationState": "unverified",
+                "provider": "NASA POWER",
+                "sourceTitle": "NASA POWER Climatology (T2M 2-meter air temp proxy)",
+                "sourceUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+                "datasetVersion": "v2.10.1",
+                "measurementPeriod": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+                "unit": "°C",
+                "spatialResolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+                "qualityNotes": "25-year annual mean 2-meter air temperature (T2M) used as an atmospheric proxy for bare-ground surface skin temperature.",
+                "isComparable": true
+              },
+              "diurnalTempRangeC": {
+                "status": "unverified",
+                "dataOrigin": "live-api-estimate",
+                "evidenceClassification": "derived",
+                "verificationState": "unverified",
+                "provider": "NASA POWER",
+                "sourceTitle": "NASA POWER Climatology (TS_RANGE)",
+                "sourceUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+                "datasetVersion": "v2.10.1",
+                "measurementPeriod": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+                "unit": "°C",
+                "spatialResolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+                "qualityNotes": "25-year climatological annual average diurnal earth-skin temperature amplitude.",
+                "isComparable": true
+              },
+              "surfaceSolarIrradianceWm2": {
+                "status": "unverified",
+                "dataOrigin": "computed-derivative",
+                "evidenceClassification": "derived",
+                "verificationState": "unverified",
+                "provider": "NASA POWER",
+                "sourceTitle": "NASA POWER Climatology (ALLSKY_SFC_SW_DWN, 24h mean)",
+                "sourceUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+                "datasetVersion": "v2.10.1",
+                "measurementPeriod": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+                "unit": "W/m²",
+                "originalSourceValue": 4.93,
+                "originalSourceUnit": "kW-hr/m^2/day",
+                "spatialResolution": "1.0° × 1.0° (CERES SYN1DEG via NASA POWER)",
+                "qualityNotes": "24-hour climatological average shortwave downward flux (converted from kW-hr/m^2/day); not instantaneous noon peak and not equivalent to lunar polar illumination geometry.",
+                "isComparable": true
+              },
+              "annualPrecipitationMm": {
+                "status": "unverified",
+                "dataOrigin": "computed-derivative",
+                "evidenceClassification": "derived",
+                "verificationState": "unverified",
+                "provider": "NASA POWER",
+                "sourceTitle": "NASA POWER Climatology (PRECTOTCORR)",
+                "sourceUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+                "datasetVersion": "v2.10.1",
+                "measurementPeriod": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+                "unit": "mm/year",
+                "originalSourceValue": 1.89,
+                "originalSourceUnit": "mm/day",
+                "spatialResolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+                "isComparable": false,
+                "incomparabilityReason": "Active terrestrial rainfall/snowfall is physically non-comparable against dry/vacuum Moon and Mars targets."
+              },
+              "lithology": {
+                "status": "no-data",
+                "dataOrigin": "missing",
+                "evidenceClassification": "missing_data",
+                "verificationState": "no-data",
+                "provider": "Macrostrat",
+                "sourceTitle": "Macrostrat (Pliocene undifferentiated)",
+                "sourceUrl": "https://www.bgr.bund.de/EN/Themen/Sammlungen-Grundlagen/GG_geol_Info/Karten/International/Europa/IGME5000/igme5000_node_en.html",
+                "datasetVersion": "Macrostrat API v2",
+                "unit": "",
+                "spatialResolution": "Regional geologic map polygon scale (typically 1:250k–1:5M)",
+                "qualityNotes": "Unit: Pliocene undifferentiated | Age: Pliocene - Quaternary | Classifier: unmapped-class | Raw: Pliocene undifferentiated | Source: The 1:5M International Geological Map of Europe and Adjacent Areas: Development and Implementation of a GIS-enabled Concept",
+                "isComparable": true
+              },
+              "rockAbundancePct": {
+                "status": "no-data",
+                "dataOrigin": "missing",
+                "evidenceClassification": "missing_data",
+                "verificationState": "no-data",
+                "unit": "%",
+                "qualityNotes": "Meter-scale rock/boulder abundance is unmeasured at regional screening resolution.",
+                "isComparable": true
+              },
+              "medianGrainSizeMm": {
+                "status": "no-data",
+                "dataOrigin": "missing",
+                "evidenceClassification": "missing_data",
+                "verificationState": "no-data",
+                "unit": "mm",
+                "qualityNotes": "Granulometric regolith sieve size requires laboratory or in-situ sieving.",
+                "isComparable": true
+              },
+              "albedo": {
+                "status": "no-data",
+                "dataOrigin": "missing",
+                "evidenceClassification": "missing_data",
+                "verificationState": "no-data",
+                "unit": "",
+                "qualityNotes": "Broadband Bond/hemispherical surface albedo not queried in regional screening tier.",
+                "isComparable": true
+              },
+              "vegetationCoverPct": {
+                "status": "no-data",
+                "dataOrigin": "missing",
+                "evidenceClassification": "missing_data",
+                "verificationState": "no-data",
+                "unit": "%",
+                "qualityNotes": "Fractional vegetation cover excluded from coarse climate/DEM pass.",
+                "isComparable": true
+              },
+              "surfacePressurePa": {
+                "status": "no-data",
+                "dataOrigin": "missing",
+                "evidenceClassification": "missing_data",
+                "verificationState": "no-data",
+                "unit": "Pa",
+                "qualityNotes": "Station atmospheric surface pressure omitted in coarse climatology request.",
+                "isComparable": true
+              }
+            },
+            "isVerified": false,
+            "noveltyTier": "live-grid-discovery",
+            "boundingBox": [
+              37.1,
+              29.2,
+              37.6,
+              29.7
+            ],
+            "windSpeedMs": 2.7
+          },
+          "target": {
+            "id": "a0000001-0000-4000-8000-000000000001",
+            "body": "mars",
+            "name": "Jezero Crater Delta",
+            "region": "Mars coordinates: 18.38°, 77.58°",
+            "summary": "Ancient deltaic lake basin landing site of NASA Mars 2020 Perseverance rover, featuring clay and carbonate mineralogy.",
+            "latitude": 18.38,
+            "longitude": 77.58,
+            "environment": {
+              "meanSurfaceTempC": -55,
+              "diurnalTempRangeC": 80,
+              "annualPrecipitationMm": 0,
+              "meanSlopeDeg": 5,
+              "rockAbundancePct": 14,
+              "medianGrainSizeMm": 0.35,
+              "albedo": 0.19,
+              "vegetationCoverPct": 0,
+              "lithology": "clay-sedimentary",
+              "elevationM": -2651,
+              "surfacePressurePa": 750,
+              "surfaceSolarIrradianceWm2": 152
+            },
+            "provenanceMap": {
+              "elevationM": {
+                "status": "verified",
+                "sourceTitle": "Mars Global Surveyor MOLA Mission Experiment Gridded Data Record (MEGDR)",
+                "sourceUrl": "https://pds-geosciences.wustl.edu/mgs/mgs-m-mola-5-megdr-l3-v1/mgsl_300x/meg004/megt90n000cb.img",
+                "datasetVersion": "MGS-M-MOLA-5-MEGDR-L3-V1.0 (Product Version 2.0)",
+                "provider": "NASA Goddard Space Flight Center / PDS Geosciences Node",
+                "unit": "m",
+                "spatialResolution": "4 pixels/deg (~14.8 km/pixel)",
+                "measurementPeriod": "1997-09-15 to 2001-06-30 (MOLA Mapping & Extended Phase)",
+                "qualityNotes": "Sampled directly from binary raster megt90n000cb.img at row 286, col 310. Big-endian signed 16-bit int. Datum: Mars IAU2000 Areoid (610.5 Pa equipotential gravity datum, MGS MOLA MEGDR).",
+                "isComparable": true
+              },
+              "meanSurfaceTempC": {
+                "status": "verified",
+                "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+                "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+                "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+                "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+                "unit": "°C",
+                "spatialResolution": "Local ground contact (< 2 m)",
+                "measurementPeriod": "2021-02 to 2024-10 (Perseverance MEDA)",
+                "qualityNotes": "Diurnal mean surface ground temperature recorded by MEDA Thermal Infrared Sensor (TIRS).",
+                "isComparable": true
+              },
+              "diurnalTempRangeC": {
+                "status": "verified",
+                "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+                "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+                "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+                "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+                "unit": "°C",
+                "spatialResolution": "Local ground contact",
+                "measurementPeriod": "2021-02 to 2024-10 (Perseverance MEDA)",
+                "qualityNotes": "Diurnal ground thermal swing between nocturnal nadir ~ -83 °C and midday maximum ~ -3 °C.",
+                "isComparable": true
+              },
+              "meanSlopeDeg": {
+                "status": "verified",
+                "sourceTitle": "Mars Global Surveyor MOLA Mission Experiment Gridded Data Record (MEGDR)",
+                "sourceUrl": "https://pds-geosciences.wustl.edu/mgs/mgs-m-mola-5-megdr-l3-v1/mgsl_300x/meg004/megt90n000cb.img",
+                "datasetVersion": "MGS-M-MOLA-5-MEGDR-L3-V1.0 (Product Version 2.0)",
+                "provider": "NASA Goddard Space Flight Center / PDS Geosciences Node",
+                "unit": "°",
+                "spatialResolution": "1 m/pixel stereo DTM",
+                "measurementPeriod": "MOLA / HiRISE DTM",
+                "qualityNotes": "Regional mean terrain slope across Western Delta fan deposits.",
+                "isComparable": true
+              },
+              "rockAbundancePct": {
+                "status": "verified",
+                "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+                "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+                "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+                "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+                "unit": "%",
+                "spatialResolution": "Rover local field",
+                "measurementPeriod": "Navcam / MEDA traverse photometry",
+                "qualityNotes": "Fractured deltaic boulder lag and blocky crater floor basaltic pavers.",
+                "isComparable": true
+              },
+              "medianGrainSizeMm": {
+                "status": "verified",
+                "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+                "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+                "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+                "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+                "unit": "mm",
+                "spatialResolution": "Microscopic",
+                "measurementPeriod": "SuperCam / WATSON imaging",
+                "qualityNotes": "Medium sand fraction across Delta scarp eolian ripples and poorly sorted sandstone matrix.",
+                "isComparable": true
+              },
+              "albedo": {
+                "status": "verified",
+                "sourceTitle": "Mars Global Surveyor MOLA Mission Experiment Gridded Data Record (MEGDR)",
+                "sourceUrl": "https://pds-geosciences.wustl.edu/mgs/mgs-m-mola-5-megdr-l3-v1/mgsl_300x/meg004/megt90n000cb.img",
+                "datasetVersion": "MGS-M-MOLA-5-MEGDR-L3-V1.0 (Product Version 2.0)",
+                "provider": "NASA Goddard Space Flight Center / PDS Geosciences Node",
+                "unit": "",
+                "spatialResolution": "3 km/pixel",
+                "measurementPeriod": "CRISM / TES baseline",
+                "qualityNotes": "Broadband surface albedo over clay-rich crater delta deposit.",
+                "isComparable": true
+              },
+              "vegetationCoverPct": {
+                "status": "verified",
+                "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+                "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+                "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+                "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+                "unit": "%",
+                "spatialResolution": "Planetary scale",
+                "measurementPeriod": "Perpetual",
+                "qualityNotes": "Zero biological vegetative cover in accordance with hyper-arid radiation environment.",
+                "isComparable": true
+              },
+              "lithology": {
+                "status": "verified",
+                "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+                "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+                "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+                "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+                "unit": "",
+                "spatialResolution": "Millimeter-scale core samples",
+                "measurementPeriod": "SuperCam LIBS / PIXL XRF analysis (2021-2025)",
+                "qualityNotes": "Lithology class: clay-sedimentary. Smectite and iron-magnesium carbonate-bearing deltaic siltstones.",
+                "isComparable": true
+              },
+              "surfaceSolarIrradianceWm2": {
+                "status": "verified",
+                "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+                "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+                "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+                "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+                "unit": "W/m2",
+                "spatialResolution": "Local sensor point",
+                "measurementPeriod": "M2020 MEDA Radiative Budget Sensor (2021-2024)",
+                "qualityNotes": "All-sky solar downward irradiance at 18.4° N latitude under background atmospheric dust optical depth.",
+                "isComparable": true
+              },
+              "annualPrecipitationMm": {
+                "status": "verified",
+                "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+                "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+                "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+                "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+                "unit": "mm/year",
+                "spatialResolution": "Planetary scale",
+                "measurementPeriod": "Climatological baseline",
+                "qualityNotes": "Zero liquid rainfall. Excluded from cross-body similarity calculation due to atmospheric phase constraints.",
+                "isComparable": false,
+                "incomparabilityReason": "Target bodies have 0 mm/yr liquid rainfall; active precipitation cannot be physically matched to dry/vacuum surfaces."
+              },
+              "surfacePressurePa": {
+                "status": "verified",
+                "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+                "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+                "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+                "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+                "unit": "Pa",
+                "spatialResolution": "In situ rover traverse point",
+                "measurementPeriod": "2021-02 to 2024-10 (Perseverance MEDA)",
+                "qualityNotes": "In situ pressure sensor (MEDA PRS) recording atmospheric pressure continuous diurnal cycle with high-frequency turbulence and dust devil signatures.",
+                "isComparable": false,
+                "incomparabilityReason": "Martian surface pressure (~750 Pa) is ~0.74% of Earth sea-level pressure (101,325 Pa). Excluded from cross-body similarity calculation."
+              }
+            },
+            "isVerified": true,
+            "databaseId": "a0000001-0000-4000-8000-000000000001"
+          },
+          "missionProfileId": "geological-research",
+          "missionProfileLabel": "Geological field research",
+          "score": null,
+          "scoreDisplay": "Insufficient data to rank reliably",
+          "coverage": 0.15,
+          "isReliable": false,
+          "isVerified": false,
+          "verificationStateSummary": "Unverified regional screening lead (isVerified: false)",
+          "featureScores": [
+            {
+              "key": "meanSlopeDeg",
+              "weight": 0.1,
+              "targetValue": 5,
+              "candidateValue": 0.53,
+              "targetProvenance": {
+                "status": "verified",
+                "sourceTitle": "Mars Global Surveyor MOLA Mission Experiment Gridded Data Record (MEGDR)",
+                "sourceUrl": "https://pds-geosciences.wustl.edu/mgs/mgs-m-mola-5-megdr-l3-v1/mgsl_300x/meg004/megt90n000cb.img",
+                "datasetVersion": "MGS-M-MOLA-5-MEGDR-L3-V1.0 (Product Version 2.0)",
+                "provider": "NASA Goddard Space Flight Center / PDS Geosciences Node",
+                "unit": "°",
+                "spatialResolution": "1 m/pixel stereo DTM",
+                "measurementPeriod": "MOLA / HiRISE DTM",
+                "qualityNotes": "Regional mean terrain slope across Western Delta fan deposits.",
+                "isComparable": true
+              },
+              "candidateProvenance": {
+                "status": "unverified",
+                "dataOrigin": "computed-derivative",
+                "evidenceClassification": "derived",
+                "verificationState": "unverified",
+                "provider": "Open-Meteo Elevation (Derived)",
+                "sourceTitle": "5-Point Central-Difference Gradient (Copernicus DEM GLO-90)",
+                "sourceUrl": "https://open-meteo.com/en/docs/elevation-api",
+                "datasetVersion": "Copernicus GLO-90",
+                "unit": "°",
+                "spatialResolution": "Derived from 5-point cardinal central difference over ~445 m baseline (90 m DEM pixels)",
+                "qualityNotes": "Derived macro-slope across ~445 m central-difference baseline; smooths meter-scale boulders and micro-roughness.",
+                "isComparable": true
+              },
+              "difference": 0.179,
+              "similarity": 0.821,
+              "status": "comparable"
+            },
+            {
+              "key": "rockAbundancePct",
+              "weight": 0.1,
+              "targetValue": 14,
+              "candidateValue": null,
+              "targetProvenance": {
+                "status": "verified",
+                "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+                "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+                "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+                "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+                "unit": "%",
+                "spatialResolution": "Rover local field",
+                "measurementPeriod": "Navcam / MEDA traverse photometry",
+                "qualityNotes": "Fractured deltaic boulder lag and blocky crater floor basaltic pavers.",
+                "isComparable": true
+              },
+              "candidateProvenance": {
+                "status": "no-data",
+                "dataOrigin": "missing",
+                "evidenceClassification": "missing_data",
+                "verificationState": "no-data",
+                "unit": "%",
+                "qualityNotes": "Meter-scale rock/boulder abundance is unmeasured at regional screening resolution.",
+                "isComparable": true
+              },
+              "difference": null,
+              "similarity": null,
+              "status": "missing_data",
+              "statusReason": "Earth candidate lacks valid measurement."
+            },
+            {
+              "key": "medianGrainSizeMm",
+              "weight": 0.1,
+              "targetValue": 0.35,
+              "candidateValue": null,
+              "targetProvenance": {
+                "status": "verified",
+                "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+                "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+                "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+                "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+                "unit": "mm",
+                "spatialResolution": "Microscopic",
+                "measurementPeriod": "SuperCam / WATSON imaging",
+                "qualityNotes": "Medium sand fraction across Delta scarp eolian ripples and poorly sorted sandstone matrix.",
+                "isComparable": true
+              },
+              "candidateProvenance": {
+                "status": "no-data",
+                "dataOrigin": "missing",
+                "evidenceClassification": "missing_data",
+                "verificationState": "no-data",
+                "unit": "mm",
+                "qualityNotes": "Granulometric regolith sieve size requires laboratory or in-situ sieving.",
+                "isComparable": true
+              },
+              "difference": null,
+              "similarity": null,
+              "status": "missing_data",
+              "statusReason": "Earth candidate lacks valid measurement."
+            },
+            {
+              "key": "elevationM",
+              "weight": 0,
+              "targetValue": -2651,
+              "candidateValue": 857,
+              "targetProvenance": {
+                "status": "verified",
+                "sourceTitle": "Mars Global Surveyor MOLA Mission Experiment Gridded Data Record (MEGDR)",
+                "sourceUrl": "https://pds-geosciences.wustl.edu/mgs/mgs-m-mola-5-megdr-l3-v1/mgsl_300x/meg004/megt90n000cb.img",
+                "datasetVersion": "MGS-M-MOLA-5-MEGDR-L3-V1.0 (Product Version 2.0)",
+                "provider": "NASA Goddard Space Flight Center / PDS Geosciences Node",
+                "unit": "m",
+                "spatialResolution": "4 pixels/deg (~14.8 km/pixel)",
+                "measurementPeriod": "1997-09-15 to 2001-06-30 (MOLA Mapping & Extended Phase)",
+                "qualityNotes": "Sampled directly from binary raster megt90n000cb.img at row 286, col 310. Big-endian signed 16-bit int. Datum: Mars IAU2000 Areoid (610.5 Pa equipotential gravity datum, MGS MOLA MEGDR).",
+                "isComparable": true
+              },
+              "candidateProvenance": {
+                "status": "unverified",
+                "dataOrigin": "live-api-estimate",
+                "evidenceClassification": "measured",
+                "verificationState": "unverified",
+                "provider": "Open-Meteo Elevation",
+                "sourceTitle": "Copernicus DEM GLO-90 (Open-Meteo)",
+                "sourceUrl": "https://open-meteo.com/en/docs/elevation-api",
+                "datasetVersion": "Copernicus GLO-90",
+                "unit": "m",
+                "spatialResolution": "90 m grid cell",
+                "qualityNotes": "Elevation above EGM2008/geoid datum from Copernicus GLO-90; unverified field point.",
+                "isComparable": true
+              },
+              "difference": 0.702,
+              "similarity": 0.298,
+              "status": "comparable"
+            },
+            {
+              "key": "vegetationCoverPct",
+              "weight": 0.15,
+              "targetValue": 0,
+              "candidateValue": null,
+              "targetProvenance": {
+                "status": "verified",
+                "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+                "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+                "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+                "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+                "unit": "%",
+                "spatialResolution": "Planetary scale",
+                "measurementPeriod": "Perpetual",
+                "qualityNotes": "Zero biological vegetative cover in accordance with hyper-arid radiation environment.",
+                "isComparable": true
+              },
+              "candidateProvenance": {
+                "status": "no-data",
+                "dataOrigin": "missing",
+                "evidenceClassification": "missing_data",
+                "verificationState": "no-data",
+                "unit": "%",
+                "qualityNotes": "Fractional vegetation cover excluded from coarse climate/DEM pass.",
+                "isComparable": true
+              },
+              "difference": null,
+              "similarity": null,
+              "status": "missing_data",
+              "statusReason": "Earth candidate lacks valid measurement."
+            },
+            {
+              "key": "diurnalTempRangeC",
+              "weight": 0,
+              "targetValue": 80,
+              "candidateValue": 18.8,
+              "targetProvenance": {
+                "status": "verified",
+                "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+                "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+                "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+                "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+                "unit": "°C",
+                "spatialResolution": "Local ground contact",
+                "measurementPeriod": "2021-02 to 2024-10 (Perseverance MEDA)",
+                "qualityNotes": "Diurnal ground thermal swing between nocturnal nadir ~ -83 °C and midday maximum ~ -3 °C.",
+                "isComparable": true
+              },
+              "candidateProvenance": {
+                "status": "unverified",
+                "dataOrigin": "live-api-estimate",
+                "evidenceClassification": "derived",
+                "verificationState": "unverified",
+                "provider": "NASA POWER",
+                "sourceTitle": "NASA POWER Climatology (TS_RANGE)",
+                "sourceUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+                "datasetVersion": "v2.10.1",
+                "measurementPeriod": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+                "unit": "°C",
+                "spatialResolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+                "qualityNotes": "25-year climatological annual average diurnal earth-skin temperature amplitude.",
+                "isComparable": true
+              },
+              "difference": 0.408,
+              "similarity": 0.592,
+              "status": "comparable"
+            },
+            {
+              "key": "meanSurfaceTempC",
+              "weight": 0.05,
+              "targetValue": -55,
+              "candidateValue": 12.1,
+              "targetProvenance": {
+                "status": "verified",
+                "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+                "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+                "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+                "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+                "unit": "°C",
+                "spatialResolution": "Local ground contact (< 2 m)",
+                "measurementPeriod": "2021-02 to 2024-10 (Perseverance MEDA)",
+                "qualityNotes": "Diurnal mean surface ground temperature recorded by MEDA Thermal Infrared Sensor (TIRS).",
+                "isComparable": true
+              },
+              "candidateProvenance": {
+                "status": "unverified",
+                "dataOrigin": "live-api-estimate",
+                "evidenceClassification": "proxy",
+                "verificationState": "unverified",
+                "provider": "NASA POWER",
+                "sourceTitle": "NASA POWER Climatology (T2M 2-meter air temp proxy)",
+                "sourceUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+                "datasetVersion": "v2.10.1",
+                "measurementPeriod": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+                "unit": "°C",
+                "spatialResolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+                "qualityNotes": "25-year annual mean 2-meter air temperature (T2M) used as an atmospheric proxy for bare-ground surface skin temperature.",
+                "isComparable": true
+              },
+              "difference": 0.447,
+              "similarity": 0.553,
+              "status": "comparable"
+            },
+            {
+              "key": "surfaceSolarIrradianceWm2",
+              "weight": 0.05,
+              "targetValue": 152,
+              "candidateValue": 206,
+              "targetProvenance": {
+                "status": "verified",
+                "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+                "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+                "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+                "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+                "unit": "W/m2",
+                "spatialResolution": "Local sensor point",
+                "measurementPeriod": "M2020 MEDA Radiative Budget Sensor (2021-2024)",
+                "qualityNotes": "All-sky solar downward irradiance at 18.4° N latitude under background atmospheric dust optical depth.",
+                "isComparable": true
+              },
+              "candidateProvenance": {
+                "status": "unverified",
+                "dataOrigin": "computed-derivative",
+                "evidenceClassification": "derived",
+                "verificationState": "unverified",
+                "provider": "NASA POWER",
+                "sourceTitle": "NASA POWER Climatology (ALLSKY_SFC_SW_DWN, 24h mean)",
+                "sourceUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+                "datasetVersion": "v2.10.1",
+                "measurementPeriod": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+                "unit": "W/m²",
+                "originalSourceValue": 4.93,
+                "originalSourceUnit": "kW-hr/m^2/day",
+                "spatialResolution": "1.0° × 1.0° (CERES SYN1DEG via NASA POWER)",
+                "qualityNotes": "24-hour climatological average shortwave downward flux (converted from kW-hr/m^2/day); not instantaneous noon peak and not equivalent to lunar polar illumination geometry.",
+                "isComparable": true
+              },
+              "difference": null,
+              "similarity": null,
+              "status": "incompatible_units",
+              "statusReason": "Incompatible units: Target is recorded in \"W/m2\" while candidate is in \"W/m²\"."
+            },
+            {
+              "key": "lithology",
+              "weight": 0.3,
+              "targetValue": "clay-sedimentary",
+              "candidateValue": null,
+              "targetProvenance": {
+                "status": "verified",
+                "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+                "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+                "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+                "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+                "unit": "",
+                "spatialResolution": "Millimeter-scale core samples",
+                "measurementPeriod": "SuperCam LIBS / PIXL XRF analysis (2021-2025)",
+                "qualityNotes": "Lithology class: clay-sedimentary. Smectite and iron-magnesium carbonate-bearing deltaic siltstones.",
+                "isComparable": true
+              },
+              "candidateProvenance": {
+                "status": "no-data",
+                "dataOrigin": "missing",
+                "evidenceClassification": "missing_data",
+                "verificationState": "no-data",
+                "provider": "Macrostrat",
+                "sourceTitle": "Macrostrat (Pliocene undifferentiated)",
+                "sourceUrl": "https://www.bgr.bund.de/EN/Themen/Sammlungen-Grundlagen/GG_geol_Info/Karten/International/Europa/IGME5000/igme5000_node_en.html",
+                "datasetVersion": "Macrostrat API v2",
+                "unit": "",
+                "spatialResolution": "Regional geologic map polygon scale (typically 1:250k–1:5M)",
+                "qualityNotes": "Unit: Pliocene undifferentiated | Age: Pliocene - Quaternary | Classifier: unmapped-class | Raw: Pliocene undifferentiated | Source: The 1:5M International Geological Map of Europe and Adjacent Areas: Development and Implementation of a GIS-enabled Concept",
+                "isComparable": true
+              },
+              "difference": null,
+              "similarity": null,
+              "status": "missing_data",
+              "statusReason": "Earth candidate lacks valid measurement."
+            },
+            {
+              "key": "albedo",
+              "weight": 0.15,
+              "targetValue": 0.19,
+              "candidateValue": null,
+              "targetProvenance": {
+                "status": "verified",
+                "sourceTitle": "Mars Global Surveyor MOLA Mission Experiment Gridded Data Record (MEGDR)",
+                "sourceUrl": "https://pds-geosciences.wustl.edu/mgs/mgs-m-mola-5-megdr-l3-v1/mgsl_300x/meg004/megt90n000cb.img",
+                "datasetVersion": "MGS-M-MOLA-5-MEGDR-L3-V1.0 (Product Version 2.0)",
+                "provider": "NASA Goddard Space Flight Center / PDS Geosciences Node",
+                "unit": "",
+                "spatialResolution": "3 km/pixel",
+                "measurementPeriod": "CRISM / TES baseline",
+                "qualityNotes": "Broadband surface albedo over clay-rich crater delta deposit.",
+                "isComparable": true
+              },
+              "candidateProvenance": {
+                "status": "no-data",
+                "dataOrigin": "missing",
+                "evidenceClassification": "missing_data",
+                "verificationState": "no-data",
+                "unit": "",
+                "qualityNotes": "Broadband Bond/hemispherical surface albedo not queried in regional screening tier.",
+                "isComparable": true
+              },
+              "difference": null,
+              "similarity": null,
+              "status": "missing_data",
+              "statusReason": "Earth candidate lacks valid measurement."
+            },
+            {
+              "key": "annualPrecipitationMm",
+              "weight": 0,
+              "targetValue": 0,
+              "candidateValue": 690,
+              "targetProvenance": {
+                "status": "verified",
+                "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+                "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+                "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+                "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+                "unit": "mm/year",
+                "spatialResolution": "Planetary scale",
+                "measurementPeriod": "Climatological baseline",
+                "qualityNotes": "Zero liquid rainfall. Excluded from cross-body similarity calculation due to atmospheric phase constraints.",
+                "isComparable": false,
+                "incomparabilityReason": "Target bodies have 0 mm/yr liquid rainfall; active precipitation cannot be physically matched to dry/vacuum surfaces."
+              },
+              "candidateProvenance": {
+                "status": "unverified",
+                "dataOrigin": "computed-derivative",
+                "evidenceClassification": "derived",
+                "verificationState": "unverified",
+                "provider": "NASA POWER",
+                "sourceTitle": "NASA POWER Climatology (PRECTOTCORR)",
+                "sourceUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+                "datasetVersion": "v2.10.1",
+                "measurementPeriod": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+                "unit": "mm/year",
+                "originalSourceValue": 1.89,
+                "originalSourceUnit": "mm/day",
+                "spatialResolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+                "isComparable": false,
+                "incomparabilityReason": "Active terrestrial rainfall/snowfall is physically non-comparable against dry/vacuum Moon and Mars targets."
+              },
+              "difference": null,
+              "similarity": null,
+              "status": "incompatible_quantities",
+              "statusReason": "Target planetary bodies lack active liquid water cycles (0 mm/yr). Active precipitation cannot be meaningfully compared against desiccated or vacuum planetary surfaces."
+            },
+            {
+              "key": "surfacePressurePa",
+              "weight": 0,
+              "targetValue": 750,
+              "candidateValue": null,
+              "targetProvenance": {
+                "status": "verified",
+                "sourceTitle": "Mars 2020 Perseverance Mars Environmental Dynamics Analyzer (MEDA)",
+                "sourceUrl": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/perseverance.html",
+                "datasetVersion": "M2020-M-MEDA-2-RDR-V1.0",
+                "provider": "Centro de Astrobiología / NASA PDS Atmospheres Node",
+                "unit": "Pa",
+                "spatialResolution": "In situ rover traverse point",
+                "measurementPeriod": "2021-02 to 2024-10 (Perseverance MEDA)",
+                "qualityNotes": "In situ pressure sensor (MEDA PRS) recording atmospheric pressure continuous diurnal cycle with high-frequency turbulence and dust devil signatures.",
+                "isComparable": false,
+                "incomparabilityReason": "Martian surface pressure (~750 Pa) is ~0.74% of Earth sea-level pressure (101,325 Pa). Excluded from cross-body similarity calculation."
+              },
+              "candidateProvenance": {
+                "status": "no-data",
+                "dataOrigin": "missing",
+                "evidenceClassification": "missing_data",
+                "verificationState": "no-data",
+                "unit": "Pa",
+                "qualityNotes": "Station atmospheric surface pressure omitted in coarse climatology request.",
+                "isComparable": true
+              },
+              "difference": null,
+              "similarity": null,
+              "status": "missing_data",
+              "statusReason": "Earth candidate lacks valid measurement."
+            }
+          ],
+          "intelligence": {
+            "candidateId": "cell_+37.3500_+29.4500",
+            "candidateName": "Candidate Cell +37.3500_+29.4500",
+            "candidateSourceKind": "live-grid-cell",
+            "noveltyTier": "live-grid-discovery",
+            "targetId": "a0000001-0000-4000-8000-000000000001",
+            "targetName": "Jezero Crater Delta",
+            "targetBody": "mars",
+            "missionProfileId": "geological-research",
+            "missionProfileLabel": "Geological field research",
+            "score": null,
+            "scoreDisplay": "Insufficient data to rank reliably",
+            "coverage": 0.15,
+            "isReliable": false,
+            "baselineWeightedDistance": null,
+            "validationStatus": "evidence-review-needed",
+            "validationStatusLabel": "Evidence review needed",
+            "validationNotice": "Live-grid cells remain unverified (`isVerified: false`) regardless of similarity score and are screening leads only.",
+            "checklist": [
+              {
+                "id": "coords-valid",
+                "label": "Geographic coordinates valid",
+                "status": "supported",
+                "explanation": "WGS84 position (37.3500°, 29.4500°) lies within [-90..90, -180..180]."
+              },
+              {
+                "id": "env-data-retrieved",
+                "label": "Environmental data retrieved",
+                "status": "supported",
+                "explanation": "One or more quantitative or categorical environmental measurements are present."
+              },
+              {
+                "id": "units-validated",
+                "label": "Feature units validated",
+                "status": "not-supported",
+                "explanation": "Unit discrepancy flagged by similarity engine; mismatched units are blocked from comparison."
+              },
+              {
+                "id": "inputs-traceable",
+                "label": "Similarity inputs traceable",
+                "status": "supported",
+                "explanation": "7 dataset or citation reference(s) linked to this evaluation."
+              },
+              {
+                "id": "geology-documented",
+                "label": "Relevant geology documented",
+                "status": "unknown",
+                "explanation": "Lithology unavailable or kept null due to ambiguous mixed map units; unknown rather than disproven."
+              },
+              {
+                "id": "elevation-available",
+                "label": "Elevation evidence available",
+                "status": "supported",
+                "explanation": "Datum elevation recorded (857 m)."
+              },
+              {
+                "id": "gradient-available",
+                "label": "Terrain gradient estimate available",
+                "status": "supported",
+                "explanation": "Slope estimate recorded (1 °)."
+              },
+              {
+                "id": "climate-context-available",
+                "label": "Climate context available",
+                "status": "supported",
+                "explanation": "Temperature or solar radiative climatology available."
+              },
+              {
+                "id": "mission-critical-evidence",
+                "label": "Primary mission-weighted drivers present",
+                "status": "unknown",
+                "explanation": "One or more primary mission features (>=15% weight) remain unmeasured; status is unknown, not failed."
+              },
+              {
+                "id": "independent-observations",
+                "label": "Independent field observations confirmed",
+                "status": "unknown",
+                "explanation": "Unconfirmed: live-grid screening cells use remote API telemetry without in-situ field campaign proof."
+              },
+              {
+                "id": "literature-support",
+                "label": "Peer-reviewed literature support available",
+                "status": "unknown",
+                "explanation": "No peer-reviewed field citation attached; regional screening uses open geospatial datasets."
+              },
+              {
+                "id": "critical-missing-identified",
+                "label": "Critical missing measurements identified",
+                "status": "supported",
+                "explanation": "All missing mission-weighted variables are explicitly preserved as null and enumerated."
+              },
+              {
+                "id": "key-uncertainty-disclosed",
+                "label": "Key uncertainty disclosed",
+                "status": "supported",
+                "explanation": "Spatial resolution disparities, planetary body differences (gravity/atmosphere/radiation), and screening limits are disclosed."
+              }
+            ],
+            "featureExplanations": [
+              {
+                "key": "lithology",
+                "label": "Dominant lithology",
+                "shortLabel": "Lithology",
+                "unit": "",
+                "missionWeight": 0.3,
+                "earthValue": null,
+                "targetValue": "clay-sedimentary",
+                "comparisonStatus": "missing_data",
+                "similarity": null,
+                "contributionCategory": "missing-evidence",
+                "evidenceClassification": "missing_data",
+                "dataOrigin": "missing",
+                "verificationState": "no-data",
+                "sourceTitle": "Macrostrat (Pliocene undifferentiated)",
+                "sourceUrl": "https://www.bgr.bund.de/EN/Themen/Sammlungen-Grundlagen/GG_geol_Info/Karten/International/Europa/IGME5000/igme5000_node_en.html",
+                "spatialResolution": "Regional geologic map polygon scale (typically 1:250k–1:5M)",
+                "qualityNotes": "Unit: Pliocene undifferentiated | Age: Pliocene - Quaternary | Classifier: unmapped-class | Raw: Pliocene undifferentiated | Source: The 1:5M International Geological Map of Europe and Adjacent Areas: Development and Implementation of a GIS-enabled Concept",
+                "interpretation": "Dominant lithology (mission weight 30%) lacks usable telemetry on Earth or planetary target and is omitted from the coverage denominator rather than scored as zero.",
+                "limitations": [
+                  "Measurement absent; missing data must not be inferred as match or failure."
+                ]
+              },
+              {
+                "key": "vegetationCoverPct",
+                "label": "Vegetation cover",
+                "shortLabel": "Vegetation",
+                "unit": "%",
+                "missionWeight": 0.15,
+                "earthValue": null,
+                "targetValue": 0,
+                "comparisonStatus": "missing_data",
+                "similarity": null,
+                "contributionCategory": "missing-evidence",
+                "evidenceClassification": "missing_data",
+                "dataOrigin": "missing",
+                "verificationState": "no-data",
+                "qualityNotes": "Fractional vegetation cover excluded from coarse climate/DEM pass.",
+                "interpretation": "Vegetation cover (mission weight 15%) lacks usable telemetry on Earth or planetary target and is omitted from the coverage denominator rather than scored as zero.",
+                "limitations": [
+                  "Measurement absent; missing data must not be inferred as match or failure."
+                ]
+              },
+              {
+                "key": "albedo",
+                "label": "Surface albedo",
+                "shortLabel": "Albedo",
+                "unit": "",
+                "missionWeight": 0.15,
+                "earthValue": null,
+                "targetValue": 0.19,
+                "comparisonStatus": "missing_data",
+                "similarity": null,
+                "contributionCategory": "missing-evidence",
+                "evidenceClassification": "missing_data",
+                "dataOrigin": "missing",
+                "verificationState": "no-data",
+                "qualityNotes": "Broadband Bond/hemispherical surface albedo not queried in regional screening tier.",
+                "interpretation": "Surface albedo (mission weight 15%) lacks usable telemetry on Earth or planetary target and is omitted from the coverage denominator rather than scored as zero.",
+                "limitations": [
+                  "Measurement absent; missing data must not be inferred as match or failure."
+                ]
+              },
+              {
+                "key": "meanSlopeDeg",
+                "label": "Mean terrain slope",
+                "shortLabel": "Slope",
+                "unit": "°",
+                "missionWeight": 0.1,
+                "earthValue": 0.53,
+                "targetValue": 5,
+                "comparisonStatus": "comparable",
+                "similarity": 0.821,
+                "contributionCategory": "strong-supporting-match",
+                "evidenceClassification": "derived",
+                "dataOrigin": "computed-derivative",
+                "verificationState": "unverified",
+                "sourceTitle": "5-Point Central-Difference Gradient (Copernicus DEM GLO-90)",
+                "sourceUrl": "https://open-meteo.com/en/docs/elevation-api",
+                "spatialResolution": "Derived from 5-point cardinal central difference over ~445 m baseline (90 m DEM pixels)",
+                "qualityNotes": "Derived macro-slope across ~445 m central-difference baseline; smooths meter-scale boulders and micro-roughness.",
+                "interpretation": "Mean terrain slope (1 ° vs. target 5 °, 82% normalized match) closely aligns within TerraTwin's tolerance band.",
+                "limitations": [
+                  "Computed derivative subject to spatial-stencil or model averaging smoothing.",
+                  "Copernicus 90 m DEM 5-point gradient (~445 m baseline) smooths boulders and meter-scale scarps."
+                ]
+              },
+              {
+                "key": "rockAbundancePct",
+                "label": "Rock abundance / Terrain roughness",
+                "shortLabel": "Rock cover",
+                "unit": "%",
+                "missionWeight": 0.1,
+                "earthValue": null,
+                "targetValue": 14,
+                "comparisonStatus": "missing_data",
+                "similarity": null,
+                "contributionCategory": "missing-evidence",
+                "evidenceClassification": "missing_data",
+                "dataOrigin": "missing",
+                "verificationState": "no-data",
+                "qualityNotes": "Meter-scale rock/boulder abundance is unmeasured at regional screening resolution.",
+                "interpretation": "Rock abundance (mission weight 10%) lacks usable telemetry on Earth or planetary target and is omitted from the coverage denominator rather than scored as zero.",
+                "limitations": [
+                  "Measurement absent; missing data must not be inferred as match or failure."
+                ]
+              },
+              {
+                "key": "medianGrainSizeMm",
+                "label": "Median regolith grain size",
+                "shortLabel": "Grain size",
+                "unit": "mm",
+                "missionWeight": 0.1,
+                "earthValue": null,
+                "targetValue": 0.35,
+                "comparisonStatus": "missing_data",
+                "similarity": null,
+                "contributionCategory": "missing-evidence",
+                "evidenceClassification": "missing_data",
+                "dataOrigin": "missing",
+                "verificationState": "no-data",
+                "qualityNotes": "Granulometric regolith sieve size requires laboratory or in-situ sieving.",
+                "interpretation": "Median grain size (mission weight 10%) lacks usable telemetry on Earth or planetary target and is omitted from the coverage denominator rather than scored as zero.",
+                "limitations": [
+                  "Measurement absent; missing data must not be inferred as match or failure."
+                ]
+              },
+              {
+                "key": "meanSurfaceTempC",
+                "label": "Mean surface temperature",
+                "shortLabel": "Mean temp.",
+                "unit": "°C",
+                "missionWeight": 0.05,
+                "earthValue": 12.1,
+                "targetValue": -55,
+                "comparisonStatus": "comparable",
+                "similarity": 0.553,
+                "contributionCategory": "partial-match",
+                "evidenceClassification": "proxy",
+                "dataOrigin": "live-api-estimate",
+                "verificationState": "unverified",
+                "sourceTitle": "NASA POWER Climatology (T2M 2-meter air temp proxy)",
+                "sourceUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+                "spatialResolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+                "temporalCoverage": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+                "qualityNotes": "25-year annual mean 2-meter air temperature (T2M) used as an atmospheric proxy for bare-ground surface skin temperature.",
+                "interpretation": "Mean surface temperature (12.1 °C vs. target -55.0 °C, 55% normalized match) shows moderate proximity with notable physical offset.",
+                "limitations": [
+                  "Atmospheric, coarse-grid, or broad map-unit proxy rather than direct in-situ sample.",
+                  "NASA POWER 2-meter air temperature proxy on ~50 km grid rather than micro-scale ground skin sensor."
+                ]
+              },
+              {
+                "key": "surfaceSolarIrradianceWm2",
+                "label": "Surface solar irradiance",
+                "shortLabel": "Solar flux",
+                "unit": "W/m²",
+                "missionWeight": 0.05,
+                "earthValue": 206,
+                "targetValue": 152,
+                "comparisonStatus": "incompatible_units",
+                "similarity": null,
+                "contributionCategory": "not-comparable",
+                "evidenceClassification": "derived",
+                "dataOrigin": "computed-derivative",
+                "verificationState": "unverified",
+                "sourceTitle": "NASA POWER Climatology (ALLSKY_SFC_SW_DWN, 24h mean)",
+                "sourceUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+                "spatialResolution": "1.0° × 1.0° (CERES SYN1DEG via NASA POWER)",
+                "temporalCoverage": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+                "qualityNotes": "24-hour climatological average shortwave downward flux (converted from kW-hr/m^2/day); not instantaneous noon peak and not equivalent to lunar polar illumination geometry.",
+                "interpretation": "Incompatible units: Target is recorded in \"W/m2\" while candidate is in \"W/m²\".",
+                "limitations": [
+                  "Incompatible units: Target is recorded in \"W/m2\" while candidate is in \"W/m²\"."
+                ]
+              },
+              {
+                "key": "elevationM",
+                "label": "Elevation relative to datum",
+                "shortLabel": "Elevation",
+                "unit": "m",
+                "missionWeight": 0,
+                "earthValue": 857,
+                "targetValue": -2651,
+                "comparisonStatus": "comparable",
+                "similarity": 0.298,
+                "contributionCategory": "significant-mismatch",
+                "evidenceClassification": "measured",
+                "dataOrigin": "live-api-estimate",
+                "verificationState": "unverified",
+                "sourceTitle": "Copernicus DEM GLO-90 (Open-Meteo)",
+                "sourceUrl": "https://open-meteo.com/en/docs/elevation-api",
+                "spatialResolution": "90 m grid cell",
+                "qualityNotes": "Elevation above EGM2008/geoid datum from Copernicus GLO-90; unverified field point.",
+                "interpretation": "Elevation relative to datum (857 m vs. target -2,651 m, 30% normalized match) diverges substantially beyond tolerance.",
+                "limitations": []
+              },
+              {
+                "key": "diurnalTempRangeC",
+                "label": "Diurnal temperature range",
+                "shortLabel": "Diurnal swing",
+                "unit": "°C",
+                "missionWeight": 0,
+                "earthValue": 18.8,
+                "targetValue": 80,
+                "comparisonStatus": "comparable",
+                "similarity": 0.592,
+                "contributionCategory": "partial-match",
+                "evidenceClassification": "derived",
+                "dataOrigin": "live-api-estimate",
+                "verificationState": "unverified",
+                "sourceTitle": "NASA POWER Climatology (TS_RANGE)",
+                "sourceUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+                "spatialResolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+                "temporalCoverage": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+                "qualityNotes": "25-year climatological annual average diurnal earth-skin temperature amplitude.",
+                "interpretation": "Diurnal temperature range (18.8 °C vs. target 80.0 °C, 59% normalized match) shows moderate proximity with notable physical offset.",
+                "limitations": [
+                  "Computed derivative subject to spatial-stencil or model averaging smoothing."
+                ]
+              },
+              {
+                "key": "annualPrecipitationMm",
+                "label": "Annual precipitation",
+                "shortLabel": "Precipitation",
+                "unit": "mm/yr",
+                "missionWeight": 0,
+                "earthValue": 690,
+                "targetValue": 0,
+                "comparisonStatus": "incompatible_quantities",
+                "similarity": null,
+                "contributionCategory": "not-comparable",
+                "evidenceClassification": "derived",
+                "dataOrigin": "computed-derivative",
+                "verificationState": "unverified",
+                "sourceTitle": "NASA POWER Climatology (PRECTOTCORR)",
+                "sourceUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+                "spatialResolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+                "temporalCoverage": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+                "interpretation": "Target planetary bodies lack active liquid water cycles (0 mm/yr). Active precipitation cannot be meaningfully compared against desiccated or vacuum planetary surfaces.",
+                "limitations": [
+                  "Target planetary bodies lack active liquid water cycles (0 mm/yr). Active precipitation cannot be meaningfully compared against desiccated or vacuum planetary surfaces."
+                ]
+              },
+              {
+                "key": "surfacePressurePa",
+                "label": "Surface atmospheric pressure",
+                "shortLabel": "Pressure",
+                "unit": "Pa",
+                "missionWeight": 0,
+                "earthValue": null,
+                "targetValue": 750,
+                "comparisonStatus": "missing_data",
+                "similarity": null,
+                "contributionCategory": "missing-evidence",
+                "evidenceClassification": "missing_data",
+                "dataOrigin": "missing",
+                "verificationState": "no-data",
+                "qualityNotes": "Station atmospheric surface pressure omitted in coarse climatology request.",
+                "interpretation": "Surface atmospheric pressure is unmeasured and carries 0% weight under this mission profile.",
+                "limitations": [
+                  "Measurement absent; missing data must not be inferred as match or failure."
+                ]
+              }
+            ],
+            "evidenceQuality": {
+              "comparableCount": 4,
+              "missingCount": 6,
+              "incompatibleCount": 2,
+              "measuredCount": 1,
+              "derivedCount": 4,
+              "proxyCount": 1,
+              "illustrativeCount": 0,
+              "independentlyVerifiedCount": 0,
+              "weightedCoverage": 0.15,
+              "qualitativeTags": [
+                "source-supported",
+                "proxy-limited",
+                "spatially-coarse",
+                "missing-critical-measurements"
+              ],
+              "assessmentSummary": "Evidence is predominantly proxy/derivative (1 proxy, 4 derived vs. 1 measured) across coarse regional layers, with 6 unmeasured variables.",
+              "resolutionNotes": [
+                "Elevation/slope (~90 m / ~445 m DEM), NASA POWER climatology (~50–100 km MERRA-2/CERES grid), and Macrostrat polygons (regional geologic maps) span vastly different spatial scales.",
+                "Temporal climatology spans 2001–2025 annual means and does not capture episodic micro-climate pulses or site traverses."
+              ],
+              "distinctionNote": "Similarity measures agreement on comparable variables; coverage measures mission-weighted availability; evidence quality assesses provenance, spatial scale, proxy limits, and field verification independently (no fabricated confidence percentage)."
+            },
+            "mismatches": [
+              {
+                "kind": "unknown",
+                "featureKey": "lithology",
+                "title": "Dominant lithology unmeasured (wt 30%)",
+                "missionWeight": 0.3,
+                "similarity": null,
+                "detail": "Null observation on candidate/target under Geological field research; excluded from similarity score denominator.",
+                "missionImpact": "Cannot be evaluated from current datasets. Requires targeted remote sensing, geological mapping, or field measurement."
+              },
+              {
+                "kind": "unknown",
+                "featureKey": "vegetationCoverPct",
+                "title": "Vegetation cover unmeasured (wt 15%)",
+                "missionWeight": 0.15,
+                "similarity": null,
+                "detail": "Null observation on candidate/target under Geological field research; excluded from similarity score denominator.",
+                "missionImpact": "Cannot be evaluated from current datasets. Requires targeted remote sensing, geological mapping, or field measurement."
+              },
+              {
+                "kind": "unknown",
+                "featureKey": "albedo",
+                "title": "Surface albedo unmeasured (wt 15%)",
+                "missionWeight": 0.15,
+                "similarity": null,
+                "detail": "Null observation on candidate/target under Geological field research; excluded from similarity score denominator.",
+                "missionImpact": "Cannot be evaluated from current datasets. Requires targeted remote sensing, geological mapping, or field measurement."
+              },
+              {
+                "kind": "unknown",
+                "featureKey": "rockAbundancePct",
+                "title": "Rock abundance / Terrain roughness unmeasured (wt 10%)",
+                "missionWeight": 0.1,
+                "similarity": null,
+                "detail": "Null observation on candidate/target under Geological field research; excluded from similarity score denominator.",
+                "missionImpact": "Cannot be evaluated from current datasets. Requires targeted remote sensing, geological mapping, or field measurement."
+              },
+              {
+                "kind": "unknown",
+                "featureKey": "medianGrainSizeMm",
+                "title": "Median regolith grain size unmeasured (wt 10%)",
+                "missionWeight": 0.1,
+                "similarity": null,
+                "detail": "Null observation on candidate/target under Geological field research; excluded from similarity score denominator.",
+                "missionImpact": "Cannot be evaluated from current datasets. Requires targeted remote sensing, geological mapping, or field measurement."
+              },
+              {
+                "kind": "known-contextual-limitation",
+                "title": "Gravity & Atmospheric Disparity (Martian (0.38g, ~600–800 Pa CO₂))",
+                "detail": "Terrestrial gravity (9.81 m/s²), 101.3 kPa O₂/N₂ atmosphere, and hydrological weathering cannot reproduce Martian (0.38g, ~600–800 Pa CO₂) regimes.",
+                "missionImpact": "Excluded atmospheric pressure and precipitation from numeric ranking; impacts rover slip, dust levitation, thermal convection, and lander acoustics."
+              },
+              {
+                "kind": "known-contextual-limitation",
+                "title": "Radiation, Illumination & Regolith Cohesion Physics",
+                "detail": "Earth geomagnetic shielding and higher atmospheric column attenuate UV/ionizing radiation far more strongly than Mars.",
+                "missionImpact": "Simulates only selected physical surface indices; does not test radiation hardening, electrostatic dust adhesion, or hyper-sharp regolith abrasion."
+              }
+            ],
+            "missionInterpretation": "Under Geological field research against Jezero Crater Delta (coverage 15%), resolvable lithology is missing and surface albedo is unmeasured. Generalized regional geologic polygons indicate formation context only and never establish petrological or mineralogical identity without sample spectrometry.",
+            "researchPriority": {
+              "level": "not-presently-assessable",
+              "label": "Not presently assessable",
+              "reasons": [
+                "Weighted evidence coverage is below the 40% reliability gate; aggregate score is withheld.",
+                "Follow-up triage cannot justify site prioritization until primary mission measurements are available."
+              ],
+              "nextAction": "Review higher-resolution geological mapping or obtain field/laboratory confirmation of lithology and dominant mineral phases.",
+              "documentedRules": [
+                "Deterministic rule: candidates < 40% coverage or without valid scores are 'Not presently assessable'.",
+                "Rule guarantees low-coverage leads never outrank better-evidenced candidates; neither noveltyTier nor benchmark labels add bonus points.",
+                "High-weight (>=15%) missing drivers or heavy reliance on coarse proxies downgrades priority from 'Promising follow-up lead' to 'Additional data required' or 'Limited current evidence'."
+              ]
+            },
+            "sensitivityAnalysis": {
+              "status": "insufficient-evidence",
+              "label": "Exploratory weight-sensitivity analysis",
+              "baselineScore": null,
+              "baselineRank": 1,
+              "evaluatedCandidateSetSize": 2,
+              "perturbationFraction": 0.25,
+              "scenarios": [],
+              "minScore": null,
+              "maxScore": null,
+              "scoreSpan": null,
+              "orderChangedWithinEvaluatedSet": false,
+              "caveats": [
+                "Exploratory weight-sensitivity analysis: tests ±25% re-normalized perturbations of the top active comparable mission weights using computeAnalogSimilarity().",
+                "This is NOT a statistical confidence interval, measurement error distribution, or scientific validation certificate.",
+                "Scenarios neither fabricate missing measurements nor alter the 40% evidence coverage gate."
+              ],
+              "unavailableReason": "Sensitivity analysis is disabled when evidence coverage is below the 40% reliability gate."
+            },
+            "followUpRecommendations": [
+              {
+                "id": "follow-geology",
+                "missionRelevance": "critical",
+                "driverFeature": "lithology",
+                "title": "Unmapped Lithology Resolution",
+                "action": "Review higher-resolution geological mapping or obtain field/laboratory confirmation of lithology and dominant mineral phases.",
+                "rationale": "Macrostrat polygon data was null or mixed-unit; petrological class remains unknown.",
+                "priorityOrder": 1,
+                "observationStatus": "recommended-not-completed"
+              },
+              {
+                "id": "follow-vegetationCoverPct",
+                "missionRelevance": "critical",
+                "driverFeature": "vegetationCoverPct",
+                "title": "Fractional Bare-Ground Vegetation Survey",
+                "action": "Verify absence of vascular/cryptogamic vegetation cover via high-resolution optical imagery or seasonal ground check.",
+                "rationale": "Vegetation cover (wt 15%) was unmeasured in regional screening.",
+                "priorityOrder": 2,
+                "observationStatus": "recommended-not-completed"
+              },
+              {
+                "id": "follow-albedo",
+                "missionRelevance": "critical",
+                "driverFeature": "albedo",
+                "title": "Multi-Spectral Surface Albedo Retrieval",
+                "action": "Acquire cloud-free optical/multispectral satellite reflectance (e.g., Landsat/Sentinel-2) to quantify broadband albedo.",
+                "rationale": "Surface albedo (wt 15%) was unmeasured in regional screening.",
+                "priorityOrder": 3,
+                "observationStatus": "recommended-not-completed"
+              },
+              {
+                "id": "follow-rock-abundance",
+                "missionRelevance": "high",
+                "driverFeature": "rockAbundancePct",
+                "title": "Surface Clast & Boulder Hazard Mapping",
+                "action": "Obtain higher-resolution imagery or field measurements to assess surface rock abundance (>10 cm clasts) and landing/traverse hazards.",
+                "rationale": "Rock abundance carries 10% mission weight and is unmeasured at regional tier.",
+                "priorityOrder": 4,
+                "observationStatus": "recommended-not-completed"
+              },
+              {
+                "id": "follow-grain-size",
+                "missionRelevance": "high",
+                "driverFeature": "medianGrainSizeMm",
+                "title": "Regolith Granulometry & Soil Mechanics",
+                "action": "Collect sedimentological or regolith grain-size measurements and bearing-strength profiles in the field or laboratory.",
+                "rationale": "Median grain size (wt 10%) requires physical sieving and governs wheel sinkage/ISRU sintering.",
+                "priorityOrder": 5,
+                "observationStatus": "recommended-not-completed"
+              },
+              {
+                "id": "follow-terrain-dem",
+                "missionRelevance": "moderate",
+                "driverFeature": "meanSlopeDeg",
+                "title": "Meter-Scale Topographic Survey",
+                "action": "Acquire higher-resolution topographic data (drone photogrammetry, LiDAR, or <2 m stereo DEM) to validate micro-slopes smoothed by 90 m DEM stencils.",
+                "rationale": "Regional 5-point ~445 m gradient misses decimeter–meter scarps and rover roll obstacles.",
+                "priorityOrder": 6,
+                "observationStatus": "recommended-not-completed"
+              },
+              {
+                "id": "follow-microclimate",
+                "missionRelevance": "moderate",
+                "driverFeature": "meanSurfaceTempC",
+                "title": "Local Microclimate vs. Reanalysis Calibration",
+                "action": "Compare local meteorological station or surface skin logger observations against NASA POWER 0.5° × 0.625° climatological estimates.",
+                "rationale": "50 km MERRA-2 2 m air temperatures omit terrain aspect shading, ground thermal inertia, and cold-air drainage.",
+                "priorityOrder": 7,
+                "observationStatus": "recommended-not-completed"
+              }
+            ],
+            "sourceReferences": [
+              {
+                "title": "Macrostrat (Pliocene undifferentiated)",
+                "providerOrOrg": "TerraTwin Provenance Record",
+                "url": "https://www.bgr.bund.de/EN/Themen/Sammlungen-Grundlagen/GG_geol_Info/Karten/International/Europa/IGME5000/igme5000_node_en.html",
+                "resolution": "Regional geologic map polygon scale (typically 1:250k–1:5M)"
+              },
+              {
+                "title": "5-Point Central-Difference Gradient (Copernicus DEM GLO-90)",
+                "providerOrOrg": "External Open Geospatial API",
+                "url": "https://open-meteo.com/en/docs/elevation-api",
+                "resolution": "Derived from 5-point cardinal central difference over ~445 m baseline (90 m DEM pixels)"
+              },
+              {
+                "title": "NASA POWER Climatology (T2M 2-meter air temp proxy)",
+                "providerOrOrg": "External Open Geospatial API",
+                "url": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+                "resolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+                "temporalCoverage": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)"
+              },
+              {
+                "title": "NASA POWER Climatology (ALLSKY_SFC_SW_DWN, 24h mean)",
+                "providerOrOrg": "External Open Geospatial API",
+                "url": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+                "resolution": "1.0° × 1.0° (CERES SYN1DEG via NASA POWER)",
+                "temporalCoverage": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)"
+              },
+              {
+                "title": "Copernicus DEM GLO-90 (Open-Meteo)",
+                "providerOrOrg": "External Open Geospatial API",
+                "url": "https://open-meteo.com/en/docs/elevation-api",
+                "resolution": "90 m grid cell"
+              },
+              {
+                "title": "NASA POWER Climatology (TS_RANGE)",
+                "providerOrOrg": "External Open Geospatial API",
+                "url": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+                "resolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+                "temporalCoverage": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)"
+              },
+              {
+                "title": "NASA POWER Climatology (PRECTOTCORR)",
+                "providerOrOrg": "External Open Geospatial API",
+                "url": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+                "resolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+                "temporalCoverage": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)"
+              }
+            ],
+            "scientificCaveats": [
+              "Data coverage is below 40% threshold for reliable similarity scoring.",
+              "Rock abundance and surface roughness unmeasured at regional resolution.",
+              "Macrostrat lithology 'Pliocene undifferentiated' falls outside TerraTwin's 7-class taxonomy.",
+              "Similarity score and research priority are separate exploratory screening aids, not NASA endorsements or mission-readiness certificates.",
+              "Regional DEM (~445 m central-difference), NASA POWER (~50 km MERRA-2), and Macrostrat geologic polygons cannot resolve local outcrop or rover traverse safety."
+            ],
+            "presentationThresholdDisclosure": "Feature match labels use documented TerraTwin presentation thresholds (Strong >= 75%, Partial 45–74%, Mismatch < 45%). These are interpretive presentation helpers, not validated planetary boundaries or changes to backend similarity scores.",
+            "disclaimer": "TerraTwin provides exploratory analog screening based on available scientific datasets. Results require independent validation before field or mission use."
+          },
+          "validationChecklist": [
+            {
+              "id": "coords-valid",
+              "label": "Geographic coordinates valid",
+              "status": "supported",
+              "explanation": "WGS84 position (37.3500°, 29.4500°) lies within [-90..90, -180..180]."
+            },
+            {
+              "id": "env-data-retrieved",
+              "label": "Environmental data retrieved",
+              "status": "supported",
+              "explanation": "One or more quantitative or categorical environmental measurements are present."
+            },
+            {
+              "id": "units-validated",
+              "label": "Feature units validated",
+              "status": "not-supported",
+              "explanation": "Unit discrepancy flagged by similarity engine; mismatched units are blocked from comparison."
+            },
+            {
+              "id": "inputs-traceable",
+              "label": "Similarity inputs traceable",
+              "status": "supported",
+              "explanation": "7 dataset or citation reference(s) linked to this evaluation."
+            },
+            {
+              "id": "geology-documented",
+              "label": "Relevant geology documented",
+              "status": "unknown",
+              "explanation": "Lithology unavailable or kept null due to ambiguous mixed map units; unknown rather than disproven."
+            },
+            {
+              "id": "elevation-available",
+              "label": "Elevation evidence available",
+              "status": "supported",
+              "explanation": "Datum elevation recorded (857 m)."
+            },
+            {
+              "id": "gradient-available",
+              "label": "Terrain gradient estimate available",
+              "status": "supported",
+              "explanation": "Slope estimate recorded (1 °)."
+            },
+            {
+              "id": "climate-context-available",
+              "label": "Climate context available",
+              "status": "supported",
+              "explanation": "Temperature or solar radiative climatology available."
+            },
+            {
+              "id": "mission-critical-evidence",
+              "label": "Primary mission-weighted drivers present",
+              "status": "unknown",
+              "explanation": "One or more primary mission features (>=15% weight) remain unmeasured; status is unknown, not failed."
+            },
+            {
+              "id": "independent-observations",
+              "label": "Independent field observations confirmed",
+              "status": "unknown",
+              "explanation": "Unconfirmed: live-grid screening cells use remote API telemetry without in-situ field campaign proof."
+            },
+            {
+              "id": "literature-support",
+              "label": "Peer-reviewed literature support available",
+              "status": "unknown",
+              "explanation": "No peer-reviewed field citation attached; regional screening uses open geospatial datasets."
+            },
+            {
+              "id": "critical-missing-identified",
+              "label": "Critical missing measurements identified",
+              "status": "supported",
+              "explanation": "All missing mission-weighted variables are explicitly preserved as null and enumerated."
+            },
+            {
+              "id": "key-uncertainty-disclosed",
+              "label": "Key uncertainty disclosed",
+              "status": "supported",
+              "explanation": "Spatial resolution disparities, planetary body differences (gravity/atmosphere/radiation), and screening limits are disclosed."
+            }
+          ],
+          "providerTelemetry": [
+            {
+              "provider": "Open-Meteo Elevation",
+              "dataset": "Copernicus DEM GLO-90 (European Space Agency / Open-Meteo)",
+              "datasetVersion": "Copernicus GLO-90 via Open-Meteo v1",
+              "status": "success",
+              "recordsFetched": 1,
+              "cacheHits": 1,
+              "latencyMs": 1404,
+              "spatialResolution": "90 m grid cell (5-point central-difference gradient (4 cardinal neighbors) over ~445 m baseline)",
+              "sourceUrl": "https://open-meteo.com/en/docs/elevation-api",
+              "attributionNotice": "Copernicus DEM GLO-90 by European Space Agency, served via Open-Meteo Elevation API."
+            },
+            {
+              "provider": "NASA POWER Climatology",
+              "dataset": "POWER Climatology API v2.10.1 (MERRA-2 / CERES SYN1DEG)",
+              "datasetVersion": "v2.10.1",
+              "status": "success",
+              "recordsFetched": 1,
+              "cacheHits": 1,
+              "latencyMs": 2200,
+              "spatialResolution": "0.5° × 0.625° (MERRA-2 met) / 1.0° × 1.0° (CERES solar)",
+              "temporalCoverage": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+              "sourceUrl": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+              "attributionNotice": "NASA POWER Project funded by NASA Earth Science (MERRA-2 & CERES SYN1DEG)."
+            },
+            {
+              "provider": "Macrostrat Geology",
+              "dataset": "Macrostrat API v2 (Geologic Map Integration)",
+              "datasetVersion": "v2 (map_query_v2, zoom=8)",
+              "status": "success",
+              "recordsFetched": 1,
+              "cacheHits": 1,
+              "latencyMs": 2652,
+              "spatialResolution": "Regional map unit scale (1:250k–1:5M)",
+              "sourceUrl": "https://macrostrat.org/api/v2/mobile/map_query_v2",
+              "attributionNotice": "Macrostrat / BGR / USGS Geologic Map Integration (CC BY 4.0)."
+            }
+          ],
+          "searchMetadata": {
+            "boundingBox": [
+              37.1,
+              29.2,
+              38,
+              30.2
+            ],
+            "targetId": "mars-jezero-delta",
+            "missionProfile": "Geological field research",
+            "gridSpacingDeg": 0.5,
+            "cellsGenerated": 2,
+            "cellsEvaluated": 2,
+            "maxCellsAllowed": 4,
+            "responseCacheHit": true,
+            "scientificMethodology": {
+              "slopeMethod": "5-point central-difference gradient (4 cardinal neighbors)",
+              "slopeStencilDeltaDeg": 0.002,
+              "polarExclusionLatDeg": 89.5,
+              "nasaPowerPeriod": "2001-2025 Climatology (v2.10.1)",
+              "temperatureProxyNote": "NASA POWER T2M is 2m air temperature proxy on a 0.5°×0.625° MERRA-2 grid.",
+              "lithologyClassifierPolicy": "Ambiguous mixed units and ultramafic rocks remain null rather than forcing first-keyword guesses."
+            }
+          },
+          "sourceReferences": [
+            {
+              "title": "Macrostrat (Pliocene undifferentiated)",
+              "providerOrOrg": "TerraTwin Provenance Record",
+              "url": "https://www.bgr.bund.de/EN/Themen/Sammlungen-Grundlagen/GG_geol_Info/Karten/International/Europa/IGME5000/igme5000_node_en.html",
+              "resolution": "Regional geologic map polygon scale (typically 1:250k–1:5M)",
+              "originKind": "live-provider"
+            },
+            {
+              "title": "5-Point Central-Difference Gradient (Copernicus DEM GLO-90)",
+              "providerOrOrg": "External Open Geospatial API",
+              "url": "https://open-meteo.com/en/docs/elevation-api",
+              "resolution": "Derived from 5-point cardinal central difference over ~445 m baseline (90 m DEM pixels)",
+              "originKind": "repository-dataset"
+            },
+            {
+              "title": "NASA POWER Climatology (T2M 2-meter air temp proxy)",
+              "providerOrOrg": "External Open Geospatial API",
+              "url": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+              "resolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+              "temporalCoverage": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+              "originKind": "live-provider"
+            },
+            {
+              "title": "NASA POWER Climatology (ALLSKY_SFC_SW_DWN, 24h mean)",
+              "providerOrOrg": "External Open Geospatial API",
+              "url": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+              "resolution": "1.0° × 1.0° (CERES SYN1DEG via NASA POWER)",
+              "temporalCoverage": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+              "originKind": "live-provider"
+            },
+            {
+              "title": "Copernicus DEM GLO-90 (Open-Meteo)",
+              "providerOrOrg": "External Open Geospatial API",
+              "url": "https://open-meteo.com/en/docs/elevation-api",
+              "resolution": "90 m grid cell",
+              "originKind": "live-provider"
+            },
+            {
+              "title": "NASA POWER Climatology (TS_RANGE)",
+              "providerOrOrg": "External Open Geospatial API",
+              "url": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+              "resolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+              "temporalCoverage": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+              "originKind": "live-provider"
+            },
+            {
+              "title": "NASA POWER Climatology (PRECTOTCORR)",
+              "providerOrOrg": "External Open Geospatial API",
+              "url": "https://power.larc.nasa.gov/docs/services/api/temporal/climatology/",
+              "resolution": "0.5° × 0.625° (MERRA-2 reanalysis)",
+              "temporalCoverage": "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+              "originKind": "live-provider"
+            }
+          ],
+          "scientificLimitations": [
+            "Data coverage is below 40% threshold for reliable similarity scoring.",
+            "Rock abundance and surface roughness unmeasured at regional resolution.",
+            "Macrostrat lithology 'Pliocene undifferentiated' falls outside TerraTwin's 7-class taxonomy.",
+            "Similarity score and research priority are separate exploratory screening aids, not NASA endorsements or mission-readiness certificates.",
+            "Regional DEM (~445 m central-difference), NASA POWER (~50 km MERRA-2), and Macrostrat geologic polygons cannot resolve local outcrop or rover traverse safety."
+          ],
+          "dataAvailabilityWarnings": [
+            "Data coverage is below 40% threshold for reliable similarity scoring.",
+            "Rock abundance and surface roughness unmeasured at regional resolution.",
+            "Macrostrat lithology 'Pliocene undifferentiated' falls outside TerraTwin's 7-class taxonomy.",
+            "Dominant lithology unmeasured (wt 30%): Null observation on candidate/target under Geological field research; excluded from similarity score denominator.",
+            "Vegetation cover unmeasured (wt 15%): Null observation on candidate/target under Geological field research; excluded from similarity score denominator.",
+            "Surface albedo unmeasured (wt 15%): Null observation on candidate/target under Geological field research; excluded from similarity score denominator.",
+            "Rock abundance / Terrain roughness unmeasured (wt 10%): Null observation on candidate/target under Geological field research; excluded from similarity score denominator.",
+            "Median regolith grain size unmeasured (wt 10%): Null observation on candidate/target under Geological field research; excluded from similarity score denominator."
+          ],
+          "reportMetadata": {
+            "reportTitle": "TerraTwin Scientific Analog Candidate Assessment",
+            "reportSubtitle": "Mission-Specific Earth Analog Screening & Research Validation Record",
+            "reportVersion": "6.6.0",
+            "candidateId": "cell_+37.3500_+29.4500",
+            "candidateName": "Candidate Cell +37.3500_+29.4500",
+            "snapshotId": "ttw-snap-cell_-37-3500_-29--r1-dca425a3",
+            "snapshotSchemaVersion": "1.0.0",
+            "contentDigest": "fnv64-2adcb3914a049afd",
+            "digestNote": "Integrity digest computed via deterministic canonical JSON serialization over snapshot schemaVersion, candidateId, targetId, missionProfileId, coordinates, score, coverage, environmental telemetry, featureScores, validationChecklist, and researchPriority. Establishes data integrity only; does NOT establish independent scientific verification.",
+            "generatedAt": "2026-11-14T21:49:28.124Z",
+            "datasetTemporalContext": [
+              "NASA POWER period: 2001-2025 Climatology (v2.10.1)",
+              "Mean temp.: 25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+              "Solar flux: 25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+              "Diurnal swing: 25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+              "Precipitation: 25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)",
+              "25-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2025)"
+            ],
+            "sourceVersions": [
+              "Copernicus GLO-90",
+              "v2.10.1",
+              "Macrostrat API v2"
+            ],
+            "methodologyVersion": "TerraTwin Discovery Engine v6.3.1 · Scientific Intelligence v6.5",
+            "missionProfileId": "geological-research",
+            "missionProfileLabel": "Geological field research",
+            "targetId": "a0000001-0000-4000-8000-000000000001",
+            "targetName": "Jezero Crater Delta",
+            "targetBody": "mars",
+            "storageMode": "browser-local-and-explicit-export",
+            "storageNotice": "Browser-local workspace storage: research assessments, tasks, and notes are stored in this browser's localStorage and active session only. They do not sync across devices or write to shared databases. Export PDF, CSV, or Snapshot JSON files to archive permanently."
+          }
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "id": "task-cell_-37-3500_-2-1-7b88b7",
+        "researchRecordId": "ttw-rec-cell_-37-3500_-2-b9332efc",
+        "candidateId": "cell_+37.3500_+29.4500",
+        "title": "Unmapped Lithology Resolution",
+        "scientificRationale": "Macrostrat polygon data was null or mixed-unit; petrological class remains unknown.",
+        "relatedGap": "Dominant lithology (missing data, missing_data)",
+        "driverFeature": "lithology",
+        "suggestedObservationMethod": "Review higher-resolution geological mapping or obtain field/laboratory confirmation of lithology and dominant mineral phases.",
+        "priority": "critical",
+        "status": "identified",
+        "observationStatus": "recommended-not-completed",
+        "createdAt": "2026-11-14T21:49:28.124Z",
+        "updatedAt": "2026-11-14T21:49:28.124Z"
+      },
+      {
+        "id": "task-cell_-37-3500_-2-2-dbea68",
+        "researchRecordId": "ttw-rec-cell_-37-3500_-2-b9332efc",
+        "candidateId": "cell_+37.3500_+29.4500",
+        "title": "Fractional Bare-Ground Vegetation Survey",
+        "scientificRationale": "Vegetation cover (wt 15%) was unmeasured in regional screening.",
+        "relatedGap": "Vegetation cover (missing data, missing_data)",
+        "driverFeature": "vegetationCoverPct",
+        "suggestedObservationMethod": "Verify absence of vascular/cryptogamic vegetation cover via high-resolution optical imagery or seasonal ground check.",
+        "priority": "critical",
+        "status": "identified",
+        "observationStatus": "recommended-not-completed",
+        "createdAt": "2026-11-14T21:49:28.124Z",
+        "updatedAt": "2026-11-14T21:49:28.124Z"
+      },
+      {
+        "id": "task-cell_-37-3500_-2-3-54478c",
+        "researchRecordId": "ttw-rec-cell_-37-3500_-2-b9332efc",
+        "candidateId": "cell_+37.3500_+29.4500",
+        "title": "Multi-Spectral Surface Albedo Retrieval",
+        "scientificRationale": "Surface albedo (wt 15%) was unmeasured in regional screening.",
+        "relatedGap": "Surface albedo (missing data, missing_data)",
+        "driverFeature": "albedo",
+        "suggestedObservationMethod": "Acquire cloud-free optical/multispectral satellite reflectance (e.g., Landsat/Sentinel-2) to quantify broadband albedo.",
+        "priority": "critical",
+        "status": "identified",
+        "observationStatus": "recommended-not-completed",
+        "createdAt": "2026-11-14T21:49:28.124Z",
+        "updatedAt": "2026-11-14T21:49:28.124Z"
+      },
+      {
+        "id": "task-cell_-37-3500_-2-4-d98675",
+        "researchRecordId": "ttw-rec-cell_-37-3500_-2-b9332efc",
+        "candidateId": "cell_+37.3500_+29.4500",
+        "title": "Surface Clast & Boulder Hazard Mapping",
+        "scientificRationale": "Rock abundance carries 10% mission weight and is unmeasured at regional tier.",
+        "relatedGap": "Rock abundance / Terrain roughness (missing data, missing_data)",
+        "driverFeature": "rockAbundancePct",
+        "suggestedObservationMethod": "Obtain higher-resolution imagery or field measurements to assess surface rock abundance (>10 cm clasts) and landing/traverse hazards.",
+        "priority": "high",
+        "status": "identified",
+        "observationStatus": "recommended-not-completed",
+        "createdAt": "2026-11-14T21:49:28.124Z",
+        "updatedAt": "2026-11-14T21:49:28.124Z"
+      },
+      {
+        "id": "task-cell_-37-3500_-2-5-4e7168",
+        "researchRecordId": "ttw-rec-cell_-37-3500_-2-b9332efc",
+        "candidateId": "cell_+37.3500_+29.4500",
+        "title": "Regolith Granulometry & Soil Mechanics",
+        "scientificRationale": "Median grain size (wt 10%) requires physical sieving and governs wheel sinkage/ISRU sintering.",
+        "relatedGap": "Median regolith grain size (missing data, missing_data)",
+        "driverFeature": "medianGrainSizeMm",
+        "suggestedObservationMethod": "Collect sedimentological or regolith grain-size measurements and bearing-strength profiles in the field or laboratory.",
+        "priority": "high",
+        "status": "identified",
+        "observationStatus": "recommended-not-completed",
+        "createdAt": "2026-11-14T21:49:28.124Z",
+        "updatedAt": "2026-11-14T21:49:28.124Z"
+      },
+      {
+        "id": "task-cell_-37-3500_-2-6-ec2df4",
+        "researchRecordId": "ttw-rec-cell_-37-3500_-2-b9332efc",
+        "candidateId": "cell_+37.3500_+29.4500",
+        "title": "Meter-Scale Topographic Survey",
+        "scientificRationale": "Regional 5-point ~445 m gradient misses decimeter–meter scarps and rover roll obstacles.",
+        "relatedGap": "Mean terrain slope (comparable, derived)",
+        "driverFeature": "meanSlopeDeg",
+        "suggestedObservationMethod": "Acquire higher-resolution topographic data (drone photogrammetry, LiDAR, or <2 m stereo DEM) to validate micro-slopes smoothed by 90 m DEM stencils.",
+        "priority": "moderate",
+        "status": "identified",
+        "observationStatus": "recommended-not-completed",
+        "createdAt": "2026-11-14T21:49:28.124Z",
+        "updatedAt": "2026-11-14T21:49:28.124Z"
+      },
+      {
+        "id": "task-cell_-37-3500_-2-7-d1ac9c",
+        "researchRecordId": "ttw-rec-cell_-37-3500_-2-b9332efc",
+        "candidateId": "cell_+37.3500_+29.4500",
+        "title": "Local Microclimate vs. Reanalysis Calibration",
+        "scientificRationale": "50 km MERRA-2 2 m air temperatures omit terrain aspect shading, ground thermal inertia, and cold-air drainage.",
+        "relatedGap": "Mean surface temperature (comparable, proxy)",
+        "driverFeature": "meanSurfaceTempC",
+        "suggestedObservationMethod": "Compare local meteorological station or surface skin logger observations against NASA POWER 0.5° × 0.625° climatological estimates.",
+        "priority": "moderate",
+        "status": "identified",
+        "observationStatus": "recommended-not-completed",
+        "createdAt": "2026-11-14T21:49:28.124Z",
+        "updatedAt": "2026-11-14T21:49:28.124Z"
+      }
+    ],
+    "notes": [
+      {
+        "id": "note-f807bf8c",
+        "researchRecordId": "ttw-rec-cell_-37-3500_-2-b9332efc",
+        "candidateId": "cell_+37.3500_+29.4500",
+        "title": "Phase 6.7 Salda Live Audit",
+        "body": "Verified live Open-Meteo GLO-90, NASA POWER 2001-2025 climatology, and Macrostrat carbonate mapping.",
+        "authorRole": "user-authored-research-note",
+        "relatedFeature": "general",
+        "createdAt": "2026-11-14T21:49:28.927Z",
+        "updatedAt": "2026-11-14T21:49:28.927Z"
+      }
+    ]
+  }
+}

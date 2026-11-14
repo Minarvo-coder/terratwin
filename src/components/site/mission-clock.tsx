@@ -18,7 +18,7 @@ export function MissionClock() {
   }, [])
 
   return (
-    <div className="hidden lg:flex items-center gap-3 font-mono text-[11px] text-slate-400 bg-slate-900/80 border border-cyan-500/20 px-3 py-1 rounded-full backdrop-blur-sm">
+    <div className="hidden 2xl:flex shrink-0 items-center gap-3 font-mono text-[11px] text-slate-400 bg-slate-900/80 border border-cyan-500/20 px-3 py-1 rounded-full backdrop-blur-sm">
       <span className="flex items-center gap-1.5 text-cyan-400 font-semibold tracking-wider">
         <span className="relative flex h-2 w-2">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>

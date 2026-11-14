@@ -40,3 +40,7 @@ yarn-error.log*
 # Large binary rasters in raw data
 raw-data/**/*.img
 
+# Test results and temporary files
+test-results/
+supabase/.temp/
+

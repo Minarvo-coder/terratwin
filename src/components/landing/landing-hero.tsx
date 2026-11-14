@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Crosshair, Sparkles, Compass, ShieldAlert, Cpu, Terminal, Radio } from "lucide-react"
+import { ArrowRight, Crosshair, Terminal, ScanSearch } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const HERO_TARGETS = [
@@ -15,7 +15,7 @@ const HERO_TARGETS = [
     coords: "18.38° N, 77.58° E",
     temp: "-60°C",
     lithology: "Clay-sedimentary & Volcanic",
-    topEarthAnalog: "Salda Lake, Turkey (91% Match)",
+    topEarthAnalog: "Lake Salda, Turkey (86.4% Geo / 81.1% Rover)",
   },
   {
     id: "moon-tranquility",
@@ -25,7 +25,7 @@ const HERO_TARGETS = [
     coords: "0.67° N, 23.47° E",
     temp: "-20°C",
     lithology: "Basaltic Regolith",
-    topEarthAnalog: "Craters of the Moon, USA (87% Match)",
+    topEarthAnalog: "Askja & Holuhraun, Iceland (85.1% Geo) · Craters of the Moon, USA (81.8% Geo)",
   },
 ]
 
@@ -121,6 +121,13 @@ export function LandingHero() {
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
+                href="/discover"
+                className="flex items-center gap-2 rounded-lg border border-cyan-500/40 bg-cyan-950/50 px-5 py-3.5 text-sm font-semibold text-cyan-200 backdrop-blur-sm transition-all hover:border-cyan-400 hover:bg-cyan-950/80 hover:text-white"
+              >
+                <ScanSearch className="size-4 text-cyan-400" />
+                <span>Discovery Scanner</span>
+              </Link>
+              <Link
                 href="/methodology"
                 className="flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-900/60 px-5 py-3.5 text-sm font-semibold text-slate-200 backdrop-blur-sm transition-all hover:border-cyan-500/40 hover:bg-slate-850 hover:text-white"
               >
@@ -154,7 +161,7 @@ export function LandingHero() {
 
                 {/* Tactical HUD Overlay Elements */}
                 <div className="absolute top-3 left-3 rounded bg-slate-950/80 border border-cyan-500/30 px-2 py-1 font-mono text-[10px] text-cyan-300 backdrop-blur-md">
-                  FEED: ORBITAL OPTICAL // SYNTHETIC
+                  ILLUSTRATIVE MISSION PREVIEW // DETERMINISTIC TELEMETRY
                 </div>
 
                 <div className="absolute bottom-3 left-3 right-3 rounded-lg bg-slate-950/85 border border-slate-800/90 p-3 backdrop-blur-md font-mono text-xs">
@@ -175,20 +182,20 @@ export function LandingHero() {
         {/* Tactical Stat Strip */}
         <div className="mt-14 grid grid-cols-2 gap-4 border-t border-cyan-500/15 pt-8 sm:grid-cols-4">
           <div className="flex flex-col gap-1 border-l-2 border-cyan-500/40 pl-4 font-mono">
-            <span className="text-2xl font-bold text-white sm:text-3xl">08</span>
-            <span className="text-xs text-slate-400 uppercase tracking-wider">Scientific Dimensions</span>
+            <span className="text-2xl font-bold text-white sm:text-3xl">12</span>
+            <span className="text-xs text-slate-400 uppercase tracking-wider">Environmental Parameters</span>
           </div>
           <div className="flex flex-col gap-1 border-l-2 border-purple-500/40 pl-4 font-mono">
-            <span className="text-2xl font-bold text-white sm:text-3xl">15+</span>
-            <span className="text-xs text-slate-400 uppercase tracking-wider">Calibrated Earth Basins</span>
+            <span className="text-2xl font-bold text-white sm:text-3xl">31</span>
+            <span className="text-xs text-slate-400 uppercase tracking-wider">Curated Atlas Sites (+ Live Scanner)</span>
           </div>
           <div className="flex flex-col gap-1 border-l-2 border-emerald-500/40 pl-4 font-mono">
             <span className="text-2xl font-bold text-white sm:text-3xl">100%</span>
-            <span className="text-xs text-slate-400 uppercase tracking-wider">Deterministic Scoring</span>
+            <span className="text-xs text-slate-400 uppercase tracking-wider">Deterministic (≥40% Gate)</span>
           </div>
           <div className="flex flex-col gap-1 border-l-2 border-amber-500/40 pl-4 font-mono">
-            <span className="text-2xl font-bold text-white sm:text-3xl">NASA</span>
-            <span className="text-xs text-slate-400 uppercase tracking-wider">Space Apps 2026 Target</span>
+            <span className="text-2xl font-bold text-white sm:text-3xl">04</span>
+            <span className="text-xs text-slate-400 uppercase tracking-wider">Mission Profiles</span>
           </div>
         </div>
       </div>

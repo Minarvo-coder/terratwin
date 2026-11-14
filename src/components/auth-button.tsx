@@ -1,13 +1,10 @@
 import Link from 'next/link'
-import { createClient } from '@/utils/supabase/server'
+import { getAuthenticatedWorkspaceUser } from '@/utils/supabase/workspace-auth'
 import { signout } from '@/app/login/actions'
 import { ShieldCheck, LogIn, LogOut } from 'lucide-react'
 
 export default async function AuthButton() {
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  const { user } = await getAuthenticatedWorkspaceUser()
 
   if (user) {
     return (

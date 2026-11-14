@@ -317,9 +317,104 @@ export const GEOLOGICAL_RESEARCH_PROFILE: ConfigurableMissionProfile = {
   },
 }
 
+/**
+ * Lunar Base Construction & ISRU Mission Profile
+ * Calibrated for civil engineering grading stability, lander touchdown hazard clearance,
+ * solar radiative power context, thermal fatigue resilience, and regolith ISRU feedstock petrology.
+ * 
+ * Note: Earth solar irradiance is modulated by terrestrial atmospheric attenuation and a 24h cycle;
+ * it provides radiative flux context only and does not reproduce the 29.5-Earth-day lunar synodic
+ * illumination cycle or polar low-angle illumination geometry.
+ * 
+ * Weights are strictly non-negative and sum exactly to 1.00:
+ * - meanSlopeDeg: 0.25 (foundation leveling, trenching, and lander tipping stability)
+ * - rockAbundancePct: 0.20 (boulder clearing hazard for landing pads and roads)
+ * - surfaceSolarIrradianceWm2: 0.15 (solar power flux context)
+ * - diurnalTempRangeC: 0.10 (structural and seal thermal cycling stress)
+ * - lithology: 0.10 (basaltic/anorthositic ISRU oxygen & sintering feedstock)
+ * - medianGrainSizeMm: 0.10 (regolith bearing capacity and sintering granulometry)
+ * - vegetationCoverPct: 0.05 (bare ground operational accessibility without root matrices)
+ * - meanSurfaceTempC: 0.05 (baseline thermal management context)
+ * - elevationM: 0.00 (excluded: planetary reference datums are physically distinct)
+ * - albedo: 0.00
+ * - annualPrecipitationMm: 0.00 (excluded)
+ * - surfacePressurePa: 0.00 (excluded)
+ * Total: 1.00
+ */
+export const LUNAR_BASE_CONSTRUCTION_PROFILE: ConfigurableMissionProfile = {
+  id: "lunar-base-construction",
+  label: "Lunar base construction & ISRU",
+  summary:
+    "Prioritises civil engineering slope stability, low boulder clearance hazard, solar radiative flux context, thermal cycling resilience, and regolith ISRU feedstock petrology.",
+  statusNotice:
+    "Calibrated for permanent lunar habitat siting, landing pad preparation, and regolith ISRU operations. Note: Earth solar irradiance does not reproduce lunar polar or synodic illumination.",
+  weights: {
+    meanSlopeDeg: 0.25,
+    rockAbundancePct: 0.20,
+    surfaceSolarIrradianceWm2: 0.15,
+    diurnalTempRangeC: 0.10,
+    lithology: 0.10,
+    medianGrainSizeMm: 0.10,
+    vegetationCoverPct: 0.05,
+    meanSurfaceTempC: 0.05,
+    elevationM: 0.0,
+    albedo: 0.0,
+    annualPrecipitationMm: 0.0,
+    surfacePressurePa: 0.0,
+  },
+}
+
+/**
+ * Astrobiology & Habitability Mission Profile
+ * Calibrated for biosignature preservation potential, aqueous/evaporitic mineralogical context,
+ * thermal extremes, diurnal freeze–thaw cycling, and fine-grained sedimentary matrices.
+ * 
+ * Note: Terrestrial vegetation cover is assigned weight 0.00 so vascular flora is never treated
+ * as evidence of extraterrestrial life or as a direct measure of planetary habitability.
+ * 
+ * Weights are strictly non-negative and sum exactly to 1.00:
+ * - lithology: 0.30 (clay-sedimentary, sulfate-evaporite, and hydrothermal impact substrates)
+ * - meanSurfaceTempC: 0.15 (cryospheric/thermodynamic state and brine stability context)
+ * - diurnalTempRangeC: 0.15 (diurnal freeze–thaw and salt-deliquescence thermal cycling)
+ * - surfaceSolarIrradianceWm2: 0.10 (radiative energy budget and surface photolytic context)
+ * - albedo: 0.10 (evaporitic salt crust and bright mineralogical reflectance context)
+ * - medianGrainSizeMm: 0.10 (fine clay/silt matrices favorable for organic preservation)
+ * - meanSlopeDeg: 0.05 (low-energy depositional basin stability)
+ * - rockAbundancePct: 0.05 (outcrop exposure and endolithic micro-habitat shelter)
+ * - vegetationCoverPct: 0.00 (excluded: vascular plant cover is not a planetary habitability metric)
+ * - elevationM: 0.00 (excluded: planetary reference datums are physically distinct)
+ * - annualPrecipitationMm: 0.00 (excluded: active rainfall absent on Moon/Mars)
+ * - surfacePressurePa: 0.00 (excluded)
+ * Total: 1.00
+ */
+export const ASTROBIOLOGY_HABITABILITY_PROFILE: ConfigurableMissionProfile = {
+  id: "astrobiology-habitability",
+  label: "Astrobiology & habitability",
+  summary:
+    "Prioritises biosignature-preserving lithology (clays, carbonates, evaporites), thermal extremes, diurnal freeze–thaw cycling, and fine-grained sedimentary matrices.",
+  statusNotice:
+    "Calibrated for extremophile environment screening and biosignature preservation study. Vegetation cover is excluded (weight 0.00) and never treated as a habitability indicator.",
+  weights: {
+    lithology: 0.30,
+    meanSurfaceTempC: 0.15,
+    diurnalTempRangeC: 0.15,
+    surfaceSolarIrradianceWm2: 0.10,
+    albedo: 0.10,
+    medianGrainSizeMm: 0.10,
+    meanSlopeDeg: 0.05,
+    rockAbundancePct: 0.05,
+    vegetationCoverPct: 0.0,
+    elevationM: 0.0,
+    annualPrecipitationMm: 0.0,
+    surfacePressurePa: 0.0,
+  },
+}
+
 export const CONFIGURABLE_MISSION_PROFILES: ConfigurableMissionProfile[] = [
   ROVER_TESTING_PROFILE,
   GEOLOGICAL_RESEARCH_PROFILE,
+  LUNAR_BASE_CONSTRUCTION_PROFILE,
+  ASTROBIOLOGY_HABITABILITY_PROFILE,
 ]
 
 // Validate default profiles at module load time to guarantee structural integrity
@@ -331,4 +426,14 @@ if (!roverValidation.isValid) {
 const geoValidation = validateMissionWeights(GEOLOGICAL_RESEARCH_PROFILE.weights)
 if (!geoValidation.isValid) {
   throw new Error(`Invalid GEOLOGICAL_RESEARCH_PROFILE weights: ${geoValidation.errors.join("; ")}`)
+}
+
+const lunarBaseValidation = validateMissionWeights(LUNAR_BASE_CONSTRUCTION_PROFILE.weights)
+if (!lunarBaseValidation.isValid) {
+  throw new Error(`Invalid LUNAR_BASE_CONSTRUCTION_PROFILE weights: ${lunarBaseValidation.errors.join("; ")}`)
+}
+
+const astroValidation = validateMissionWeights(ASTROBIOLOGY_HABITABILITY_PROFILE.weights)
+if (!astroValidation.isValid) {
+  throw new Error(`Invalid ASTROBIOLOGY_HABITABILITY_PROFILE weights: ${astroValidation.errors.join("; ")}`)
 }

@@ -88,7 +88,8 @@ export function getFeatureComparabilityInfo(key: FeatureKey): ComparabilityInfo 
         classification: "COMPARABLE_AFTER_TRANSFORMATION",
         label: "Transformed Proxy",
         badgeVariant: "amber",
-        rationale: "Derived using thermal cycle normalization or Horn 3x3 finite-difference spatial filter.",
+        rationale:
+          "Derived using thermal cycle normalization or finite-difference spatial gradient filter (Horn 3x3 on Phase 3 MOLA/LOLA rasters; 5-point central-difference stencil on Phase 6 live Copernicus DEM scans).",
       }
     case "lithology":
       return {

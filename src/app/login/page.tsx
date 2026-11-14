@@ -4,7 +4,17 @@ import { Suspense } from 'react'
 import { Orbit, ShieldCheck, Lock, User, Terminal, ArrowLeft } from 'lucide-react'
 
 interface LoginPageProps {
-  searchParams: Promise<{ message?: string; error?: string }>
+  searchParams: Promise<{ message?: string; error?: string; next?: string }>
+}
+
+async function NextRedirectInput({
+  searchParams,
+}: {
+  searchParams: Promise<{ message?: string; error?: string; next?: string }>
+}) {
+  const { next } = await searchParams
+  const safeNext = next && next.startsWith('/') && !next.startsWith('//') ? next : '/'
+  return <input type="hidden" name="next" value={safeNext} />
 }
 
 async function StatusMessages({
@@ -85,6 +95,9 @@ export default function LoginPage({ searchParams }: LoginPageProps) {
         </Suspense>
 
         <form className="space-y-4">
+          <Suspense fallback={<input type="hidden" name="next" value="/" />}>
+            <NextRedirectInput searchParams={searchParams} />
+          </Suspense>
           <div>
             <label
               className="block font-mono text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1"

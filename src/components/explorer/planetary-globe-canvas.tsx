@@ -124,12 +124,18 @@ export default function PlanetaryGlobeCanvas({
     const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100)
     camera.position.set(0, 0, 4.3)
 
-    // Renderer
-    const renderer = new THREE.WebGLRenderer({
-      antialias: true,
-      alpha: true,
-      powerPreference: "high-performance",
-    })
+    // Renderer (gracefully falls back to 2D procedural telemetry canvas if headless/GPU-less WebGL fails)
+    let renderer: THREE.WebGLRenderer
+    try {
+      renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+        powerPreference: "high-performance",
+      })
+    } catch {
+      container.innerHTML = `<div class="flex h-full w-full items-center justify-center bg-slate-950 p-4 font-mono text-xs text-cyan-300">2D ORBITAL TELEMETRY FALLBACK ACTIVE (${body.toUpperCase()})</div>`
+      return
+    }
     renderer.setSize(width, height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     renderer.toneMapping = THREE.ACESFilmicToneMapping

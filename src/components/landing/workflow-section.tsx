@@ -1,30 +1,30 @@
 import Link from "next/link"
-import { ArrowRight, Radar, CheckCircle2, ChevronRight, Sliders, MapPin, Database } from "lucide-react"
+import { Radar, CheckCircle2, ChevronRight, Sliders, MapPin, Database } from "lucide-react"
 
 const PHASES = [
   {
     phase: "PHASE 01",
     icon: Database,
-    title: "Target Telemetry Ingestion",
-    body: "Select a lunar or Martian environment profile. The engine loads 8 environmental vectors: diurnal temp, precipitation, slope, rock abundance, grain size, albedo, vegetation, and lithology.",
+    title: "Target & Mission Profile Selection",
+    body: "Select a lunar or Martian exploration target across 12 environmental parameters and apply one of 4 mission profiles: Rover Testing, Geological Research, Lunar Base & ISRU, or Astrobiology.",
   },
   {
     phase: "PHASE 02",
     icon: Sliders,
-    title: "Mission Weight Allocation",
-    body: "Toggle between Rover Mobility (emphasizing slope, rock abundance, and trafficability) vs Geological Field Research (prioritizing lithological affinity and chemical stability).",
+    title: "3D/2D Flight Deck & Portfolio Optimizer",
+    body: "Inspect 8 canonical terrestrial benchmarks in the /explore workstation, audit normalized tolerance scores, and combine complementary sites in the Multi-Site Analog Portfolio Optimizer.",
   },
   {
     phase: "PHASE 03",
     icon: Radar,
-    title: "Deterministic Vector Scoring",
-    body: "Multi-dimensional tolerance functions (linear, logarithmic, and categorical) compute normalized similarity indices from 0 to 100% with explicit data coverage confidence tracking.",
+    title: "Live Regional Scanner & 31-Site Atlas",
+    body: "Scan bounded WGS84 regions on /discover using live Open-Meteo DEM, NASA POWER climatology, and Macrostrat geology, or screen 31 curated global sites across 18 countries and 9 categories.",
   },
   {
     phase: "PHASE 04",
     icon: MapPin,
-    title: "Geospatial Deployment",
-    body: "Interactive dark-canvas world map and high-fidelity comparison radar charts visualize exact coordinate placements, mission relevance, and feature gaps for field scientists.",
+    title: "Scientific Intelligence & Research Exports",
+    body: "Audit per-parameter provenance and the ≥40% reliable coverage gate, record immutable research snapshots with cloud RLS sync, and export PDF, CSV, and JSON dossiers.",
   },
 ]
 
@@ -97,15 +97,14 @@ export function WorkflowSection() {
               STATUS
             </span>
             <p className="text-xs sm:text-sm leading-relaxed text-slate-300">
-              <strong className="text-amber-300">NASA Space Apps Challenge Prototype:</strong> Running on curated 
-              baseline terrestrial dataset. Real-time mathematical scoring demonstrates UI, map plotting, and scientific tolerance pipelines.
+              <strong className="text-amber-300">NASA Space Apps Challenge Architecture:</strong> Combines 8 canonical benchmarks + 31 curated Global Atlas sites with live bounded regional scans (Open-Meteo DEM, NASA POWER, Macrostrat), ≥40% reliable coverage gating, and cloud-synced research exports.
             </p>
           </div>
           <Link
-            href="/explore"
+            href="/discover"
             className="shrink-0 rounded-lg bg-cyan-500 px-4 py-2 font-mono text-xs font-semibold text-slate-950 transition hover:bg-cyan-400"
           >
-            Open Explorer →
+            Open Discovery Scanner →
           </Link>
         </div>
       </div>

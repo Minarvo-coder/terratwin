@@ -1,5 +1,7 @@
 import {
+  ASTROBIOLOGY_HABITABILITY_PROFILE,
   GEOLOGICAL_RESEARCH_PROFILE,
+  LUNAR_BASE_CONSTRUCTION_PROFILE,
   ROVER_TESTING_PROFILE,
   validateMissionWeights,
   type ConfigurableMissionProfile,
@@ -11,7 +13,7 @@ import {
   SAMPLE_TARGETS,
 } from "../sample-dataset.ts"
 import { rankCandidateLocations } from "../similarity-engine.ts"
-import type { DatasetMeta, EarthCandidate, PlanetaryTarget } from "../types.ts"
+import type { DatasetMeta, EarthCandidate, MissionPurpose, PlanetaryTarget } from "../types.ts"
 import type { CompareApiRequest, CompareApiResponse } from "../types/api.ts"
 
 export class ValidationError extends Error {
@@ -47,8 +49,14 @@ export function resolveMissionProfile(
     if (normalized === "geological-research" || normalized === "geological_research") {
       return GEOLOGICAL_RESEARCH_PROFILE
     }
+    if (normalized === "lunar-base-construction" || normalized === "lunar_base_construction") {
+      return LUNAR_BASE_CONSTRUCTION_PROFILE
+    }
+    if (normalized === "astrobiology-habitability" || normalized === "astrobiology_habitability") {
+      return ASTROBIOLOGY_HABITABILITY_PROFILE
+    }
     throw new ValidationError(
-      `Unknown mission profile '${input}'. Supported standard profiles are 'rover-testing' and 'geological-research', or provide a custom profile object with weights summing to 1.0.`
+      `Unknown mission profile '${input}'. Supported standard profiles are 'rover-testing', 'geological-research', 'lunar-base-construction', and 'astrobiology-habitability', or provide a custom profile object with weights summing to 1.0.`
     )
   }
 
@@ -231,7 +239,7 @@ export async function executeAnalogComparison(
     dataset,
     target,
     missionProfile: {
-      id: profile.id as "rover-testing" | "geological-research",
+      id: profile.id as MissionPurpose,
       label: profile.label,
       summary: profile.summary,
       weights: profile.weights,

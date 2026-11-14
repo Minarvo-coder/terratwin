@@ -1,6 +1,51 @@
 export type PlanetaryBody = "moon" | "mars"
 
-export type MissionPurpose = "rover-testing" | "geological-research"
+export type MissionPurpose =
+  | "rover-testing"
+  | "geological-research"
+  | "lunar-base-construction"
+  | "astrobiology-habitability"
+
+export type AnalogEnvironmentCategory =
+  | "salt-flats-evaporites"
+  | "polar-permafrost"
+  | "volcanic-fields"
+  | "impact-craters"
+  | "high-altitude-plateaus"
+  | "glacial-outwash"
+  | "lava-tubes-caves"
+  | "dry-river-deltas"
+  | "serpentinizing-acidic-mineral-systems"
+
+export interface AnalogEnvironmentCategoryDefinition {
+  id: AnalogEnvironmentCategory
+  label: string
+  shortLabel: string
+  description: string
+  planetaryRelevance: string
+  scientificCaveat: string
+}
+
+export type AnalogNoveltyTier =
+  | "canonical-benchmark"
+  | "under-explored-analog"
+  | "live-grid-discovery"
+
+export interface AnalogNoveltyTierDefinition {
+  id: AnalogNoveltyTier
+  label: string
+  shortLabel: string
+  description: string
+  assignmentCriteria: string
+  evidenceRequired: string
+  scientificCaveat: string
+}
+
+/**
+ * Geographic bounding box in WGS84 decimal degrees ordered as:
+ * [minLatitude, minLongitude, maxLatitude, maxLongitude] (South, West, North, East).
+ */
+export type GeographicBoundingBox = [number, number, number, number]
 
 export type Lithology =
   | "basaltic"
@@ -28,13 +73,30 @@ export type FeatureKey = NumericFeatureKey | "lithology"
 
 export type ProvenanceStatus = "verified" | "illustrative" | "unverified" | "no-data"
 
+export type ProvenanceDataOrigin =
+  | "static-curated"
+  | "live-api-estimate"
+  | "computed-derivative"
+  | "missing"
+
+export type ProvenanceVerificationState =
+  | "verified"
+  | "unverified"
+  | "illustrative"
+  | "no-data"
+
 export interface FeatureProvenance {
   status: ProvenanceStatus
+  dataOrigin?: ProvenanceDataOrigin
+  evidenceClassification?: EvidenceClassification
+  verificationState?: ProvenanceVerificationState
   sourceTitle?: string
   sourceUrl?: string
   datasetVersion?: string
   provider?: string
   unit: string
+  originalSourceValue?: number | string | null
+  originalSourceUnit?: string
   spatialResolution?: string
   measurementPeriod?: string
   qualityNotes?: string
@@ -88,6 +150,57 @@ export interface EarthCandidate {
   provenanceMap?: FeatureProvenanceMap
   isVerified?: boolean
   databaseId?: string
+  /** Optional classification into one of the nine terrestrial environment categories of scientific interest. */
+  category?: AnalogEnvironmentCategory
+  /** Optional catalogue provenance classification (not a scientific similarity score). */
+  noveltyTier?: AnalogNoveltyTier
+  /**
+   * Optional spatial extent in WGS84 decimal degrees ordered as
+   * [minLatitude, minLongitude, maxLatitude, maxLongitude] (South, West, North, East).
+   */
+  boundingBox?: [number, number, number, number]
+  /** Optional 10-meter mean surface wind speed in m/s (e.g. from NASA POWER WS10M), null when unmeasured. */
+  windSpeedMs?: number | null
+}
+
+/**
+ * Citation and archival provenance for primary scientific publications and datasets.
+ */
+export interface ScientificSourceReference {
+  datasetOrPublication: string
+  organization: string
+  sourceUrl?: string
+  doiOrIdentifier?: string
+  publicationDate?: string
+  spatialResolution?: string
+  relevantVariables?: string[]
+  attributionNotice?: string
+}
+
+/**
+ * Data fidelity classification for environmental measurements.
+ */
+export type EvidenceClassification =
+  | "measured"
+  | "derived"
+  | "proxy"
+  | "illustrative"
+  | "missing_data"
+
+/**
+ * Authoritative record for a terrestrial planetary analog discovery location.
+ * Fully compatible with EarthCandidate while extending it with deep scientific metadata.
+ */
+export interface DiscoveryAtlasEntry extends EarthCandidate {
+  category: AnalogEnvironmentCategory
+  noveltyTier: AnalogNoveltyTier
+  boundingBox: GeographicBoundingBox
+  geologicalDescription: string
+  planetaryRelevance: string
+  relevantMissionProfiles: MissionPurpose[]
+  evidenceClassification: EvidenceClassification
+  scientificLimitations: string[]
+  primarySources: ScientificSourceReference[]
 }
 
 export type FeatureComparisonKind = "linear" | "logarithmic" | "categorical"
