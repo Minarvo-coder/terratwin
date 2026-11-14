@@ -111,41 +111,41 @@ export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
   return (
     <div className="flex flex-col gap-6">
       {/* Top Provenance Status & Dataset Switcher Banner */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-xl border border-slate-800 bg-slate-900/60 p-4 font-mono text-xs backdrop-blur-md">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-xs">
         <div className="flex items-center gap-3">
           <div
             className={cn(
               "flex size-9 items-center justify-center rounded-lg border",
               data?.dataset.isVerified
-                ? "border-emerald-500/40 bg-emerald-950/60 text-emerald-300"
-                : "border-amber-500/40 bg-amber-950/60 text-amber-300",
+                ? "border-emerald-500/30 bg-emerald-950/40 text-emerald-300"
+                : "border-amber-500/30 bg-amber-950/40 text-amber-300",
             )}
           >
             {data?.dataset.isVerified ? <ShieldCheck className="size-5" /> : <AlertTriangle className="size-5" />}
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-bold text-white text-sm">
+              <span className="font-semibold text-white text-sm">
                 {data?.dataset.name ?? "Telemetry Catalog"}
               </span>
-              <span className="rounded bg-slate-800 px-1.5 py-0.5 text-[10px] text-slate-400">
+              <span className="rounded bg-slate-800 px-1.5 py-0.5 text-[10px] text-slate-400 font-mono">
                 v{data?.dataset.version ?? "1.0"}
               </span>
             </div>
-            <p className="text-[11px] text-slate-400 mt-0.5 max-w-2xl">
+            <p className="text-xs text-slate-400 mt-0.5 max-w-2xl">
               {data?.dataset.notice}
             </p>
           </div>
         </div>
 
         {/* Source Mode Toggle */}
-        <div className="flex items-center gap-1 self-start sm:self-center rounded-lg border border-slate-800 bg-slate-950/80 p-1 text-[11px]">
+        <div className="flex items-center gap-1 self-start sm:self-center rounded-lg border border-slate-800 bg-slate-950 p-1 text-xs">
           <button
             type="button"
             onClick={() => handleFilterChange("all")}
             className={cn(
-              "rounded px-2.5 py-1 transition cursor-pointer",
-              sourceFilter === "all" ? "bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/40" : "text-slate-400 hover:text-white",
+              "rounded px-2.5 py-1 transition cursor-pointer font-medium",
+              sourceFilter === "all" ? "bg-slate-800 text-white font-semibold" : "text-slate-400 hover:text-white",
             )}
           >
             All Catalog
@@ -154,19 +154,19 @@ export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
             type="button"
             onClick={() => handleFilterChange("verified")}
             className={cn(
-              "rounded px-2.5 py-1 transition cursor-pointer flex items-center gap-1",
-              sourceFilter === "verified" ? "bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/40" : "text-slate-400 hover:text-white",
+              "rounded px-2.5 py-1 transition cursor-pointer flex items-center gap-1 font-medium",
+              sourceFilter === "verified" ? "bg-emerald-950/60 text-emerald-300 font-semibold border border-emerald-500/30" : "text-slate-400 hover:text-white",
             )}
           >
             <ShieldCheck className="size-3 text-emerald-400" />
-            <span>Verified DB</span>
+            <span>Verified PDS</span>
           </button>
           <button
             type="button"
             onClick={() => handleFilterChange("sample")}
             className={cn(
-              "rounded px-2.5 py-1 transition cursor-pointer",
-              sourceFilter === "sample" ? "bg-amber-500/20 text-amber-300 font-bold border border-amber-500/40" : "text-slate-400 hover:text-white",
+              "rounded px-2.5 py-1 transition cursor-pointer font-medium",
+              sourceFilter === "sample" ? "bg-amber-950/60 text-amber-300 font-semibold border border-amber-500/30" : "text-slate-400 hover:text-white",
             )}
           >
             Illustrative Demo
@@ -199,19 +199,19 @@ export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
 
         <div className="flex min-w-0 flex-col gap-4">
           {/* Strategy Mode Switcher Bar */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-xl border border-slate-800 bg-slate-900/60 p-2 font-mono text-xs backdrop-blur-md">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-xl border border-slate-800 bg-slate-900/60 p-2 text-xs">
             <div className="flex items-center gap-2 pl-2">
-              <Compass className="size-4 text-cyan-400" />
-              <span className="font-bold text-white uppercase tracking-wider text-[11px]">Exploration Strategy:</span>
+              <Compass className="size-4 text-sky-400" />
+              <span className="font-semibold text-white uppercase tracking-wider text-[11px]">Exploration Mode:</span>
             </div>
             <div className="flex flex-wrap items-center gap-1.5">
               <button
                 type="button"
                 onClick={() => setExplorerMode("single")}
                 className={cn(
-                  "rounded-lg px-3 py-1.5 font-bold transition cursor-pointer flex items-center gap-1.5 text-xs",
+                  "rounded-md px-3 py-1.5 font-medium transition cursor-pointer flex items-center gap-1.5 text-xs",
                   explorerMode === "single"
-                    ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-[0_0_10px_rgba(56,189,248,0.15)]"
+                    ? "bg-slate-800 text-sky-400 font-semibold border border-slate-700/80 shadow-xs"
                     : "text-slate-400 hover:text-white",
                 )}
               >
@@ -221,17 +221,14 @@ export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
                 type="button"
                 onClick={() => setExplorerMode("suite")}
                 className={cn(
-                  "rounded-lg px-3 py-1.5 font-bold transition cursor-pointer flex items-center gap-1.5 text-xs",
+                  "rounded-md px-3 py-1.5 font-medium transition cursor-pointer flex items-center gap-1.5 text-xs",
                   explorerMode === "suite"
-                    ? "bg-purple-500/20 text-purple-300 border border-purple-500/40 shadow-[0_0_10px_rgba(168,85,247,0.2)]"
+                    ? "bg-purple-950/50 text-purple-300 font-semibold border border-purple-500/40 shadow-xs"
                     : "text-slate-400 hover:text-white",
                 )}
               >
                 <Layers className="size-3.5 text-purple-400" />
-                <span>Mission Suite // Multi-Site Optimizer</span>
-                <span className="rounded bg-purple-950/80 border border-purple-500/40 px-1 py-0.2 text-[9px] text-purple-300 font-bold">
-                  NEW
-                </span>
+                <span>Mission Suite &amp; Portfolio Optimizer</span>
               </button>
             </div>
           </div>

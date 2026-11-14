@@ -156,17 +156,17 @@ export function DiscoveryResultsPanel({
     <aside
       aria-label="Discovery intelligence and candidate results"
       data-scan-busy={String(isBusy)}
-      className="flex flex-col gap-3 rounded-xl border border-slate-800 bg-slate-900/70 p-4 shadow-lg backdrop-blur-md"
+      className="flex flex-col gap-3 rounded-xl border border-slate-800 bg-slate-900/60 p-4 font-sans"
     >
       {/* Panel Header */}
       <div className="flex items-center justify-between border-b border-slate-800 pb-3">
         <div>
-          <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-cyan-400">
-            03 // DISCOVERY INTELLIGENCE
+          <span className="text-[11px] font-medium text-sky-400">
+            Candidate Ranking &amp; Triage
           </span>
-          <h2 className="text-sm font-bold text-white">Candidates & Scientific Triage</h2>
+          <h2 className="text-sm font-semibold text-white">Candidates &amp; Scientific Triage</h2>
         </div>
-        <Radar className="size-4 text-cyan-400" aria-hidden="true" />
+        <Radar className="size-4 text-sky-400" aria-hidden="true" />
       </div>
 
       {/* Distinct Mode Switcher: Live Regional Discovery vs Curated Global Atlas */}
@@ -181,9 +181,9 @@ export function DiscoveryResultsPanel({
           aria-selected={activeTab === "live"}
           onClick={() => onTabChange("live")}
           className={cn(
-            "min-h-8 rounded-md px-2 py-1.5 font-mono text-[11px] font-semibold transition cursor-pointer",
+            "min-h-8 rounded-md px-2 py-1.5 text-xs font-medium transition cursor-pointer",
             activeTab === "live"
-              ? "bg-cyan-950/80 text-cyan-200 border border-cyan-500/40"
+              ? "bg-slate-800 text-sky-300 border border-slate-700"
               : "text-slate-400 hover:text-slate-200"
           )}
         >
@@ -196,9 +196,9 @@ export function DiscoveryResultsPanel({
           aria-selected={activeTab === "atlas"}
           onClick={() => onTabChange("atlas")}
           className={cn(
-            "min-h-8 rounded-md px-2 py-1.5 font-mono text-[11px] font-semibold transition cursor-pointer",
+            "min-h-8 rounded-md px-2 py-1.5 text-xs font-medium transition cursor-pointer",
             activeTab === "atlas"
-              ? "bg-amber-950/70 text-amber-200 border border-amber-500/40"
+              ? "bg-slate-800 text-amber-300 border border-slate-700"
               : "text-slate-400 hover:text-slate-200"
           )}
         >

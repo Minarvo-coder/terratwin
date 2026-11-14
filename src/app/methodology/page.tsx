@@ -22,10 +22,10 @@ export default function MethodologyPage() {
           title="How candidate rankings are produced"
           description="TerraTwin ranks Earth locations by how closely their environmental features resemble a selected Moon or Mars target, weighted for a mission purpose."
         />
-        <div role="note" className="rounded-lg border border-cyan-500/30 bg-cyan-950/20 p-4 text-sm leading-relaxed">
-          <p className="font-medium text-cyan-400">Integrated Planetary & Terrestrial Telemetry</p>
-          <p className="mt-1 text-muted-foreground">
-            TerraTwin queries 8 official NASA & ESA dataset sources stored in PostgreSQL via Supabase. Telemetry includes MOLA topography, LOLA laser altimetry, NASA POWER 25-year climatology, MSL Curiosity REMS, Mars 2020 MEDA, LRO Diviner radiometry, and SRTM/MODIS surface observations.
+        <div role="note" className="rounded-xl border border-slate-800 bg-slate-900/60 p-5 text-sm leading-relaxed">
+          <p className="font-semibold text-white">Integrated Planetary &amp; Terrestrial Telemetry</p>
+          <p className="mt-1 text-slate-400">
+            TerraTwin normalizes 12 planetary and terrestrial parameters via linear and logarithmic tolerances, and evaluates mission-weighted similarity across 4 profiles. Environmental telemetry sources include NASA MOLA, LRO LOLA/Diviner, NASA POWER 25-year climatology, Copernicus 90m DEM, and Macrostrat geology.
           </p>
         </div>
       </div>

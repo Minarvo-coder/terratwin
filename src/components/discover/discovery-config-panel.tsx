@@ -134,22 +134,22 @@ export function DiscoveryConfigPanel({
   return (
     <aside
       aria-label="Mission and scan configuration"
-      className="flex flex-col gap-4 rounded-xl border border-slate-800 bg-slate-900/70 p-4 shadow-lg backdrop-blur-md"
+      className="flex flex-col gap-4 rounded-xl border border-slate-800 bg-slate-900/60 p-4 font-sans"
     >
       {/* Panel Header */}
       <div className="flex items-center justify-between border-b border-slate-800 pb-3">
         <div>
-          <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-cyan-400">
-            01 // MISSION CONFIG
+          <span className="text-[11px] font-medium text-sky-400">
+            Mission Configuration
           </span>
-          <h2 className="text-sm font-bold text-white">Planetary Analog Scan Setup</h2>
+          <h2 className="text-sm font-semibold text-white">Planetary Analog Scan Setup</h2>
         </div>
-        <SlidersHorizontal className="size-4 text-cyan-400" aria-hidden="true" />
+        <SlidersHorizontal className="size-4 text-sky-400" aria-hidden="true" />
       </div>
 
       {/* Section 1: Planetary Target */}
       <fieldset className="flex flex-col gap-2">
-        <legend className="font-mono text-[11px] font-semibold uppercase tracking-wider text-slate-300">
+        <legend className="text-xs font-semibold text-slate-200">
           Planetary Target
         </legend>
 
@@ -164,16 +164,16 @@ export function DiscoveryConfigPanel({
                 aria-pressed={active}
                 onClick={() => onBodyChange(b)}
                 className={cn(
-                  "min-h-9 rounded-lg border px-2.5 py-1.5 text-left font-mono text-xs transition cursor-pointer disabled:opacity-50",
+                  "min-h-9 rounded-lg border px-2.5 py-1.5 text-left text-xs transition cursor-pointer disabled:opacity-50",
                   active
-                    ? "border-cyan-400 bg-cyan-950/60 text-white shadow-[0_0_12px_rgba(34,211,238,0.18)]"
+                    ? "border-sky-500 bg-slate-800 text-white font-medium"
                     : "border-slate-800 bg-slate-950/60 text-slate-400 hover:border-slate-700 hover:text-slate-200"
                 )}
               >
-                <span className="block font-bold uppercase">
+                <span className="block font-semibold">
                   {b === "mars" ? "Mars" : "Moon"}
                 </span>
-                <span className="block text-[10px] text-slate-400">
+                <span className="block text-[11px] text-slate-400">
                   {b === "mars" ? "Martian surface" : "Lunar base sites"}
                 </span>
               </button>
@@ -517,10 +517,10 @@ export function DiscoveryConfigPanel({
             aria-busy={isBusy}
             onClick={onLaunchScan}
             className={cn(
-              "flex min-h-10 flex-1 items-center justify-center gap-2 rounded-lg border px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider transition cursor-pointer",
+              "flex min-h-10 flex-1 items-center justify-center gap-2 rounded-lg border px-4 py-2 font-medium text-xs transition cursor-pointer",
               canLaunch
-                ? "border-cyan-400/60 bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 shadow-[0_0_20px_rgba(34,211,238,0.28)] hover:brightness-110"
-                : "border-slate-700 bg-slate-800/80 text-slate-400 cursor-not-allowed"
+                ? "border-sky-400 bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold"
+                : "border-slate-800 bg-slate-800/80 text-slate-400 cursor-not-allowed"
             )}
           >
             {isBusy ? (
@@ -559,10 +559,10 @@ export function DiscoveryConfigPanel({
               lifecycle === "error" || lifecycle === "rate-limited"
                 ? "border-rose-500/40 bg-rose-950/40 text-rose-200"
                 : lifecycle === "partial-success" || lifecycle === "insufficient-data"
-                ? "border-amber-500/40 bg-amber-950/35 text-amber-200"
-                : lifecycle === "submitting" || lifecycle === "validating"
-                ? "border-cyan-500/40 bg-cyan-950/40 text-cyan-200"
-                : "border-slate-800 bg-slate-950/70 text-slate-300"
+                  ? "border-amber-500/40 bg-amber-950/35 text-amber-200"
+                  : lifecycle === "submitting" || lifecycle === "validating"
+                    ? "border-cyan-500/40 bg-cyan-950/40 text-cyan-200"
+                    : "border-slate-800 bg-slate-950/70 text-slate-300"
             )}
           >
             <div className="flex items-start gap-2">

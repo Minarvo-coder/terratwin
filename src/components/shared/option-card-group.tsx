@@ -32,12 +32,11 @@ export function OptionCardGroup<T extends string>({
     <fieldset className="flex flex-col gap-2">
       <legend
         className={cn(
-          "mb-2 font-mono text-[11px] font-semibold uppercase tracking-wider text-slate-400 flex items-center justify-between",
+          "mb-1.5 font-mono text-[11px] font-medium uppercase tracking-wider text-slate-400 flex items-center justify-between",
           hideLegend && "sr-only",
         )}
       >
         <span>{legend}</span>
-        <span className="text-[10px] text-cyan-400/70 font-normal">SELECT PARAM</span>
       </legend>
       <div className={cn("grid gap-2", columns === 2 && "grid-cols-2")}>
         {options.map((option) => {
@@ -46,9 +45,9 @@ export function OptionCardGroup<T extends string>({
             <label
               key={option.value}
               className={cn(
-                "group relative flex cursor-pointer flex-col gap-1 rounded-lg border px-3 py-2.5 transition-all duration-150 backdrop-blur-sm",
+                "group relative flex cursor-pointer flex-col gap-1 rounded-lg border px-3 py-2.5 transition-all duration-150",
                 isSelected
-                  ? "border-cyan-400/70 bg-cyan-950/40 text-white shadow-[0_0_15px_rgba(56,189,248,0.2)]"
+                  ? "border-sky-500/70 bg-sky-950/40 text-white shadow-xs"
                   : "border-slate-800 bg-slate-900/40 text-slate-300 hover:border-slate-700 hover:bg-slate-800/40 hover:text-white",
               )}
             >
@@ -64,18 +63,18 @@ export function OptionCardGroup<T extends string>({
                 <span className="flex items-center gap-1.5">
                   <span
                     className={cn(
-                      "size-2 rounded-full transition-all",
-                      isSelected ? "bg-cyan-400 shadow-[0_0_8px_#38bdf8]" : "bg-slate-700",
+                      "size-1.5 rounded-full transition-all",
+                      isSelected ? "bg-sky-400" : "bg-slate-700",
                     )}
                   />
                   <span>{option.label}</span>
                 </span>
                 {option.meta && (
-                  <span className="font-mono text-[10px] text-slate-500">{option.meta}</span>
+                  <span className="font-mono text-[9px] px-1.5 py-0.2 rounded bg-slate-800 text-slate-400">{option.meta}</span>
                 )}
               </span>
               {option.description && (
-                <span className="text-[11px] leading-relaxed text-slate-400 pl-3.5">
+                <span className="text-[11px] leading-relaxed text-slate-400 pl-3">
                   {option.description}
                 </span>
               )}

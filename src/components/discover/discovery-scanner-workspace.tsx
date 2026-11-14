@@ -434,15 +434,15 @@ export function DiscoveryScannerWorkspace({
       {/* Top Workstation Mode & Panel Toggle Strip */}
       <div
         ref={workspaceTopRef}
-        className="scroll-mt-20 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-800 bg-slate-900/60 px-3.5 py-2.5 font-mono text-xs backdrop-blur-md"
+        className="scroll-mt-20 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-800 bg-slate-900/60 px-3.5 py-2.5 text-xs font-sans"
       >
         <div className="flex flex-wrap items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded border border-cyan-500/30 bg-cyan-950/50 px-2 py-0.5 text-[10px] font-bold text-cyan-300">
-            <Compass className="size-3" aria-hidden="true" />
-            <span>BOUNDED REGIONAL SCREENING + CURATED ATLAS</span>
+          <span className="inline-flex items-center gap-1.5 rounded-md border border-sky-500/30 bg-sky-950/60 px-2 py-0.5 text-xs font-semibold text-sky-300">
+            <Compass className="size-3.5" aria-hidden="true" />
+            <span>Regional Screening &amp; Curated Atlas</span>
           </span>
-          <span className="text-[11px] text-slate-400 hidden sm:inline">
-            Live Open-Meteo DEM · NASA POWER Climatology · Macrostrat Geology
+          <span className="text-xs text-slate-400 hidden sm:inline">
+            Live Open-Meteo DEM &bull; NASA POWER Climatology &bull; Macrostrat Geology
           </span>
         </div>
 
@@ -451,7 +451,7 @@ export function DiscoveryScannerWorkspace({
           <button
             type="button"
             onClick={() => setShowLeftPanel((prev) => !prev)}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-950 px-2.5 py-1 text-[11px] text-slate-300 hover:border-cyan-500/40 hover:text-white cursor-pointer"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-950 px-2.5 py-1 text-xs text-slate-300 hover:border-slate-500 hover:text-white cursor-pointer"
           >
             {showLeftPanel ? (
               <>
@@ -469,7 +469,7 @@ export function DiscoveryScannerWorkspace({
           <button
             type="button"
             onClick={() => setShowRightPanel((prev) => !prev)}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-950 px-2.5 py-1 text-[11px] text-slate-300 hover:border-cyan-500/40 hover:text-white cursor-pointer"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-950 px-2.5 py-1 text-xs text-slate-300 hover:border-slate-500 hover:text-white cursor-pointer"
           >
             {showRightPanel ? (
               <>
@@ -506,9 +506,9 @@ export function DiscoveryScannerWorkspace({
                 aria-selected={active}
                 onClick={() => setMobileSection(tab.id)}
                 className={cn(
-                  "flex-1 sm:flex-initial inline-flex min-h-8 items-center justify-center gap-1.5 rounded px-2.5 py-1 text-[11px] font-semibold transition cursor-pointer",
+                  "flex-1 sm:flex-initial inline-flex min-h-8 items-center justify-center gap-1.5 rounded px-2.5 py-1 text-xs font-medium transition cursor-pointer",
                   active
-                    ? "bg-cyan-950/80 text-cyan-200 border border-cyan-500/40"
+                    ? "bg-slate-800 text-sky-300 border border-slate-700"
                     : "text-slate-400 hover:text-white"
                 )}
               >
@@ -662,30 +662,30 @@ export function DiscoveryScannerWorkspace({
       {showJudgeBar ? (
         <div
           data-testid="judge-demo-quickload-bar"
-          className="rounded-xl border border-cyan-500/30 bg-slate-900/75 px-3.5 py-2.5 backdrop-blur-md"
+          className="rounded-xl border border-slate-800 bg-slate-900/60 p-4 font-sans"
         >
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 rounded border border-cyan-400/40 bg-cyan-950/70 px-2 py-0.5 font-mono text-[10px] font-bold tracking-wider text-cyan-200 uppercase">
-                <Sparkles className="size-3 text-cyan-400" aria-hidden="true" />
-                <span>Judge Demo Scenarios (Quick Load)</span>
+              <span className="inline-flex items-center gap-1.5 rounded border border-sky-500/30 bg-sky-950/60 px-2 py-0.5 text-xs font-semibold text-sky-300">
+                <Sparkles className="size-3 text-sky-400" aria-hidden="true" />
+                <span>Demo Evaluation Scenarios</span>
               </span>
-              <span className="text-[11px] text-slate-300">
-                Pre-loads real planetary targets, mission profiles, and bounding boxes — never fabricates data:
+              <span className="text-xs text-slate-300">
+                Pre-loads authentic planetary targets, mission profiles, and bounding boxes:
               </span>
             </div>
             <button
               type="button"
               data-testid="dismiss-judge-demo-bar"
               onClick={() => setShowJudgeBar(false)}
-              className="inline-flex items-center gap-1 rounded border border-slate-700 bg-slate-950 px-2 py-0.5 font-mono text-[10px] text-slate-400 hover:border-slate-500 hover:text-white cursor-pointer"
+              className="inline-flex items-center gap-1 rounded border border-slate-700 bg-slate-950 px-2.5 py-0.5 text-xs text-slate-400 hover:border-slate-500 hover:text-white cursor-pointer"
               aria-label="Hide Judge Demo Scenarios bar"
             >
               <X className="size-3" aria-hidden="true" />
-              <span>Dismiss Bar</span>
+              <span>Dismiss</span>
             </button>
           </div>
-          <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-3 grid grid-cols-1 gap-2.5 sm:grid-cols-2 xl:grid-cols-4">
             {[
               {
                 id: "demo-a-geo" as const,
@@ -721,15 +721,15 @@ export function DiscoveryScannerWorkspace({
                 <div
                   key={item.id}
                   className={cn(
-                    "flex flex-col justify-between rounded-lg border px-3 py-2 text-left transition",
+                    "flex flex-col justify-between rounded-lg border p-3 text-left transition",
                     isSelected
-                      ? "border-cyan-400/70 bg-cyan-950/60 text-white shadow-sm"
-                      : "border-slate-800 bg-slate-950/80 text-slate-200"
+                      ? "border-sky-500/70 bg-slate-800 text-white"
+                      : "border-slate-800 bg-slate-950/70 text-slate-200 hover:border-slate-700"
                   )}
                 >
                   <div>
                     <div className="text-xs font-semibold text-white">{item.title}</div>
-                    <div className="mt-0.5 text-[11px] leading-snug text-slate-400">
+                    <div className="mt-1 text-xs leading-relaxed text-slate-400">
                       {item.subtitle}
                     </div>
                   </div>
@@ -737,7 +737,7 @@ export function DiscoveryScannerWorkspace({
                     type="button"
                     data-testid={item.testId}
                     onClick={() => handleLoadJudgeDemoScenario(item.id)}
-                    className="mt-2 inline-flex w-fit items-center rounded border border-cyan-500/40 bg-cyan-950/80 px-2.5 py-1 font-mono text-[10px] font-bold tracking-wider text-cyan-200 uppercase hover:border-cyan-400 hover:text-white cursor-pointer"
+                    className="mt-3 inline-flex w-fit items-center rounded border border-slate-700 bg-slate-900 px-2.5 py-1 text-xs font-medium text-slate-200 hover:border-sky-500/50 hover:text-white cursor-pointer"
                   >
                     {item.buttonLabel}
                   </button>
@@ -752,10 +752,10 @@ export function DiscoveryScannerWorkspace({
             type="button"
             data-testid="restore-judge-demo-bar"
             onClick={() => setShowJudgeBar(true)}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-cyan-500/30 bg-slate-900/70 px-2.5 py-1 font-mono text-[11px] text-cyan-300 hover:border-cyan-400/60 hover:text-white cursor-pointer"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900 px-3 py-1 text-xs font-medium text-slate-300 hover:border-slate-500 hover:text-white cursor-pointer"
           >
-            <Sparkles className="size-3 text-cyan-400" aria-hidden="true" />
-            <span>Restore Demo Bar</span>
+            <Sparkles className="size-3.5 text-sky-400" aria-hidden="true" />
+            <span>Restore Demo Scenarios</span>
           </button>
         </div>
       )}

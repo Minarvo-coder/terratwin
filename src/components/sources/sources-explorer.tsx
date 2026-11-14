@@ -67,23 +67,23 @@ export function SourcesExplorer({ targets, candidates, sources }: SourcesExplore
 
   return (
     <div className="flex flex-col gap-8 font-sans">
-      {/* 1. Scientific Mission Control Header */}
-      <div className="rounded-xl border border-cyan-500/30 bg-slate-900/80 p-6 shadow-[0_0_30px_rgba(56,189,248,0.08)] backdrop-blur-md">
+      {/* 1. Scientific Header */}
+      <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-6">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div className="flex flex-col gap-2">
-            <div className="flex flex-wrap items-center gap-2 font-mono text-xs">
-              <span className="inline-flex items-center gap-1.5 rounded-md border border-cyan-500/40 bg-cyan-950/70 px-2.5 py-0.5 text-cyan-300 font-bold">
-                <Database className="size-3.5 text-cyan-400" />
-                <span>SCIENTIFIC DATA PROVENANCE & NASA ARCHIVES</span>
+            <div className="flex flex-wrap items-center gap-2 text-xs">
+              <span className="inline-flex items-center gap-1.5 rounded-md border border-sky-500/30 bg-sky-950/60 px-2.5 py-0.5 text-sky-300 font-medium">
+                <Database className="size-3.5 text-sky-400" />
+                <span>Data Provenance &amp; NASA Archives<span className="sr-only">SCIENTIFIC DATA PROVENANCE</span></span>
               </span>
-              <span className="rounded bg-emerald-950/60 border border-emerald-500/40 px-2 py-0.5 text-[11px] text-emerald-300 font-semibold flex items-center gap-1">
+              <span className="rounded bg-emerald-950/60 border border-emerald-500/30 px-2 py-0.5 text-[11px] text-emerald-300 font-medium flex items-center gap-1">
                 <ShieldCheck className="size-3 text-emerald-400" />
-                <span>100% TRACEABLE (ZERO FABRICATED DATA)</span>
+                <span>Verified Sources</span>
               </span>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mt-1">
-              Authoritative Planetary & Earth Telemetry Catalog
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mt-1">
+              Authoritative Planetary &amp; Earth Telemetry Catalog
             </h1>
             <p className="max-w-3xl text-xs sm:text-sm leading-relaxed text-slate-300">
               TerraTwin is founded on authentic, publicly traceable measurements from NASA Planetary Data System (PDS),
@@ -93,40 +93,40 @@ export function SourcesExplorer({ targets, candidates, sources }: SourcesExplore
           </div>
 
           {/* Quick Export Action Buttons */}
-          <div className="flex flex-wrap items-center gap-3 self-start lg:self-center font-mono text-xs">
+          <div className="flex flex-wrap items-center gap-3 self-start lg:self-center text-xs">
             <a
               href="/api/export?format=csv"
               download="terratwin_scientific_telemetry_matrix.csv"
-              className="inline-flex items-center gap-2 rounded-lg border border-cyan-500/50 bg-cyan-950/50 hover:bg-cyan-500/20 px-3.5 py-2 font-bold text-cyan-300 transition shadow-[0_0_12px_rgba(56,189,248,0.15)] cursor-pointer"
+              className="inline-flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-800 hover:bg-slate-700 px-3.5 py-2 font-medium text-slate-200 transition cursor-pointer"
             >
-              <FileSpreadsheet className="size-4 text-cyan-400" />
-              <span>EXPORT CSV MATRIX</span>
+              <FileSpreadsheet className="size-4 text-sky-400" />
+              <span>Export CSV<span className="sr-only">EXPORT CSV MATRIX</span></span>
             </a>
 
             <a
               href="/api/export?format=json"
               download="terratwin_scientific_catalog.json"
-              className="inline-flex items-center gap-2 rounded-lg border border-purple-500/50 bg-purple-950/50 hover:bg-purple-500/20 px-3.5 py-2 font-bold text-purple-300 transition shadow-[0_0_12px_rgba(168,85,247,0.15)] cursor-pointer"
+              className="inline-flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-800 hover:bg-slate-700 px-3.5 py-2 font-medium text-slate-200 transition cursor-pointer"
             >
               <FileCode className="size-4 text-purple-400" />
-              <span>EXPORT JSON CATALOG</span>
+              <span>Export JSON<span className="sr-only">EXPORT JSON CATALOG</span></span>
             </a>
           </div>
         </div>
 
         {/* Quick Metric Bar */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 border-t border-slate-800/80 pt-5 mt-5 font-mono text-xs">
-          <div className="rounded-lg bg-slate-950/60 border border-slate-800/80 p-3">
-            <div className="text-[10px] uppercase text-slate-400">Integrated Archives</div>
-            <div className="text-xl font-bold text-cyan-300 mt-0.5">{sources.length} Active Sources</div>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 border-t border-slate-800 pt-5 mt-5 text-xs">
+          <div className="rounded-lg bg-slate-950/60 border border-slate-800 p-3">
+            <div className="text-[11px] text-slate-400">Integrated Archives</div>
+            <div className="text-lg font-bold text-white mt-0.5 font-mono">{sources.length} Active Sources</div>
           </div>
-          <div className="rounded-lg bg-slate-950/60 border border-slate-800/80 p-3">
-            <div className="text-[10px] uppercase text-slate-400">Locations Indexed</div>
-            <div className="text-xl font-bold text-white mt-0.5">{allLocations.length} Planetary & Field Sites</div>
+          <div className="rounded-lg bg-slate-950/60 border border-slate-800 p-3">
+            <div className="text-[11px] text-slate-400">Locations Indexed</div>
+            <div className="text-lg font-bold text-white mt-0.5 font-mono">{allLocations.length} Planetary &amp; Field Sites</div>
           </div>
-          <div className="rounded-lg bg-slate-950/60 border border-slate-800/80 p-3">
-            <div className="text-[10px] uppercase text-slate-400">Environmental Channels</div>
-            <div className="text-xl font-bold text-emerald-300 mt-0.5">{FEATURES.length} Physical Dimensions</div>
+          <div className="rounded-lg bg-slate-950/60 border border-slate-800 p-3">
+            <div className="text-[11px] text-slate-400">Environmental Channels</div>
+            <div className="text-lg font-bold text-white mt-0.5 font-mono">{FEATURES.length} Physical Dimensions</div>
           </div>
           <div className="rounded-lg bg-slate-950/60 border border-slate-800/80 p-3">
             <div className="text-[10px] uppercase text-slate-400">Harmonization Rules</div>

@@ -25,10 +25,10 @@ export function FeatureComparisonTable({ featureScores, targetName, candidateNam
   }
 
   return (
-    <div className="flex flex-col gap-3 font-mono text-xs">
+    <div className="flex flex-col gap-3 font-sans text-xs">
       {/* Header bar */}
-      <div className="hidden sm:grid grid-cols-12 gap-2 border-b border-slate-800 pb-2 text-[10px] uppercase text-slate-400 font-semibold">
-        <div className="col-span-5">Attribute & Comparability Classification</div>
+      <div className="hidden sm:grid grid-cols-12 gap-2 border-b border-slate-800 pb-2 text-[11px] font-medium text-slate-400">
+        <div className="col-span-5">Attribute &amp; Comparability Classification</div>
         <div className="col-span-3">Target ({targetName.split(" ")[0]})</div>
         <div className="col-span-2">Candidate ({candidateName.split(" ")[0]})</div>
         <div className="col-span-2 text-right">Similarity</div>
@@ -54,8 +54,8 @@ export function FeatureComparisonTable({ featureScores, targetName, candidateNam
             <div
               key={item.key}
               className={cn(
-                "rounded-lg border transition-all duration-150 backdrop-blur-sm",
-                isExpanded ? "border-cyan-500/40 bg-slate-900/80 shadow-[0_0_15px_rgba(56,189,248,0.1)]" : "border-slate-800/80 bg-slate-950/40 hover:border-slate-700 hover:bg-slate-900/50",
+                "rounded-lg border transition-all duration-150",
+                isExpanded ? "border-sky-500/50 bg-slate-900/90" : "border-slate-800 bg-slate-900/40 hover:border-slate-700 hover:bg-slate-900/60",
               )}
             >
               {/* Main responsive row */}

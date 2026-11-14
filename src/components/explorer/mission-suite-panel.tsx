@@ -43,23 +43,23 @@ export function MissionSuitePanel({ target, purposeId, isVerified }: MissionSuit
   const topPortfolio = portfolios[0]
 
   return (
-    <div className="flex flex-col gap-6">
-      {/* 1. Header Flight Deck & Portfolio Size Controller */}
-      <div className="rounded-xl border border-cyan-500/30 bg-slate-900/80 p-5 shadow-[0_0_25px_rgba(56,189,248,0.08)] backdrop-blur-md">
+    <div className="flex flex-col gap-6 font-sans">
+      {/* 1. Header Deck & Portfolio Size Controller */}
+      <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-5">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           <div className="flex flex-col gap-1.5">
-            <div className="flex flex-wrap items-center gap-2 font-mono text-xs">
-              <span className="inline-flex items-center gap-1.5 rounded-md border border-cyan-500/40 bg-cyan-950/70 px-2.5 py-0.5 text-cyan-300 font-bold">
-                <Layers className="size-3.5 text-cyan-400" />
-                <span>MISSION SUITE // MULTI-SITE ANALOG INTELLIGENCE</span>
+            <div className="flex flex-wrap items-center gap-2 text-xs">
+              <span className="inline-flex items-center gap-1.5 rounded-md border border-sky-500/30 bg-sky-950/60 px-2.5 py-0.5 text-sky-300 font-semibold">
+                <Layers className="size-3.5 text-sky-400" />
+                <span>Mission Suite Portfolio Optimizer</span>
               </span>
               <span className="rounded bg-slate-800 border border-slate-700/80 px-2 py-0.5 text-[11px] text-slate-400">
-                Combinatorial Feature-Coverage Optimizer
+                Combinatorial Feature Coverage
               </span>
               {isVerified && (
-                <span className="inline-flex items-center gap-1 rounded bg-emerald-950/60 border border-emerald-500/40 px-2 py-0.5 text-[11px] text-emerald-300 font-semibold">
+                <span className="inline-flex items-center gap-1 rounded bg-emerald-950/60 border border-emerald-500/40 px-2 py-0.5 text-[11px] text-emerald-300 font-medium">
                   <ShieldCheck className="size-3 text-emerald-400" />
-                  <span>VERIFIED NASA PDS DATA</span>
+                  <span>NASA PDS Verified</span>
                 </span>
               )}
             </div>
@@ -72,7 +72,7 @@ export function MissionSuitePanel({ target, purposeId, isVerified }: MissionSuit
           </div>
 
           {/* Size Selector & Compute Button */}
-          <div className="flex flex-wrap items-center gap-2 self-start lg:self-center font-mono text-xs">
+          <div className="flex flex-wrap items-center gap-2 self-start lg:self-center text-xs">
             <div className="inline-flex rounded-lg border border-slate-800 bg-slate-950 p-1">
               <button
                 type="button"
@@ -81,9 +81,9 @@ export function MissionSuitePanel({ target, purposeId, isVerified }: MissionSuit
                   setSelectedPortfolioId(null)
                 }}
                 className={cn(
-                  "rounded px-3 py-1.5 transition cursor-pointer font-semibold flex items-center gap-1.5",
+                  "rounded px-3 py-1.5 transition cursor-pointer font-medium flex items-center gap-1.5",
                   portfolioSize === 2
-                    ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-[0_0_10px_rgba(56,189,248,0.2)]"
+                    ? "bg-slate-800 text-sky-300 border border-slate-700"
                     : "text-slate-400 hover:text-white",
                 )}
               >
@@ -96,9 +96,9 @@ export function MissionSuitePanel({ target, purposeId, isVerified }: MissionSuit
                   setSelectedPortfolioId(null)
                 }}
                 className={cn(
-                  "rounded px-3 py-1.5 transition cursor-pointer font-semibold flex items-center gap-1.5",
+                  "rounded px-3 py-1.5 transition cursor-pointer font-medium flex items-center gap-1.5",
                   portfolioSize === 3
-                    ? "bg-purple-500/20 text-purple-300 border border-purple-500/40 shadow-[0_0_10px_rgba(168,85,247,0.2)]"
+                    ? "bg-slate-800 text-purple-300 border border-slate-700"
                     : "text-slate-400 hover:text-white",
                 )}
               >
@@ -110,10 +110,10 @@ export function MissionSuitePanel({ target, purposeId, isVerified }: MissionSuit
               type="button"
               onClick={() => mutate()}
               disabled={isLoading || isValidating}
-              className="inline-flex items-center gap-2 rounded-lg border border-cyan-500/50 bg-gradient-to-r from-cyan-600/30 to-blue-600/30 px-3.5 py-2 font-bold text-cyan-200 transition hover:border-cyan-400 hover:bg-cyan-500/20 cursor-pointer disabled:opacity-50"
+              className="inline-flex items-center gap-2 rounded-lg border border-sky-500/40 bg-sky-950/60 px-3.5 py-2 font-medium text-sky-200 transition hover:bg-sky-900/40 cursor-pointer disabled:opacity-50"
             >
               <RefreshCw className={cn("size-3.5", (isLoading || isValidating) && "animate-spin")} />
-              <span>COMPUTE SUITE</span>
+              <span>Recompute Suites</span>
             </button>
           </div>
         </div>
@@ -124,65 +124,65 @@ export function MissionSuitePanel({ target, purposeId, isVerified }: MissionSuit
             {/* Left Box: Best Single Site Benchmark */}
             <div className="rounded-lg border border-slate-800 bg-slate-950/60 p-4 lg:col-span-5 flex flex-col justify-between">
               <div>
-                <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 uppercase tracking-wider">
-                  <span>SINGLE BEST ANALOG</span>
-                  <span className="rounded bg-slate-800 px-1.5 py-0.2 text-[10px] text-slate-300">BENCHMARK</span>
+                <div className="flex items-center justify-between text-xs text-slate-400">
+                  <span className="font-medium">Single Best Analog</span>
+                  <span className="rounded bg-slate-800 px-1.5 py-0.5 text-[10px] text-slate-300">Benchmark</span>
                 </div>
-                <h4 className="text-lg font-bold text-white mt-1">{bestSingle.name}</h4>
+                <h4 className="text-base font-semibold text-white mt-1">{bestSingle.name}</h4>
               </div>
 
-              <div className="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-slate-800/60 font-mono text-xs">
+              <div className="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-slate-800/60 text-xs">
                 <div>
-                  <div className="text-[10px] uppercase text-slate-400">Match Fidelity</div>
-                  <div className="text-xl font-bold text-slate-300 mt-0.5">{formatScore(bestSingle.score)}</div>
+                  <div className="text-[11px] text-slate-400">Match Fidelity</div>
+                  <div className="text-lg font-bold text-slate-200 mt-0.5 font-mono">{formatScore(bestSingle.score)}</div>
                 </div>
                 <div>
-                  <div className="text-[10px] uppercase text-slate-400">Telemetry Coverage</div>
-                  <div className="text-xl font-bold text-slate-400 mt-0.5">{formatCoverage(bestSingle.coverage)}</div>
+                  <div className="text-[11px] text-slate-400">Data Coverage</div>
+                  <div className="text-lg font-bold text-slate-200 mt-0.5 font-mono">{formatCoverage(bestSingle.coverage)}</div>
                 </div>
               </div>
             </div>
 
             {/* Middle Indicator: Synergy Delta */}
-            <div className="hidden lg:flex flex-col items-center justify-center lg:col-span-2 text-center font-mono">
-              <div className="flex size-10 items-center justify-center rounded-full border border-cyan-500/40 bg-cyan-950/60 text-cyan-300 shadow-[0_0_15px_rgba(56,189,248,0.2)]">
+            <div className="hidden lg:flex flex-col items-center justify-center lg:col-span-2 text-center">
+              <div className="flex size-10 items-center justify-center rounded-full border border-sky-500/40 bg-sky-950/60 text-sky-300">
                 <Zap className="size-5" />
               </div>
-              <div className="text-[11px] font-bold text-cyan-300 mt-2">
+              <div className="text-xs font-bold text-sky-300 mt-2 font-mono">
                 {topPortfolio.synergyGain !== null && topPortfolio.synergyGain > 0 ? (
-                  <span>+{topPortfolio.synergyGain.toFixed(1)}% GAIN</span>
+                  <span>+{topPortfolio.synergyGain.toFixed(1)}%</span>
                 ) : (
-                  <span>EXPANDED</span>
+                  <span>Expanded</span>
                 )}
               </div>
-              <div className="text-[9px] text-slate-400">Synergy Delta</div>
+              <div className="text-[10px] text-slate-400">Synergy Gain</div>
             </div>
 
             {/* Right Box: Optimal Mission Suite */}
-            <div className="rounded-lg border border-cyan-500/40 bg-gradient-to-br from-cyan-950/40 via-slate-900/60 to-purple-950/30 p-4 lg:col-span-5 flex flex-col justify-between shadow-[0_0_20px_rgba(56,189,248,0.1)]">
+            <div className="rounded-lg border border-slate-800 bg-slate-950/60 p-4 lg:col-span-5 flex flex-col justify-between">
               <div>
-                <div className="flex items-center justify-between text-[11px] font-mono text-cyan-300 uppercase tracking-wider font-bold">
+                <div className="flex items-center justify-between text-xs text-sky-300 font-semibold">
                   <span className="flex items-center gap-1.5">
-                    <Sparkles className="size-3 text-cyan-400" />
-                    <span>OPTIMAL MISSION SUITE</span>
+                    <Sparkles className="size-3 text-sky-400" />
+                    <span>Optimal Mission Suite</span>
                   </span>
-                  <span className="rounded bg-cyan-500/20 border border-cyan-500/40 px-1.5 py-0.2 text-[10px] text-cyan-200">
-                    RANK #1
+                  <span className="rounded bg-sky-950/80 border border-sky-500/30 px-1.5 py-0.5 text-[10px] text-sky-300 font-mono">
+                    Rank #1
                   </span>
                 </div>
-                <h4 className="text-base font-bold text-white mt-1 leading-snug">
+                <h4 className="text-base font-semibold text-white mt-1 leading-snug">
                   {topPortfolio.candidates.map((c) => c.name).join(" + ")}
                 </h4>
               </div>
 
-              <div className="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-cyan-500/20 font-mono text-xs">
+              <div className="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-slate-800 text-xs">
                 <div>
-                  <div className="text-[10px] uppercase text-cyan-300/80">Composite Fidelity</div>
-                  <div className="text-xl font-bold text-cyan-300 mt-0.5">{formatScore(topPortfolio.score)}</div>
+                  <div className="text-[11px] text-slate-400">Composite Fidelity</div>
+                  <div className="text-lg font-bold text-sky-300 mt-0.5 font-mono">{formatScore(topPortfolio.score)}</div>
                 </div>
                 <div>
-                  <div className="text-[10px] uppercase text-purple-300/80">Combined Coverage</div>
-                  <div className="text-xl font-bold text-purple-300 mt-0.5">{formatCoverage(topPortfolio.coverage)}</div>
+                  <div className="text-[11px] text-slate-400">Combined Coverage</div>
+                  <div className="text-lg font-bold text-purple-300 mt-0.5 font-mono">{formatCoverage(topPortfolio.coverage)}</div>
                 </div>
               </div>
             </div>
@@ -222,19 +222,19 @@ export function MissionSuitePanel({ target, purposeId, isVerified }: MissionSuit
                     key={portfolio.id}
                     onClick={() => setSelectedPortfolioId(portfolio.id)}
                     className={cn(
-                      "cursor-pointer rounded-xl border p-4 transition-all duration-150 backdrop-blur-sm flex flex-col justify-between gap-3",
+                      "cursor-pointer rounded-xl border p-4 transition-all duration-150 flex flex-col justify-between gap-3",
                       isSelected
-                        ? "border-cyan-500 bg-slate-900/90 shadow-[0_0_20px_rgba(56,189,248,0.15)] ring-1 ring-cyan-500/50"
-                        : "border-slate-800/80 bg-slate-900/50 hover:border-slate-700 hover:bg-slate-900/70",
+                        ? "border-sky-500 bg-slate-900/95"
+                        : "border-slate-800 bg-slate-900/50 hover:border-slate-700 hover:bg-slate-900/70",
                     )}
                   >
                     <div>
-                      <div className="flex items-center justify-between font-mono text-xs">
-                        <span className="rounded bg-cyan-950/80 border border-cyan-500/30 px-2 py-0.5 text-cyan-300 font-bold">
-                          RANK #{portfolio.rank}
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="rounded bg-sky-950/80 border border-sky-500/30 px-2 py-0.5 text-sky-300 font-mono font-bold text-[11px]">
+                          Rank #{portfolio.rank}
                         </span>
                         {portfolio.synergyGain !== null && portfolio.synergyGain > 0 && (
-                          <span className="rounded bg-emerald-950/60 border border-emerald-500/30 px-1.5 py-0.5 text-[10px] text-emerald-300 font-bold font-mono">
+                          <span className="rounded bg-emerald-950/60 border border-emerald-500/30 px-1.5 py-0.5 text-[10px] text-emerald-300 font-medium font-mono">
                             +{portfolio.synergyGain.toFixed(1)}% vs. single
                           </span>
                         )}
@@ -242,10 +242,10 @@ export function MissionSuitePanel({ target, purposeId, isVerified }: MissionSuit
 
                       <div className="mt-3 flex flex-col gap-1">
                         {portfolio.candidates.map((cand) => (
-                          <div key={cand.id} className="flex items-center gap-2 text-sm font-semibold text-white">
-                            <span className="size-1.5 rounded-full bg-cyan-400" />
+                          <div key={cand.id} className="flex items-center gap-2 text-sm font-medium text-white">
+                            <span className="size-1.5 rounded-full bg-sky-400" />
                             <span className="truncate">{cand.name}</span>
-                            <span className="font-mono text-[10px] font-normal text-slate-400 ml-auto shrink-0">
+                            <span className="text-xs text-slate-400 ml-auto shrink-0">
                               {cand.country}
                             </span>
                           </div>
@@ -253,14 +253,14 @@ export function MissionSuitePanel({ target, purposeId, isVerified }: MissionSuit
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-2 pt-3 border-t border-slate-800/80 font-mono text-xs">
+                    <div className="grid grid-cols-2 gap-2 pt-3 border-t border-slate-800 text-xs">
                       <div>
-                        <div className="text-[9px] uppercase text-slate-400">Composite Match</div>
-                        <div className="text-base font-bold text-cyan-300">{formatScore(portfolio.score)}</div>
+                        <div className="text-[10px] text-slate-400">Composite Match</div>
+                        <div className="text-base font-bold text-sky-300 font-mono">{formatScore(portfolio.score)}</div>
                       </div>
                       <div className="text-right">
-                        <div className="text-[9px] uppercase text-slate-400">Coverage</div>
-                        <div className="text-base font-bold text-purple-300">{formatCoverage(portfolio.coverage)}</div>
+                        <div className="text-[10px] text-slate-400">Coverage</div>
+                        <div className="text-base font-bold text-purple-300 font-mono">{formatCoverage(portfolio.coverage)}</div>
                       </div>
                     </div>
                   </div>
@@ -273,10 +273,10 @@ export function MissionSuitePanel({ target, purposeId, isVerified }: MissionSuit
           {selectedPortfolio && (
             <div className="flex flex-col gap-6">
               {/* Scientific Brief Card */}
-              <div className="rounded-xl border border-cyan-500/30 bg-slate-900/60 p-5 font-mono text-xs leading-relaxed">
-                <div className="flex items-center gap-2 text-cyan-300 font-bold mb-2">
-                  <Terminal className="size-4 text-cyan-400" />
-                  <span>FLIGHT DIRECTOR BRIEF // SCIENTIFIC COMPOSITION ANALYSIS</span>
+              <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-5 text-xs leading-relaxed">
+                <div className="flex items-center gap-2 text-sky-300 font-semibold mb-2">
+                  <Terminal className="size-4 text-sky-400" />
+                  <span>Portfolio Scientific Brief</span>
                 </div>
                 <p className="text-slate-300 leading-relaxed font-sans text-sm">
                   {selectedPortfolio.scientificExplanation}
@@ -288,15 +288,15 @@ export function MissionSuitePanel({ target, purposeId, isVerified }: MissionSuit
                 title="Parameter Attribution & Feature Complementarity Matrix"
                 description={`Analysis of which Earth location champions each environmental requirement for ${target.name}.`}
                 actions={
-                  <span className="font-mono text-[11px] text-cyan-300 font-semibold flex items-center gap-1.5">
-                    <Award className="size-3.5 text-cyan-400" />
-                    <span>WINNING ANALOG ALLOCATION</span>
+                  <span className="text-xs text-sky-300 font-medium flex items-center gap-1.5">
+                    <Award className="size-3.5 text-sky-400" />
+                    <span>Analog Allocation</span>
                   </span>
                 }
               >
-                <div className="flex flex-col gap-3 font-mono text-xs">
+                <div className="flex flex-col gap-3 font-sans text-xs">
                   {/* Table header */}
-                  <div className="hidden sm:grid grid-cols-12 gap-2 border-b border-slate-800 pb-2 text-[10px] uppercase text-slate-400 font-semibold">
+                  <div className="hidden sm:grid grid-cols-12 gap-2 border-b border-slate-800 pb-2 text-[11px] font-medium text-slate-400">
                     <div className="col-span-4">Mission Parameter & Weight</div>
                     <div className="col-span-2">Target Value</div>
                     <div className="col-span-4">Portfolio Champion Site</div>
@@ -427,12 +427,12 @@ export function MissionSuitePanel({ target, purposeId, isVerified }: MissionSuit
 
               {/* Deficit Warning Card */}
               {selectedPortfolio.deficientFeatures.length > 0 && (
-                <div className="rounded-xl border border-amber-500/30 bg-amber-950/20 p-4 font-mono text-xs">
-                  <div className="flex items-center gap-2 text-amber-400 font-bold mb-1">
-                    <ShieldAlert className="size-4" />
-                    <span>SCIENTIFIC LIMITATIONS & REMAINING RESIDUAL DEFICITS</span>
+                <div className="rounded-xl border border-amber-500/30 bg-amber-950/20 p-4 text-xs">
+                  <div className="flex items-center gap-2 text-amber-300 font-semibold mb-1">
+                    <ShieldAlert className="size-4 text-amber-400" />
+                    <span>Scientific Limitations &amp; Residual Deficits</span>
                   </div>
-                  <p className="text-slate-300 mb-2">
+                  <p className="text-slate-300 mb-2 leading-relaxed">
                     Even across this optimized suite, the following planetary parameters remain under-represented or
                     physically unconstrained by terrestrial environments:
                   </p>

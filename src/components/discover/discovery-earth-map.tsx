@@ -80,20 +80,20 @@ export function DiscoveryEarthMap({
   return (
     <section
       aria-label="Interactive Earth Discovery Map"
-      className="flex flex-col overflow-hidden rounded-xl border border-slate-800 bg-slate-900/70 shadow-lg backdrop-blur-md"
+      className="flex flex-col overflow-hidden rounded-xl border border-slate-800 bg-slate-900/60 font-sans"
     >
       {/* Top Map Toolbar */}
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800/90 bg-slate-950/75 px-3 py-2.5">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 bg-slate-950 px-3 py-2.5">
         <div className="flex flex-wrap items-center gap-2">
           <button
             type="button"
             onClick={() => onDrawModeChange(!isDrawMode)}
             aria-pressed={isDrawMode}
             className={cn(
-              "inline-flex min-h-8 items-center gap-1.5 rounded-lg border px-3 py-1 font-mono text-xs font-semibold transition cursor-pointer",
+              "inline-flex min-h-8 items-center gap-1.5 rounded-lg border px-3 py-1 text-xs font-medium transition cursor-pointer",
               isDrawMode
-                ? "border-cyan-400 bg-cyan-500/20 text-cyan-200 shadow-[0_0_12px_rgba(34,211,238,0.25)]"
-                : "border-cyan-500/40 bg-slate-900 text-cyan-300 hover:border-cyan-400 hover:bg-cyan-950/50"
+                ? "border-sky-500 bg-sky-500/20 text-sky-200"
+                : "border-slate-700 bg-slate-900 text-slate-200 hover:border-slate-600 hover:bg-slate-800"
             )}
           >
             <PenSquare className="size-3.5" aria-hidden="true" />
@@ -103,10 +103,10 @@ export function DiscoveryEarthMap({
           <button
             type="button"
             onClick={onCaptureViewport}
-            className="inline-flex min-h-8 items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900 px-2.5 py-1 font-mono text-[11px] text-slate-200 transition hover:border-cyan-500/50 hover:text-white cursor-pointer"
+            className="inline-flex min-h-8 items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900 px-2.5 py-1 text-xs text-slate-300 transition hover:border-slate-600 hover:text-white cursor-pointer"
             title="Capture the visible map bounds as the regional scan area"
           >
-            <Scan className="size-3.5 text-cyan-400" aria-hidden="true" />
+            <Scan className="size-3.5 text-sky-400" aria-hidden="true" />
             <span>Use Current Map View</span>
           </button>
 
@@ -114,7 +114,7 @@ export function DiscoveryEarthMap({
             type="button"
             onClick={onFitRegion}
             disabled={!boundingBox}
-            className="inline-flex min-h-8 items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900 px-2.5 py-1 font-mono text-[11px] text-slate-300 transition hover:border-cyan-500/40 hover:text-white disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+            className="inline-flex min-h-8 items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900 px-2.5 py-1 text-xs text-slate-300 transition hover:border-slate-600 hover:text-white disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
           >
             <Focus className="size-3.5" aria-hidden="true" />
             <span>Fit Region</span>
@@ -124,7 +124,7 @@ export function DiscoveryEarthMap({
             type="button"
             onClick={onFitResults}
             disabled={candidates.length === 0}
-            className="inline-flex min-h-8 items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900 px-2.5 py-1 font-mono text-[11px] text-slate-300 transition hover:border-cyan-500/40 hover:text-white disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+            className="inline-flex min-h-8 items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900 px-2.5 py-1 text-xs text-slate-300 transition hover:border-slate-600 hover:text-white disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
           >
             <Maximize2 className="size-3.5" aria-hidden="true" />
             <span>Fit Results</span>
@@ -133,7 +133,7 @@ export function DiscoveryEarthMap({
           <button
             type="button"
             onClick={onResetMapView}
-            className="inline-flex min-h-8 items-center gap-1 rounded-lg border border-slate-700 bg-slate-900 px-2 py-1 font-mono text-[11px] text-slate-400 transition hover:border-slate-500 hover:text-white cursor-pointer"
+            className="inline-flex min-h-8 items-center gap-1 rounded-lg border border-slate-700 bg-slate-900 px-2 py-1 text-xs text-slate-400 transition hover:border-slate-500 hover:text-white cursor-pointer"
             title="Reset map to global view"
           >
             <RotateCcw className="size-3.5" aria-hidden="true" />
@@ -148,7 +148,7 @@ export function DiscoveryEarthMap({
             onClick={() => setShowAtlasLayer((prev) => !prev)}
             aria-pressed={showAtlasLayer}
             className={cn(
-              "inline-flex min-h-8 items-center gap-1.5 rounded-lg border px-2.5 py-1 font-mono text-[11px] transition cursor-pointer",
+              "inline-flex min-h-8 items-center gap-1.5 rounded-lg border px-2.5 py-1 text-xs font-medium transition cursor-pointer",
               showAtlasLayer
                 ? "border-amber-500/40 bg-amber-950/40 text-amber-200"
                 : "border-slate-700 bg-slate-900 text-slate-400 hover:text-slate-200"
