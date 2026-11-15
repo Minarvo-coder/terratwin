@@ -1,0 +1,23 @@
+# Large generated archives and screenshots
+*.zip
+presentation-screenshots/
+artifacts/
+docs/
+test-results/
+
+# Local build & env artifacts
+.next/
+node_modules/
+.env
+.env.local
+.env.*.local
+.vercel/
+
+# Ensure planetary elevation rasters are uploaded for /api/elevation
+!raw-data/
+!raw-data/mars/
+!raw-data/mars/megt90n000cb.img
+!raw-data/moon/
+!raw-data/moon/ldem_4.img
+!raw-data/earth/
+!raw-data/earth/earth_elevation_transects.json

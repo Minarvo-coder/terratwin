@@ -4,7 +4,6 @@ import { Inter, JetBrains_Mono } from 'next/font/google'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { SiteHeader } from '@/components/site/site-header'
 import { SiteFooter } from '@/components/site/site-footer'
-import { SampleDataBanner } from '@/components/site/sample-data-banner'
 import './globals.css'
 
 const inter = Inter({
@@ -50,7 +49,6 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} dark bg-background`}>
       <body className="flex min-h-dvh flex-col font-sans antialiased">
         <TooltipProvider>
-          <SampleDataBanner />
           <SiteHeader />
           <div className="flex-1">{children}</div>
           <SiteFooter />
