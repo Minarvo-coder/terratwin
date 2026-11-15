@@ -1,53 +1,72 @@
 import Link from "next/link"
-import { Orbit, ExternalLink } from "lucide-react"
+import { ArrowUpRight } from "lucide-react"
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-slate-800/80 bg-slate-950 py-12 text-sm text-slate-400">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
+    <footer className="tt-surface-light border-t border-[var(--tt-light-border)] py-14 text-sm text-[var(--tt-light-ink-secondary)]">
+      <div className="tt-container">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
           {/* Col 1: Brand & Space Apps */}
-          <div className="space-y-3 md:col-span-2">
-            <div className="flex items-center gap-2.5">
-              <div className="flex size-7 items-center justify-center rounded-md border border-slate-700 bg-slate-900 text-sky-400">
-                <Orbit className="size-4" />
-              </div>
-              <span className="font-sans text-base font-bold text-white">TerraTwin</span>
-              <span className="rounded bg-sky-500/10 border border-sky-500/20 px-1.5 py-0.5 font-mono text-[9px] text-sky-300">
+          <div className="space-y-3.5 md:col-span-2">
+            <div className="flex items-center gap-3">
+              <span
+                aria-hidden="true"
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--tt-light-ink)] text-[var(--tt-light-surface)]"
+              >
+                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.75">
+                  <circle cx="12" cy="12" r="4.5" />
+                  <ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(-24 12 12)" />
+                  <circle cx="17.5" cy="8.5" r="1.3" fill="var(--tt-accent)" stroke="none" />
+                </svg>
+              </span>
+              <span className="text-base font-semibold tracking-tight">
+                <span className="text-[var(--tt-light-ink)]">terra</span>
+                <span className="text-[var(--tt-accent)]">twin</span>
+              </span>
+              <span className="rounded-[var(--tt-radius-pill)] border border-[var(--tt-light-border)] bg-[var(--tt-light-surface)] px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--tt-light-ink-muted)]">
                 TEAM HEXARCHY
               </span>
             </div>
-            <p className="max-w-md text-xs leading-relaxed text-slate-400">
-              Developed for the NASA International Space Apps Challenge: <em>&ldquo;Identify Earth Locations that Analog the Permanent Moon Base Locations and Mars.&rdquo;</em>
+            <p className="max-w-md text-xs leading-relaxed text-[var(--tt-light-ink-secondary)]">
+              Developed for the NASA International Space Apps Challenge:{" "}
+              <em>&ldquo;Identify Earth Locations that Analog the Permanent Moon Base Locations and Mars.&rdquo;</em>
             </p>
-            <p className="text-[11px] text-slate-400">
+            <p className="text-[11px] text-[var(--tt-light-ink-muted)]">
               Powered by NASA POWER, Copernicus DEM, Macrostrat, and NASA PDS reference baselines.
             </p>
           </div>
 
           {/* Col 2: Navigation */}
-          <div className="space-y-2">
-            <h4 className="font-mono text-xs font-semibold text-slate-200 uppercase tracking-wider">Workstations</h4>
-            <ul className="space-y-1.5 text-xs">
+          <div className="space-y-3">
+            <h4 className="tt-mono-label text-[var(--tt-light-ink-muted)]">Workstations</h4>
+            <ul className="space-y-2 text-xs">
               <li>
-                <Link href="/explore" className="hover:text-sky-300 transition-colors">Explorer Flight Deck</Link>
+                <Link href="/explore" className="transition-colors hover:text-[var(--tt-accent)]">
+                  Explorer Flight Deck
+                </Link>
               </li>
               <li>
-                <Link href="/discover" className="hover:text-sky-300 transition-colors">Discovery Scanner & Atlas</Link>
+                <Link href="/discover" className="transition-colors hover:text-[var(--tt-accent)]">
+                  Discovery Scanner &amp; Atlas
+                </Link>
               </li>
               <li>
-                <Link href="/methodology" className="hover:text-sky-300 transition-colors">Mathematical Framework</Link>
+                <Link href="/methodology" className="transition-colors hover:text-[var(--tt-accent)]">
+                  Mathematical Framework
+                </Link>
               </li>
               <li>
-                <Link href="/sources" className="hover:text-sky-300 transition-colors">Data Provenance Registry</Link>
+                <Link href="/sources" className="transition-colors hover:text-[var(--tt-accent)]">
+                  Data Provenance Registry
+                </Link>
               </li>
             </ul>
           </div>
 
           {/* Col 3: Research & Verification */}
-          <div className="space-y-2">
-            <h4 className="font-mono text-xs font-semibold text-slate-200 uppercase tracking-wider">Scientific Standards</h4>
-            <ul className="space-y-1.5 text-xs text-slate-400">
+          <div className="space-y-3">
+            <h4 className="tt-mono-label text-[var(--tt-light-ink-muted)]">Scientific Standards</h4>
+            <ul className="space-y-2 text-xs text-[var(--tt-light-ink-secondary)]">
               <li>&ge;40% Reliable Coverage Gate</li>
               <li>100% Deterministic Scoring</li>
               <li>PostgreSQL 17 RLS Security</li>
@@ -56,20 +75,20 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-8 border-t border-slate-800/80 pt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-xs text-slate-400">
+        <div className="mt-10 flex flex-col gap-3 border-t border-[var(--tt-light-border)] pt-6 text-xs text-[var(--tt-light-ink-muted)] sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; 2026 Team HEXARCHY. Open scientific source code under MIT License.</p>
           <div className="flex items-center gap-4">
-            <a 
-              href="https://github.com/Minarvo-coder/terratwin" 
-              target="_blank" 
+            <a
+              href="https://github.com/Minarvo-coder/terratwin"
+              target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1 hover:text-slate-200 transition-colors"
+              className="inline-flex items-center gap-1 text-[var(--tt-light-ink)] transition-colors hover:text-[var(--tt-accent)]"
             >
               <span>GitHub</span>
-              <ExternalLink className="size-3" />
+              <ArrowUpRight className="size-3.5" aria-hidden="true" />
             </a>
             <span>&bull;</span>
-            <span className="text-slate-400">NASA Space Apps Challenge 2026</span>
+            <span>NASA Space Apps Challenge 2026</span>
           </div>
         </div>
       </div>

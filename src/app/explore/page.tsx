@@ -1,8 +1,9 @@
 import type { Metadata } from "next"
 import { Suspense } from "react"
+import { Download } from "lucide-react"
 import { ExplorerDashboard } from "@/components/explorer/explorer-dashboard"
 import { listTargets } from "@/lib/terratwin/analog-service"
-import { FileSpreadsheet, FileCode } from "lucide-react"
+import { DsEyebrow, DsHonestyBadge } from "@/components/ds/primitives"
 
 export const metadata: Metadata = {
   title: "Planetary Mission Control | TerraTwin",
@@ -18,55 +19,55 @@ async function ExplorerContent() {
 
 export default function ExplorePage() {
   return (
-    <main className="mx-auto flex w-full max-w-[1440px] flex-col gap-6 px-4 py-8 sm:px-6">
-      <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between border-b border-slate-800 pb-6">
-        <div className="flex flex-col gap-1.5">
-          <div className="flex items-center gap-2 text-xs text-sky-400">
-            <span className="size-1.5 rounded-full bg-sky-400" />
-            <span className="font-medium">Planetary Analog Explorer</span>
+    <main className="tt-surface-dark min-h-screen py-10 md:py-12">
+      <div className="tt-container flex flex-col gap-7">
+        <header className="flex flex-col justify-between gap-5 border-b border-[var(--tt-dark-border)] pb-6 sm:flex-row sm:items-end">
+          <div className="flex flex-col gap-2">
+            <DsEyebrow label="PLANETARY ANALOG EXPLORER" />
+            <h1 className="tt-display-m text-[var(--tt-dark-ink)]">
+              Find your common ground.
+              <span className="sr-only">Planetary Analog Mission Control</span>
+            </h1>
+            <p className="max-w-2xl text-xs leading-relaxed text-[var(--tt-dark-ink-secondary)] sm:text-sm">
+              Investigate Moon and Mars targets in 3D, inspect orbital telemetry, and evaluate multi-site Earth analog
+              portfolios with transparent physical similarity algorithms.
+            </p>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
-            Planetary Analog Mission Control
-          </h1>
-          <p className="max-w-2xl text-xs sm:text-sm leading-relaxed text-slate-400">
-            Investigate Moon and Mars targets in 3D, inspect orbital telemetry, and evaluate multi-site Earth analog portfolios with transparent physical similarity algorithms.
-          </p>
-        </div>
-        <div className="flex flex-wrap items-center gap-2 text-xs">
-          <a
-            href="/api/export?format=csv"
-            download="terratwin_telemetry_matrix.csv"
-            className="rounded-md bg-slate-900 border border-slate-700/60 hover:bg-slate-800 hover:border-slate-600 px-3 py-1.5 text-slate-300 hover:text-white flex items-center gap-1.5 transition font-medium"
-            title="Download Full Scientific Telemetry Matrix (CSV)"
-          >
-            <FileSpreadsheet className="size-3.5 text-sky-400" />
-            <span>Export CSV</span>
-          </a>
-          <a
-            href="/api/export?format=json"
-            download="terratwin_catalog.json"
-            className="rounded-md bg-slate-900 border border-slate-700/60 hover:bg-slate-800 hover:border-slate-600 px-3 py-1.5 text-slate-300 hover:text-white flex items-center gap-1.5 transition font-medium"
-            title="Download Full Scientific Provenance Catalog (JSON)"
-          >
-            <FileCode className="size-3.5 text-slate-400" />
-            <span>Export JSON</span>
-          </a>
-          <span className="rounded-md bg-sky-500/10 border border-sky-500/20 px-3 py-1.5 text-sky-300 font-medium flex items-center gap-1.5" title="3D RECON ACTIVE">
-            <span className="size-1.5 rounded-full bg-sky-400" />
-            <span>Recon Active</span>
+
+          <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+            <a
+              href="/api/export?format=csv"
+              download="terratwin_telemetry_matrix.csv"
+              className="inline-flex h-9 items-center gap-2 rounded-[var(--tt-radius-pill)] border border-[var(--tt-dark-border-strong)] bg-[var(--tt-dark-panel)] px-3.5 font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--tt-dark-ink)] transition-colors hover:border-[var(--tt-accent)] hover:text-[var(--tt-accent)]"
+              title="Download Full Scientific Telemetry Matrix (CSV)"
+            >
+              <Download className="size-3.5" aria-hidden="true" />
+              <span>Export CSV</span>
+            </a>
+            <a
+              href="/api/export?format=json"
+              download="terratwin_catalog.json"
+              className="inline-flex h-9 items-center gap-2 rounded-[var(--tt-radius-pill)] border border-[var(--tt-dark-border-strong)] bg-[var(--tt-dark-panel)] px-3.5 font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--tt-dark-ink)] transition-colors hover:border-[var(--tt-accent)] hover:text-[var(--tt-accent)]"
+              title="Download Full Scientific Provenance Catalog (JSON)"
+            >
+              <Download className="size-3.5" aria-hidden="true" />
+              <span>Export JSON</span>
+            </a>
+            <DsHonestyBadge tone="high" label="Recon Active" />
             <span className="sr-only">3D RECON ACTIVE</span>
-          </span>
-        </div>
-      </header>
-      <Suspense
-        fallback={
-          <div className="h-[600px] w-full rounded-xl bg-slate-900/40 animate-pulse border border-slate-800 flex items-center justify-center text-slate-400 text-sm font-mono">
-            INITIALIZING MISSION CONTROL TELEMETRY...
           </div>
-        }
-      >
-        <ExplorerContent />
-      </Suspense>
+        </header>
+
+        <Suspense
+          fallback={
+            <div className="flex h-[600px] w-full animate-pulse items-center justify-center rounded-[var(--tt-radius-card)] border border-[var(--tt-dark-border)] bg-[var(--tt-dark-panel)] font-mono text-xs uppercase tracking-[0.14em] text-[var(--tt-dark-ink-muted)]">
+              INITIALIZING MISSION CONTROL TELEMETRY...
+            </div>
+          }
+        >
+          <ExplorerContent />
+        </Suspense>
+      </div>
     </main>
   )
 }

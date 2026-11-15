@@ -1,14 +1,23 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { SiteHeader } from '@/components/site/site-header'
 import { SiteFooter } from '@/components/site/site-footer'
 import { SampleDataBanner } from '@/components/site/sample-data-banner'
 import './globals.css'
 
-const geistSans = Geist({ subsets: ['latin'], variable: '--font-geist-sans' })
-const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' })
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: {
@@ -38,7 +47,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} dark bg-background`}>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} dark bg-background`}>
       <body className="flex min-h-dvh flex-col font-sans antialiased">
         <TooltipProvider>
           <SampleDataBanner />

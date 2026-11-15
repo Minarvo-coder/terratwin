@@ -27,17 +27,18 @@ async function SourcesContent() {
 
 export default function SourcesPage() {
   return (
-    <main className="mx-auto flex w-full max-w-[1440px] flex-col gap-6 px-4 py-8 sm:px-6">
-      <Suspense
-        fallback={
-          <div className="h-[600px] w-full rounded-xl bg-slate-900/40 animate-pulse border border-slate-800 flex items-center justify-center text-slate-400 text-sm font-mono">
-            LOADING SCIENTIFIC DATA PROVENANCE CATALOG...
-          </div>
-        }
-      >
-        <SourcesContent />
-      </Suspense>
+    <main className="tt-surface-light min-h-screen py-12 md:py-16">
+      <div className="tt-container flex flex-col gap-6">
+        <Suspense
+          fallback={
+            <div className="flex h-[520px] w-full animate-pulse items-center justify-center rounded-[var(--tt-radius-card)] border border-[var(--tt-light-border)] bg-[var(--tt-light-surface)] font-mono text-xs uppercase tracking-[0.12em] text-[var(--tt-light-ink-muted)]">
+              LOADING SCIENTIFIC DATA PROVENANCE CATALOG...
+            </div>
+          }
+        >
+          <SourcesContent />
+        </Suspense>
+      </div>
     </main>
   )
 }
-

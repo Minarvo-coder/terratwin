@@ -1,7 +1,7 @@
-import { Badge } from "@/components/ui/badge"
-import { ExternalLink } from "lucide-react"
+import { ArrowUpRight } from "lucide-react"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { SectionHeading } from "@/components/shared/section-heading"
+import { DsHonestyBadge } from "@/components/ds/primitives"
 import { DATA_SOURCES } from "@/lib/terratwin/data-sources"
 import { FEATURES, MISSION_PURPOSES } from "@/lib/terratwin/features"
 import { HIGH_CONFIDENCE_COVERAGE, MODERATE_CONFIDENCE_COVERAGE } from "@/lib/terratwin/similarity"
@@ -12,22 +12,23 @@ export function ScoringSection() {
   return (
     <section id="scoring" className="flex flex-col gap-6">
       <SectionHeading
-        eyebrow="01 · Scoring"
+        eyebrow="01 / SCORING"
         title="Weighted feature similarity"
         description="Each Earth candidate is compared with the selected target feature by feature. Per-feature similarities are combined using weights that depend on the mission purpose."
       />
-      <ol className="grid gap-3 md:grid-cols-3">
-        <Step index="A" title="Per-feature similarity">
-          Numeric features score 1 − |target − candidate| ÷ tolerance, clamped to 0–1. Grain size uses base-10 logarithm values.
-          Lithology scores 1 for an exact match, 0.5 for the same rock family, otherwise 0.
+      <ol className="grid gap-5 md:grid-cols-3">
+        <Step index="01" title="Per-feature similarity">
+          Numeric features score 1 &minus; |target &minus; candidate| &divide; tolerance, clamped to 0&ndash;1. Grain size
+          uses base-10 logarithm values. Lithology scores 1 for an exact match, 0.5 for the same rock family, otherwise
+          0.
         </Step>
-        <Step index="B" title="Mission weighting">
+        <Step index="02" title="Mission weighting">
           Similarities are multiplied by mission-purpose weights and averaged over features with data on both sides,
-          then scaled to 0–100.
+          then scaled to 0&ndash;100.
         </Step>
-        <Step index="C" title="Data coverage">
-          Coverage is the share of total weight with data. ≥ {Math.round(HIGH_CONFIDENCE_COVERAGE * 100)}% is high,
-          ≥ {Math.round(MODERATE_CONFIDENCE_COVERAGE * 100)}% partial, otherwise low. Missing features are never
+        <Step index="03" title="Data coverage">
+          Coverage is the share of total weight with data. &ge; {Math.round(HIGH_CONFIDENCE_COVERAGE * 100)}% is high,
+          &ge; {Math.round(MODERATE_CONFIDENCE_COVERAGE * 100)}% partial, otherwise low. Missing features are never
           imputed.
         </Step>
       </ol>
@@ -37,10 +38,10 @@ export function ScoringSection() {
 
 function Step({ index, title, children }: { index: string; title: string; children: React.ReactNode }) {
   return (
-    <li className="flex flex-col gap-2 rounded-lg border border-border bg-card p-4">
-      <span className="font-mono text-xs text-primary">{index}</span>
-      <h3 className="text-sm font-medium">{title}</h3>
-      <p className="text-sm leading-relaxed text-muted-foreground">{children}</p>
+    <li className="flex flex-col gap-2.5 rounded-[var(--tt-radius-card)] border border-[var(--tt-light-border)] bg-[var(--tt-light-surface)] p-6">
+      <span className="tt-mono-label text-[var(--tt-accent)]">{index}</span>
+      <h3 className="text-base font-semibold text-[var(--tt-light-ink)]">{title}</h3>
+      <p className="text-sm leading-relaxed text-[var(--tt-light-ink-secondary)]">{children}</p>
     </li>
   )
 }
@@ -49,20 +50,20 @@ export function FeatureWeightsSection() {
   return (
     <section id="features" className="flex flex-col gap-6">
       <SectionHeading
-        eyebrow="02 · Features"
+        eyebrow="02 / FEATURES"
         title="Environmental features and weights"
         description="Tolerances and weights below are prototype assumptions, not calibrated values."
       />
-      <div className="overflow-x-auto rounded-lg border border-border bg-card">
+      <div className="overflow-x-auto rounded-[var(--tt-radius-card)] border border-[var(--tt-light-border)] bg-[var(--tt-light-surface)]">
         <Table>
           <caption className="sr-only">Environmental features, comparison method, tolerance and mission weights</caption>
           <TableHeader>
-            <TableRow>
-              <TableHead>Feature</TableHead>
-              <TableHead>Method</TableHead>
-              <TableHead className="text-right">Tolerance</TableHead>
+            <TableRow className="border-b border-[var(--tt-light-border)] bg-[var(--tt-light-band)]/60 hover:bg-[var(--tt-light-band)]/60">
+              <TableHead className="text-xs font-semibold text-[var(--tt-light-ink)]">Feature</TableHead>
+              <TableHead className="text-xs font-semibold text-[var(--tt-light-ink)]">Method</TableHead>
+              <TableHead className="text-right text-xs font-semibold text-[var(--tt-light-ink)]">Tolerance</TableHead>
               {MISSION_PURPOSES.map((purpose) => (
-                <TableHead key={purpose.id} className="text-right">
+                <TableHead key={purpose.id} className="text-right text-xs font-semibold text-[var(--tt-light-ink)]">
                   {purpose.label}
                 </TableHead>
               ))}
@@ -70,19 +71,26 @@ export function FeatureWeightsSection() {
           </TableHeader>
           <TableBody>
             {FEATURES.map((feature) => (
-              <TableRow key={feature.key}>
+              <TableRow
+                key={feature.key}
+                className="border-b border-[var(--tt-light-border)] hover:bg-[var(--tt-light-bg)]/60"
+              >
                 <TableCell>
                   <div className="flex flex-col">
-                    <span className="font-medium">{feature.label}</span>
-                    <span className="text-xs text-muted-foreground">{feature.description}</span>
+                    <span className="font-medium text-[var(--tt-light-ink)]">{feature.label}</span>
+                    <span className="text-xs text-[var(--tt-light-ink-muted)]">{feature.description}</span>
                   </div>
                 </TableCell>
-                <TableCell className="text-muted-foreground">{KIND_LABELS[feature.kind]}</TableCell>
-                <TableCell className="text-right font-mono text-xs tabular-nums">
-                  {feature.tolerance !== undefined ? `${feature.tolerance} ${feature.kind === "logarithmic" ? "dex" : feature.unit}` : "—"}
+                <TableCell className="text-xs text-[var(--tt-light-ink-secondary)]">
+                  {KIND_LABELS[feature.kind]}
+                </TableCell>
+                <TableCell className="tt-mono-data text-right text-xs text-[var(--tt-light-ink)]">
+                  {feature.tolerance !== undefined
+                    ? `${feature.tolerance} ${feature.kind === "logarithmic" ? "dex" : feature.unit}`
+                    : "—"}
                 </TableCell>
                 {MISSION_PURPOSES.map((purpose) => (
-                  <TableCell key={purpose.id} className="text-right font-mono text-xs tabular-nums">
+                  <TableCell key={purpose.id} className="tt-mono-data text-right text-xs text-[var(--tt-light-ink)]">
                     {(purpose.weights[feature.key] ?? 0).toFixed(1)}
                   </TableCell>
                 ))}
@@ -102,65 +110,57 @@ export function DataSourcesSection() {
   return (
     <section id="sources" className="flex flex-col gap-6">
       <SectionHeading
-        eyebrow="03 · Data sources"
+        eyebrow="03 / DATA SOURCES"
         title="Mission telemetry & candidate archives"
         description={`${integratedCount} primary NASA and ESA datasets are actively ingested in Supabase powering the similarity engine. ${candidateCount} high-resolution raster and polygon archives are queued for automated GIS pipeline ingestion.`}
       />
-      <ul className="grid gap-3 md:grid-cols-2">
+      <ul className="grid gap-4 md:grid-cols-2">
         {DATA_SOURCES.map((source) => {
           const isIntegrated = source.status === "integrated"
           return (
             <li
               key={source.name}
-              className={`flex flex-col justify-between gap-3 rounded-lg border p-4 transition-colors ${
-                isIntegrated
-                  ? "border-emerald-500/30 bg-emerald-950/10 hover:border-emerald-500/50"
-                  : "border-border/80 bg-card/60 hover:border-border"
-              }`}
+              className="flex flex-col justify-between gap-3 rounded-[var(--tt-radius-card)] border border-[var(--tt-light-border)] bg-[var(--tt-light-surface)] p-5 transition-colors hover:border-[var(--tt-light-border-strong)]"
             >
               <div className="flex flex-col gap-1.5">
                 <div className="flex items-start justify-between gap-3">
-                  <h3 className="text-sm font-semibold text-foreground">
+                  <h3 className="text-sm font-semibold text-[var(--tt-light-ink)]">
                     {source.sourceUrl ? (
                       <a
                         href={source.sourceUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 hover:text-cyan-400 hover:underline transition-colors"
+                        className="inline-flex items-center gap-1 transition-colors hover:text-[var(--tt-accent)]"
                       >
-                        {source.name}
-                        <ExternalLink className="size-3 shrink-0 opacity-60" />
+                        <span>{source.name}</span>
+                        <ArrowUpRight className="size-3.5 shrink-0 opacity-60" aria-hidden="true" />
                       </a>
                     ) : (
                       source.name
                     )}
                   </h3>
-                  {isIntegrated ? (
-                    <Badge variant="outline" className="shrink-0 border-emerald-500/40 bg-emerald-500/10 text-emerald-400 font-mono text-[10px] uppercase tracking-wider">
-                      Integrated · Live
-                    </Badge>
-                  ) : (
-                    <Badge variant="outline" className="shrink-0 border-border bg-muted/40 text-muted-foreground font-mono text-[10px] uppercase tracking-wider">
-                      Candidate · Pipeline
-                    </Badge>
-                  )}
+                  <DsHonestyBadge
+                    tone={isIntegrated ? "high" : "neutral"}
+                    label={isIntegrated ? "Integrated · Live" : "Candidate · Pipeline"}
+                  />
                 </div>
-                <p className="text-xs text-muted-foreground">
-                  <span className="font-medium text-foreground/80">{source.provider}</span> · {source.scope}
+                <p className="text-xs text-[var(--tt-light-ink-muted)]">
+                  <span className="font-medium text-[var(--tt-light-ink-secondary)]">{source.provider}</span> &middot;{" "}
+                  {source.scope}
                   {source.resolution && ` · ${source.resolution}`}
                 </p>
-                <p className="text-xs text-foreground/90 mt-1 leading-relaxed">
-                  <span className="text-muted-foreground font-medium">Informs: </span>
+                <p className="mt-1 text-xs leading-relaxed text-[var(--tt-light-ink-secondary)]">
+                  <span className="font-medium text-[var(--tt-light-ink)]">Informs: </span>
                   {source.informs}
                 </p>
                 {source.integrationNotes && (
-                  <p className="text-[11px] font-mono text-muted-foreground/90 mt-1 leading-snug rounded bg-muted/30 p-2 border border-border/40">
+                  <p className="mt-1 rounded-[var(--tt-radius-control)] border border-[var(--tt-light-border)] bg-[var(--tt-light-bg)] p-2.5 font-mono text-[11px] leading-snug text-[var(--tt-light-ink-secondary)]">
                     {source.integrationNotes}
                   </p>
                 )}
               </div>
               {source.version && (
-                <div className="text-[10px] font-mono text-muted-foreground/70 truncate">
+                <div className="truncate font-mono text-[10px] text-[var(--tt-light-ink-muted)]">
                   Version: {source.version}
                 </div>
               )}
@@ -182,12 +182,15 @@ export function LimitationsSection() {
   ]
   return (
     <section id="limitations" className="flex flex-col gap-6">
-      <SectionHeading eyebrow="04 · Limitations" title="What the score does not tell you" />
-      <ul className="flex flex-col gap-2">
+      <SectionHeading eyebrow="04 / LIMITATIONS" title="What the score does not tell you" />
+      <ul className="flex flex-col gap-2.5">
         {limitations.map((item) => (
-          <li key={item} className="flex gap-3 rounded-md border border-border bg-card px-4 py-3 text-sm leading-relaxed text-muted-foreground">
-            <span aria-hidden="true" className="mt-2 size-1.5 shrink-0 rounded-full bg-warning" />
-            {item}
+          <li
+            key={item}
+            className="flex gap-3 rounded-[var(--tt-radius-control)] border border-[var(--tt-light-border)] bg-[var(--tt-light-surface)] px-4 py-3 text-sm leading-relaxed text-[var(--tt-light-ink-secondary)]"
+          >
+            <span aria-hidden="true" className="mt-2 size-1.5 shrink-0 rounded-full bg-[var(--tt-accent)]" />
+            <span>{item}</span>
           </li>
         ))}
       </ul>

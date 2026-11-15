@@ -3,7 +3,7 @@ import { Suspense } from "react"
 import { DiscoveryScannerWorkspace } from "@/components/discover/discovery-scanner-workspace"
 import { listTargets } from "@/lib/terratwin/analog-service"
 import { getAllAtlasCandidates } from "@/lib/terratwin/services/discovery-atlas-service"
-import { ScanSearch } from "lucide-react"
+import { DsEyebrow, DsHonestyBadge } from "@/components/ds/primitives"
 
 export const metadata: Metadata = {
   title: "Discovery Scanner | TerraTwin",
@@ -22,42 +22,34 @@ async function DiscoveryScannerContent() {
 
 export default function DiscoverPage() {
   return (
-    <main className="mx-auto flex w-full max-w-[1440px] flex-col gap-6 px-4 py-8 sm:px-6">
-      <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between border-b border-slate-800 pb-6">
-        <div className="flex flex-col gap-1.5">
-          <div className="flex items-center gap-2 text-xs text-sky-400">
-            <ScanSearch className="size-3.5" aria-hidden="true" />
-            <span className="font-medium">
-              Regional Screening &amp; 31-Site Global Atlas
-            </span>
+    <main className="tt-surface-dark min-h-screen py-10 md:py-12">
+      <div className="tt-container flex flex-col gap-7">
+        <header className="flex flex-col justify-between gap-5 border-b border-[var(--tt-dark-border)] pb-6 sm:flex-row sm:items-end">
+          <div className="flex flex-col gap-2">
+            <DsEyebrow label="REGIONAL SCREENING & 31-SITE GLOBAL ATLAS" />
+            <h1 className="tt-display-m text-[var(--tt-dark-ink)]">Discovery Scanner</h1>
+            <p className="max-w-2xl text-xs leading-relaxed text-[var(--tt-dark-ink-secondary)] sm:text-sm">
+              Screen bounded WGS84 regions using live Open-Meteo DEM, NASA POWER climatology, and Macrostrat geology, or
+              explore 31 curated Earth analog sites across 18 countries.
+            </p>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
-            Discovery Scanner
-          </h1>
-          <p className="max-w-2xl text-xs sm:text-sm leading-relaxed text-slate-400">
-            Screen bounded WGS84 regions using live Open-Meteo DEM, NASA POWER climatology, and Macrostrat geology, or explore 31 curated Earth analog sites across 18 countries.
-          </p>
-        </div>
 
-        <div className="flex flex-wrap items-center gap-2 text-xs">
-          <span className="rounded-md border border-slate-700/80 bg-slate-900 px-3 py-1.5 text-slate-300 font-medium">
-            Bounded Grid: Max 16 Cells (&le;6&deg;&times;6&deg;)
-          </span>
-          <span className="rounded-md bg-sky-500/10 border border-sky-500/20 px-3 py-1.5 text-sky-300 font-medium">
-            &ge;40% Coverage Gate Active
-          </span>
-        </div>
-      </header>
-
-      <Suspense
-        fallback={
-          <div className="h-[620px] w-full rounded-xl border border-slate-800 bg-slate-900/40 animate-pulse flex items-center justify-center font-mono text-sm text-slate-400">
-            INITIALIZING DISCOVERY SCANNER WORKSPACE…
+          <div className="flex flex-wrap items-center gap-2 shrink-0">
+            <DsHonestyBadge tone="neutral" label="Bounded Grid: Max 16 Cells (≤6°×6°)" />
+            <DsHonestyBadge tone="high" label="≥40% Coverage Gate Active" />
           </div>
-        }
-      >
-        <DiscoveryScannerContent />
-      </Suspense>
+        </header>
+
+        <Suspense
+          fallback={
+            <div className="flex h-[620px] w-full animate-pulse items-center justify-center rounded-[var(--tt-radius-card)] border border-[var(--tt-dark-border)] bg-[var(--tt-dark-panel)] font-mono text-xs uppercase tracking-[0.14em] text-[var(--tt-dark-ink-muted)]">
+              INITIALIZING DISCOVERY SCANNER WORKSPACE...
+            </div>
+          }
+        >
+          <DiscoveryScannerContent />
+        </Suspense>
+      </div>
     </main>
   )
 }

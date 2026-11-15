@@ -1,45 +1,50 @@
 "use client"
 
 import { useState } from "react"
+import {
+  Activity,
+  Compass,
+  Layers,
+  ListFilter,
+  Mountain,
+  ShieldCheck,
+  Terminal,
+} from "lucide-react"
 import { useAnalogs } from "@/hooks/use-analogs"
-import type { MissionPurpose, PlanetaryBody, PlanetaryTarget } from "@/lib/terratwin/types"
-import { AnalogMap } from "./analog-map"
+import { MISSION_PURPOSES } from "@/lib/terratwin/features"
 import type { MapParameterLayerId, SatelliteImageryLayerId } from "@/lib/terratwin/config/satellite-layers"
+import type { MissionPurpose, PlanetaryBody, PlanetaryTarget } from "@/lib/terratwin/types"
+import { cn } from "@/lib/utils"
+import { DsSegmentedControl, DsSelect, DsSlider } from "@/components/ds/primitives"
+import { DsDisclosureRow, DsFilterBar, DsIconTabBar } from "@/components/ds/explorer-widgets"
+import { AnalogMap } from "./analog-map"
 import { CandidateList } from "./candidate-list"
 import { ComparisonPanel } from "./comparison-panel"
-import { ExplorerEmpty, ExplorerError, ExplorerLoading } from "./explorer-states"
-import { PurposeSelector } from "./purpose-selector"
-import { ScoreThresholdControl } from "./score-threshold-control"
-import { TargetProfile } from "./target-profile"
-import { TargetSelector } from "./target-selector"
-import { MissionSuitePanel } from "./mission-suite-panel"
 import { ElevationProfilePanel } from "./elevation-profile-panel"
-import { TerrainComparisonWorkspace } from "./terrain-comparison-workspace"
-import { ScientificEvidenceExplorer } from "./scientific-evidence-explorer"
+import { ExplorerEmpty, ExplorerError, ExplorerLoading } from "./explorer-states"
+import { MissionSuitePanel } from "./mission-suite-panel"
 import { PlanetaryGlobe } from "./planetary-globe"
-import {
-  ShieldCheck,
-  AlertTriangle,
-  Layers,
-  Compass,
-  Globe2,
-  Satellite,
-  Columns2,
-  Mountain,
-  Activity,
-  Terminal,
-  ListFilter,
-} from "lucide-react"
-import { cn } from "@/lib/utils"
+import { ScientificEvidenceExplorer } from "./scientific-evidence-explorer"
+import { TargetProfile } from "./target-profile"
+import { TerrainComparisonWorkspace } from "./terrain-comparison-workspace"
 
 const DEFAULT_MIN_SCORE = 0
+
+type ExplorerViewTab =
+  | "explore"
+  | "workspace"
+  | "elevation"
+  | "evidence"
+  | "telemetry"
+  | "suite"
+  | "all"
 
 interface ExplorerDashboardProps {
   targets: PlanetaryTarget[]
 }
 
 export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
-  const [explorerMode, setExplorerMode] = useState<"single" | "suite">("single")
+  const [activeTab, setActiveTab] = useState<ExplorerViewTab>("explore")
   const [reconLayout, setReconLayout] = useState<"dual" | "planet" | "earth">("dual")
   const [sourceFilter, setSourceFilter] = useState<"all" | "verified" | "sample">("all")
   const [body, setBody] = useState<PlanetaryBody>("mars")
@@ -54,7 +59,6 @@ export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
   const [imageryDate, setImageryDate] = useState<string>("2024-07-15")
   const [imageryOpacity, setImageryOpacity] = useState<number>(1.0)
   const [parameterLayerId, setParameterLayerId] = useState<MapParameterLayerId>("similarity")
-  const [analysisTab, setAnalysisTab] = useState<"workspace" | "elevation" | "evidence" | "telemetry" | "all">("workspace")
 
   const filteredTargets = targets.filter((t) => {
     if (sourceFilter === "verified") return !!t.isVerified
@@ -64,27 +68,23 @@ export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
     return true
   })
 
+  const bodyTargets = filteredTargets.filter((t) => t.body === body)
+
   const { data, error, isLoading, isValidating, mutate, isTargetValid } = useAnalogs({
     targetId,
     purposeId,
     minScore,
   })
 
-  const selectedTarget = targets.find((target) => target.id === targetId || target.databaseId === targetId) ?? data?.target
+  const selectedTarget =
+    targets.find((target) => target.id === targetId || target.databaseId === targetId) ?? data?.target
   const results = data?.results ?? []
   const selectedResult = results.find((result) => result.candidate.id === selectedId) ?? results[0]
   const isUpdating = isValidating && !isLoading
 
   function handleBodyChange(nextBody: PlanetaryBody) {
     setBody(nextBody)
-    const available = targets.filter((t) => {
-      if (sourceFilter === "verified") return !!t.isVerified
-      if (sourceFilter === "sample") return !t.isVerified
-      const hasVerified = targets.some((target) => target.isVerified)
-      if (hasVerified) return !!t.isVerified
-      return true
-    })
-    const matching = available.filter((t) => t.body === nextBody)
+    const matching = filteredTargets.filter((t) => t.body === nextBody)
     const nextTarget = matching.find((t) => t.isVerified) ?? matching[0]
     if (nextTarget) {
       setTargetId(nextTarget.id)
@@ -109,140 +109,163 @@ export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
   }
 
   return (
-    <div className="flex flex-col gap-6">
-      {/* Top Provenance Status & Dataset Switcher Banner */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-xs">
-        <div className="flex items-center gap-3">
-          <div
-            className={cn(
-              "flex size-9 items-center justify-center rounded-lg border",
-              data?.dataset.isVerified
-                ? "border-emerald-500/30 bg-emerald-950/40 text-emerald-300"
-                : "border-amber-500/30 bg-amber-950/40 text-amber-300",
-            )}
-          >
-            {data?.dataset.isVerified ? <ShieldCheck className="size-5" /> : <AlertTriangle className="size-5" />}
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="font-semibold text-white text-sm">
-                {data?.dataset.name ?? "Telemetry Catalog"}
-              </span>
-              <span className="rounded bg-slate-800 px-1.5 py-0.5 text-[10px] text-slate-400 font-mono">
-                v{data?.dataset.version ?? "1.0"}
-              </span>
-            </div>
-            <p className="text-xs text-slate-400 mt-0.5 max-w-2xl">
-              {data?.dataset.notice}
-            </p>
-          </div>
+    <div className="flex flex-col gap-5">
+      <span className="sr-only">TARGET SENSOR SUITE · Flight Deck Reconnaissance · 1-to-1 Analog Site Matching</span>
+      {/* 1. Horizontal Control Filter Bar */}
+      <DsFilterBar>
+        <div className="md:col-span-2 space-y-1.5">
+          <span className="block text-xs font-medium text-[var(--tt-dark-ink-secondary)]">Destination</span>
+          <DsSegmentedControl
+            tone="dark"
+            size="sm"
+            value={body}
+            onChange={handleBodyChange}
+            ariaLabel="Destination planetary body"
+            options={[
+              { value: "mars", label: "Mars" },
+              { value: "moon", label: "Moon" },
+            ]}
+          />
         </div>
 
-        {/* Source Mode Toggle */}
-        <div className="flex items-center gap-1 self-start sm:self-center rounded-lg border border-slate-800 bg-slate-950 p-1 text-xs">
-          <button
-            type="button"
-            onClick={() => handleFilterChange("all")}
-            className={cn(
-              "rounded px-2.5 py-1 transition cursor-pointer font-medium",
-              sourceFilter === "all" ? "bg-slate-800 text-white font-semibold" : "text-slate-400 hover:text-white",
-            )}
-          >
-            All Catalog
-          </button>
-          <button
-            type="button"
-            onClick={() => handleFilterChange("verified")}
-            className={cn(
-              "rounded px-2.5 py-1 transition cursor-pointer flex items-center gap-1 font-medium",
-              sourceFilter === "verified" ? "bg-emerald-950/60 text-emerald-300 font-semibold border border-emerald-500/30" : "text-slate-400 hover:text-white",
-            )}
-          >
-            <ShieldCheck className="size-3 text-emerald-400" />
-            <span>Verified PDS</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => handleFilterChange("sample")}
-            className={cn(
-              "rounded px-2.5 py-1 transition cursor-pointer font-medium",
-              sourceFilter === "sample" ? "bg-amber-950/60 text-amber-300 font-semibold border border-amber-500/30" : "text-slate-400 hover:text-white",
-            )}
-          >
-            Illustrative Demo
-          </button>
+        <div className="md:col-span-3">
+          <DsSelect
+            label="Target region"
+            value={targetId}
+            onChange={(e) => {
+              setTargetId(e.target.value)
+              setSelectedId(null)
+            }}
+            options={
+              bodyTargets.length > 0
+                ? bodyTargets.map((t) => ({
+                    value: t.id,
+                    label: t.name,
+                  }))
+                : [{ value: "", label: "No targets available" }]
+            }
+          />
         </div>
-      </div>
 
-      <div className="grid gap-6 lg:grid-cols-[300px_minmax(0,1fr)]">
-        <aside aria-label="Exploration controls" className="flex flex-col gap-6 lg:sticky lg:top-20 lg:self-start">
-          <div className="flex flex-col gap-6 rounded-lg border border-slate-800 bg-slate-900/60 p-4">
-            <TargetSelector
-              targets={filteredTargets}
+        <div className="md:col-span-3">
+          <DsSelect
+            label="Mission purpose"
+            value={purposeId}
+            onChange={(e) => setPurposeId(e.target.value as MissionPurpose)}
+            options={MISSION_PURPOSES.map((p) => ({
+              value: p.id,
+              label: p.label,
+            }))}
+          />
+        </div>
+
+        <div className="md:col-span-2">
+          <DsSelect
+            label="Catalog"
+            value={sourceFilter}
+            onChange={(e) => handleFilterChange(e.target.value as "all" | "verified" | "sample")}
+            options={[
+              { value: "all", label: "All catalog" },
+              { value: "verified", label: "Verified PDS" },
+              { value: "sample", label: "Illustrative demo" },
+            ]}
+          />
+        </div>
+
+        <div className="md:col-span-2">
+          <DsSlider
+            label="Minimum similarity"
+            value={minScore}
+            min={0}
+            max={100}
+            step={5}
+            onChange={setMinScore}
+            suffix=""
+          />
+        </div>
+      </DsFilterBar>
+
+      {/* 2. Icon Tab Bar & View Layout Switcher */}
+      <DsIconTabBar
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+        tabs={[
+          { id: "explore", label: "Explore", icon: <Compass className="size-3.5" /> },
+          { id: "workspace", label: "Terrain Workspace", icon: <Mountain className="size-3.5" /> },
+          { id: "elevation", label: "Elevation Transects", icon: <Activity className="size-3.5" /> },
+          { id: "evidence", label: "Evidence Explorer", icon: <ShieldCheck className="size-3.5" /> },
+          { id: "telemetry", label: "Telemetry Overview", icon: <Terminal className="size-3.5" /> },
+          { id: "suite", label: "Multi-site portfolio", icon: <Layers className="size-3.5" /> },
+          { id: "all", label: "All Panels", icon: <ListFilter className="size-3.5" /> },
+        ]}
+        rightSlot={
+          activeTab === "explore" ? (
+            <DsSegmentedControl
+              tone="dark"
+              size="sm"
+              value={reconLayout}
+              onChange={setReconLayout}
+              ariaLabel="Flight deck viewport layout"
+              options={[
+                { value: "dual", label: "Side by side" },
+                { value: "planet", label: `${body === "mars" ? "Mars" : "Moon"} 3D` },
+                { value: "earth", label: "Earth Map" },
+              ]}
+            />
+          ) : undefined
+        }
+      />
+
+      {/* 3. Main Content */}
+      {!isTargetValid ? (
+        <div className="rounded-[var(--tt-radius-card)] border border-[var(--tt-dark-border)] bg-[var(--tt-dark-panel)] p-8 text-center">
+          <p className="tt-mono-label text-[var(--tt-accent)]">No Planetary Target Selected</p>
+          <p className="mt-2 text-xs text-[var(--tt-dark-ink-secondary)]">
+            Please select a Moon or Mars target region above to rank Earth analog sites.
+          </p>
+        </div>
+      ) : activeTab === "suite" && selectedTarget ? (
+        <div className="flex flex-col gap-6">
+          <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_380px]">
+            <PlanetaryGlobe
               body={body}
-              targetId={targetId}
-              onBodyChange={handleBodyChange}
-              onTargetChange={(id) => {
+              selectedTarget={selectedTarget}
+              allTargets={filteredTargets}
+              onSelectTarget={(id) => {
                 setTargetId(id)
                 setSelectedId(null)
               }}
+              isUpdating={isUpdating}
             />
-            <PurposeSelector value={purposeId} onChange={setPurposeId} />
-            <ScoreThresholdControl value={minScore} onCommit={setMinScore} />
-          </div>
-          {selectedTarget && (
-            <div className="rounded-lg border border-slate-800 bg-slate-900/60 p-4">
+            <div className="rounded-[var(--tt-radius-card)] border border-[var(--tt-dark-border)] bg-[var(--tt-dark-panel)] p-4">
               <TargetProfile target={selectedTarget} />
             </div>
-          )}
-        </aside>
-
-        <div className="flex min-w-0 flex-col gap-4">
-          {/* Strategy Mode Switcher Bar */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-xl border border-slate-800 bg-slate-900/60 p-2 text-xs">
-            <div className="flex items-center gap-2 pl-2">
-              <Compass className="size-4 text-sky-400" />
-              <span className="font-semibold text-white uppercase tracking-wider text-[11px]">Exploration Mode:</span>
-            </div>
-            <div className="flex flex-wrap items-center gap-1.5">
-              <button
-                type="button"
-                onClick={() => setExplorerMode("single")}
-                className={cn(
-                  "rounded-md px-3 py-1.5 font-medium transition cursor-pointer flex items-center gap-1.5 text-xs",
-                  explorerMode === "single"
-                    ? "bg-slate-800 text-sky-400 font-semibold border border-slate-700/80 shadow-xs"
-                    : "text-slate-400 hover:text-white",
-                )}
-              >
-                <span>1-to-1 Analog Site Matching</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => setExplorerMode("suite")}
-                className={cn(
-                  "rounded-md px-3 py-1.5 font-medium transition cursor-pointer flex items-center gap-1.5 text-xs",
-                  explorerMode === "suite"
-                    ? "bg-purple-950/50 text-purple-300 font-semibold border border-purple-500/40 shadow-xs"
-                    : "text-slate-400 hover:text-white",
-                )}
-              >
-                <Layers className="size-3.5 text-purple-400" />
-                <span>Mission Suite &amp; Portfolio Optimizer</span>
-              </button>
-            </div>
           </div>
-
-          {!isTargetValid ? (
-            <div className="rounded-lg border border-cyan-500/30 bg-slate-900/60 p-8 text-center font-mono text-sm text-cyan-300">
-              <p className="font-semibold uppercase tracking-wider">No Planetary Target Selected</p>
-              <p className="text-xs text-slate-400 mt-1">
-                Please select a Moon or Mars target location from the navigation panel to rank Earth analog sites.
-              </p>
-            </div>
-          ) : explorerMode === "suite" && selectedTarget ? (
-            <div className="flex flex-col gap-6">
-              <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_420px]">
+          <MissionSuitePanel
+            target={selectedTarget}
+            purposeId={purposeId}
+            isVerified={data?.dataset.isVerified}
+          />
+        </div>
+      ) : error ? (
+        <ExplorerError message={error.message} onRetry={() => mutate()} />
+      ) : isLoading || !data ? (
+        <ExplorerLoading />
+      ) : results.length === 0 ? (
+        <ExplorerEmpty minScore={data.minScore} onReset={() => setMinScore(DEFAULT_MIN_SCORE)} />
+      ) : (
+        <>
+          {/* Explore Flight Deck (3D + Map + Ranked List) */}
+          {(activeTab === "explore" || activeTab === "all") && (
+            <div
+              className={cn(
+                "grid gap-4",
+                reconLayout === "dual"
+                  ? "grid-cols-1 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_320px]"
+                  : "grid-cols-1 xl:grid-cols-[minmax(0,1fr)_360px]",
+              )}
+            >
+              {(reconLayout === "dual" || reconLayout === "planet") && (
                 <PlanetaryGlobe
                   body={body}
                   selectedTarget={selectedTarget}
@@ -253,268 +276,98 @@ export function ExplorerDashboard({ targets }: ExplorerDashboardProps) {
                   }}
                   isUpdating={isUpdating}
                 />
-                <div className="rounded-lg border border-slate-800 bg-slate-900/60 p-4">
-                  <TargetProfile target={selectedTarget} />
-                </div>
-              </div>
-              <MissionSuitePanel
-                target={selectedTarget}
-                purposeId={purposeId}
-                isVerified={data?.dataset.isVerified}
-              />
-            </div>
-          ) : error ? (
-            <ExplorerError message={error.message} onRetry={() => mutate()} />
-          ) : isLoading || !data ? (
-            <ExplorerLoading />
-          ) : results.length === 0 ? (
-            <ExplorerEmpty minScore={data.minScore} onReset={() => setMinScore(DEFAULT_MIN_SCORE)} />
-          ) : (
-            <>
-              {/* Reconnaissance View Mode Bar */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 rounded-xl border border-slate-800 bg-slate-900/60 p-2 font-mono text-xs backdrop-blur-md">
-                <div className="flex items-center gap-2 pl-2">
-                  <Columns2 className="size-4 text-cyan-400" />
-                  <span className="font-bold text-white uppercase tracking-wider text-[11px]">Flight Deck Reconnaissance:</span>
-                </div>
-                <div className="flex flex-wrap items-center gap-1">
-                  <button
-                    type="button"
-                    onClick={() => setReconLayout("dual")}
-                    className={cn(
-                      "flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-semibold transition cursor-pointer border",
-                      reconLayout === "dual"
-                        ? "border-cyan-500/50 bg-cyan-950/60 text-cyan-300 shadow-[0_0_8px_rgba(56,189,248,0.2)]"
-                        : "border-slate-800 bg-slate-950/50 text-slate-400 hover:text-white",
-                    )}
-                    title="Dual Flight Deck: Side-by-side 3D Target World and 2D Earth Analog Map"
-                  >
-                    <Columns2 className="size-3.5 text-cyan-400" />
-                    <span>Dual Flight Deck</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setReconLayout("planet")}
-                    className={cn(
-                      "flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-semibold transition cursor-pointer border",
-                      reconLayout === "planet"
-                        ? "border-cyan-500/50 bg-cyan-950/60 text-cyan-300 shadow-[0_0_8px_rgba(56,189,248,0.2)]"
-                        : "border-slate-800 bg-slate-950/50 text-slate-400 hover:text-white",
-                    )}
-                    title={`Focus on 3D ${body === "mars" ? "Mars" : "Moon"} Visualization`}
-                  >
-                    <Globe2 className="size-3.5 text-cyan-400" />
-                    <span className="capitalize">{body} 3D</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setReconLayout("earth")}
-                    className={cn(
-                      "flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-semibold transition cursor-pointer border",
-                      reconLayout === "earth"
-                        ? "border-cyan-500/50 bg-cyan-950/60 text-cyan-300 shadow-[0_0_8px_rgba(56,189,248,0.2)]"
-                        : "border-slate-800 bg-slate-950/50 text-slate-400 hover:text-white",
-                    )}
-                    title="Focus on Earth Global Reconnaissance Map"
-                  >
-                    <Satellite className="size-3.5 text-cyan-400" />
-                    <span>Earth Map</span>
-                  </button>
-                </div>
-              </div>
+              )}
 
-              {/* Main Flight Deck Grid */}
-              <div
-                className={cn(
-                  "grid gap-4",
-                  reconLayout === "dual"
-                    ? "grid-cols-1 2xl:grid-cols-[minmax(0,1fr)_360px]"
-                    : "grid-cols-1 xl:grid-cols-[minmax(0,1fr)_380px]",
-                )}
-              >
-                {/* Reconnaissance Canvas Deck */}
-                <div
-                  className={cn(
-                    "grid gap-4",
-                    reconLayout === "dual" ? "grid-cols-1 xl:grid-cols-2" : "grid-cols-1",
-                  )}
-                >
-                  {(reconLayout === "dual" || reconLayout === "planet") && (
-                    <PlanetaryGlobe
-                      body={body}
-                      selectedTarget={selectedTarget}
-                      allTargets={filteredTargets}
-                      onSelectTarget={(id) => {
-                        setTargetId(id)
-                        setSelectedId(null)
-                      }}
-                      isUpdating={isUpdating}
-                    />
-                  )}
-
-                  {(reconLayout === "dual" || reconLayout === "earth") && (
-                    <AnalogMap
-                      results={results}
-                      selectedId={selectedResult?.candidate.id ?? null}
-                      onSelect={setSelectedId}
-                      isUpdating={isUpdating}
-                      imageryLayerId={imageryLayerId}
-                      imageryDate={imageryDate}
-                      imageryOpacity={imageryOpacity}
-                      parameterLayerId={parameterLayerId}
-                      onImageryLayerChange={setImageryLayerId}
-                      onImageryDateChange={setImageryDate}
-                      onImageryOpacityChange={setImageryOpacity}
-                      onParameterLayerChange={setParameterLayerId}
-                    />
-                  )}
-                </div>
-
-                {/* Candidate Roster List */}
-                <CandidateList
+              {(reconLayout === "dual" || reconLayout === "earth") && (
+                <AnalogMap
                   results={results}
-                  totalCandidates={data.totalCandidates}
                   selectedId={selectedResult?.candidate.id ?? null}
                   onSelect={setSelectedId}
                   isUpdating={isUpdating}
+                  imageryLayerId={imageryLayerId}
+                  imageryDate={imageryDate}
+                  imageryOpacity={imageryOpacity}
+                  parameterLayerId={parameterLayerId}
+                  onImageryLayerChange={setImageryLayerId}
+                  onImageryDateChange={setImageryDate}
+                  onImageryOpacityChange={setImageryOpacity}
+                  onParameterLayerChange={setParameterLayerId}
                 />
-              </div>
+              )}
 
-              {selectedResult && (
-                <div className="flex flex-col gap-4">
-                  {/* Analysis Mode Switcher / View Control */}
-                  <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-800 bg-slate-900/60 p-2.5 font-mono text-xs backdrop-blur-sm">
-                    <div className="flex items-center gap-2 text-slate-300">
-                      <Layers className="size-4 text-cyan-400" />
-                      <span className="font-bold uppercase tracking-wider text-[11px]">
-                        SCIENTIFIC ANALYSIS VIEW
-                      </span>
-                    </div>
+              <CandidateList
+                results={results}
+                totalCandidates={data.totalCandidates}
+                selectedId={selectedResult?.candidate.id ?? null}
+                onSelect={setSelectedId}
+                isUpdating={isUpdating}
+              />
+            </div>
+          )}
 
-                    <div className="flex flex-wrap items-center gap-1.5">
-                      <button
-                        type="button"
-                        onClick={() => setAnalysisTab("workspace")}
-                        className={cn(
-                          "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border",
-                          analysisTab === "workspace"
-                            ? "border-cyan-500/60 bg-cyan-950/70 text-cyan-300 shadow-[0_0_10px_rgba(56,189,248,0.25)]"
-                            : "border-slate-800 bg-slate-950/60 text-slate-400 hover:text-white hover:border-slate-700",
-                        )}
-                        title="Dedicated Terrain & Environmental Parameter Workspace"
-                      >
-                        <Mountain className="size-3.5 text-cyan-400" />
-                        <span>Terrain Workspace</span>
-                      </button>
+          {/* Analysis Panels */}
+          {selectedResult && (
+            <>
+              {(activeTab === "workspace" || activeTab === "all") && (
+                <TerrainComparisonWorkspace
+                  target={data.target}
+                  purpose={data.purpose}
+                  result={selectedResult}
+                  allCandidates={results}
+                  onSelectCandidate={setSelectedId}
+                  isUpdating={isUpdating}
+                />
+              )}
 
-                      <button
-                        type="button"
-                        onClick={() => setAnalysisTab("elevation")}
-                        className={cn(
-                          "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border",
-                          analysisTab === "elevation"
-                            ? "border-cyan-500/60 bg-cyan-950/70 text-cyan-300 shadow-[0_0_10px_rgba(56,189,248,0.25)]"
-                            : "border-slate-800 bg-slate-950/60 text-slate-400 hover:text-white hover:border-slate-700",
-                        )}
-                        title="Topographic Relief & Geodesic Elevation Profiles"
-                      >
-                        <Activity className="size-3.5 text-cyan-400" />
-                        <span>Elevation Transects</span>
-                      </button>
+              {(activeTab === "elevation" || activeTab === "all") && (
+                <ElevationProfilePanel
+                  target={data.target}
+                  candidate={selectedResult.candidate}
+                  allCandidates={results.map((r) => r.candidate)}
+                  onSelectCandidate={setSelectedId}
+                  isUpdating={isUpdating}
+                />
+              )}
 
-                      <button
-                        type="button"
-                        onClick={() => setAnalysisTab("evidence")}
-                        className={cn(
-                          "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border",
-                          analysisTab === "evidence"
-                            ? "border-cyan-500/60 bg-cyan-950/70 text-cyan-300 shadow-[0_0_10px_rgba(56,189,248,0.25)]"
-                            : "border-slate-800 bg-slate-950/60 text-slate-400 hover:text-white hover:border-slate-700",
-                        )}
-                        title="5-Stage Scientific Evidence & Telemetry Lineage Explorer"
-                      >
-                        <ShieldCheck className="size-3.5 text-emerald-400" />
-                        <span>Evidence Explorer</span>
-                      </button>
+              {(activeTab === "evidence" || activeTab === "all") && (
+                <ScientificEvidenceExplorer
+                  currentTarget={data.target}
+                  currentCandidate={selectedResult.candidate}
+                  allTargets={filteredTargets}
+                  allCandidates={results.map((r) => r.candidate)}
+                  isUpdating={isUpdating}
+                />
+              )}
 
-                      <button
-                        type="button"
-                        onClick={() => setAnalysisTab("telemetry")}
-                        className={cn(
-                          "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border",
-                          analysisTab === "telemetry"
-                            ? "border-cyan-500/60 bg-cyan-950/70 text-cyan-300 shadow-[0_0_10px_rgba(56,189,248,0.25)]"
-                            : "border-slate-800 bg-slate-950/60 text-slate-400 hover:text-white hover:border-slate-700",
-                        )}
-                        title="Dimensional Telemetry Overview & Attribute Matrix"
-                      >
-                        <Terminal className="size-3.5 text-purple-400" />
-                        <span>Telemetry Overview</span>
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => setAnalysisTab("all")}
-                        className={cn(
-                          "flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border",
-                          analysisTab === "all"
-                            ? "border-purple-500/60 bg-purple-950/70 text-purple-300 shadow-[0_0_10px_rgba(168,85,247,0.25)]"
-                            : "border-slate-800 bg-slate-950/60 text-slate-400 hover:text-white hover:border-slate-700",
-                        )}
-                        title="Display All Scientific Visualization Panels Sequentially"
-                      >
-                        <ListFilter className="size-3.5 text-purple-400" />
-                        <span>All Panels</span>
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Render based on view mode */}
-                  {(analysisTab === "workspace" || analysisTab === "all") && (
-                    <TerrainComparisonWorkspace
-                      target={data.target}
-                      purpose={data.purpose}
-                      result={selectedResult}
-                      allCandidates={results}
-                      onSelectCandidate={setSelectedId}
-                      isUpdating={isUpdating}
-                    />
-                  )}
-
-                  {(analysisTab === "elevation" || analysisTab === "all") && (
-                    <ElevationProfilePanel
-                      target={data.target}
-                      candidate={selectedResult.candidate}
-                      allCandidates={results.map((r) => r.candidate)}
-                      onSelectCandidate={setSelectedId}
-                      isUpdating={isUpdating}
-                    />
-                  )}
-
-                  {(analysisTab === "evidence" || analysisTab === "all") && (
-                    <ScientificEvidenceExplorer
-                      currentTarget={data.target}
-                      currentCandidate={selectedResult.candidate}
-                      allTargets={filteredTargets}
-                      allCandidates={results.map((r) => r.candidate)}
-                      isUpdating={isUpdating}
-                    />
-                  )}
-
-                  {(analysisTab === "telemetry" || analysisTab === "all") && (
-                    <ComparisonPanel
-                      target={data.target}
-                      purpose={data.purpose}
-                      result={selectedResult}
-                      isUpdating={isUpdating}
-                    />
-                  )}
-                </div>
+              {(activeTab === "telemetry" || activeTab === "all") && (
+                <ComparisonPanel
+                  target={data.target}
+                  purpose={data.purpose}
+                  result={selectedResult}
+                  isUpdating={isUpdating}
+                />
               )}
             </>
           )}
-        </div>
-      </div>
+
+          {/* Collapsible Target Profile & Dataset Notice */}
+          {selectedTarget && (
+            <DsDisclosureRow
+              title="Target profile & dataset notice"
+              summary={selectedTarget.name}
+            >
+              <div className="space-y-4">
+                <p className="text-xs text-[var(--tt-dark-ink-muted)]">
+                  {data.dataset.name} (v{data.dataset.version}) &mdash; {data.dataset.notice}
+                </p>
+                <div className="rounded-[var(--tt-radius-card)] border border-[var(--tt-dark-border)] bg-[var(--tt-dark-panel)] p-4">
+                  <TargetProfile target={selectedTarget} />
+                </div>
+              </div>
+            </DsDisclosureRow>
+          )}
+        </>
+      )}
     </div>
   )
 }

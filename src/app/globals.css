@@ -4,8 +4,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
   --color-warning: var(--warning);
   --color-warning-foreground: var(--warning-foreground);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -85,6 +85,72 @@
   --sidebar-accent-foreground: oklch(0.96 0.01 250);
   --sidebar-border: oklch(0.26 0.03 260);
   --sidebar-ring: oklch(0.78 0.16 215);
+
+  /* ========================================================================
+     TerraTwin Editorial Mission-Control Design System Tokens (--tt-*)
+     ======================================================================== */
+  /* Primary Accent */
+  --tt-accent: #F25C1F;
+  --tt-accent-hover: #DC4B11;
+  --tt-accent-soft: rgba(242, 92, 31, 0.12);
+  --tt-accent-fg: #FFFFFF;
+
+  /* Light Surfaces (Editorial / Marketing / Overview / Sources / Methodology) */
+  --tt-light-bg: #F5F5F4;
+  --tt-light-surface: #FFFFFF;
+  --tt-light-band: #EFEFED;
+  --tt-light-ink: #111318;
+  --tt-light-ink-secondary: #5C626E;
+  --tt-light-ink-muted: #7C828E;
+  --tt-light-border: rgba(17, 19, 24, 0.10);
+  --tt-light-border-strong: rgba(17, 19, 24, 0.18);
+
+  /* Dark Surfaces (Showcase Section & Explorer / Mission Control App) */
+  --tt-showcase-bg: #1B2030;
+  --tt-dark-bg: #12151D;
+  --tt-dark-panel: #181C26;
+  --tt-dark-card: #1F2430;
+  --tt-dark-elevated: #252B3B;
+  --tt-dark-ink: #F5F5F4;
+  --tt-dark-ink-secondary: #A1A9B8;
+  --tt-dark-ink-muted: #7C8596;
+  --tt-dark-periwinkle: #8DA4D0;
+  --tt-dark-border: rgba(255, 255, 255, 0.08);
+  --tt-dark-border-strong: rgba(255, 255, 255, 0.15);
+
+  /* Planet-Tinted Card Surfaces */
+  --tt-planet-earth: #ECEFF4;
+  --tt-planet-mars: #F3EAE2;
+  --tt-planet-moon: #EAEAE8;
+
+  /* Data Semantics (Always paired with text labels) */
+  --tt-match-high: #22D3EE;
+  --tt-match-high-bg: rgba(34, 211, 238, 0.12);
+  --tt-match-moderate: #F59E0B;
+  --tt-match-moderate-bg: rgba(245, 158, 11, 0.12);
+  --tt-match-low: #F43F5E;
+  --tt-match-low-bg: rgba(244, 63, 94, 0.12);
+
+  /* Status Semantics */
+  --tt-success: #10B981;
+  --tt-warning: #F59E0B;
+  --tt-error: #EF4444;
+  --tt-info: #38BDF8;
+
+  /* Radii */
+  --tt-radius-card: 18px;
+  --tt-radius-control: 11px;
+  --tt-radius-pill: 9999px;
+
+  /* Shadows */
+  --tt-shadow-soft: 0 18px 48px -16px rgba(17, 19, 24, 0.08), 0 2px 6px -1px rgba(17, 19, 24, 0.04);
+  --tt-shadow-float: 0 24px 64px -20px rgba(17, 19, 24, 0.14);
+  --tt-shadow-dark: 0 20px 56px -16px rgba(0, 0, 0, 0.45);
+
+  /* Transitions & Layout */
+  --tt-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --tt-duration: 180ms;
+  --tt-container-max: 1240px;
 }
 
 @layer base {
@@ -92,12 +158,113 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground antialiased selection:bg-sky-500/20 selection:text-sky-200;
-    background-color: #07090e;
-    background-image: 
-      radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.08), transparent 45%),
-      linear-gradient(to bottom, transparent, rgba(7, 9, 14, 0.8));
-    background-attachment: fixed;
+    @apply antialiased selection:bg-[var(--tt-accent-soft)] selection:text-[var(--tt-light-ink)];
+    background-color: var(--tt-light-bg);
+    color: var(--tt-light-ink);
+  }
+}
+
+/* Surface Context Scopes */
+.tt-surface-light {
+  --tt-bg: var(--tt-light-bg);
+  --tt-surface: var(--tt-light-surface);
+  --tt-surface-muted: var(--tt-light-band);
+  --tt-ink: var(--tt-light-ink);
+  --tt-ink-secondary: var(--tt-light-ink-secondary);
+  --tt-ink-muted: var(--tt-light-ink-muted);
+  --tt-line: var(--tt-light-border);
+  --tt-line-strong: var(--tt-light-border-strong);
+  background-color: var(--tt-bg);
+  color: var(--tt-ink);
+}
+
+.tt-surface-band {
+  --tt-bg: var(--tt-light-band);
+  --tt-surface: var(--tt-light-surface);
+  --tt-surface-muted: #E6E6E3;
+  --tt-ink: var(--tt-light-ink);
+  --tt-ink-secondary: var(--tt-light-ink-secondary);
+  --tt-ink-muted: var(--tt-light-ink-muted);
+  --tt-line: var(--tt-light-border);
+  --tt-line-strong: var(--tt-light-border-strong);
+  background-color: var(--tt-bg);
+  color: var(--tt-ink);
+}
+
+.tt-surface-showcase {
+  --tt-bg: var(--tt-showcase-bg);
+  --tt-surface: #22283A;
+  --tt-surface-muted: #282F44;
+  --tt-ink: var(--tt-dark-ink);
+  --tt-ink-secondary: var(--tt-dark-ink-secondary);
+  --tt-ink-muted: var(--tt-dark-ink-muted);
+  --tt-line: var(--tt-dark-border);
+  --tt-line-strong: var(--tt-dark-border-strong);
+  background-color: var(--tt-bg);
+  color: var(--tt-ink);
+}
+
+.tt-surface-dark {
+  --tt-bg: var(--tt-dark-bg);
+  --tt-surface: var(--tt-dark-panel);
+  --tt-surface-muted: var(--tt-dark-card);
+  --tt-ink: var(--tt-dark-ink);
+  --tt-ink-secondary: var(--tt-dark-ink-secondary);
+  --tt-ink-muted: var(--tt-dark-ink-muted);
+  --tt-line: var(--tt-dark-border);
+  --tt-line-strong: var(--tt-dark-border-strong);
+  background-color: var(--tt-bg);
+  color: var(--tt-ink);
+}
+
+/* Typography Scale */
+.tt-display-xl {
+  font-size: clamp(2.75rem, 6vw, 4.75rem);
+  line-height: 0.96;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+}
+
+.tt-display-l {
+  font-size: clamp(2.125rem, 4.2vw, 3.375rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+
+.tt-display-m {
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  font-weight: 600;
+}
+
+.tt-mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1.3;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.tt-mono-data {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.tt-container {
+  width: 100%;
+  max-width: var(--tt-container-max);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tt-motion,
+  .tt-motion * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
   }
 }
 

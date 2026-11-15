@@ -11,21 +11,32 @@ interface PanelCardProps {
   bodyClassName?: string
 }
 
-export function PanelCard({ title, description, actions, isUpdating, children, className, bodyClassName }: PanelCardProps) {
+export function PanelCard({
+  title,
+  description,
+  actions,
+  isUpdating,
+  children,
+  className,
+  bodyClassName,
+}: PanelCardProps) {
   return (
     <section
       aria-label={title}
       aria-busy={isUpdating || undefined}
-      className={cn("flex min-w-0 flex-col rounded-xl border border-slate-800 bg-slate-900/60 shadow-xs", className)}
+      className={cn(
+        "flex min-w-0 flex-col overflow-hidden rounded-[var(--tt-radius-card)] border border-[var(--tt-dark-border)] bg-[var(--tt-dark-panel)] text-[var(--tt-dark-ink)]",
+        className,
+      )}
     >
-      <header className="flex items-start justify-between gap-3 border-b border-slate-800 px-4 py-3">
+      <header className="flex items-start justify-between gap-3 border-b border-[var(--tt-dark-border)] px-4 py-3">
         <div className="flex min-w-0 flex-col gap-0.5">
-          <h2 className="text-sm font-semibold text-slate-100">{title}</h2>
-          {description && <p className="text-xs leading-relaxed text-slate-400">{description}</p>}
+          <h2 className="text-xs font-semibold tracking-tight text-[var(--tt-dark-ink)]">{title}</h2>
+          {description && <p className="text-[11px] leading-relaxed text-[var(--tt-dark-ink-muted)]">{description}</p>}
         </div>
         <div className="flex shrink-0 items-center gap-2">
           {isUpdating && (
-            <span role="status" className="font-mono text-[11px] text-sky-400">
+            <span role="status" className="font-mono text-[11px] text-[var(--tt-accent)]">
               Updating…
             </span>
           )}

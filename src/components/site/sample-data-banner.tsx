@@ -10,18 +10,22 @@ export function SampleDataBanner() {
   if (isDismissed) return null
 
   return (
-    <div role="note" className="border-b border-warning/30 bg-warning/10 text-warning transition-all">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-4 py-1.5 text-xs sm:px-6">
-        <div className="flex items-center gap-2">
-          <FlaskConical className="size-3.5 shrink-0" aria-hidden="true" />
-          <p>
-            <span className="font-semibold">Sample dataset notice:</span> {SAMPLE_DATASET_META.notice}
+    <div
+      role="note"
+      className="border-b border-[var(--tt-light-border)] bg-[var(--tt-light-band)] text-[var(--tt-light-ink-secondary)]"
+    >
+      <div className="tt-container flex items-center justify-between gap-3 py-1.5 text-xs">
+        <div className="flex items-center gap-2 min-w-0">
+          <FlaskConical className="size-3.5 shrink-0 text-[var(--tt-accent)]" aria-hidden="true" />
+          <p className="truncate sm:whitespace-normal">
+            <span className="font-semibold text-[var(--tt-light-ink)]">Sample dataset notice:</span>{" "}
+            {SAMPLE_DATASET_META.notice}
           </p>
         </div>
         <button
           type="button"
           onClick={() => setIsDismissed(true)}
-          className="rounded p-1 hover:bg-warning/20 text-warning transition cursor-pointer"
+          className="rounded p-1 text-[var(--tt-light-ink-muted)] transition hover:bg-black/5 hover:text-[var(--tt-light-ink)] cursor-pointer"
           title="Dismiss notice"
           aria-label="Dismiss notice"
         >

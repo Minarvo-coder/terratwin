@@ -3,14 +3,13 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { LayoutGrid, Radar, ScanSearch, BookOpen, Database } from "lucide-react"
 
 const NAV_ITEMS = [
-  { href: "/", label: "Overview", icon: LayoutGrid },
-  { href: "/explore", label: "Explorer", icon: Radar },
-  { href: "/discover", label: "Discovery Scanner", icon: ScanSearch },
-  { href: "/sources", label: "Data Sources", icon: Database },
-  { href: "/methodology", label: "Methodology", icon: BookOpen },
+  { href: "/", label: "Overview" },
+  { href: "/explore", label: "Explorer" },
+  { href: "/discover", label: "Discovery Scanner" },
+  { href: "/sources", label: "Data Sources" },
+  { href: "/methodology", label: "Methodology" },
 ]
 
 export function SiteNav() {
@@ -18,9 +17,8 @@ export function SiteNav() {
 
   return (
     <nav aria-label="Primary" className="min-w-0 max-w-full">
-      <ul className="flex flex-wrap items-center gap-1 lg:justify-end xl:gap-1.5 text-xs">
+      <ul className="flex flex-wrap items-center justify-center gap-1 text-xs">
         {NAV_ITEMS.map((item) => {
-          const Icon = item.icon
           const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href)
           return (
             <li key={item.href}>
@@ -28,14 +26,19 @@ export function SiteNav() {
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "flex items-center gap-1.5 rounded-md px-2.5 py-1.5 font-medium transition-all duration-150 text-[13px]",
+                  "inline-flex items-center gap-2 rounded-[var(--tt-radius-pill)] px-3.5 py-1.5 text-xs font-medium transition-all duration-[var(--tt-duration)] ease-[var(--tt-ease)] whitespace-nowrap",
                   active
-                    ? "bg-slate-800 text-sky-400 font-semibold shadow-xs"
-                    : "text-slate-400 hover:text-slate-100 hover:bg-slate-900",
+                    ? "bg-[var(--tt-light-surface)] text-[var(--tt-light-ink)] shadow-[0_2px_10px_rgba(17,19,24,0.06)]"
+                    : "text-[var(--tt-light-ink-secondary)] hover:text-[var(--tt-light-ink)]",
                 )}
               >
-                <Icon className={cn("size-3.5 shrink-0", active ? "text-sky-400" : "text-slate-400")} aria-hidden="true" />
-                <span className="whitespace-nowrap">{item.label}</span>
+                {active && (
+                  <span
+                    className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--tt-accent)]"
+                    aria-hidden="true"
+                  />
+                )}
+                <span>{item.label}</span>
               </Link>
             </li>
           )

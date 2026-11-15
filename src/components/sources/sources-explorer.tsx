@@ -2,23 +2,28 @@
 
 import { useState } from "react"
 import {
+  ArrowUpRight,
   Database,
-  ExternalLink,
-  FileSpreadsheet,
-  FileCode,
-  Layers,
-  ShieldCheck,
-  Search,
+  Download,
   Info,
-  X,
+  Layers,
+  Search,
+  ShieldCheck,
   Sparkles,
+  X,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { formatCoordinates, formatFeatureValue, getFeatureComparabilityInfo, getProvenanceBadgeInfo } from "@/lib/terratwin/format"
+import {
+  formatCoordinates,
+  formatFeatureValue,
+  getFeatureComparabilityInfo,
+  getProvenanceBadgeInfo,
+} from "@/lib/terratwin/format"
 import { FEATURES } from "@/lib/terratwin/features"
 import { DATA_SOURCES } from "@/lib/terratwin/data-sources"
 import { FEATURE_COMPATIBILITY_MATRIX } from "@/lib/terratwin/config/compatibility-matrix"
 import { ScientificEvidenceExplorer } from "@/components/explorer/scientific-evidence-explorer"
+import { DsEyebrow, DsHonestyBadge, DsSegmentedControl } from "@/components/ds/primitives"
 import type { EarthCandidate, FeatureKey, PlanetaryTarget } from "@/lib/terratwin/types"
 import type { DatasetSourceRecord } from "@/lib/terratwin/types/api"
 
@@ -39,7 +44,6 @@ export function SourcesExplorer({ targets, candidates, sources }: SourcesExplore
 
   const allLocations = [...targets, ...candidates]
 
-  // Filter locations for coverage matrix
   const filteredLocations = allLocations.filter((loc) => {
     const isTarget = "body" in loc
     const body = isTarget ? (loc.body === "mars" ? "Mars" : "Moon") : "Earth"
@@ -51,7 +55,6 @@ export function SourcesExplorer({ targets, candidates, sources }: SourcesExplore
     return true
   })
 
-  // Filter datasets for catalog
   const filteredDataSources = DATA_SOURCES.filter((ds) => {
     if (bodyFilter !== "all" && ds.scope !== bodyFilter && ds.scope !== "Multi-body") return false
     if (searchQuery.trim() !== "") {
@@ -67,237 +70,218 @@ export function SourcesExplorer({ targets, candidates, sources }: SourcesExplore
 
   return (
     <div className="flex flex-col gap-8 font-sans">
-      {/* 1. Scientific Header */}
-      <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-6">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-          <div className="flex flex-col gap-2">
-            <div className="flex flex-wrap items-center gap-2 text-xs">
-              <span className="inline-flex items-center gap-1.5 rounded-md border border-sky-500/30 bg-sky-950/60 px-2.5 py-0.5 text-sky-300 font-medium">
-                <Database className="size-3.5 text-sky-400" />
-                <span>Data Provenance &amp; NASA Archives<span className="sr-only">SCIENTIFIC DATA PROVENANCE</span></span>
-              </span>
-              <span className="rounded bg-emerald-950/60 border border-emerald-500/30 px-2 py-0.5 text-[11px] text-emerald-300 font-medium flex items-center gap-1">
-                <ShieldCheck className="size-3 text-emerald-400" />
-                <span>Verified Sources</span>
-              </span>
+      {/* 1. Editorial Header */}
+      <div className="rounded-[var(--tt-radius-card)] border border-[var(--tt-light-border)] bg-[var(--tt-light-surface)] p-6 md:p-8 shadow-[var(--tt-shadow-soft)]">
+        <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-start">
+          <div className="space-y-3">
+            <div className="flex flex-wrap items-center gap-3">
+              <DsEyebrow label="DATA PROVENANCE & NASA ARCHIVES" />
+              <DsHonestyBadge tone="high" label="Verified Sources" />
             </div>
 
-            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mt-1">
+            <h1 className="tt-display-m text-[var(--tt-light-ink)]">
               Authoritative Planetary &amp; Earth Telemetry Catalog
             </h1>
-            <p className="max-w-3xl text-xs sm:text-sm leading-relaxed text-slate-300">
-              TerraTwin is founded on authentic, publicly traceable measurements from NASA Planetary Data System (PDS),
-              NASA Earthdata / Langley POWER, and peer-reviewed field studies. Inspect dataset processing baselines,
-              examine the coverage matrix across all 13 locations, or export the complete telemetry catalog.
+            <p className="max-w-3xl text-sm leading-relaxed text-[var(--tt-light-ink-secondary)]">
+              TerraTwin is founded on publicly traceable measurements from NASA Planetary Data System (PDS), NASA
+              Earthdata / Langley POWER, and peer-reviewed field studies. Inspect dataset baselines, examine the
+              coverage matrix across all {allLocations.length} locations, or export the complete catalog.
             </p>
           </div>
 
-          {/* Quick Export Action Buttons */}
-          <div className="flex flex-wrap items-center gap-3 self-start lg:self-center text-xs">
+          {/* Export Pills */}
+          <div className="flex flex-wrap items-center gap-2.5 shrink-0">
             <a
               href="/api/export?format=csv"
               download="terratwin_scientific_telemetry_matrix.csv"
-              className="inline-flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-800 hover:bg-slate-700 px-3.5 py-2 font-medium text-slate-200 transition cursor-pointer"
+              className="inline-flex h-10 items-center gap-2 rounded-[var(--tt-radius-pill)] border border-[var(--tt-light-border-strong)] bg-[var(--tt-light-bg)] px-4 font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--tt-light-ink)] transition-colors hover:border-[var(--tt-accent)] hover:text-[var(--tt-accent)]"
             >
-              <FileSpreadsheet className="size-4 text-sky-400" />
-              <span>Export CSV<span className="sr-only">EXPORT CSV MATRIX</span></span>
+              <Download className="size-3.5" aria-hidden="true" />
+              <span>Export CSV</span>
+              <span className="sr-only">EXPORT CSV MATRIX</span>
             </a>
 
             <a
               href="/api/export?format=json"
               download="terratwin_scientific_catalog.json"
-              className="inline-flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-800 hover:bg-slate-700 px-3.5 py-2 font-medium text-slate-200 transition cursor-pointer"
+              className="inline-flex h-10 items-center gap-2 rounded-[var(--tt-radius-pill)] border border-[var(--tt-light-border-strong)] bg-[var(--tt-light-bg)] px-4 font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--tt-light-ink)] transition-colors hover:border-[var(--tt-accent)] hover:text-[var(--tt-accent)]"
             >
-              <FileCode className="size-4 text-purple-400" />
-              <span>Export JSON<span className="sr-only">EXPORT JSON CATALOG</span></span>
+              <Download className="size-3.5" aria-hidden="true" />
+              <span>Export JSON</span>
+              <span className="sr-only">EXPORT JSON CATALOG</span>
             </a>
           </div>
         </div>
 
-        {/* Quick Metric Bar */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 border-t border-slate-800 pt-5 mt-5 text-xs">
-          <div className="rounded-lg bg-slate-950/60 border border-slate-800 p-3">
-            <div className="text-[11px] text-slate-400">Integrated Archives</div>
-            <div className="text-lg font-bold text-white mt-0.5 font-mono">{sources.length} Active Sources</div>
+        {/* Metric Strip */}
+        <div className="mt-6 grid grid-cols-2 gap-4 border-t border-[var(--tt-light-border)] pt-6 sm:grid-cols-4">
+          <div className="rounded-[var(--tt-radius-control)] border border-[var(--tt-light-border)] bg-[var(--tt-light-bg)] p-3.5">
+            <div className="tt-mono-label text-[var(--tt-light-ink-muted)]">Integrated Archives</div>
+            <div className="tt-mono-data mt-1 text-lg font-semibold text-[var(--tt-light-ink)]">
+              {sources.length} Active Sources
+            </div>
           </div>
-          <div className="rounded-lg bg-slate-950/60 border border-slate-800 p-3">
-            <div className="text-[11px] text-slate-400">Locations Indexed</div>
-            <div className="text-lg font-bold text-white mt-0.5 font-mono">{allLocations.length} Planetary &amp; Field Sites</div>
+          <div className="rounded-[var(--tt-radius-control)] border border-[var(--tt-light-border)] bg-[var(--tt-light-bg)] p-3.5">
+            <div className="tt-mono-label text-[var(--tt-light-ink-muted)]">Locations Indexed</div>
+            <div className="tt-mono-data mt-1 text-lg font-semibold text-[var(--tt-light-ink)]">
+              {allLocations.length} Sites
+            </div>
           </div>
-          <div className="rounded-lg bg-slate-950/60 border border-slate-800 p-3">
-            <div className="text-[11px] text-slate-400">Environmental Channels</div>
-            <div className="text-lg font-bold text-white mt-0.5 font-mono">{FEATURES.length} Physical Dimensions</div>
+          <div className="rounded-[var(--tt-radius-control)] border border-[var(--tt-light-border)] bg-[var(--tt-light-bg)] p-3.5">
+            <div className="tt-mono-label text-[var(--tt-light-ink-muted)]">Channels</div>
+            <div className="tt-mono-data mt-1 text-lg font-semibold text-[var(--tt-light-ink)]">
+              {FEATURES.length} Dimensions
+            </div>
           </div>
-          <div className="rounded-lg bg-slate-950/60 border border-slate-800/80 p-3">
-            <div className="text-[10px] uppercase text-slate-400">Harmonization Rules</div>
-            <div className="text-xl font-bold text-purple-300 mt-0.5">4 Comparability Tiers</div>
+          <div className="rounded-[var(--tt-radius-control)] border border-[var(--tt-light-border)] bg-[var(--tt-light-bg)] p-3.5">
+            <div className="tt-mono-label text-[var(--tt-light-ink-muted)]">Harmonization</div>
+            <div className="tt-mono-data mt-1 text-lg font-semibold text-[var(--tt-accent)]">
+              4 Comparability Tiers
+            </div>
           </div>
         </div>
       </div>
 
-      {/* 2. Interactive Navigation Tabs & Search Toolbar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
-        {/* Tab Buttons */}
-        <div className="inline-flex rounded-lg border border-slate-800 bg-slate-950 p-1 font-mono text-xs">
-          <button
-            type="button"
-            onClick={() => setActiveTab("matrix")}
-            className={cn(
-              "rounded px-3 py-1.5 transition cursor-pointer font-semibold flex items-center gap-1.5",
-              activeTab === "matrix"
-                ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-[0_0_10px_rgba(56,189,248,0.2)]"
-                : "text-slate-400 hover:text-white"
-            )}
-          >
-            <Layers className="size-3.5" />
-            <span>Coverage Matrix</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setActiveTab("evidence")}
-            className={cn(
-              "rounded px-3 py-1.5 transition cursor-pointer font-semibold flex items-center gap-1.5",
-              activeTab === "evidence"
-                ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-[0_0_10px_rgba(56,189,248,0.2)]"
-                : "text-slate-400 hover:text-white"
-            )}
-          >
-            <ShieldCheck className="size-3.5 text-emerald-400" />
-            <span>Evidence Lineage Explorer</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setActiveTab("catalog")}
-            className={cn(
-              "rounded px-3 py-1.5 transition cursor-pointer font-semibold flex items-center gap-1.5",
-              activeTab === "catalog"
-                ? "bg-purple-500/20 text-purple-300 border border-purple-500/40 shadow-[0_0_10px_rgba(168,85,247,0.2)]"
-                : "text-slate-400 hover:text-white"
-            )}
-          >
-            <Database className="size-3.5" />
-            <span>NASA Dataset Archives</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setActiveTab("harmonization")}
-            className={cn(
-              "rounded px-3 py-1.5 transition cursor-pointer font-semibold flex items-center gap-1.5",
-              activeTab === "harmonization"
-                ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 shadow-[0_0_10px_rgba(52,211,153,0.2)]"
-                : "text-slate-400 hover:text-white"
-            )}
-          >
-            <Info className="size-3.5" />
-            <span>Harmonization Guide</span>
-          </button>
+      {/* 2. Tabs & Filter Bar */}
+      <div className="flex flex-col justify-between gap-4 border-b border-[var(--tt-light-border)] pb-4 lg:flex-row lg:items-center">
+        <div className="flex flex-wrap items-center gap-1.5">
+          {[
+            { id: "matrix" as const, label: "Coverage Matrix", icon: <Layers className="size-3.5" /> },
+            { id: "evidence" as const, label: "Evidence Lineage Explorer", icon: <ShieldCheck className="size-3.5" /> },
+            { id: "catalog" as const, label: "NASA Dataset Archives", icon: <Database className="size-3.5" /> },
+            { id: "harmonization" as const, label: "Harmonization Guide", icon: <Info className="size-3.5" /> },
+          ].map((tab) => {
+            const active = activeTab === tab.id
+            return (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => setActiveTab(tab.id)}
+                className={cn(
+                  "inline-flex items-center gap-2 rounded-[var(--tt-radius-pill)] border px-3.5 py-1.5 text-xs font-medium transition-colors cursor-pointer",
+                  active
+                    ? "border-[var(--tt-light-ink)] bg-[var(--tt-light-ink)] text-[var(--tt-light-surface)]"
+                    : "border-[var(--tt-light-border)] bg-[var(--tt-light-surface)] text-[var(--tt-light-ink-secondary)] hover:text-[var(--tt-light-ink)]",
+                )}
+              >
+                {tab.icon}
+                <span>{tab.label}</span>
+              </button>
+            )
+          })}
         </div>
 
-        {/* Filter & Search Bar */}
-        <div className="flex items-center gap-2 font-mono text-xs">
+        <div className="flex flex-wrap items-center gap-2.5">
           <div className="relative">
-            <Search className="size-3.5 text-slate-500 absolute left-2.5 top-1/2 -translate-y-1/2" />
+            <Search
+              className="pointer-events-none absolute top-1/2 left-3 size-3.5 -translate-y-1/2 text-[var(--tt-light-ink-muted)]"
+              aria-hidden="true"
+            />
             <input
               type="text"
               placeholder="Search locations or datasets..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="rounded-lg border border-slate-800 bg-slate-950 pl-8 pr-3 py-1.5 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500/50 w-52 sm:w-64"
+              className="h-9 w-56 rounded-[var(--tt-radius-control)] border border-[var(--tt-light-border-strong)] bg-[var(--tt-light-surface)] pl-8 pr-3 text-xs text-[var(--tt-light-ink)] placeholder:text-[var(--tt-light-ink-muted)] focus:border-[var(--tt-accent)] focus:outline-none sm:w-64"
             />
           </div>
 
-          <div className="inline-flex rounded-lg border border-slate-800 bg-slate-950 p-1">
-            {(["all", "Mars", "Moon", "Earth"] as const).map((b) => (
-              <button
-                key={b}
-                type="button"
-                onClick={() => setBodyFilter(b)}
-                className={cn(
-                  "rounded px-2.5 py-1 text-[11px] font-semibold transition cursor-pointer",
-                  bodyFilter === b
-                    ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/40"
-                    : "text-slate-400 hover:text-white"
-                )}
-              >
-                {b === "all" ? "All Bodies" : b}
-              </button>
-            ))}
-          </div>
+          <DsSegmentedControl
+            tone="light"
+            size="sm"
+            value={bodyFilter}
+            onChange={setBodyFilter}
+            ariaLabel="Filter by planetary body"
+            options={[
+              { value: "all", label: "All Bodies" },
+              { value: "Mars", label: "Mars" },
+              { value: "Moon", label: "Moon" },
+              { value: "Earth", label: "Earth" },
+            ]}
+          />
         </div>
       </div>
 
       {/* 3. TAB 1: Coverage Matrix Grid */}
       {activeTab === "matrix" && (
         <div className="flex flex-col gap-4">
-          <div className="flex items-center justify-between font-mono text-xs text-slate-400">
+          <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-[var(--tt-light-ink-secondary)]">
             <span>
-              Showing {filteredLocations.length} locations across {FEATURES.length} physical dimensions. Click any cell to inspect measurement provenance.
+              Showing {filteredLocations.length} locations across {FEATURES.length} physical dimensions. Click any cell
+              to inspect measurement provenance.
             </span>
-            <div className="flex items-center gap-3 text-[10px]">
-              <span className="flex items-center gap-1 text-emerald-300">
-                <span className="size-2 rounded-full bg-emerald-400" />
+            <div className="flex flex-wrap items-center gap-3 font-mono text-[10px]">
+              <span className="flex items-center gap-1.5">
+                <span className="size-2 rounded-full bg-[var(--tt-success)]" />
                 <span>Verified NASA PDS</span>
               </span>
-              <span className="flex items-center gap-1 text-cyan-300">
-                <span className="size-2 rounded-full bg-cyan-400" />
+              <span className="flex items-center gap-1.5">
+                <span className="size-2 rounded-full bg-[var(--tt-match-high)]" />
                 <span>NASA POWER / Earthdata</span>
               </span>
-              <span className="flex items-center gap-1 text-purple-300">
-                <span className="size-2 rounded-full bg-purple-400" />
+              <span className="flex items-center gap-1.5">
+                <span className="size-2 rounded-full bg-[var(--tt-accent)]" />
                 <span>Literature / Field Study</span>
               </span>
-              <span className="flex items-center gap-1 text-rose-300">
-                <span className="size-2 rounded-full bg-rose-400" />
-                <span>Incomparable (Excluded)</span>
+              <span className="flex items-center gap-1.5">
+                <span className="size-2 rounded-full bg-[var(--tt-match-low)]" />
+                <span>Incomparable</span>
               </span>
             </div>
           </div>
 
-          <div className="overflow-x-auto rounded-xl border border-slate-800/80 bg-slate-950/60 shadow-xl backdrop-blur-sm">
+          <div className="overflow-x-auto rounded-[var(--tt-radius-card)] border border-[var(--tt-light-border)] bg-[var(--tt-light-surface)]">
             <table className="w-full border-collapse font-mono text-xs">
               <thead>
-                <tr className="border-b border-slate-800 bg-slate-900/80 text-[10px] uppercase text-slate-400 font-bold">
-                  <th className="p-3 text-left sticky left-0 bg-slate-900 z-10 min-w-[200px]">Location & Body</th>
+                <tr className="border-b border-[var(--tt-light-border)] bg-[var(--tt-light-band)]/70 text-[10px] uppercase text-[var(--tt-light-ink-muted)]">
+                  <th className="sticky left-0 z-10 min-w-[200px] bg-[var(--tt-light-band)] p-3 text-left font-semibold text-[var(--tt-light-ink)]">
+                    Location &amp; Body
+                  </th>
                   {FEATURES.map((f) => (
-                    <th key={f.key} className="p-3 text-center min-w-[130px]" title={f.description}>
-                      <div>{f.shortLabel}</div>
-                      <div className="text-[8px] text-slate-500 normal-case font-normal">{f.unit || "class"}</div>
+                    <th key={f.key} className="min-w-[130px] p-3 text-center font-semibold" title={f.description}>
+                      <div className="text-[var(--tt-light-ink)]">{f.shortLabel}</div>
+                      <div className="text-[9px] font-normal normal-case text-[var(--tt-light-ink-muted)]">
+                        {f.unit || "class"}
+                      </div>
                     </th>
                   ))}
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/60">
+              <tbody className="divide-y divide-[var(--tt-light-border)]">
                 {filteredLocations.map((loc) => {
                   const isTarget = "body" in loc
                   const bodyName = isTarget ? (loc.body === "mars" ? "Mars" : "Moon") : "Earth"
                   const provMap = loc.provenanceMap || {}
 
                   return (
-                    <tr key={loc.id} className="hover:bg-slate-900/50 transition-colors">
-                      {/* Location Header Column */}
-                      <td className="p-3 sticky left-0 bg-slate-950/90 z-10 border-r border-slate-800/60">
+                    <tr key={loc.id} className="transition-colors hover:bg-[var(--tt-light-bg)]">
+                      <td className="sticky left-0 z-10 border-r border-[var(--tt-light-border)] bg-[var(--tt-light-surface)] p-3">
                         <div className="flex flex-col">
-                          <div className="flex items-center gap-1.5 font-bold text-white text-[11px]">
+                          <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[var(--tt-light-ink)]">
                             <span
                               className={cn(
-                                "size-2 rounded-full shrink-0",
-                                bodyName === "Mars" ? "bg-amber-500" : bodyName === "Moon" ? "bg-slate-300" : "bg-cyan-400"
+                                "size-2 shrink-0 rounded-full",
+                                bodyName === "Mars"
+                                  ? "bg-[var(--tt-accent)]"
+                                  : bodyName === "Moon"
+                                    ? "bg-[var(--tt-light-ink-muted)]"
+                                    : "bg-[var(--tt-dark-periwinkle)]",
                               )}
                             />
-                            <span className="truncate max-w-[180px]">{loc.name}</span>
+                            <span className="max-w-[180px] truncate">{loc.name}</span>
                           </div>
-                          <div className="flex items-center gap-1 text-[9px] text-slate-400 mt-0.5">
-                            <span className="uppercase text-slate-500 font-semibold">{bodyName}</span>
-                            <span>·</span>
-                            <span>{loc.latitude !== undefined && loc.longitude !== undefined ? formatCoordinates(loc.latitude, loc.longitude) : ""}</span>
+                          <div className="mt-0.5 flex items-center gap-1 text-[10px] text-[var(--tt-light-ink-muted)]">
+                            <span className="font-semibold uppercase">{bodyName}</span>
+                            <span>&middot;</span>
+                            <span>
+                              {loc.latitude !== undefined && loc.longitude !== undefined
+                                ? formatCoordinates(loc.latitude, loc.longitude)
+                                : ""}
+                            </span>
                           </div>
                         </div>
                       </td>
 
-                      {/* Feature Columns */}
                       {FEATURES.map((f) => {
                         const val = loc.environment[f.key]
                         const prov = provMap[f.key]
@@ -305,32 +289,34 @@ export function SourcesExplorer({ targets, candidates, sources }: SourcesExplore
                         const compInfo = getFeatureComparabilityInfo(f.key)
                         const isIncomparable = compInfo.classification === "NOT_COMPARABLE"
                         const isMissing = val === null || val === undefined
+                        const selected =
+                          selectedCell?.location.id === loc.id && selectedCell?.featureKey === f.key
 
                         return (
                           <td
                             key={f.key}
                             onClick={() => setSelectedCell({ location: loc, featureKey: f.key })}
                             className={cn(
-                              "p-2 text-center cursor-pointer transition border-r border-slate-800/30 hover:bg-cyan-950/30",
-                              selectedCell?.location.id === loc.id && selectedCell?.featureKey === f.key && "bg-cyan-950/60 ring-1 ring-cyan-400"
+                              "cursor-pointer border-r border-[var(--tt-light-border)] p-2 text-center transition hover:bg-[var(--tt-accent-soft)]",
+                              selected && "bg-[var(--tt-accent-soft)] ring-1 ring-inset ring-[var(--tt-accent)]",
                             )}
                           >
-                            <div className="flex flex-col items-center justify-center gap-0.5">
-                              <span className={cn(
-                                "font-semibold text-[11px]",
-                                isMissing ? "text-slate-600" : isIncomparable ? "text-slate-300" : "text-white"
-                              )}>
+                            <div className="flex flex-col items-center justify-center gap-1">
+                              <span
+                                className={cn(
+                                  "tt-mono-data text-[11px] font-semibold",
+                                  isMissing
+                                    ? "text-[var(--tt-light-ink-muted)]"
+                                    : isIncomparable
+                                      ? "text-[var(--tt-light-ink-secondary)]"
+                                      : "text-[var(--tt-light-ink)]",
+                                )}
+                              >
                                 {formatFeatureValue(f.key, val ?? null)}
                               </span>
 
                               {!isMissing && (
-                                <span className={cn(
-                                  "rounded px-1 text-[7px] font-bold uppercase",
-                                  badge.variant === "pds" ? "bg-emerald-950/80 text-emerald-300 border border-emerald-500/40" :
-                                  badge.variant === "power" ? "bg-cyan-950/80 text-cyan-300 border border-cyan-500/40" :
-                                  badge.variant === "literature" ? "bg-purple-950/80 text-purple-300 border border-purple-500/40" :
-                                  "bg-amber-950/80 text-amber-300 border border-amber-500/40"
-                                )}>
+                                <span className="rounded border border-[var(--tt-light-border)] bg-[var(--tt-light-bg)] px-1.5 py-0.5 text-[8px] font-medium uppercase text-[var(--tt-light-ink-secondary)]">
                                   {badge.label}
                                 </span>
                               )}
@@ -349,84 +335,68 @@ export function SourcesExplorer({ targets, candidates, sources }: SourcesExplore
 
       {/* 4. TAB 2: Scientific Evidence Lineage Explorer */}
       {activeTab === "evidence" && (
-        <ScientificEvidenceExplorer
-          allTargets={targets}
-          allCandidates={candidates}
-        />
+        <div className="tt-surface-dark rounded-[var(--tt-radius-card)] border border-[var(--tt-dark-border)] p-5">
+          <ScientificEvidenceExplorer allTargets={targets} allCandidates={candidates} />
+        </div>
       )}
 
-      {/* 5. TAB 3: NASA & Official Dataset Archives */}
+      {/* 5. TAB 3: NASA Dataset Archives */}
       {activeTab === "catalog" && (
         <div className="flex flex-col gap-4">
-          <div className="flex items-center justify-between font-mono text-xs text-slate-400">
-            <span>Official dataset archives currently ingested and queued for future pipeline updates.</span>
-            <span className="text-cyan-400 font-semibold">{filteredDataSources.length} Datasets Listed</span>
+          <div className="flex items-center justify-between text-xs text-[var(--tt-light-ink-secondary)]">
+            <span>Official dataset archives currently ingested and queued for pipeline updates.</span>
+            <span className="tt-mono-data font-semibold text-[var(--tt-accent)]">
+              {filteredDataSources.length} Datasets Listed
+            </span>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-2">
             {filteredDataSources.map((ds) => {
               const isIntegrated = ds.status === "integrated"
               return (
                 <div
                   key={ds.name}
-                  className={cn(
-                    "flex flex-col justify-between gap-4 rounded-xl border p-5 transition backdrop-blur-sm",
-                    isIntegrated
-                      ? "border-emerald-500/30 bg-slate-900/70 hover:border-emerald-500/50 shadow-[0_0_20px_rgba(52,211,153,0.05)]"
-                      : "border-slate-800 bg-slate-950/50 hover:border-slate-700"
-                  )}
+                  className="flex flex-col justify-between gap-4 rounded-[var(--tt-radius-card)] border border-[var(--tt-light-border)] bg-[var(--tt-light-surface)] p-5"
                 >
                   <div className="flex flex-col gap-2">
                     <div className="flex items-start justify-between gap-3">
-                      <div className="flex flex-col">
-                        <span className="font-mono text-[10px] uppercase font-bold text-slate-400 flex items-center gap-1.5">
-                          <span
-                            className={cn(
-                              "size-2 rounded-full",
-                              ds.scope === "Mars" ? "bg-amber-500" : ds.scope === "Moon" ? "bg-slate-300" : "bg-cyan-400"
-                            )}
-                          />
-                          <span>{ds.scope} Telemetry Archive</span>
+                      <div>
+                        <span className="tt-mono-label text-[var(--tt-light-ink-muted)]">
+                          {ds.scope} Telemetry Archive
                         </span>
-                        <h3 className="text-base font-bold text-white mt-0.5">
-                          {ds.name}
-                        </h3>
+                        <h3 className="mt-1 text-base font-semibold text-[var(--tt-light-ink)]">{ds.name}</h3>
                       </div>
 
-                      {isIntegrated ? (
-                        <span className="rounded bg-emerald-950/70 border border-emerald-500/40 px-2 py-0.5 text-[9px] font-bold text-emerald-300 uppercase tracking-wider shrink-0 font-mono">
-                          INTEGRATED · LIVE
-                        </span>
-                      ) : (
-                        <span className="rounded bg-slate-800 border border-slate-700 px-2 py-0.5 text-[9px] font-bold text-slate-400 uppercase tracking-wider shrink-0 font-mono">
-                          PIPELINE QUEUE
-                        </span>
-                      )}
+                      <DsHonestyBadge
+                        tone={isIntegrated ? "high" : "neutral"}
+                        label={isIntegrated ? "Integrated · Live" : "Pipeline Queue"}
+                      />
                     </div>
 
-                    <div className="text-xs text-slate-300 font-medium">
-                      Provider: <span className="text-white">{ds.provider}</span>
+                    <div className="text-xs text-[var(--tt-light-ink-secondary)]">
+                      Provider: <span className="font-medium text-[var(--tt-light-ink)]">{ds.provider}</span>
                     </div>
 
                     {ds.version && (
-                      <div className="font-mono text-[11px] text-cyan-300/90 bg-cyan-950/30 border border-cyan-500/20 rounded p-1.5 truncate">
+                      <div className="truncate rounded-[var(--tt-radius-control)] border border-[var(--tt-light-border)] bg-[var(--tt-light-bg)] px-2.5 py-1.5 font-mono text-[11px] text-[var(--tt-light-ink-secondary)]">
                         Product: {ds.version}
                       </div>
                     )}
 
-                    <div className="text-xs text-slate-300 leading-relaxed mt-1">
-                      <strong className="text-slate-200">Environmental Parameters:</strong> {ds.informs}
+                    <div className="mt-1 text-xs leading-relaxed text-[var(--tt-light-ink-secondary)]">
+                      <strong className="text-[var(--tt-light-ink)]">Environmental Parameters:</strong> {ds.informs}
                     </div>
 
                     {ds.resolution && (
-                      <div className="font-mono text-[11px] text-slate-400">
-                        <span className="text-slate-500">Spatial Resolution:</span> {ds.resolution}
+                      <div className="font-mono text-[11px] text-[var(--tt-light-ink-muted)]">
+                        Spatial Resolution: {ds.resolution}
                       </div>
                     )}
 
                     {ds.integrationNotes && (
-                      <div className="text-[11px] font-mono text-slate-400 bg-slate-950/80 border border-slate-800 rounded p-2.5 leading-relaxed mt-1">
-                        <span className="text-emerald-400 font-semibold">Integration Architecture:</span> {ds.integrationNotes}
+                      <div className="mt-1 rounded-[var(--tt-radius-control)] border border-[var(--tt-light-border)] bg-[var(--tt-light-bg)] p-2.5 font-mono text-[11px] leading-relaxed text-[var(--tt-light-ink-secondary)]">
+                        <span className="font-semibold text-[var(--tt-light-ink)]">Integration Architecture: </span>
+                        {ds.integrationNotes}
                       </div>
                     )}
                   </div>
@@ -436,10 +406,10 @@ export function SourcesExplorer({ targets, candidates, sources }: SourcesExplore
                       href={ds.sourceUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 self-start text-xs font-mono text-cyan-400 hover:text-cyan-300 hover:underline pt-2 border-t border-slate-800/80 w-full"
+                      className="inline-flex w-full items-center gap-1.5 border-t border-[var(--tt-light-border)] pt-3 text-xs font-medium text-[var(--tt-light-ink)] transition-colors hover:text-[var(--tt-accent)]"
                     >
                       <span>Access Official NASA / ESA Archive</span>
-                      <ExternalLink className="size-3" />
+                      <ArrowUpRight className="size-3.5" aria-hidden="true" />
                     </a>
                   )}
                 </div>
@@ -449,19 +419,18 @@ export function SourcesExplorer({ targets, candidates, sources }: SourcesExplore
         </div>
       )}
 
-      {/* 5. TAB 3: Scientific Harmonization & Comparability Guide */}
+      {/* 6. TAB 4: Harmonization Guide */}
       {activeTab === "harmonization" && (
-        <div className="flex flex-col gap-6 font-mono text-xs">
-          <div className="rounded-xl border border-cyan-500/30 bg-slate-900/60 p-5 leading-relaxed">
-            <h3 className="text-base font-bold text-white mb-2 flex items-center gap-2">
-              <Sparkles className="size-4 text-cyan-400" />
-              <span>Scientific Data Harmonization & Physical Comparability Principles</span>
+        <div className="flex flex-col gap-6">
+          <div className="rounded-[var(--tt-radius-card)] border border-[var(--tt-light-border)] bg-[var(--tt-light-surface)] p-6">
+            <h3 className="mb-2 flex items-center gap-2 text-base font-semibold text-[var(--tt-light-ink)]">
+              <Sparkles className="size-4 text-[var(--tt-accent)]" aria-hidden="true" />
+              <span>Scientific Data Harmonization &amp; Physical Comparability Principles</span>
             </h3>
-            <p className="text-slate-300 font-sans text-sm leading-relaxed max-w-4xl">
-              Planetary analog research requires scientific discipline when comparing measurements across Earth, Mars, and the Moon.
-              Measurements from orbital radiometers cannot be equated with in situ weather stations without accounting for
-              instrument field-of-view, atmospheric absorption, and local topography. In TerraTwin, all physical dimensions are
-              categorized under a 4-tier comparability framework to prevent skewed similarity scores.
+            <p className="max-w-4xl text-sm leading-relaxed text-[var(--tt-light-ink-secondary)]">
+              Measurements from orbital radiometers cannot be equated with in situ weather stations without accounting
+              for instrument field-of-view, atmospheric absorption, and local topography. All physical dimensions in
+              TerraTwin are categorized under a 4-tier comparability framework.
             </p>
           </div>
 
@@ -469,38 +438,29 @@ export function SourcesExplorer({ targets, candidates, sources }: SourcesExplore
             {FEATURE_COMPATIBILITY_MATRIX.map((item) => {
               const isDirect = item.classification === "DIRECTLY COMPARABLE"
               const isTransformed = item.classification === "COMPARABLE AFTER TRANSFORMATION"
-              const isProxy = item.classification === "PROXY-BASED COMPARISON"
 
               return (
                 <div
                   key={item.key}
-                  className="rounded-xl border border-slate-800 bg-slate-950/60 p-4 flex flex-col justify-between gap-3"
+                  className="flex flex-col justify-between gap-3 rounded-[var(--tt-radius-card)] border border-[var(--tt-light-border)] bg-[var(--tt-light-surface)] p-5"
                 >
                   <div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-bold text-white">{item.name}</span>
-                      <span
-                        className={cn(
-                          "rounded px-2 py-0.5 text-[9px] font-bold uppercase",
-                          isDirect ? "bg-emerald-950/70 border border-emerald-500/40 text-emerald-300" :
-                          isTransformed ? "bg-amber-950/70 border border-amber-500/40 text-amber-300" :
-                          isProxy ? "bg-purple-950/70 border border-purple-500/40 text-purple-300" :
-                          "bg-rose-950/70 border border-rose-500/50 text-rose-300"
-                        )}
-                      >
-                        {item.classification}
-                      </span>
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-sm font-semibold text-[var(--tt-light-ink)]">{item.name}</span>
+                      <DsHonestyBadge
+                        tone={isDirect ? "high" : isTransformed ? "moderate" : "low"}
+                        label={item.classification}
+                      />
                     </div>
-
-                    <div className="text-[10px] text-cyan-400 mt-1 uppercase tracking-wider">{item.category}</div>
-
-                    <p className="text-slate-300 font-sans text-xs mt-2 leading-relaxed">
-                      <strong className="text-white">Physical Basis:</strong> {item.scientificBasis}
+                    <div className="tt-mono-label mt-1 text-[var(--tt-light-ink-muted)]">{item.category}</div>
+                    <p className="mt-2.5 text-xs leading-relaxed text-[var(--tt-light-ink-secondary)]">
+                      <strong className="text-[var(--tt-light-ink)]">Physical Basis:</strong> {item.scientificBasis}
                     </p>
                   </div>
 
-                  <div className="rounded bg-slate-900 border border-slate-800/80 p-2.5 text-[10px] text-slate-400 leading-normal">
-                    <span className="text-slate-200 font-semibold">Harmonization Rule:</span> {item.harmonizationNotes}
+                  <div className="rounded-[var(--tt-radius-control)] border border-[var(--tt-light-border)] bg-[var(--tt-light-bg)] p-2.5 font-mono text-[11px] leading-normal text-[var(--tt-light-ink-secondary)]">
+                    <span className="font-semibold text-[var(--tt-light-ink)]">Harmonization Rule:</span>{" "}
+                    {item.harmonizationNotes}
                   </div>
                 </div>
               )
@@ -509,35 +469,36 @@ export function SourcesExplorer({ targets, candidates, sources }: SourcesExplore
         </div>
       )}
 
-      {/* 6. Modal / Slide-Over: Cell Provenance Inspector */}
+      {/* 7. Cell Provenance Inspector Modal */}
       {selectedCell && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 animate-in fade-in duration-150">
-          <div className="relative w-full max-w-lg rounded-2xl border border-cyan-500/40 bg-slate-900 p-6 shadow-2xl font-mono text-xs flex flex-col gap-4">
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+        >
+          <div className="relative flex w-full max-w-lg flex-col gap-4 rounded-[var(--tt-radius-card)] border border-[var(--tt-light-border)] bg-[var(--tt-light-surface)] p-6 text-xs text-[var(--tt-light-ink)] shadow-[var(--tt-shadow-float)]">
             <button
               type="button"
               onClick={() => setSelectedCell(null)}
-              className="absolute right-4 top-4 text-slate-400 hover:text-white rounded-lg p-1 transition"
+              aria-label="Close inspector"
+              className="absolute top-4 right-4 rounded-lg p-1.5 text-[var(--tt-light-ink-muted)] transition hover:bg-[var(--tt-light-band)] hover:text-[var(--tt-light-ink)] cursor-pointer"
             >
-              <X className="size-5" />
+              <X className="size-4" />
             </button>
 
-            {/* Modal Title */}
             <div>
-              <div className="flex items-center gap-2 text-cyan-400 text-[10px] font-bold uppercase tracking-wider">
-                <ShieldCheck className="size-3.5 text-cyan-400" />
-                <span>TELEMETRY PROVENANCE INSPECTOR</span>
+              <div className="flex items-center gap-2 text-[var(--tt-accent)]">
+                <ShieldCheck className="size-3.5" aria-hidden="true" />
+                <span className="tt-mono-label">TELEMETRY PROVENANCE INSPECTOR</span>
               </div>
-              <h3 className="text-lg font-bold text-white mt-1">
-                {selectedCell.location.name}
-              </h3>
-              <p className="text-slate-400 text-[11px] mt-0.5">
+              <h3 className="mt-1 text-lg font-semibold text-[var(--tt-light-ink)]">{selectedCell.location.name}</h3>
+              <p className="mt-0.5 text-[11px] text-[var(--tt-light-ink-secondary)]">
                 {"body" in selectedCell.location
                   ? `${selectedCell.location.body.toUpperCase()} · ${selectedCell.location.summary}`
                   : `${selectedCell.location.country} · ${selectedCell.location.setting}`}
               </p>
             </div>
 
-            {/* Measurement Card */}
             {(() => {
               const feat = FEATURES.find((f) => f.key === selectedCell.featureKey)
               const val = selectedCell.location.environment[selectedCell.featureKey]
@@ -546,60 +507,66 @@ export function SourcesExplorer({ targets, candidates, sources }: SourcesExplore
 
               return (
                 <div className="flex flex-col gap-3">
-                  <div className="rounded-xl border border-cyan-500/30 bg-slate-950 p-4 flex items-center justify-between">
+                  <div className="flex items-center justify-between rounded-[var(--tt-radius-control)] border border-[var(--tt-light-border)] bg-[var(--tt-light-bg)] p-4">
                     <div>
-                      <div className="text-[10px] uppercase text-slate-400">{feat?.label}</div>
-                      <div className="text-2xl font-extrabold text-cyan-300 mt-1">
+                      <div className="tt-mono-label text-[var(--tt-light-ink-muted)]">{feat?.label}</div>
+                      <div className="tt-mono-data mt-1 text-2xl font-semibold text-[var(--tt-light-ink)]">
                         {formatFeatureValue(selectedCell.featureKey, val ?? null)}
                       </div>
                     </div>
-
-                    <span
-                      className={cn(
-                        "rounded px-2.5 py-1 text-[10px] font-bold uppercase",
-                        compInfo.classification === "DIRECTLY_COMPARABLE" ? "bg-emerald-950 border border-emerald-500/40 text-emerald-300" :
-                        compInfo.classification === "COMPARABLE_AFTER_TRANSFORMATION" ? "bg-amber-950 border border-amber-500/40 text-amber-300" :
-                        compInfo.classification === "PROXY_BASED" ? "bg-purple-950 border border-purple-500/40 text-purple-300" :
-                        "bg-rose-950 border border-rose-500/40 text-rose-300"
-                      )}
-                    >
-                      {compInfo.label}
-                    </span>
+                    <DsHonestyBadge
+                      tone={
+                        compInfo.classification === "DIRECTLY_COMPARABLE"
+                          ? "high"
+                          : compInfo.classification === "COMPARABLE_AFTER_TRANSFORMATION"
+                            ? "moderate"
+                            : "low"
+                      }
+                      label={compInfo.label}
+                    />
                   </div>
 
-                  <div className="rounded-lg bg-slate-950/80 border border-slate-800 p-3 flex flex-col gap-1.5 text-[11px]">
-                    <div className="text-slate-300">
-                      <strong className="text-white">Classification Notice:</strong> {compInfo.rationale}
-                    </div>
+                  <div className="rounded-[var(--tt-radius-control)] border border-[var(--tt-light-border)] bg-[var(--tt-light-bg)] p-3 text-[11px] text-[var(--tt-light-ink-secondary)]">
+                    <strong className="text-[var(--tt-light-ink)]">Classification Notice:</strong> {compInfo.rationale}
                   </div>
 
                   {prov ? (
-                    <div className="rounded-xl border border-emerald-500/30 bg-emerald-950/20 p-4 flex flex-col gap-2 text-[11px]">
-                      <div className="font-bold text-emerald-300 flex items-center justify-between">
+                    <div className="flex flex-col gap-1.5 rounded-[var(--tt-radius-control)] border border-[var(--tt-light-border)] bg-[var(--tt-light-bg)] p-4 text-[11px]">
+                      <div className="flex items-center justify-between font-semibold text-[var(--tt-light-ink)]">
                         <span>DATASET: {prov.sourceTitle}</span>
                         {prov.sourceUrl && (
                           <a
                             href={prov.sourceUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-cyan-400 hover:underline"
+                            className="inline-flex items-center gap-1 text-[var(--tt-accent)] hover:underline"
                           >
                             <span>Archive URL</span>
-                            <ExternalLink className="size-3" />
+                            <ArrowUpRight className="size-3" />
                           </a>
                         )}
                       </div>
-                      {prov.datasetVersion && <div className="text-slate-300">Product Version: {prov.datasetVersion}</div>}
-                      {prov.spatialResolution && <div className="text-slate-300">Spatial Resolution: {prov.spatialResolution}</div>}
-                      {prov.measurementPeriod && <div className="text-slate-400">Observation Period: {prov.measurementPeriod}</div>}
+                      {prov.datasetVersion && (
+                        <div className="text-[var(--tt-light-ink-secondary)]">Product Version: {prov.datasetVersion}</div>
+                      )}
+                      {prov.spatialResolution && (
+                        <div className="text-[var(--tt-light-ink-secondary)]">
+                          Spatial Resolution: {prov.spatialResolution}
+                        </div>
+                      )}
+                      {prov.measurementPeriod && (
+                        <div className="text-[var(--tt-light-ink-muted)]">
+                          Observation Period: {prov.measurementPeriod}
+                        </div>
+                      )}
                       {prov.qualityNotes && (
-                        <div className="text-slate-400 italic bg-slate-950/60 p-2 rounded border border-slate-800 mt-1 leading-relaxed">
+                        <div className="mt-1 rounded border border-[var(--tt-light-border)] bg-[var(--tt-light-surface)] p-2 italic text-[var(--tt-light-ink-secondary)]">
                           {prov.qualityNotes}
                         </div>
                       )}
                     </div>
                   ) : (
-                    <div className="rounded-xl border border-amber-500/30 bg-amber-950/20 p-4 text-amber-300/80 text-[11px]">
+                    <div className="rounded-[var(--tt-radius-control)] border border-[var(--tt-light-border)] bg-[var(--tt-light-band)] p-4 text-[11px] text-[var(--tt-light-ink-secondary)]">
                       Illustrative prototype value sourced from preliminary catalog. Not verified planetary evidence.
                     </div>
                   )}
@@ -610,9 +577,9 @@ export function SourcesExplorer({ targets, candidates, sources }: SourcesExplore
             <button
               type="button"
               onClick={() => setSelectedCell(null)}
-              className="w-full rounded-lg bg-slate-800 hover:bg-slate-700 py-2.5 font-bold text-white transition cursor-pointer"
+              className="h-10 w-full rounded-[var(--tt-radius-control)] bg-[var(--tt-light-ink)] font-medium text-[var(--tt-light-surface)] transition hover:opacity-90 cursor-pointer"
             >
-              CLOSE INSPECTOR
+              Close Inspector
             </button>
           </div>
         </div>

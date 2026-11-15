@@ -1,80 +1,199 @@
-import { Layers, Route, Rocket, AlertCircle } from "lucide-react"
+"use client"
 
-const PROBLEMS = [
-  {
-    icon: Rocket,
-    code: "PROBLEM 01",
-    tag: "TESTING SCARCITY",
-    title: "Off-Earth Testing Scarcity",
-    body: "Every single hour of rover operation or astronaut EVA on the lunar surface or Mars carries astronomical expenditure. Over 99% of mission validation, mechanical wear tests, and autonomous obstacle navigation protocols must be verified in terrestrial conditions.",
-  },
-  {
-    icon: Route,
-    code: "PROBLEM 02",
-    tag: "SUBJECTIVE SELECTION",
-    title: "Subjective Field Site Selection",
-    body: "Analog field expeditions have historically been picked via academic habit, geographical convenience, or anecdotal reputation rather than transparent, multi-spectral parameter comparisons against target planetary bodies.",
-  },
-  {
-    icon: Layers,
-    code: "PROBLEM 03",
-    tag: "DATA SILOS",
-    title: "Siloed Spectral & Terrain Data",
-    body: "Surface temperature ranges, aridity indices, grain size distributions, and mineralogical breccias currently reside in disparate planetary archives. Side-by-side dimensional comparison has historically been slow and manual.",
-  },
-]
+import { useMemo, useState } from "react"
+import { ArrowUpRight } from "lucide-react"
+import { DsButton, DsSectionHeader, DsSegmentedControl } from "@/components/ds/primitives"
+import { DsPlanetCard } from "@/components/ds/editorial-cards"
+import { DsRankedListCard } from "@/components/ds/explorer-widgets"
+import { getMissionPurpose } from "@/lib/terratwin/features"
+import { SAMPLE_CANDIDATES, SAMPLE_TARGETS } from "@/lib/terratwin/sample-dataset"
+import { rankCandidates } from "@/lib/terratwin/similarity"
 
 export function ProblemSection() {
+  const [destination, setDestination] = useState<"mars" | "moon">("mars")
+  const [missionFocus, setMissionFocus] = useState<"rover-testing" | "geological-research">("rover-testing")
+
+  const rankedPreview = useMemo(() => {
+    const target =
+      SAMPLE_TARGETS.find((t) => t.body === destination && t.id.includes("jezero")) ??
+      SAMPLE_TARGETS.find((t) => t.body === destination) ??
+      SAMPLE_TARGETS[0]
+    const purpose = getMissionPurpose(missionFocus) ?? getMissionPurpose("rover-testing")!
+    const ranked = rankCandidates(target, SAMPLE_CANDIDATES, purpose).slice(0, 3)
+
+    const top = ranked[0]
+    return {
+      target,
+      featuredTitle: top?.candidate.name ?? "Hanksville badlands",
+      featuredLocation: top?.candidate.country ?? "United States",
+      items: ranked.map((entry, idx) => ({
+        rank: String(idx + 1).padStart(2, "0"),
+        name: entry.candidate.name,
+        subtitle: `${entry.candidate.country} · ${Math.round(entry.coverage * 100)}% comparable coverage`,
+        score: `${(entry.score ?? 0).toFixed(1)}%`,
+      })),
+    }
+  }, [destination, missionFocus])
+
   return (
-    <section className="relative border-b border-slate-800/80 py-20 bg-slate-950">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        {/* Section Header */}
-        <div className="max-w-3xl">
-          <div className="flex items-center gap-2 font-mono text-xs text-sky-400 mb-2">
-            <AlertCircle className="size-3.5" />
-            <span>OPERATIONAL BOTTLENECK</span>
+    <>
+      {/* Section 01: Planetary Perspective */}
+      <section className="tt-surface-light py-20 md:py-28">
+        <div className="tt-container space-y-12">
+          <DsSectionHeader
+            index="01"
+            marker="A PLANETARY PERSPECTIVE"
+            rightCaption="Different worlds. Comparable questions."
+            line1="A world of difference."
+            line2="A terrain of similarities."
+            rightSlot="Compare the big picture, then look closer. We match specific environmental dimensions, because no place on Earth is a perfect planetary twin."
+          />
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            <DsPlanetCard
+              planet="earth"
+              eyebrow="01 / THE PROVING GROUND"
+              title="Earth"
+              tagline="Home."
+              description="Familiar ground. Extraordinary possibilities. Deserts, volcanic plains, and polar valleys become our field laboratories."
+              imageSrc="/images/earth-marble.jpg"
+              imageAlt="Earth planetary view"
+              specs={[
+                { label: "Diameter", value: "12,742 km" },
+                { label: "Surface gravity", value: "9.81 m/s²" },
+                { label: "Solar day", value: "24 hours" },
+                { label: "Atmosphere", value: "Nitrogen & oxygen" },
+              ]}
+              ctaLabel="Discover Earth analogs"
+              ctaHref="/discover"
+            />
+            <DsPlanetCard
+              planet="mars"
+              eyebrow="02 / THE NEXT FRONTIER"
+              title="Mars"
+              tagline="Possibility."
+              description="Ancient deltas and an arid surface. Find terrestrial terrain to put rover mobility and geological research to the test."
+              imageSrc="/textures/planets/mars.jpg"
+              imageAlt="Mars planetary view"
+              specs={[
+                { label: "Diameter", value: "6,779 km" },
+                { label: "Surface gravity", value: "3.71 m/s²" },
+                { label: "Solar day", value: "24.6 hours" },
+                { label: "Atmosphere", value: "Thin, mostly CO2" },
+              ]}
+              ctaLabel="Explore Mars targets"
+              ctaHref="/explore?body=mars"
+            />
+            <DsPlanetCard
+              planet="moon"
+              eyebrow="03 / OUR NEAREST NEIGHBOR"
+              title="Moon"
+              tagline="Discovery."
+              description="Basaltic plains and cratered highlands. Explore Earth analogs for regolith, surface morphology, and lunar fieldwork."
+              imageSrc="/textures/planets/moon.jpg"
+              imageAlt="Moon planetary view"
+              specs={[
+                { label: "Diameter", value: "3,475 km" },
+                { label: "Surface gravity", value: "1.62 m/s²" },
+                { label: "Solar day", value: "29.5 Earth days*" },
+                { label: "Atmosphere", value: "Trace exosphere" },
+              ]}
+              ctaLabel="Explore Moon targets"
+              ctaHref="/explore?body=moon"
+            />
           </div>
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Why Terrestrial Analog Selection Must Be Algorithmic
-          </h2>
-          <p className="mt-4 text-base leading-relaxed text-slate-300">
-            No single terrestrial site is a 100% clone of the Moon or Mars. Gravity and atmospheric pressure differ radically. 
-            The scientific imperative is isolating <span className="text-sky-300 font-medium">which specific dimensions matter</span> for a given mission objective.
+
+          <p className="text-[11px] leading-relaxed text-[var(--tt-light-ink-muted)]">
+            Rounded body-level reference values, separate from analog scores. *The Moon&apos;s solar day is its
+            day-night cycle. Earth sites cannot reproduce extraterrestrial gravity or atmosphere.{" "}
+            <a
+              href="https://science.nasa.gov/solar-system/"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-0.5 underline underline-offset-4 hover:text-[var(--tt-light-ink)]"
+            >
+              <span>Reference: NASA Solar System</span>
+              <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
+            </a>
           </p>
         </div>
+      </section>
 
-        {/* Problem Cards */}
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {PROBLEMS.map(({ icon: Icon, code, tag, title, body }) => (
-            <div
-              key={title}
-              className="flex flex-col justify-between rounded-xl border border-slate-800 bg-slate-900/60 p-6 shadow-xs hover:border-slate-700 transition-colors"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-4 font-mono text-xs">
-                  <span className="rounded bg-slate-800 border border-slate-700/60 px-2 py-0.5 text-slate-300 font-medium">
-                    {code}
-                  </span>
-                  <span className="text-[10px] text-slate-400 tracking-wider uppercase">{tag}</span>
+      {/* Section 02: Dark Showcase */}
+      <section className="tt-surface-showcase py-20 md:py-28">
+        <div className="tt-container space-y-12">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--tt-dark-border)] pb-4">
+            <span className="tt-mono-label text-[var(--tt-dark-ink-muted)]">02 / MEET YOUR EARTH ANALOG</span>
+            <span className="text-xs text-[var(--tt-dark-ink-muted)]">Interactive sample · illustrative values</span>
+          </div>
+
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-center">
+            <div className="space-y-6 lg:col-span-5">
+              <h2 className="tt-display-l">
+                <span className="block text-[var(--tt-dark-ink)]">Far-out terrain.</span>
+                <span className="block text-[var(--tt-dark-periwinkle)]">Right here on Earth.</span>
+              </h2>
+              <p className="max-w-md text-sm leading-relaxed text-[var(--tt-dark-ink-secondary)]">
+                Change the destination. Change the mission. See how the same transparent engine finds a different kind
+                of common ground.
+              </p>
+
+              <div className="space-y-5 pt-2">
+                <div className="space-y-2">
+                  <span className="tt-mono-label block text-[var(--tt-dark-ink-muted)]">DESTINATION</span>
+                  <DsSegmentedControl
+                    tone="dark"
+                    value={destination}
+                    onChange={setDestination}
+                    ariaLabel="Select showcase destination"
+                    options={[
+                      { value: "mars", label: "Mars" },
+                      { value: "moon", label: "Moon" },
+                    ]}
+                  />
                 </div>
-                <div className="mb-4 inline-flex size-10 items-center justify-center rounded-lg border border-slate-700/60 bg-slate-800 text-sky-400">
-                  <Icon className="size-5" />
+
+                <div className="space-y-2">
+                  <span className="tt-mono-label block text-[var(--tt-dark-ink-muted)]">MISSION FOCUS</span>
+                  <DsSegmentedControl
+                    tone="dark"
+                    value={missionFocus}
+                    onChange={setMissionFocus}
+                    ariaLabel="Select showcase mission focus"
+                    options={[
+                      { value: "rover-testing", label: "Rover testing" },
+                      { value: "geological-research", label: "Geological research" },
+                    ]}
+                  />
                 </div>
-                <h3 className="text-lg font-semibold text-white">
-                  {title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-400">
-                  {body}
-                </p>
               </div>
-              <div className="mt-6 flex items-center gap-1.5 font-mono text-[11px] text-slate-400 pt-4 border-t border-slate-800">
-                <span>TERRATWIN SOLUTION:</span>
-                <span className="text-sky-400 font-medium">VECTOR SIMILARITY ENGINE</span>
+
+              <div className="pt-2">
+                <DsButton
+                  variant="secondary"
+                  href={`/explore?body=${destination}&purpose=${missionFocus}`}
+                  className="text-[var(--tt-dark-ink)]"
+                >
+                  Go deeper in the explorer
+                </DsButton>
               </div>
             </div>
-          ))}
+
+            <div className="lg:col-span-7">
+              <DsRankedListCard
+                imageSrc="/images/analog-terrain.png"
+                imageAlt={`${rankedPreview.featuredTitle} analog terrain`}
+                routeLabel={`${rankedPreview.target.name} → EARTH`}
+                featuredTitle={rankedPreview.featuredTitle}
+                featuredLocation={rankedPreview.featuredLocation}
+                items={rankedPreview.items}
+                footerLabel="Inspect feature-by-feature comparison"
+                footerHref={`/explore?body=${destination}&purpose=${missionFocus}`}
+              />
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }
