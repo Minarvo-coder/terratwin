@@ -132,10 +132,6 @@ export function LandingHero() {
               <div className="h-14 w-14 overflow-hidden rounded-full shadow-[var(--tt-shadow-soft)] ring-1 ring-black/10">
                 <img src="/textures/planets/moon.jpg" alt="Moon surface" className="h-full w-full object-cover" />
               </div>
-              <div className="mt-3 text-right">
-                <span className="tt-mono-label block text-[var(--tt-light-ink-muted)]">02 / MARS</span>
-                <span className="mt-0.5 block text-xs text-[var(--tt-light-ink-secondary)]">The next frontier</span>
-              </div>
             </div>
 
             {/* Mars */}
